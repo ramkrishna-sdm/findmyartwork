@@ -33,5 +33,5 @@ Route::get('password/reset/{token}', 'ForgotPasswordController@sendResetLinkEmai
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
-Route::resource('category', 'CategoryController'); 
+Route::resource('category', 'CategoryController');
 
