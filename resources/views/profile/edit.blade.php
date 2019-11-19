@@ -16,7 +16,7 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
                         <img src="{{ asset('paper/img/damir-bosnjak.jpg') }}" alt="...">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>  
-            </div>
+            </div> -->
             <div class="col-md-8 text-center">
                 <form class="col-md-12" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf

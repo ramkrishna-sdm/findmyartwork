@@ -25,8 +25,26 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
+	// Buyer Management
+	Route::get('/buyer', 'Admin\BuyerController@index');
+	Route::get('/add_buyer', 'Admin\BuyerController@add_buyer');
+	Route::post('/update_buyer', 'Admin\BuyerController@update_buyer');
+	Route::get('/edit_buyer/{id}', 'Admin\BuyerController@edit_buyer');
+	Route::get('/delete_buyer/{id}', 'Admin\BuyerController@delete_buyer');
+	Route::get('/change_buyer_status/{id}/{stauts}', 'Admin\BuyerController@change_buyer_status');
+	
+	// Artist Management
+	Route::get('/artist', 'Admin\ArtistController@index');
+	Route::get('/add_artist', 'Admin\ArtistController@add_artist');
+	Route::post('/update_artist', 'Admin\ArtistController@update_artist');
+	Route::get('/edit_artist/{id}', 'Admin\ArtistController@edit_artist');
+	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
+	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
+
 	Route::get('/category/add','Admin\CategoryController@add_category')->name('add_category');
 	Route::post('/category/save_category','Admin\CategoryController@save_category')->name('save_category');
+
 });
 
 Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
