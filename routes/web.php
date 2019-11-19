@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
 	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
 
+	Route::get('/category/add','Admin\CategoryController@add_category')->name('add_category');
+	Route::post('/category/save_category','Admin\CategoryController@save_category')->name('save_category');
+
 });
 
 Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
@@ -50,5 +53,4 @@ Route::get('password/reset/{token}', 'ForgotPasswordController@sendResetLinkEmai
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
-Route::resource('category', 'CategoryController');
 
