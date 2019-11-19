@@ -15,7 +15,7 @@ use Cookie;
 use Segment;
 use DateTime;
 
-class BuyerController extends Controller
+class ArtistController extends Controller
 {
     /**
     * Construction function
@@ -32,7 +32,7 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to buyers listing page
+    * Function to artists listing page
     * @param $request(Array)
     * @return 
     *
@@ -41,70 +41,70 @@ class BuyerController extends Controller
     */
     public function index()
     {
-    	$buyers = $this->galleryUserRepository->getData(['user_type'=>'buyer'],'get',[],0);
-        return view('backend/buyers', compact('buyers'));
+    	$artists = $this->galleryUserRepository->getData(['user_type'=>'artist'],'get',[],0);
+        return view('backend/artists', compact('artists'));
     }
 
     /**
-    * Function to buyers listing page
+    * Function to artists listing page
     * @param $request(Array)
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function add_buyer()
+    public function add_artist()
     {
-    	return view('backend/add_buyer');
+    	return view('backend/add_artist');
     }
 
     /**
-    * Function to buyers listing page
+    * Function to artists listing page
     * @param $request(Array)
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function edit_buyer($id)
+    public function edit_artist($id)
     {
-    	$buyer = $this->galleryUserRepository->getData(['id'=>$id],'first',[],0);
-    	return view('backend/edit_buyer', compact('buyer'));
+    	$artist = $this->galleryUserRepository->getData(['id'=>$id],'first',[],0);
+    	return view('backend/edit_artist', compact('artist'));
     }
 
     /**
-    * Function to buyers listing page
+    * Function to artists listing page
     * @param $request(Array)
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function delete_buyer($id)
+    public function delete_artist($id)
     {
-    	$buyer = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
-    	\Session::flash('success_message', 'Buyer Deleted Succssfully!.'); 
-            return redirect('buyer');
+    	$artist = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
+    	\Session::flash('success_message', 'Artist Deleted Succssfully!.'); 
+            return redirect('artist');
     }
 
     /**
-    * Function to buyers listing page
+    * Function to artists listing page
     * @param $request(Array)
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function change_buyer_status($id, $status)
+    public function change_artist_status($id, $status)
     {
     	if($status == 'yes'){
     		$data['is_active'] = 'no';
     	}else{
     		$data['is_active'] = 'yes';
     	}
-    	$buyer = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
-    	\Session::flash('success_message', 'Buyer Status Changed Succssfully!.'); 
-        return redirect('buyer');
+    	$artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+    	\Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
+        return redirect('artist');
     }
 
     /**
@@ -116,7 +116,7 @@ class BuyerController extends Controller
     * Created At: 18Sept2019 
     */
 
-    public function update_buyer()
+    public function update_artist()
     {
         $validate = $this->validate($this->request, [
             'email'         => trim('required|string|email|max:255|unique:gallery_users,email,'.$this->request->id),
@@ -124,10 +124,10 @@ class BuyerController extends Controller
             'last_name'         => 'required|string',
             'user_type'         => 'required|string'
         ]);
-        $buyer = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
-        if($buyer){
-            \Session::flash('success_message', 'Buyer Details Updated Succssfully.'); 
-            return redirect('buyer');
+        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+        if($artist){
+            \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
+            return redirect('artist');
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();

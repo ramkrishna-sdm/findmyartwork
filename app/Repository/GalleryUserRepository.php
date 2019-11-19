@@ -37,6 +37,10 @@ class GalleryUserRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['user_type'])) {
+            $query->where('user_type', $conditions['user_type']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }

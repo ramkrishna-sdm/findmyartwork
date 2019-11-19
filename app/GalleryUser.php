@@ -12,7 +12,7 @@ class GalleryUser extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'alias', 'biography', 'address', 'postal_code', 'city', 'state', 'country', 'is_deleted', 'is_active', 'email_verified_at'
+        'first_name', 'last_name', 'email', 'alias', 'biography', 'address', 'postal_code', 'city', 'state', 'country', 'is_deleted', 'is_active', 'email_verified_at', 'user_type'
     ];
 
     /**
