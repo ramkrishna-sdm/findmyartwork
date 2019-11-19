@@ -33,9 +33,8 @@ class CategoryController extends Controller
     * Created At: 19Nov2019 
     */
     public function index() {
-        dd('welcome to list');
-    	$templates = $this->templateRepository->getData(['is_deleted'=>'no',  'created_by'=>'admin'],'get',[],0);
-    	return view('backend.templates', compact('templates'));
+    	$categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+    	return view('backend.categories', compact('categories'));
     }
      /**
     * Function to render Add Category Page
@@ -62,10 +61,10 @@ class CategoryController extends Controller
 			'name' => 'required',
 		]);
     	try{
-            $save_category = $this->categoryRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
-           
+            $save_category = $this->categoryRepository->createUpdateData(['id'=> $request->id],$request->all());
+            //dd($save_category);
 	    	\Session::flash('success_message', "Template Saved Successfully!");
-	    	return redirect('/admin/category');
+	    	return redirect('/category');
     	}catch (\Exception $ex){
     		\Session::flash('error_message', $ex->getMessage());
     		return back()->withInput();
