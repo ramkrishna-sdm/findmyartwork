@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,12 +12,12 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'is_deleted', 'is_active'
+        'category_id', 'name', 'is_deleted', 'is_active'
     ];
 
     // Relations with SubCategory Model
-    public function subcategories()
+    public function category()
     {
-        return $this->hasMany('App\SubCategory','category_id','id');
+        return $this->belongsTo('App\Category','category_id','id');
     }
 }
