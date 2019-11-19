@@ -7,7 +7,7 @@
                     ©
                     <script>
                         document.write(new Date().getFullYear())
-                    </script>{{ __(', FindMyArtwork ') }}
+                    </script>{{ __(', ArtViaYou ') }}
                 </span>
             </div>
         </div>

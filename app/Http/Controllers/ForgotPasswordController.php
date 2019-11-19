@@ -25,12 +25,12 @@ class ForgotPasswordController extends Controller
         $data['token'] = $response->token;
         Mail::send('email.reset_password', $confirmed = array('user_info'=>$data), function($message ) use ($data){ 
                 $message->to($data['email']);
-                $message->from('xyz@yopmail.com','FindMyArtwork');
+                $message->from('xyz@yopmail.com','ArtViaYou');
                 $message->subject('Laravel Basic Testing Mail');
             });
 
         // Mail::send(['text'=>'reset_password'], $data, function($message) {
-        //      $message->to('ram@yopmail.com', 'FindMyArtwork')->subject
+        //      $message->to('ram@yopmail.com', 'ArtViaYou')->subject
         //         ('Laravel Basic Testing Mail');
         //      $message->from('xyz@gmail.com','Ram');
         // });

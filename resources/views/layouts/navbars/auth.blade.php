@@ -6,7 +6,7 @@
             </div>
         </a>
         <a href="{{url('/')}}" class="simple-text logo-normal">
-            {{ __('FindMyArtwork') }}
+            {{ __('ArtViaYou') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -17,7 +17,7 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'buyers' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon nc-single-02"></i>
                     <p>
@@ -29,14 +29,20 @@
                     <ul class="nav">
                         <li class="{{ $elementActive == 'profile' ? 'active' : '' }}">
                             <a href="{{ route('profile.edit') }}">
-                                <span class="sidebar-mini-icon">{{ __('UP') }}</span>
-                                <span class="sidebar-normal">{{ __(' User Profile ') }}</span>
+                                <span class="sidebar-mini-icon">{{ __('P') }}</span>
+                                <span class="sidebar-normal">{{ __(' Profile ') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'user' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'user') }}">
-                                <span class="sidebar-mini-icon">{{ __('UM') }}</span>
-                                <span class="sidebar-normal">{{ __(' User Management ') }}</span>
+                        <li class="{{ $elementActive == 'buyers' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' ? 'active' : '' }}">
+                            <a href="{{ url('buyer') }}">
+                                <span class="sidebar-mini-icon">{{ __('BM') }}</span>
+                                <span class="sidebar-normal">{{ __(' Buyer Management ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' ? 'active' : '' }}">
+                            <a href="{{ url('artist') }}">
+                                <span class="sidebar-mini-icon">{{ __('AM') }}</span>
+                                <span class="sidebar-normal">{{ __(' Artist Management ') }}</span>
                             </a>
                         </li>
                     </ul>
