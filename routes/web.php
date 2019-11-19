@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::get('/category/add','Admin\CategoryController@add_category')->name('add_category');
 	Route::post('/category/save_category','Admin\CategoryController@save_category')->name('save_category');
+	Route::get('/category','Admin\CategoryController@index')->name('index');
 });
 
 Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');

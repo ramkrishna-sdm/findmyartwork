@@ -12,7 +12,11 @@
                         <div class="card-header bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
+                                <div class="col-4 text-right">
                                     <h3 class="mb-0">{{ __('User Management') }}</h3>
+                                    
+                                    <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                </div>
                                 </div>
                                 <div class="col-4 text-right">
                                     <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>

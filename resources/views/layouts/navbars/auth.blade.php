@@ -42,6 +42,13 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
+                <a href="{{ url('category') }}">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>{{ __('Category Management') }}</p>
+                </a>
+            </li>
+            
         </ul>
     </div>
 </div>
