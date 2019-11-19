@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/category/add','Admin\CategoryController@add_category')->name('add_category');
 	Route::post('/category/save_category','Admin\CategoryController@save_category')->name('save_category');
+	Route::get('/category','Admin\CategoryController@index')->name('index');
 
 });
 
