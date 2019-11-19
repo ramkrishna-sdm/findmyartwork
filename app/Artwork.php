@@ -29,5 +29,5 @@ class Artwork extends Model
     public function variants()
     {
         return $this->hasMany('App\Variant','artwork_id','id');
-    }
+    } 
 }
