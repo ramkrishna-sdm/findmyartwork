@@ -41,10 +41,34 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/edit_artist/{id}', 'Admin\ArtistController@edit_artist');
 	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
 	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
-
-	Route::get('/category/add','Admin\CategoryController@add_category')->name('add_category');
-	Route::post('/category/save_category','Admin\CategoryController@save_category')->name('save_category');
-	Route::get('/category','Admin\CategoryController@index')->name('index');
+	//category Management
+	Route::get('/add_category','Admin\CategoryController@add_category');
+	Route::post('update_category','Admin\CategoryController@update_category');
+	Route::get('/category','Admin\CategoryController@index');
+	Route::get('/edit_category/{id}', 'Admin\CategoryController@edit_category');
+	Route::get('/delete_category/{id}', 'Admin\CategoryController@delete_category');
+	Route::get('/change_category_status/{id}/{stauts}', 'Admin\CategoryController@change_category_status');
+	//Subject Management
+	Route::get('/add_subject','Admin\SubjectController@add_subject');
+	Route::post('update_subject','Admin\SubjectController@update_subject');
+	Route::get('/subject','Admin\SubjectController@index');
+	Route::get('/edit_subject/{id}', 'Admin\SubjectController@edit_subject');
+	Route::get('/delete_subject/{id}', 'Admin\SubjectController@delete_subject');
+	Route::get('/change_subject_status/{id}/{stauts}', 'Admin\SubjectController@change_subject_status');
+	//Style Management
+	Route::get('/add_style','Admin\StyleController@add_style');
+	Route::post('update_style','Admin\StyleController@update_style');
+	Route::get('/style','Admin\StyleController@index');
+	Route::get('/edit_style/{id}', 'Admin\StyleController@edit_style');
+	Route::get('/delete_style/{id}', 'Admin\StyleController@delete_style');
+	Route::get('/change_style_status/{id}/{stauts}', 'Admin\StyleController@change_style_status');
+	//SubCategory Management
+	Route::get('/add_subcategory','Admin\SubCategoryController@add_subcategory');
+	Route::post('update_subcategory','Admin\SubCategoryController@update_subcategory');
+	Route::get('/subcategory','Admin\SubCategoryController@index');
+	Route::get('/edit_subcategory/{id}', 'Admin\SubCategoryController@edit_subcategory');
+	Route::get('/delete_subcategory/{id}', 'Admin\SubCategoryController@delete_style');
+	Route::get('/change_subcategory_status/{id}/{stauts}', 'Admin\SubCategoryController@change_subcategory_status');
 
 });
 
