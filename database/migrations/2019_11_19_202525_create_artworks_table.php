@@ -22,7 +22,7 @@ class CreateArtworksTable extends Migration
             $table->string('style')->nullable();
             $table->string('subject')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('yes');
+            $table->enum('is_publised',['publish','unpublish'])->default('publish');
             $table->timestamps();
         });
 

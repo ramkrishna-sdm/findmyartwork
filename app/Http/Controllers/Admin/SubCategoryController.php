@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\SubCategoryRepository;
+use App\Repository\CategoryRepository;
 use Validator;
 use Exception;
 use Session;
@@ -24,10 +25,11 @@ class SubCategoryController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 19Nov2019 
     */
-    public function __construct(Request $request, SubCategoryRepository $SubCategoryRepository)
+    public function __construct(Request $request, SubCategoryRepository $SubCategoryRepository, CategoryRepository $categoryRepository)
     {
         $this->request = $request;
         $this->SubCategoryRepository = $SubCategoryRepository;
+        $this->categoryRepository = $categoryRepository;
     }
     /**
     * Function To List all SubCategory
@@ -50,7 +52,8 @@ class SubCategoryController extends Controller
     * Created At: 19Nov2019 
     */
     public function add_subcategory() {
-        return view('backend.add_subcategory');
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        return view('backend.add_subcategory', compact('categories'));
     }
 
     /**
