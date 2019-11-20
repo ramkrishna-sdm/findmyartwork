@@ -40,7 +40,7 @@ class SubCategoryController extends Controller
     * Created At: 19Nov2019 
     */
     public function index() {
-        $subcategories = $this->SubCategoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $subcategories = $this->SubCategoryRepository->getData(['is_deleted'=>'no'],'get',['category'],0);
         return view('backend.subcategories', compact('subcategories'));
     }
      /**
@@ -89,7 +89,8 @@ class SubCategoryController extends Controller
     public function edit_subcategory($id)
     {
         $subcategory = $this->SubCategoryRepository->getData(['id'=>$id],'first',[],0);
-        return view('backend/edit_subcategory', compact('subcategory'));
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        return view('backend/edit_subcategory', compact('subcategory','categories'));
     }
 
      /**
