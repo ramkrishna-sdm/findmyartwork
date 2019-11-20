@@ -46,7 +46,7 @@ class ArtistController extends Controller
     }
 
     /**
-    * Function to artists listing page
+    * Function to add artists page
     * @param $request(Array)
     * @return 
     *
@@ -59,7 +59,7 @@ class ArtistController extends Controller
     }
 
     /**
-    * Function to artists listing page
+    * Function to edit artists page
     * @param $request(Array)
     * @return 
     *
@@ -73,7 +73,7 @@ class ArtistController extends Controller
     }
 
     /**
-    * Function to artists listing page
+    * Function to delete artists
     * @param $request(Array)
     * @return 
     *
@@ -88,7 +88,7 @@ class ArtistController extends Controller
     }
 
     /**
-    * Function to artists listing page
+    * Function to change artists status
     * @param $request(Array)
     * @return 
     *
@@ -108,7 +108,7 @@ class ArtistController extends Controller
     }
 
     /**
-    * Function to Register Employee
+    * Function to create/update artist
     * @param $request(Array)
     * @return 
     *

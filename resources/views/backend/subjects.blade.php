@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'categories'
+    'elementActive' => 'subjects'
 ])
 <script type="text/javascript">
 
@@ -14,10 +14,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">{{ __('Category') }}</h3>
+                                    <h3 class="mb-0">{{ __('Subject') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('add_category') }}" class="btn btn-sm btn-primary">{{ __('Add category') }}</a>
+                                    <a href="{{ url('add_subject') }}" class="btn btn-sm btn-primary">{{ __('Add Subject') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -46,17 +46,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($categories as $category)
-                                        <tr>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
-                                            <td class="text-right">
-                                                        <a href="{{url('edit_category')}}/{{$category->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_category')}}/{{$category->id}}" class="btn btn-danger btn-link btn-sm remove delete_category" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_category_status')}}/{{$category->id}}/{{$category->is_active}}" class="btn btn-danger btn-link btn-sm change_category_status" title="@if($category->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                @foreach($subjects as $key => $subject)
+                                                <tr>
+                                                    <td>{{$subject->name}}</td>
+                                                    <td>{{$subject->created_at->format('d/m/Y H:i')}}</td>
+                                                    <td class="text-right">
+                                                        <a href="{{url('edit_subject')}}/{{$subject->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('delete_subject')}}/{{$subject->id}}" class="btn btn-danger btn-link btn-sm remove delete_subject" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('change_subject_status')}}/{{$subject->id}}/{{$subject->is_active}}" class="btn btn-danger btn-link btn-sm change_subject_status" title="@if($subject->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
-                                        </tr>
-                                    @endforeach
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div><!-- end content-->

@@ -75,7 +75,7 @@
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
             var arr = PATH.split('/');
-            if(arr[1] == "buyer"){
+            if(arr[1] == "buyer" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
                 $('#datatable').DataTable();
             }
         }); 
@@ -168,6 +168,182 @@
         swal({
             title: "Please confirm this action",
             text: "By this action you are confirming that the selected Artist's status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.delete_category').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected category will be deleted permanently.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.change_category_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Category's status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.delete_subject').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected subject will be deleted permanently.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.change_subject_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Subject's status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.delete_style').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected style will be deleted permanently.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.change_style_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Style's status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.delete_subcategory').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected subcategory will be deleted permanently.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.change_subcategory_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Sucategory's status will be changed.",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',

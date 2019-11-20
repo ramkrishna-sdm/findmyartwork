@@ -46,7 +46,7 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to buyers listing page
+    * Function to add buyers page
     * @param $request(Array)
     * @return 
     *
@@ -59,7 +59,7 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to buyers listing page
+    * Function to edit buyers page
     * @param $request(Array)
     * @return 
     *
@@ -73,7 +73,7 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to buyers listing page
+    * Function to delete buyers
     * @param $request(Array)
     * @return 
     *
@@ -88,7 +88,7 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to buyers listing page
+    * Function to change buyers status
     * @param $request(Array)
     * @return 
     *
@@ -108,12 +108,12 @@ class BuyerController extends Controller
     }
 
     /**
-    * Function to Register Employee
+    * Function to create/update buyer
     * @param $request(Array)
     * @return 
     *
     * Created By: Ram Krishna Murthy
-    * Created At: 18Sept2019 
+    * Created At:  
     */
 
     public function update_buyer()
