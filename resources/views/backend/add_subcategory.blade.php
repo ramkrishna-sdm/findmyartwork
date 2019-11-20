@@ -35,6 +35,25 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <div class="form-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Category') }}</label>
+                                        <select class="form-control" name="category_id">
+   
+                                          <option>Select Category</option>
+                                            
+                                          @foreach ($categories as $key => $category)
+                                            <option value="{{ $key }}"> 
+                                                {{ $category->name }} 
+                                            </option>
+                                          @endforeach    
+                                        </select>
+                                        
+                                        @if ($errors->has('category_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('category_id') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                     
                                    
                                     <div class="text-center">

@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('update_subcategory','Admin\SubCategoryController@update_subcategory');
 	Route::get('/subcategory','Admin\SubCategoryController@index');
 	Route::get('/edit_subcategory/{id}', 'Admin\SubCategoryController@edit_subcategory');
-	Route::get('/delete_subcategory/{id}', 'Admin\SubCategoryController@delete_style');
+	Route::get('/delete_subcategory/{id}', 'Admin\SubCategoryController@delete_subcategory');
 	Route::get('/change_subcategory_status/{id}/{stauts}', 'Admin\SubCategoryController@change_subcategory_status');
 
 });
