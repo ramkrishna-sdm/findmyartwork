@@ -9,7 +9,6 @@
 
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->
-    <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel" />
     <title>
         {{ __('ArtViaYou Admin') }}
     </title>
@@ -42,7 +41,7 @@
     
     @auth()
         @include('layouts.page_templates.auth')
-        @include('layouts.navbars.fixed-plugin')
+        {{-- @include('layouts.navbars.fixed-plugin') --}}
     @endauth
     
     @guest
@@ -390,7 +389,7 @@
             type: "get",
             url: '/get_gallery_images/'+artwork_id,
             success: function (data) {
-                $('.bs-example-modal-lg').html(data);
+                $('.modal-body').html(data);
             },
             error: function () {
                 console.error('Failed to process ajax !');
