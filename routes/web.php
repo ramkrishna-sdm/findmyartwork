@@ -41,6 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/edit_artist/{id}', 'Admin\ArtistController@edit_artist');
 	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
 	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
+	// Artwork Management
+	Route::get('/artwork/{artist_id}', 'Admin\ArtworkController@index');
+	Route::get('/view_artwork/{artist_id}', 'Admin\ArtworkController@view_artwork');
+	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'Admin\ArtworkController@change_artwork_status');
+	Route::get('/get_gallery_images/{artist_id}', 'Admin\ArtworkController@get_gallery_images');
 	//category Management
 	Route::get('/add_category','Admin\CategoryController@add_category');
 	Route::post('update_category','Admin\CategoryController@update_category');

@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'artists'
+    'elementActive' => 'artworks'
 ])
 <script type="text/javascript">
 
@@ -14,10 +14,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">{{ __('Artists') }}</h3>
+                                    <h3 class="mb-0">{{ __('Artwork') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <!-- <a href="{{ url('add_artist') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a> -->
+                                    <a href="{{ url('artist') }}" class="btn btn-sm btn-primary">{{ __('Back to Artist') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -40,26 +40,22 @@
                                         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Email</th>
-                                                    <th>City</th>
-                                                    <th>Country</th>
+                                                    <th>Title</th>
+                                                    <th>Category</th>
+                                                    <th>Sub Category</th>
+                                                    <th>Main Image</th>
                                                     <th class="disabled-sorting text-right">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($artists as $key => $artist)
+                                                @foreach($artworks as $key => $artwork)
                                                 <tr>
-                                                    <td><a href="{{url('artwork')}}/{{$artist->id}}">{{$artist->first_name}}</a></td>
-                                                    <td>{{$artist->last_name}}</td>
-                                                    <td>{{$artist->email}}</td>
-                                                    <td>{{$artist->city}}</td>
-                                                    <td>{{$artist->country}}</td>
+                                                    <td><a href="{{url('view_artwork')}}/{{$artwork->id}}">{{$artwork->title}}</a></td>
+                                                    <td>{{$artwork->category_detail->name}}</td>
+                                                    <td>{{$artwork->sub_category_detail->name}}</td>
+                                                    <td><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target=".bs-example-modal-lg"></td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_artist')}}/{{$artist->id}}" class="btn btn-danger btn-link btn-sm remove delete_artist" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_artist_status')}}/{{$artist->id}}/{{$artist->is_active}}" class="btn btn-danger btn-link btn-sm change_artist_status" title="@if($artist->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('change_artwork_status')}}/{{$artwork->id}}/{{$artwork->is_publised}}/list/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_artwork_status" title="@if($artwork->is_publised == 'publish') Un-Publish @else Publish @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -73,5 +69,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        
     </div>
 @endsection
