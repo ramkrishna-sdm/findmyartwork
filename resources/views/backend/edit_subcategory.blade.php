@@ -26,7 +26,7 @@
                                 <input type="hidden" name="id" value="{{$subcategory->id}}">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Add Subcategory') }}</h6>
                                 <div class="pl-lg-4">
-                                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
                                         <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{$subcategory->name}}" required autofocus>
 
@@ -35,7 +35,27 @@
                                                 <strong>{{ $errors->first('name') }}</strong>
                                             </span>
                                         @endif
-                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Category') }}</label>
+                                        <select class="form-control" name="category_id">
+   
+                                          <option>Select Category</option>
+                                            
+                                          @foreach ($categories as $key => $category)
+                                            <option value="{{ $key }}"> 
+                                                {{ $category->name }} 
+                                            </option>
+                                          @endforeach    
+                                        </select>
+
+                                        @if ($errors->has('category_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('category_id') }}</strong>
+                                            </span>
+                                        @endif
+                                </div>
+
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                     </div>
