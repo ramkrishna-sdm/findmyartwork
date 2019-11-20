@@ -75,7 +75,7 @@
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
             var arr = PATH.split('/');
-            if(arr[1] == "buyer" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
+            if(arr[1] == "buyer" || arr[1] == "artwork" || arr[1] == "artist" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
                 $('#datatable').DataTable();
             }
         }); 
@@ -357,6 +357,43 @@
                 window.location = link;
             } else {
                swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.change_artwork_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Artwork status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+
+    $(document).on('click', ".show_slider", function(event){
+        event.preventDefault();
+        var artwork_id = $(this).attr('data-artwork-id');
+        $.ajax({
+            type: "get",
+            url: '/get_gallery_images/'+artwork_id,
+            success: function (data) {
+                $('.bs-example-modal-lg').html(data);
+            },
+            error: function () {
+                console.error('Failed to process ajax !');
             }
         });
     });

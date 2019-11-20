@@ -15,6 +15,26 @@ class Artwork extends Model
         'title', 'description', 'category', 'sub_category', 'style', 'subject', 'gallery_user_id', 'is_deleted', 'is_publised',
     ];
 
+    // Relations with Category Model
+    public function style_detail()
+    {
+        return $this->belongsTo('App\Style','style','id');
+    }
+    // Relations with Category Model
+    public function subject_detail()
+    {
+        return $this->belongsTo('App\Subject','subject','id');
+    }
+    // Relations with Category Model
+    public function category_detail()
+    {
+        return $this->belongsTo('App\Category','category','id');
+    }
+    // Relations with GalleryUser Model
+    public function sub_category_detail()
+    {
+        return $this->belongsTo('App\SubCategory','sub_category','id');
+    }
     // Relations with GalleryUser Model
     public function artist()
     {
