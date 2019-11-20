@@ -34,6 +34,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete_buyer/{id}', 'Admin\BuyerController@delete_buyer');
 	Route::get('/change_buyer_status/{id}/{stauts}', 'Admin\BuyerController@change_buyer_status');
 	
+	// Gallery User Management
+	Route::get('/gallery', 'Admin\GalleryUserController@index');
+	Route::get('/add_gallery', 'Admin\GalleryUserController@add_gallery');
+	Route::post('/update_gallery', 'Admin\GalleryUserController@update_gallery');
+	Route::get('/edit_gallery/{id}', 'Admin\GalleryUserController@edit_gallery');
+	Route::get('/delete_gallery/{id}', 'Admin\GalleryUserController@delete_gallery');
+	Route::get('/change_gallery_status/{id}/{stauts}', 'Admin\GalleryUserController@change_gallery_status');
+	
 	// Artist Management
 	Route::get('/artist', 'Admin\ArtistController@index');
 	Route::get('/add_artist', 'Admin\ArtistController@add_artist');
