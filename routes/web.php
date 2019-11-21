@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('pay_now', 'Frontend\PaymentController@index');
+Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
+Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -91,4 +94,5 @@ Route::get('password/reset/{token}', 'ForgotPasswordController@sendResetLinkEmai
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
+
 
