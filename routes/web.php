@@ -34,6 +34,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete_buyer/{id}', 'Admin\BuyerController@delete_buyer');
 	Route::get('/change_buyer_status/{id}/{stauts}', 'Admin\BuyerController@change_buyer_status');
 	
+	// Gallery User Management
+	Route::get('/gallery', 'Admin\GalleryUserController@index');
+	Route::get('/add_gallery', 'Admin\GalleryUserController@add_gallery');
+	Route::post('/update_gallery', 'Admin\GalleryUserController@update_gallery');
+	Route::get('/edit_gallery/{id}', 'Admin\GalleryUserController@edit_gallery');
+	Route::get('/delete_gallery/{id}', 'Admin\GalleryUserController@delete_gallery');
+	Route::get('/change_gallery_status/{id}/{stauts}', 'Admin\GalleryUserController@change_gallery_status');
+	
 	// Artist Management
 	Route::get('/artist', 'Admin\ArtistController@index');
 	Route::get('/add_artist', 'Admin\ArtistController@add_artist');
@@ -41,6 +49,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/edit_artist/{id}', 'Admin\ArtistController@edit_artist');
 	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
 	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
+	// Artwork Management
+	Route::get('/artwork/{artist_id}', 'Admin\ArtworkController@index');
+	Route::get('/view_artwork/{artist_id}', 'Admin\ArtworkController@view_artwork');
+	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'Admin\ArtworkController@change_artwork_status');
+	Route::get('/get_gallery_images/{artist_id}', 'Admin\ArtworkController@get_gallery_images');
 	//category Management
 	Route::get('/add_category','Admin\CategoryController@add_category');
 	Route::post('update_category','Admin\CategoryController@update_category');

@@ -33,6 +33,10 @@ class ArtworkRepository implements RepositoryInterface
             $query->where('id', $conditions['id']);
         }
 
+        if (!empty($conditions['gallery_user_id'])) {
+            $query->where('gallery_user_id', $conditions['gallery_user_id']);
+        }
+
         if (!empty($conditions['is_deleted'])) {
             $query->where('is_deleted', $conditions['is_deleted']);
         }

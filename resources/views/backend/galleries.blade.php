@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'artists'
+    'elementActive' => 'gallery'
 ])
 <script type="text/javascript">
 
@@ -14,10 +14,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">{{ __('Artists') }}</h3>
+                                    <h3 class="mb-0">{{ __('Gallery User') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <!-- <a href="{{ url('add_artist') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a> -->
+                                    <!-- <a href="{{ url('add_gallery') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a> -->
                                 </div>
                             </div>
                         </div>
@@ -49,17 +49,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($artists as $key => $artist)
+                                                @foreach($galleries as $key => $gallery)
                                                 <tr>
-                                                    <td><a href="{{url('artwork')}}/{{$artist->id}}">{{$artist->first_name}}</a></td>
-                                                    <td>{{$artist->last_name}}</td>
-                                                    <td>{{$artist->email}}</td>
-                                                    <td>{{$artist->city}}</td>
-                                                    <td>{{$artist->country}}</td>
+                                                    <td>{{$gallery->first_name}}</td>
+                                                    <td>{{$gallery->last_name}}</td>
+                                                    <td>{{$gallery->email}}</td>
+                                                    <td>{{$gallery->city}}</td>
+                                                    <td>{{$gallery->country}}</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_artist')}}/{{$artist->id}}" class="btn btn-danger btn-link btn-sm remove delete_artist" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_artist_status')}}/{{$artist->id}}/{{$artist->is_active}}" class="btn btn-danger btn-link btn-sm change_artist_status" title="@if($artist->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('edit_gallery')}}/{{$gallery->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('delete_gallery')}}/{{$gallery->id}}" class="btn btn-danger btn-link btn-sm remove delete_gallery" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('change_gallery_status')}}/{{$gallery->id}}/{{$gallery->is_active}}" class="btn btn-danger btn-link btn-sm change_status" title="@if($gallery->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

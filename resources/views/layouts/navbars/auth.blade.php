@@ -17,7 +17,7 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'buyers' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon nc-single-02"></i>
                     <p>
@@ -43,6 +43,12 @@
                             <a href="{{ url('artist') }}">
                                 <span class="sidebar-mini-icon">{{ __('AM') }}</span>
                                 <span class="sidebar-normal">{{ __(' Artist Management ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'gallery' ? 'active' : '' }}">
+                            <a href="{{ url('gallery') }}">
+                                <span class="sidebar-mini-icon">{{ __('GU') }}</span>
+                                <span class="sidebar-normal">{{ __(' Gallery User Management ') }}</span>
                             </a>
                         </li>
                     </ul>
