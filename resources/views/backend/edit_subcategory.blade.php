@@ -40,10 +40,10 @@
                                         <label class="form-control-label" for="input-name">{{ __('Category') }}</label>
                                         <select class="form-control" name="category_id">
    
-                                          <option>Select Category</option>
+                                          <option value="">Select Category</option>
                                             
                                           @foreach ($categories as $key => $category)
-                                            <option value="{{ $key }}"> 
+                                            <option value="{{ $category->id }}"> 
                                                 {{ $category->name }} 
                                             </option>
                                           @endforeach    
@@ -54,7 +54,7 @@
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
                                         @endif
-                                </div>
+                                    </div>
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
