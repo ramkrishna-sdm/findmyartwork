@@ -67,8 +67,10 @@ class SubCategoryController extends Controller
     public function update_subcategory(Request $request) {
         $validator = $this->validate($request,[
             'name' => 'required',
+            'category_id' => 'required'
         ]);
         try{
+
             $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $request->id],$request->all());
             \Session::flash('success_message', "SubCategory Saved Successfully!");
             return redirect('/subcategory');

@@ -54,6 +54,12 @@
                     <p>{{ __('Category Management') }}</p>
                 </a>
             </li>
+              <li class="{{ $elementActive == 'subcategories' || $elementActive == 'add_subcategory' || $elementActive == 'edit_subcategory' ? 'active' : '' }}">
+                <a href="{{ url('subcategory') }}">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>{{ __('SubCategory Management') }}</p>
+                </a>
+            </li>
              <li class="{{ $elementActive == 'subjects' || $elementActive == 'add_subject' || $elementActive == 'edit_subject' ? 'active' : '' }}">
                 <a href="{{ url('subject') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
@@ -66,6 +72,7 @@
                     <p>{{ __('Style Management') }}</p>
                 </a>
             </li>
+          
 
             
         </ul>
