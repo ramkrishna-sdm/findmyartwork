@@ -31,6 +31,11 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script>
     <!-- End Google Tag Manager -->
+    <style type="text/css">
+    #offerCard{
+        display: none;
+    }
+    </style>
 </head>
 
 <body class="{{ $class }}">
