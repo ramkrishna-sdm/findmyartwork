@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'aboutus',
+    'elementActive' => 'manage_cms/'.$slug,
 ])
 
 @section('content')
