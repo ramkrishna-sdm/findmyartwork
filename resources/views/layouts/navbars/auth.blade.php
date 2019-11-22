@@ -78,9 +78,6 @@
                     <p>{{ __('Style Management') }}</p>
                 </a>
             </li>
-          
-
-            
         </ul>
     </div>
 </div>
