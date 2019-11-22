@@ -66,7 +66,10 @@ class CategoryController extends Controller
     public function update_category(Request $request) {
     	$validator = $this->validate($request,[
             'name' => 'required|max:255',
-            // 'media_url' => 'required|mimes:jpg,png,jpeg,gif',
+            'media_url' => 'required_without:old_image|mimes:jpg,png,jpeg,gif',
+        ],
+        [   
+            'media_url.required_without'    => 'Image preview is required for this sub category.',
         ]);
     	try{
             $category_array = [];
