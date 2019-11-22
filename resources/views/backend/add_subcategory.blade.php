@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_subcategory') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('update_subcategory') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="subcategory">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Add SubCategory') }}</h6>
@@ -54,6 +54,16 @@
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
                                         @endif
+                                    </div>
+                                    <div class="form-group{{ $errors->has('media_url') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
+                                     <input class="form-control form-control-alternative" type="file" name="media_url"/>
+
+                                    @if ($errors->has('media_url'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('media_url') }}</strong>
+                                        </span>
+                                    @endif
                                     </div>
                                     
                                    

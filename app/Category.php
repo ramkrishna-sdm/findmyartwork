@@ -12,7 +12,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'is_deleted', 'is_active'
+        'name','media_url', 'is_deleted', 'is_active'
     ];
 
     // Relations with SubCategory Model

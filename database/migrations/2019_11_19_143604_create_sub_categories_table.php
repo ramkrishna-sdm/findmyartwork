@@ -16,6 +16,7 @@ class CreateSubCategoriesTable extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('media_url')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_active',['yes','no'])->default('no');
             $table->timestamps();

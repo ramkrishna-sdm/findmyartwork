@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_subcategory') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('update_subcategory') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="subcategory">
                                 <input type="hidden" name="id" value="{{$subcategory->id}}">
@@ -43,9 +43,7 @@
                                           <option value="">Select Category</option>
                                             
                                           @foreach ($categories as $key => $category)
-                                            <option value="{{ $category->id }}"> 
-                                                {{ $category->name }} 
-                                            </option>
+                                            <option value="{{ $category->id }}" @if($category->id == $subcategory->category_id) selected @endif>{{ $category->name }}</option>
                                           @endforeach    
                                         </select>
 
@@ -54,6 +52,16 @@
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
                                         @endif
+                                    </div>
+                                    <div class="form-group{{ $errors->has('media_url') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
+                                     <input class="form-control form-control-alternative" type="file" name="media_url"/>
+
+                                    @if ($errors->has('media_url'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('media_url') }}</strong>
+                                        </span>
+                                    @endif
                                     </div>
 
                                     <div class="text-center">

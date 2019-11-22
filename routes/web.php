@@ -86,10 +86,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete_subcategory/{id}', 'Admin\SubCategoryController@delete_subcategory');
 	Route::get('/change_subcategory_status/{id}/{stauts}', 'Admin\SubCategoryController@change_subcategory_status');
 	//CMS Management
-	Route::get('/add_aboutus', 'Admin\AboutUsController@add_aboutus');
-	Route::post('/update_aboutus', 'Admin\AboutUsController@update_aboutus');
-	Route::get('/add_cms','Admin\AboutUsController@add_cms');
-	Route::post('/update_cms','Admin\AboutUsController@update_cms');
+	Route::get('/add_aboutus', 'Admin\CmsController@add_aboutus');
+	Route::post('/update_aboutus', 'Admin\CmsController@update_aboutus');
+	Route::get('/add_cms','Admin\CmsController@add_cms');
+	Route::post('/update_cms','Admin\CmsController@update_cms');
 
 
 });
