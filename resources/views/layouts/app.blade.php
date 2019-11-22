@@ -84,6 +84,16 @@
             if(arr[1] == "buyer" || arr[1] == "artwork" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
                 $('#datatable').DataTable();
             }
+            if(arr[1] == "add_aboutus"){
+                var ckview = document.getElementById("des_first");
+                    CKEDITOR.replace(des_first,{
+                        language:'en-gb'
+                    });
+                var ckview = document.getElementById("des_second");
+                CKEDITOR.replace(des_second,{
+                    language:'en-gb'
+                });
+            }
             if(arr[1] == "artist"){
                 $(document).ready(function() {
                    var dataSrc = [];
@@ -434,14 +444,7 @@
                 }
             });
         });
-        var ckview = document.getElementById("des_first");
-            CKEDITOR.replace(des_first,{
-                language:'en-gb'
-            });
-        var ckview = document.getElementById("des_second");
-        CKEDITOR.replace(des_second,{
-            language:'en-gb'
-        });
+        
     </script>
     @stack('scripts')
 

@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
 	//CMS Management
 	Route::get('/add_aboutus', 'Admin\CmsController@add_aboutus');
 	Route::post('/update_aboutus', 'Admin\CmsController@update_aboutus');
-	Route::get('/add_cms','Admin\CmsController@add_cms');
+	Route::get('/manage_cms/{slug}','Admin\CmsController@add_cms');
 	Route::post('/update_cms','Admin\CmsController@update_cms');
 
 

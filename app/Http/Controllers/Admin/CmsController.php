@@ -105,7 +105,7 @@ class CmsController extends Controller
     * Created By: Shambhu thakur
     * Created At: 21Nov2019
     */
-    public function add_cms()
+    public function add_cms($slug)
     {
     	return view('backend/add_cms');
     }
@@ -126,7 +126,7 @@ class CmsController extends Controller
         ]);
         try{
 
-            $cms = $this->CmsRepository->createUpdateData(['id'=> $request->id],$request->all());
+            $cms = $this->CmsRepository->createUpdateData(['slug'=> $request->slug],$request->all());
             \Session::flash('success_message', "Cms Saved Successfully!");
             return redirect('/subcategory');
         }catch (\Exception $ex){
