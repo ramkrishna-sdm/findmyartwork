@@ -109,6 +109,43 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'manage_cms' ? 'true' : 'false' }}" href="#cms_collapse" class="{{ $elementActive == 'manage_cms' ? 'collapsed' : '' }}">
+                    <i class="nc-icon nc-image"></i>
+                    <p>
+                            {{ __('CMS Management') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works' ? 'show' : '' }}" id="cms_collapse">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'manage_cms/about_us' ? 'active' : '' }}">
+                            <a href="{{ url('manage_cms/about_us') }}">
+                                <span class="sidebar-mini-icon">{{ __('AU') }}</span>
+                                <span class="sidebar-normal">{{ __(' About Us ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'manage_cms/terms_n_conditions' ? 'active' : '' }}">
+                            <a href="{{ url('manage_cms/terms_n_conditions') }}">
+                                <span class="sidebar-mini-icon">{{ __('T&C') }}</span>
+                                <span class="sidebar-normal">{{ __(' Terms & Conditions ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'manage_cms/privacy_policy' ? 'active' : '' }}">
+                            <a href="{{ url('manage_cms/privacy_policy') }}">
+                                <span class="sidebar-mini-icon">{{ __('PP') }}</span>
+                                <span class="sidebar-normal">{{ __(' Privacy Policy ') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'manage_cms/how_it_works' ? 'active' : '' }}">
+                            <a href="{{ url('manage_cms/how_it_works') }}">
+                                <span class="sidebar-mini-icon">{{ __('HW') }}</span>
+                                <span class="sidebar-normal">{{ __(' How It Works ') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </div>

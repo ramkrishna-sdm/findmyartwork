@@ -31,18 +31,6 @@ class CmsController extends Controller
         $this->CmsRepository = $CmsRepository;
         $this->aboutus_files = '/images/aboutus_files/';
     }
-     /**
-    * Function to add aboutus page
-    * @param $request(Array)
-    * @return 
-    *0
-    * Created By: Shambhu thakur
-    * Created At: 21Nov2019
-    */
-    public function add_aboutus()
-    {
-    	return view('backend/add_aboutus');
-    }
 
     /**
     * Function to Create/Update About Us
@@ -54,43 +42,45 @@ class CmsController extends Controller
     */
     public function update_aboutus(Request $request) {
     	
-		$validator = Validator::make($this->request->all(), [
+		$validate = $this->validate($request,[
             'title'	=> 'required|max:255',
 			'des_first' => 'required',
 			'des_second' => 'required',
-			'first_img_url' => 'required|mimes:jpg,png,jpeg,gif',
-			'second_img_url' => 'required|mimes:jpg,png,jpeg,gif',
+			// 'first_img_url' => 'required|mimes:jpg,png,jpeg,gif',
+			// 'second_img_url' => 'required|mimes:jpg,png,jpeg,gif',
         ]);
-        if ($validator->fails()) {
-        	return response()->json(['error' => $validator->messages()]);
-        }
+        
         try{
-        $aboutus_array = [];
-        $aboutus_array['title'] = $this->request->title;
-        $aboutus_array['des_first'] = $this->request->des_first;
-        $aboutus_array['des_second'] = $this->request->des_second;
-        $aboutus_array['slug'] = $this->request->slug;
-    	$first_img_url = $this->request->file('first_img_url');
-    	$second_img_url = $this->request->file('second_img_url');
-
-        	$parts = pathinfo($first_img_url->getClientOriginalName());
-            $extension = strtolower($parts['extension']);
-            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-        	$imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-            $first_img_url->move(public_path() . $this->aboutus_files, $imageName);  
-            $image_name = url($this->aboutus_files . $imageName); 
-            $aboutus_array['first_img_url'] = $image_name;
-
-            $parts1 = pathinfo($second_img_url->getClientOriginalName());
-            $extension1 = strtolower($parts['extension']);
-            $imageName1 = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-        	$imageName1 = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-            $second_img_url->move(public_path() . $this->aboutus_files, $imageName1);  
-            $image_name1 = url($this->aboutus_files . $imageName1); 
-            $aboutus_array['second_img_url'] = $image_name1;
-            $upload_file = $this->CmsRepository->createUpdateData(['id'=> $this->request->id],$aboutus_array);
+            $aboutus_array = [];
+            $aboutus_array['title'] = $this->request->title;
+            $aboutus_array['des_first'] = $this->request->des_first;
+            $aboutus_array['des_second'] = $this->request->des_second;
+        	
+            if($this->request->hasFile('first_img_url')){
+                $first_img_url = $this->request->file('first_img_url');
+                $parts = pathinfo($first_img_url->getClientOriginalName());
+                $extension = strtolower($parts['extension']);
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $first_img_url->move(public_path() . $this->aboutus_files, $imageName);  
+                $image_name = url($this->aboutus_files . $imageName); 
+                $aboutus_array['first_img_url'] = $image_name;    
+            }
+            if($this->request->hasFile('second_img_url')){
+                $second_img_url = $this->request->file('second_img_url');
+                $parts1 = pathinfo($second_img_url->getClientOriginalName());
+                $extension1 = strtolower($parts['extension']);
+                $imageName1 = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $imageName1 = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $second_img_url->move(public_path() . $this->aboutus_files, $imageName1);  
+                $image_name1 = url($this->aboutus_files . $imageName1); 
+                $aboutus_array['second_img_url'] = $image_name1;
+            }
+            
+            	
+            $upload_file = $this->CmsRepository->createUpdateData(['slug'=> $this->request->slug],$aboutus_array);
              \Session::flash('success_message', "AboutUs Saved Successfully!");
-            return redirect('/category');
+            return redirect('/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -105,9 +95,23 @@ class CmsController extends Controller
     * Created By: Shambhu thakur
     * Created At: 21Nov2019
     */
-    public function add_cms()
+    public function manage_cms($slug)
     {
-    	return view('backend/add_cms');
+        $title = "";
+        if($slug == "about_us"){
+            $title = "About Us";
+        }
+        if($slug == "privacy_policy"){
+            $title = "Privacy Policy";
+        }
+        if($slug == "terms_n_conditions"){
+            $title = "Terms & Conditions";
+        }   
+        if($slug == "how_it_works"){
+            $title = "How It Works";
+        }
+        $cms_info = $this->CmsRepository->getData(['slug'=>$slug],'first',[],0);
+    	return view('backend/edit_cms', compact('slug', 'title', 'cms_info'));
     }
 
      /**
@@ -126,9 +130,9 @@ class CmsController extends Controller
         ]);
         try{
 
-            $cms = $this->CmsRepository->createUpdateData(['id'=> $request->id],$request->all());
-            \Session::flash('success_message', "Cms Saved Successfully!");
-            return redirect('/subcategory');
+            $cms = $this->CmsRepository->createUpdateData(['slug'=> $request->slug],$request->all());
+            \Session::flash('success_message', "Information Saved Successfully!");
+            return redirect('/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();

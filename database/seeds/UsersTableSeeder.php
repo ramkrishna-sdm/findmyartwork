@@ -20,5 +20,25 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('cms')->insert([
+            'slug' => 'about_us',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('cms')->insert([
+            'slug' => 'privacy_policy',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('cms')->insert([
+            'slug' => 'terms_n_conditions',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('cms')->insert([
+            'slug' => 'how_it_works',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }
