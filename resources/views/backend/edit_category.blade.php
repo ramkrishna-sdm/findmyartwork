@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'edit_category',
+    'elementActive' => 'category',
 ])
 
 @section('content')

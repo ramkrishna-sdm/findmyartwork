@@ -33,7 +33,7 @@
     <!-- End Google Tag Manager -->
     <style type="text/css">
     #offerCard{
-        display: none;
+        display: none !important;
     }
     </style>
 </head>
