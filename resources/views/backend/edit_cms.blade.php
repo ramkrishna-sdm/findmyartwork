@@ -24,6 +24,7 @@
                             <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
                             @endif
                         </div>
+                        
                         <div class="card-body">
                             @if($slug == "about_us")
                             <form method="post" action="{{ url('update_aboutus') }}" enctype="multipart/form-data" autocomplete="off">
@@ -51,7 +52,15 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group{{ $errors->has('second_img_url') ? ' has-danger' : '' }}">
+                                    <div class="col-sm-4">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="@if(!empty($cms_info->first_img_url)){{$cms_info->first_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input class="form-control" type="file" id="wizard-picture" name="first_img_url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group{{ $errors->has('second_img_url') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
                                          <input type="file" name="first_img_url">
 
@@ -60,7 +69,7 @@
                                                 <strong>{{ $errors->first('first_img_url') }}</strong>
                                             </span>
                                         @endif
-                                    </div>
+                                    </div> -->
                                     <div class="form-group{{ $errors->has('des_second') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Description') }}</label>
                                         <textarea name="des_second" id="des_second" cols="30" rows="10">@if(!empty($cms_info->des_second)){{$cms_info->des_second}}@else {{old('des_second')}} @endif</textarea>
@@ -71,12 +80,20 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group{{ $errors->has('second_img_url') ? ' has-danger' : '' }}">
+                                    <div class="col-sm-4">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="@if(!empty($cms_info->second_img_url)){{$cms_info->second_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input class="form-control" type="file" id="wizard-picture" name="second_img_url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group{{ $errors->has('second_img_url') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
                                          <input class="form-control form-control-alternative" type="file" name="second_img_url"/>
 
                                         
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                     </div>
