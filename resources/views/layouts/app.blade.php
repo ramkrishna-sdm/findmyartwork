@@ -94,6 +94,12 @@
                     language:'en-gb'
                 });
             }
+            if(arr[1] == "add_cms"){
+                var ckview = document.getElementById("des_first");
+                    CKEDITOR.replace(des_first,{
+                        language:'en-gb'
+                    });
+            }
             if(arr[1] == "artist"){
                 $(document).ready(function() {
                    var dataSrc = [];
