@@ -75,13 +75,46 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
   
     <script src="{{ asset('js/sweetalert-data.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
 
     <script type="text/javascript">
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
             var arr = PATH.split('/');
-            if(arr[1] == "buyer" || arr[1] == "artwork" || arr[1] == "artist" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
+            if(arr[1] == "buyer" || arr[1] == "artwork" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
                 $('#datatable').DataTable();
+            }
+            if(arr[1] == "artist"){
+                $(document).ready(function() {
+                   var dataSrc = [];
+
+                   var table = $('#datatable').DataTable({
+                      'initComplete': function(){
+                         var api = this.api();
+
+                         // Populate a dataset for autocomplete functionality
+                         // using data from first, second and third columns
+                         api.cells('tr', [0, 1, 2]).every(function(){
+                            // Get cell data as plain text
+                            var data = $('<div>').html(this.data()).text();           
+                            if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+                         });
+                         
+                         // Sort dataset alphabetically
+                         dataSrc.sort();
+                        
+                         // Initialize Typeahead plug-in
+                         $('.dataTables_filter input[type="search"]', api.table().container())
+                            .typeahead({
+                               source: dataSrc,
+                               afterSelect: function(value){
+                                  api.search(value).draw();
+                               }
+                            }
+                         );
+                      }
+                   });
+                });
             }
         }); 
         $('document').ready(function() {
