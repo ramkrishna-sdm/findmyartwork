@@ -53,6 +53,7 @@
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="{{url('ckeditor/ckeditor.js')}}"></script>
     <!--  Google Maps Plugin    -->
     <!-- script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script-->
     <!-- Chart JS -->
@@ -396,6 +397,14 @@
             }
         });
     });
+    var ckview = document.getElementById("des_first");
+        CKEDITOR.replace(des_first,{
+            language:'en-gb'
+        });
+    var ckview = document.getElementById("des_second");
+        CKEDITOR.replace(des_second,{
+            language:'en-gb'
+        });
     </script>
     @stack('scripts')
 
