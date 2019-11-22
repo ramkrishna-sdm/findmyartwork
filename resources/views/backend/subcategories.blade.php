@@ -54,7 +54,7 @@
                                                     <td>{{$subcategory->name}}</td>
                                                      <td><img src="{{ $subcategory->media_url }}" height="80px" width="80px" /></td>
                                                     <td>{{$subcategory->category->name}}</td>
-                                                    <td>{{$subcategory->created_at->format('d/m/Y H:i')}}</td>
+                                                    <td>@if(!empty($subcategory->created_at)){{date('d/m/Y H:i', strtotime($subcategory->created_at))}}@endif</td>
                                                     <td class="text-right">
                                                         <a href="{{url('edit_subcategory')}}/{{$subcategory->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('delete_subcategory')}}/{{$subcategory->id}}" class="btn btn-danger btn-link btn-sm remove delete_subcategory" title="Delete"><i class="fa fa-times"></i></a>

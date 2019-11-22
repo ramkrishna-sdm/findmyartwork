@@ -18,14 +18,14 @@
                 </a>
             </li>
             <li class="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
-                <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
+                <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'true' : 'false' }}" href="#laravelExamples" class="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'collapsed' : '' }}">
                     <i class="nc-icon nc-single-02"></i>
                     <p>
                             {{ __('User Management') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="laravelExamples">
+                <div class="collapse {{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'add_buyer' || $elementActive == 'edit_buyer' || $elementActive == 'artists' || $elementActive == 'add_artist' || $elementActive == 'edit_artist' || $elementActive == 'user' || $elementActive == 'profile' ? 'show' : '' }}" id="laravelExamples">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'profile' ? 'active' : '' }}">
                             <a href="{{ route('profile.edit') }}">
