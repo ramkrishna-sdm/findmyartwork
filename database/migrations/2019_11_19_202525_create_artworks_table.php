@@ -21,6 +21,8 @@ class CreateArtworksTable extends Migration
             $table->string('sub_category')->nullable();
             $table->string('style')->nullable();
             $table->string('subject')->nullable();
+            $table->enum('top',['yes','no'])->default('no');
+            $table->enum('trending',['yes','no'])->default('no');
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_publised',['publish','unpublish'])->default('publish');
             $table->timestamps();

@@ -93,15 +93,130 @@ class ArtworkController extends Controller
     {
     	if($status == 'publish'){
     		$data['is_publised'] = 'unpublish';
+            $new_status = "Un-Published";
     	}else{
     		$data['is_publised'] = 'publish';
+            $new_status = "Published";
     	}
     	$artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
-    	\Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
+    	\Session::flash('success_message', 'Artwork Status Changed to '.$new_status.' Succssfully!.'); 
     	if($page == "list"){
-	        return redirect('artwork/'.$user_id);
-    	}else{
-    		return redirect('view_artwork/'.$id);
-    	}
+            return redirect('artwork/'.$user_id);
+        }elseif($page == "manage_artworks"){
+            return redirect('manage_artworks');
+        }elseif($page == "trending_artwork"){
+            return redirect('trending_artwork');
+        }elseif($page == "top_artwork"){
+            return redirect('top_artwork');
+        }else{
+            return redirect('view_artwork/'.$id);
+        }
     }
+
+    /**
+    * Function to artwork listing page
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function manage_artworks()
+    {
+        $artworks = $this->artworkRepository->getData([],'get',['artist', 'category_detail', 'sub_category_detail'],0);
+        return view('backend/manage_artworks', compact('artworks', 'artist_id'));
+    }
+
+    /**
+    * Function to artwork listing page
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function top_artwork()
+    {
+        $artworks = $this->artworkRepository->getData(['top'=>'yes'],'get',['artist', 'category_detail', 'sub_category_detail'],0);
+        return view('backend/top_artworks', compact('artworks', 'artist_id'));
+    }
+
+    /**
+    * Function to artwork listing page
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function trending_artwork()
+    {
+        $artworks = $this->artworkRepository->getData(['trending'=>'yes'],'get',['artist', 'category_detail', 'sub_category_detail'],0);
+        return view('backend/trending_artworks', compact('artworks', 'artist_id'));
+    }
+
+    /**
+    * Function to change artists status
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function change_top_status($id, $status, $page, $user_id)
+    {
+        if($status == 'yes'){
+            $data['top'] = 'no';
+            $new_status = "Artwork Removed From Top Listing";
+        }else{
+            $data['top'] = 'yes';
+            $new_status = "Artwork Added To Top Listing";
+        }
+        $artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
+        \Session::flash('success_message', $new_status); 
+        if($page == "list"){
+            return redirect('artwork/'.$user_id);
+        }elseif($page == "manage_artworks"){
+            return redirect('manage_artworks');
+        }elseif($page == "trending_artwork"){
+            return redirect('trending_artwork');
+        }elseif($page == "top_artwork"){
+            return redirect('top_artwork');
+        }else{
+            return redirect('view_artwork/'.$id);
+        }
+    }
+
+    /**
+    * Function to change artists status
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function change_trending_status($id, $status, $page, $user_id)
+    {
+        if($status == 'yes'){
+            $data['trending'] = 'no';
+            $new_status = "Artwork Removed From Trending List";
+        }else{
+            $data['trending'] = 'yes';
+            $new_status = "Artwork Added To Trending List";
+        }
+        $artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
+        \Session::flash('success_message', $new_status); 
+        if($page == "list"){
+            return redirect('artwork/'.$user_id);
+        }elseif($page == "manage_artworks"){
+            return redirect('manage_artworks');
+        }elseif($page == "trending_artwork"){
+            return redirect('trending_artwork');
+        }elseif($page == "top_artwork"){
+            return redirect('top_artwork');
+        }else{
+            return redirect('view_artwork/'.$id);
+        }
+    }
+
 }

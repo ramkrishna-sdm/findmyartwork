@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'edit_style',
+    'elementActive' => 'style',
 ])
 
 @section('content')

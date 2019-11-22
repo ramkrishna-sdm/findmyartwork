@@ -33,7 +33,7 @@
     <!-- End Google Tag Manager -->
     <style type="text/css">
     #offerCard{
-        display: none;
+        display: none !important;
     }
     </style>
 </head>
@@ -84,7 +84,7 @@
             if(arr[1] == "buyer" || arr[1] == "artwork" || arr[1] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[1] == "subcategory"){
                 $('#datatable').DataTable();
             }
-            if(arr[1] == "artist"){
+            if(arr[1] == "manage_artworks" || arr[1] == "top_artwork" || arr[1] == "trending_artwork"){
                 $(document).ready(function() {
                    var dataSrc = [];
 
@@ -94,7 +94,7 @@
 
                          // Populate a dataset for autocomplete functionality
                          // using data from first, second and third columns
-                         api.cells('tr', [0, 1, 2]).every(function(){
+                         api.cells('tr', [0, 1, 2, 3]).every(function(){
                             // Get cell data as plain text
                             var data = $('<div>').html(this.data()).text();           
                             if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
@@ -404,6 +404,50 @@
             swal({
                 title: "Please confirm this action",
                 text: "By this action you are confirming that the selected Artwork status will be changed.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, I am sure!',
+                cancelButtonText: "No, cancel it!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    window.location = link;
+                } else {
+                   swal("Cancelled", "You cancelled this action", "error");
+                }
+            });
+        });
+        $('.change_top_status').click(function(event) {
+            event.preventDefault();
+            var link = $(this).attr('href');
+            swal({
+                title: "Please confirm this action",
+                text: "By this action you are confirming that the selected Artwork Top List status will be changed.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, I am sure!',
+                cancelButtonText: "No, cancel it!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    window.location = link;
+                } else {
+                   swal("Cancelled", "You cancelled this action", "error");
+                }
+            });
+        });
+        $('.change_trending_status').click(function(event) {
+            event.preventDefault();
+            var link = $(this).attr('href');
+            swal({
+                title: "Please confirm this action",
+                text: "By this action you are confirming that the selected Artwork Trending List status will be changed.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
