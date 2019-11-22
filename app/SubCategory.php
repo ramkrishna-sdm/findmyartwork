@@ -12,7 +12,7 @@ class SubCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id', 'name', 'is_deleted', 'is_active'
+        'category_id','media_url', 'name', 'is_deleted', 'is_active'
     ];
 
     // Relations with SubCategory Model

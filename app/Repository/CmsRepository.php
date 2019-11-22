@@ -2,15 +2,15 @@
 namespace App\Repository;
 
 use App\Repository\RepositoryInterface;
-use App\AboutUs;
+use App\Cms;
 
-class AboutUsRepository implements RepositoryInterface
+class CmsRepository implements RepositoryInterface
 {
     private $model;
 
-    public function __construct(AboutUs $AboutUs)
+    public function __construct(Cms $Cms)
     {
-        $this->model = $AboutUs;
+        $this->model = $Cms;
     }
 
     //To create and update data

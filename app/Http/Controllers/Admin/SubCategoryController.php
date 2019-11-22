@@ -17,6 +17,7 @@ use DateTime;
 
 class SubCategoryController extends Controller
 {
+    private $subcategory_files;
     /**
     * Construction function
     * @param $request(Array), $SubCategoryRepository(Repository Interface)
@@ -30,6 +31,7 @@ class SubCategoryController extends Controller
         $this->request = $request;
         $this->SubCategoryRepository = $SubCategoryRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->subcategory_files = '/images/subcategory_files/';
     }
     /**
     * Function To List all SubCategory
@@ -65,13 +67,29 @@ class SubCategoryController extends Controller
     * Created At: 19Nov2019 
     */
     public function update_subcategory(Request $request) {
-        $validator = $this->validate($request,[
-            'name' => 'required',
-            'category_id' => 'required'
+        
+        $validator = Validator::make($this->request->all(), [
+            'name' => 'required|max:255',
+            'category_id' => 'required',
+            'media_url' => 'required|mimes:jpg,png,jpeg,gif',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()]);
+        }
         try{
+            $subcategory_array = [];
+            $subcategory_array['name'] = $this->request->name;
+            $subcategory_array['category_id'] = $this->request->category_id;
+            $media_url = $this->request->file('media_url');
+                $parts = pathinfo($media_url->getClientOriginalName());
+                $extension = strtolower($parts['extension']);
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $media_url->move(public_path() . $this->subcategory_files, $imageName);  
+                $image_name = url($this->subcategory_files . $imageName);
+                $subcategory_array['media_url'] = $image_name;
 
-            $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $request->id],$request->all());
+            $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $request->id],$subcategory_array);
             \Session::flash('success_message', "SubCategory Saved Successfully!");
             return redirect('/subcategory');
         }catch (\Exception $ex){

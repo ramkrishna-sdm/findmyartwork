@@ -16,6 +16,7 @@ use DateTime;
 
 class CategoryController extends Controller
 {
+    private $category_files;
     /**
     * Construction function
     * @param $request(Array), $categoryRepository(Repository Interface)
@@ -28,6 +29,7 @@ class CategoryController extends Controller
     {
         $this->request = $request;
         $this->categoryRepository = $categoryRepository;
+        $this->category_files = '/images/category_files/';
     }
     /**
     * Function To List all Category
@@ -62,12 +64,25 @@ class CategoryController extends Controller
     * Created At: 19Nov2019 
     */
     public function update_category(Request $request) {
-    	$validator = $this->validate($request,[
-			'name' => 'required',
-		]);
+    	$validator = Validator::make($this->request->all(), [
+            'name' => 'required|max:255',
+            'media_url' => 'required|mimes:jpg,png,jpeg,gif',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()]);
+        }
     	try{
-            $save_category = $this->categoryRepository->createUpdateData(['id'=> $request->id],$request->all());
-            //dd($save_category);
+            $category_array = [];
+            $category_array['name'] = $this->request->name;
+            $media_url = $this->request->file('media_url');
+                $parts = pathinfo($media_url->getClientOriginalName());
+                $extension = strtolower($parts['extension']);
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $media_url->move(public_path() . $this->category_files, $imageName);  
+                $image_name = url($this->category_files . $imageName);
+                $category_array['media_url'] = $image_name;
+            $save_category = $this->categoryRepository->createUpdateData(['id'=> $request->id],$category_array);
 	    	\Session::flash('success_message', "Category Saved Successfully!");
 	    	return redirect('/category');
     	}catch (\Exception $ex){

@@ -41,6 +41,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('Name') }}</th>
+                                                     <th scope="col">{{ __('Image') }}</th>
                                         <th scope="col">{{ __('Creation Date') }}</th>
                                                     <th class="disabled-sorting text-right">Actions</th>
                                                 </tr>
@@ -49,6 +50,7 @@
                                                 @foreach ($categories as $category)
                                         <tr>
                                             <td>{{ $category->name }}</td>
+                                            <td><img src="{{ $category->media_url }}" height="80px" width="80px" /></td>
                                             <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
                                             <td class="text-right">
                                                         <a href="{{url('edit_category')}}/{{$category->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>

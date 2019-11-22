@@ -41,6 +41,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('Name') }}</th>
+                                                     <th scope="col">{{ __('Image') }}</th>
                                                      <th scope="col">{{ __('Category Name') }}</th>
                                         <th scope="col">{{ __('Creation Date') }}</th>
                                                     <th class="disabled-sorting text-right">Actions</th>
@@ -51,6 +52,7 @@
 
                                                 <tr>
                                                     <td>{{$subcategory->name}}</td>
+                                                     <td><img src="{{ $subcategory->media_url }}" height="80px" width="80px" /></td>
                                                     <td>{{$subcategory->category->name}}</td>
                                                     <td>{{$subcategory->created_at->format('d/m/Y H:i')}}</td>
                                                     <td class="text-right">
