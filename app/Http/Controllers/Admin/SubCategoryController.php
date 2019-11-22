@@ -68,19 +68,17 @@ class SubCategoryController extends Controller
     */
     public function update_subcategory(Request $request) {
         
-        $validator = Validator::make($this->request->all(), [
+        $validator = $this->validate($request,[
             'name' => 'required|max:255',
             'category_id' => 'required',
-            'media_url' => 'required|mimes:jpg,png,jpeg,gif',
+            // 'media_url' => 'required|mimes:jpg,png,jpeg,gif',
         ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()]);
-        }
         try{
             $subcategory_array = [];
             $subcategory_array['name'] = $this->request->name;
             $subcategory_array['category_id'] = $this->request->category_id;
-            $media_url = $this->request->file('media_url');
+            if($this->request->hasFile('media_url')){
+                $media_url = $this->request->file('media_url');
                 $parts = pathinfo($media_url->getClientOriginalName());
                 $extension = strtolower($parts['extension']);
                 $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
@@ -88,6 +86,8 @@ class SubCategoryController extends Controller
                 $media_url->move(public_path() . $this->subcategory_files, $imageName);  
                 $image_name = url($this->subcategory_files . $imageName);
                 $subcategory_array['media_url'] = $image_name;
+
+            }
 
             $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $request->id],$subcategory_array);
             \Session::flash('success_message', "SubCategory Saved Successfully!");
