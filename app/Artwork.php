@@ -12,7 +12,7 @@ class Artwork extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'category', 'sub_category', 'style', 'subject', 'gallery_user_id', 'is_deleted', 'is_publised',
+        'title', 'description', 'category', 'sub_category', 'style', 'subject', 'gallery_user_id', 'top', 'trending', 'is_deleted', 'is_publised',
     ];
 
     // Relations with Category Model

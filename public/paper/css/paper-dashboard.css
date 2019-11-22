@@ -4795,7 +4795,7 @@ License - nucleoapp.com/license/
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   padding: 10px 8px;
   line-height: 30px;
   opacity: .7;
@@ -4824,7 +4824,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar .nav i {
   font-size: 24px;
   float: left;
-  margin-right: 12px;
+  margin-right: 5px;
   line-height: 30px;
   width: 34px;
   text-align: center;

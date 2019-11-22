@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'add_aboutus',
+    'elementActive' => 'aboutus',
 ])
 
 @section('content')
@@ -20,7 +20,7 @@
                             <form method="post" action="{{ url('update_cms') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <div class="pl-lg-4">
-                                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Title') }}</label>
                                         <input type="text" name="title" id="input-name" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Title') }}" value="{{ old('title') }}" required autofocus>
 
@@ -41,19 +41,6 @@
                                             </span>
                                         @endif
                                    	</div>
-                                   
-                                   
-                                   	<div class="form-group{{ $errors->has('slug') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="input-name">{{ __('Slug') }}</label>
-                                        <input type="text" name="slug" id="input-name" class="form-control form-control-alternative{{ $errors->has('slug') ? ' is-invalid' : '' }}" placeholder="{{ __('Slug') }}" value="{{ old('slug') }}" required autofocus>
-
-                                        @if ($errors->has('slug'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('slug') }}</strong>
-                                            </span>
-                                        @endif
-                                   	</div>
-                                    
                                    
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
