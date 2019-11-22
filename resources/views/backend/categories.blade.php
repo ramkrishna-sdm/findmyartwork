@@ -49,7 +49,7 @@
                                                 @foreach ($categories as $category)
                                         <tr>
                                             <td>{{ $category->name }}</td>
-                                            <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                                            <td>@if(!empty($category->created_at)){{date('d/m/Y H:i', strtotime($category->created_at))}}@endif</td>
                                             <td class="text-right">
                                                         <a href="{{url('edit_category')}}/{{$category->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('delete_category')}}/{{$category->id}}" class="btn btn-danger btn-link btn-sm remove delete_category" title="Delete"><i class="fa fa-times"></i></a>
