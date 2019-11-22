@@ -12,19 +12,30 @@
                         <div class="card-header bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">{{ __('Add Category') }}</h3>
+                                    <h3 class="mb-0">{{ __('Edit Category') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
                                     <a href="{{ url('category') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
+                        <div class="message-alert-top">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card-body">
                             <form method="post" enctype="multipart/form-data" action="{{ url('update_category') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="category">
                                 <input type="hidden" name="id" value="{{$category->id}}">
-                                <h6 class="heading-small text-muted mb-4">{{ __('Add Category') }}</h6>
+                                <h6 class="heading-small text-muted mb-4">{{ __('Edit Category') }}</h6>
                                 <div class="pl-lg-4">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
@@ -36,15 +47,14 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group{{ $errors->has('media_url') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
-                                     <input class="form-control form-control-alternative" type="file" name="media_url"/>
-
-                                    @if ($errors->has('media_url'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('media_url') }}</strong>
-                                        </span>
-                                    @endif
+                                    <input type="hidden" name="old_image" value="{{$category->media_url}}">
+                                    <div class="col-sm-4">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="@if(!empty($category->media_url)){{$category->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input class="form-control" type="file" id="wizard-picture" name="media_url">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>

@@ -19,6 +19,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="message-alert-top">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card-body">
                             <form method="post" enctype="multipart/form-data" action="{{ url('update_category') }}" autocomplete="off">
                                 @csrf

@@ -71,7 +71,10 @@ class SubCategoryController extends Controller
         $validator = $this->validate($request,[
             'name' => 'required|max:255',
             'category_id' => 'required',
-            // 'media_url' => 'required|mimes:jpg,png,jpeg,gif',
+            'media_url' => 'required_without:old_image|mimes:jpg,png,jpeg,gif',
+        ],
+        [   
+            'media_url.required_without'    => 'Image preview is required for this sub category.',
         ]);
         try{
             $subcategory_array = [];
