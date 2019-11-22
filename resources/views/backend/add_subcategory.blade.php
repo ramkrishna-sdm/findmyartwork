@@ -66,15 +66,12 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group{{ $errors->has('media_url') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Image Upload') }}</label>
-                                     <input class="form-control form-control-alternative" type="file" name="media_url"/>
-
-                                    @if ($errors->has('media_url'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('media_url') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="col-md-12">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <input class="form-control" type="file" id="wizard-picture" name="media_url">
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                    
