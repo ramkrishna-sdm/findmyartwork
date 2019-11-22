@@ -47,6 +47,7 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <input type="hidden" name="old_image" value="{{$category->media_url}}">
                                     <div class="col-sm-4">
                                         <div class="picture-container">
                                             <div class="picture">
