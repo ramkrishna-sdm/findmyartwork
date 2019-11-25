@@ -97,10 +97,30 @@ class ArtistController extends Controller
     */
     public function change_artist_status($id, $status)
     {
+        if($status == 'yes'){
+            $data['is_active'] = 'no';
+        }else{
+            $data['is_active'] = 'yes';
+        }
+        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+        \Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
+        return redirect('artist');
+    }
+
+    /**
+    * Function to change artists status
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Ram Krishna Murthy
+    * Created At: 
+    */
+    public function change_featured_status($id, $status)
+    {
     	if($status == 'yes'){
-    		$data['is_active'] = 'no';
+    		$data['is_featured'] = 'no';
     	}else{
-    		$data['is_active'] = 'yes';
+    		$data['is_featured'] = 'yes';
     	}
     	$artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
