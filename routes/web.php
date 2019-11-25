@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
