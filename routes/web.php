@@ -22,7 +22,7 @@ Route::get('/', 'Frontend\HomeController@index');
 // });
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
