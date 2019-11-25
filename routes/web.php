@@ -20,7 +20,7 @@ Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
 Route::group(['middleware' => 'auth'], function () {

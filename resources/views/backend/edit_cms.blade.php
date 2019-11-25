@@ -24,7 +24,17 @@
                             <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
                             @endif
                         </div>
-                        
+                        <div class="message-alert-top">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card-body">
                             @if($slug == "about_us")
                             <form method="post" action="{{ url('update_aboutus') }}" enctype="multipart/form-data" autocomplete="off">

@@ -40,5 +40,10 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('cms')->insert([
+            'slug' => 'home_page',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }

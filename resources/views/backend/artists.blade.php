@@ -21,7 +21,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="message-alert-top">
                             @if(Session::has('success_message'))
                             <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
@@ -30,13 +29,10 @@
                             <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
                             @endif
                         </div>
-
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-
                                         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
@@ -78,3 +74,5 @@
         </div>
     </div>
 @endsection
+
+kehna hai kehna hai aaj tmse
