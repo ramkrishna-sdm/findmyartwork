@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/edit_artist/{id}', 'Admin\ArtistController@edit_artist');
 	Route::get('/delete_artist/{id}', 'Admin\ArtistController@delete_artist');
 	Route::get('/change_artist_status/{id}/{stauts}', 'Admin\ArtistController@change_artist_status');
+	Route::get('/change_featured_status/{id}/{stauts}', 'Admin\ArtistController@change_featured_status');
 	// Artwork Management
 	Route::get('/artwork/{artist_id}', 'Admin\ArtworkController@index');
 	Route::get('/view_artwork/{artist_id}', 'Admin\ArtworkController@view_artwork');
