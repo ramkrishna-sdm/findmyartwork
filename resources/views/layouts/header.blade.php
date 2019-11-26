@@ -52,7 +52,7 @@
               
                   <div class="collapse navbar-collapse mainNavbar"   id="navbarToggle">
                      <ul class="navbar-nav nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Artwork</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">About</a></li>
@@ -65,7 +65,7 @@
             <!-- Header -->
             <div class="header">
                <div class="container d-flex align-items-center flex-wrap">
-                  <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="" class="img-fluid" /></a>
+                  <a class="navbar-brand" href="/"><img src="assets/images/logo.png" alt="" class="img-fluid" /></a>
                  
                   <div class="searchbar">
                      <input type="text" class="form-control" placeholder="Search for paintings, drawings">

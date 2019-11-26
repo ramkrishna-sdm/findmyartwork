@@ -61,8 +61,8 @@ class ArtworkController extends Controller
 			'height'	=> 'required|max:255',
 			'price'	=> 'required|max:255',
 			'worldwide_shipping_charge'	=> 'required|max:255',
-			'main_image' => 'required|mimes:jpg,png,jpeg,gif',
-			'upload_files.*' => 'mimes:jpg,png,jpeg,gif',
+			// 'main_image' => 'required|mimes:jpg,png,jpeg,gif',
+			// 'upload_files.*' => 'mimes:jpg,png,jpeg,gif',
         ]);
         if ($validator->fails()) {
         	return response()->json(['error' => $validator->messages()]);

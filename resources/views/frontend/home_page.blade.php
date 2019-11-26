@@ -6,13 +6,15 @@
                <div class="carousel-inner">
                   <!-- Carousel Item -->
                   <div class="carousel-item active ">
-                     <div class="bannerImg align-items-center" style="background-image: url('assets/images/banner-img.jpg'); background-size: cover;">
+                     @foreach($homes as $key => $home)
+                     <div class="bannerImg align-items-center" style="background-image: url({{$home->first_img_url}}); background-size: cover;">
                         <div class="container text-left">
-                           <h3>Got an Art to Sell ?</h3>
-                           <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i.</p>
+                           <h3>{{$home->title}}</h3>
+                           <p class="mt-3">{{strip_tags($home->des_first)}}</p>
                            <a href="#" class="btn btn-default btn-lg mt-4">SELL NOW</a>
                         </div>
                      </div>
+                     @endforeach
                   </div>
                   <!-- //Carousel Item -->
                </div>
@@ -24,45 +26,16 @@
             <div class="container">
                <div class="categoryList">
                   <!-- Category Item -->
+                  @foreach($categories as $key => $category)
+
                   <div class="categoryItem">
                      <a href="#">
-                        <div class="image"><img src="assets/images/paintings.jpg" alt=""></div>
-                        <h3>Paintings</h3>
+                        <div class="image"><img src="{{$category->media_url}}" alt=""></div>
+                        <h3>{{$category->name}}</h3>
                      </a>
                   </div>
-                  <!-- //Category Item -->
-                  <!-- Category Item -->
-                  <div class="categoryItem">
-                     <a href="#">
-                        <div class="image"><img src="assets/images/drawings.jpg" alt=""></div>
-                        <h3>Drawings</h3>
-                     </a>
-                  </div>
-                  <!-- //Category Item -->
-                  <!-- Category Item -->
-                  <div class="categoryItem">
-                     <a href="#">
-                        <div class="image"><img src="assets/images/digitalarts.jpg" alt=""></div>
-                        <h3>Digital Arts</h3>
-                     </a>
-                  </div>
-                  <!-- //Category Item -->
-                  <!-- Category Item -->
-                  <div class="categoryItem">
-                     <a href="#">
-                        <div class="image"><img src="assets/images/photography.jpg" alt=""></div>
-                        <h3>Photography</h3>
-                     </a>
-                  </div>
-                  <!-- //Category Item -->
-                  <!-- Category Item -->
-                  <div class="categoryItem">
-                     <a href="#">
-                        <div class="image"><img src="assets/images/scul.jpg" alt=""></div>
-                        <h3>Sculptures</h3>
-                     </a>
-                  </div>
-                  <!-- //Category Item -->
+                  @endforeach
+                  
                </div>
             </div>
          </section>
@@ -93,21 +66,29 @@
             </div>
             <div class="container">
                <div class="row">
+                  @foreach($artworks as $key => $artwork)
                   <div class="col-lg-4 col-md-6">
                         <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
                                  <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
+                                 <span class="name">{{$artwork->artist->first_name}} {{$artwork->artist->last_name}}</span>
                               </div>
+                             <!--  <?php
+                              $now = time(); // or your date as well
+                              $your_date = strtotime($artwork->artist->created_at);
+                              $datediff = $now - $your_date;
+
+                              echo round($datediff / (60 * 60 * 24)); 
+                              ?> -->
                               <span class="Posted">2 hours ago</span>
                            </div>
                            <div class="postImage">
-                             <a href="#"><img src="assets/images/post.jpg" alt=""></a> 
+                             <a href="#"><img src="{{$artwork->category_detail->media_url}}" alt=""></a> 
                            </div>
                            <div class="postFooter">
                               <div class="leftBlock">
-                                 <h5>The Wave</h5>
+                                 <h5>{{$artwork->category_detail->name}}</h5>
                                  <h6>$2076</h6>
                               </div>
                               <div class="rightBlock">
@@ -121,7 +102,8 @@
                      </div>
                   
                   </div>
-                  <div class="col-lg-4 col-md-6">
+                 @endforeach
+                 <!--  <div class="col-lg-4 col-md-6">
               
                         <div class="artPost">
                            <div class="postHeader">
@@ -149,8 +131,8 @@
                      </div>
                      </div>
                
-                  </div>
-                  <div class="col-lg-4 col-md-6">
+                  </div> -->
+                 <!--  <div class="col-lg-4 col-md-6">
                 
                         <div class="artPost">
                            <div class="postHeader">
@@ -178,7 +160,7 @@
                      </div>
                      </div>
                     
-                  </div>
+                  </div> -->
                </div>
             </div>
          </section>
@@ -220,7 +202,7 @@
                      </div>
                  
                   </div>
-                  <div class="col-lg-4 col-md-6">
+               <!--    <div class="col-lg-4 col-md-6">
                     
                         <div class="artPost">
                            <div class="postHeader">
@@ -248,8 +230,8 @@
                      </div>
                      </div>
                   
-                  </div>
-                  <div class="col-lg-4 col-md-6">
+                  </div> -->
+                 <!--  <div class="col-lg-4 col-md-6">
                    
                         <div class="artPost">
                            <div class="postHeader">
@@ -277,9 +259,9 @@
                      </div>
                      </div>
                    
-                  </div>
+                  </div> -->
                </div>
-               <div class="row">
+               <!-- <div class="row">
                   <div class="col-lg-4 col-md-6">
                    
                         <div class="artPost">
@@ -367,12 +349,12 @@
                      </div>
                  
                   </div>
-               </div>
+               </div> -->
             </div>
             <div class="container text-center mt-5">
                <a href="#" class="btn btn-default">VIEW ALL</a>
             </div>
          </section>
          <!-- End Top Artists Section -->
-         @include('layouts.mainfooter')
+         @include('layouts.comman_footer')
       

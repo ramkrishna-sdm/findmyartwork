@@ -26,9 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
@@ -102,6 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/update_aboutus', 'Admin\CmsController@update_aboutus');
 	Route::get('/manage_cms/{slug}','Admin\CmsController@manage_cms');
 	Route::post('/update_cms','Admin\CmsController@update_cms');
+	Route::post('/update_home','Admin\CmsController@update_home');
 
 
 });
