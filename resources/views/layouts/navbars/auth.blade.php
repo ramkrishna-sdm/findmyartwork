@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'artists'|| $elementActive == 'artworks'  ? 'active' : '' }}">
-                            <a href="{{ url('artist') }}">
+                            <a href="{{ url('/admin/artist') }}">
                                 <span class="sidebar-mini-icon">{{ __('AM') }}</span>
                                 <span class="sidebar-normal">{{ __(' Artist Management ') }}</span>
                             </a>
@@ -55,13 +55,13 @@
                 </div>
             </li>
             <li class="{{ $elementActive == 'categories' ? 'active' : '' }}">
-                <a href="{{ url('category') }}">
+                <a href="{{ url('/admin/category') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('Category Management') }}</p>
                 </a>
             </li>
               <li class="{{ $elementActive == 'subcategories' ? 'active' : '' }}">
-                <a href="{{ url('subcategory') }}">
+                <a href="{{ url('/admin/subcategory') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('SubCategory Management') }}</p>
                 </a>
@@ -109,7 +109,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works'|| $elementActive == 'manage_cms/home_page' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'manage_cms' ? 'true' : 'false' }}" href="#cms_collapse" class="{{ $elementActive == 'manage_cms' ? 'collapsed' : '' }}">
                     <i class="nc-icon nc-image"></i>
                     <p>
@@ -117,7 +117,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works' ? 'show' : '' }}" id="cms_collapse">
+                <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works'|| $elementActive == 'manage_cms/home_page' ? 'show' : '' }}" id="cms_collapse">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'manage_cms/about_us' ? 'active' : '' }}">
                             <a href="{{ url('manage_cms/about_us') }}">
@@ -141,6 +141,12 @@
                             <a href="{{ url('manage_cms/how_it_works') }}">
                                 <span class="sidebar-mini-icon">{{ __('HW') }}</span>
                                 <span class="sidebar-normal">{{ __(' How It Works ') }}</span>
+                            </a>
+                        </li>
+                         <li class="{{ $elementActive == 'manage_cms/home_page' ? 'active' : '' }}">
+                            <a href="{{ url('manage_cms/home_page') }}">
+                                <span class="sidebar-mini-icon">{{ __('H') }}</span>
+                                <span class="sidebar-normal">{{ __(' Home') }}</span>
                             </a>
                         </li>
                     </ul>

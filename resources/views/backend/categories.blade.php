@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Category') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('add_category') }}" class="btn btn-sm btn-primary">{{ __('Add category') }}</a>
+                                    <a href="{{ url('/admin/add_category') }}" class="btn btn-sm btn-primary">{{ __('Add category') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                             <td><img src="{{ $category->media_url }}" height="80px" width="80px" /></td>
                                             <td>@if(!empty($category->created_at)){{date('d/m/Y H:i', strtotime($category->created_at))}}@endif</td>
                                             <td class="text-right">
-                                                        <a href="{{url('edit_category')}}/{{$category->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('admin/edit_category')}}/{{$category->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('delete_category')}}/{{$category->id}}" class="btn btn-danger btn-link btn-sm remove delete_category" title="Delete"><i class="fa fa-times"></i></a>
                                                         <a href="{{url('change_category_status')}}/{{$category->id}}/{{$category->is_active}}" class="btn btn-danger btn-link btn-sm change_category_status" title="@if($category->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>

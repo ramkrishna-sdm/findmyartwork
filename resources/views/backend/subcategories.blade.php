@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Subcategory') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('add_subcategory') }}" class="btn btn-sm btn-primary">{{ __('Add Subcategory') }}</a>
+                                    <a href="{{ url('/admin/add_subcategory') }}" class="btn btn-sm btn-primary">{{ __('Add Subcategory') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                                     <td>{{$subcategory->category->name}}</td>
                                                     <td>@if(!empty($subcategory->created_at)){{date('d/m/Y H:i', strtotime($subcategory->created_at))}}@endif</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_subcategory')}}/{{$subcategory->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('/admin/edit_subcategory')}}/{{$subcategory->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('delete_subcategory')}}/{{$subcategory->id}}" class="btn btn-danger btn-link btn-sm remove delete_subcategory" title="Delete"><i class="fa fa-times"></i></a>
                                                         <a href="{{url('change_subcategory_status')}}/{{$subcategory->id}}/{{$subcategory->is_active}}" class="btn btn-danger btn-link btn-sm change_subcategory_status" title="@if($subcategory->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>

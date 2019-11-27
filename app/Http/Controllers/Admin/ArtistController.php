@@ -84,7 +84,7 @@ class ArtistController extends Controller
     {
     	$artist = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
     	\Session::flash('success_message', 'Artist Deleted Succssfully!.'); 
-            return redirect('artist');
+            return redirect('/admin/artist');
     }
 
     /**
@@ -104,7 +104,7 @@ class ArtistController extends Controller
         }
         $artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
-        return redirect('artist');
+        return redirect('/admin/artist');
     }
 
     /**
@@ -124,7 +124,7 @@ class ArtistController extends Controller
     	}
     	$artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
-        return redirect('artist');
+        return redirect('/admin/artist');
     }
 
     /**
@@ -147,7 +147,7 @@ class ArtistController extends Controller
         $artist = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
         if($artist){
             \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
-            return redirect('artist');
+            return redirect('/admin/artist');
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();

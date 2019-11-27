@@ -17,6 +17,7 @@ use DateTime;
 class CmsController extends Controller
 {
 	private $aboutus_files;
+    private $home_files;
 	/**
     * Construction function
     * @param $request(Array), $CmsRepository(Repository Interface)
@@ -30,6 +31,7 @@ class CmsController extends Controller
         $this->request = $request;
         $this->CmsRepository = $CmsRepository;
         $this->aboutus_files = '/images/aboutus_files/';
+        $this->home_files = '/images/home_files/';
     }
 
     /**
@@ -110,7 +112,11 @@ class CmsController extends Controller
         if($slug == "how_it_works"){
             $title = "How It Works";
         }
+        if($slug == "home_page"){
+            $title = "Home";
+        }
         $cms_info = $this->CmsRepository->getData(['slug'=>$slug],'first',[],0);
+        // echo "<pre>";print_r($cms_info);die;
     	return view('backend/edit_cms', compact('slug', 'title', 'cms_info'));
     }
 
@@ -132,6 +138,45 @@ class CmsController extends Controller
 
             $cms = $this->CmsRepository->createUpdateData(['slug'=> $request->slug],$request->all());
             \Session::flash('success_message', "Information Saved Successfully!");
+            return redirect('/manage_cms/'.$this->request->slug);
+        }catch (\Exception $ex){
+            \Session::flash('error_message', $ex->getMessage());
+            return back()->withInput();
+        }
+    }
+
+    /**
+    * Function to Create/Update cms
+    * @param
+    * @return 
+    *
+    * Created By: Shambhu Thakur
+    * Created At: 26Nov2019 
+    */
+    public function update_home(Request $request) {
+        $validator = $this->validate($request,[
+            'title' => 'required',
+            'slug' => 'required',
+            'des_first' => 'required',
+        ]);
+        try{
+            $home_array = [];
+            $home_array['title'] = $this->request->title;
+            $home_array['des_first'] = $this->request->des_first;
+            if($this->request->hasFile('first_img_url')){
+                $first_img_url = $this->request->file('first_img_url');
+                $parts = pathinfo($first_img_url->getClientOriginalName());
+                $extension = strtolower($parts['extension']);
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                $first_img_url->move(public_path() . $this->home_files, $imageName);  
+                $image_name = url($this->home_files . $imageName); 
+                $home_array['first_img_url'] = $image_name;    
+            }
+           
+                
+            $upload_file = $this->CmsRepository->createUpdateData(['slug'=> $this->request->slug],$home_array);
+             \Session::flash('success_message', "Home banner Saved Successfully!");
             return redirect('/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());

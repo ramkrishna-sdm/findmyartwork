@@ -16,6 +16,7 @@
       <link href="assets/css/style.css" rel="stylesheet" type="text/css">
       <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
       <link href="assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">  
    </head>
    <body>
       <!-- Wrapper -->
@@ -52,10 +53,10 @@
               
                   <div class="collapse navbar-collapse mainNavbar"   id="navbarToggle">
                      <ul class="navbar-nav nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Artwork</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about_us">About</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
                      </ul>
                   </div>
@@ -65,7 +66,7 @@
             <!-- Header -->
             <div class="header">
                <div class="container d-flex align-items-center flex-wrap">
-                  <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="" class="img-fluid" /></a>
+                  <a class="navbar-brand" href="/"><img src="assets/images/logo.png" alt="" class="img-fluid" /></a>
                  
                   <div class="searchbar">
                      <input type="text" class="form-control" placeholder="Search for paintings, drawings">
@@ -75,13 +76,13 @@
                   <div class="ml-auto d-flex align-items-center">
                   <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
                      <li class="nav-item" ><a class="nav-link" href="#"><img src="assets/images/shopping-cart.svg" alt="" /><span class="count">5</span></a></li>
-                     <li class="nav-item"><a class="nav-link" href="#"><img src="assets/images/saved.svg" alt="" /><span class="count">5</span></a></li>
+                     <li class="nav-item"><a class="nav-link" href="/save_artist"><img src="assets/images/saved.svg" alt="" /><span class="count">5</span></a></li>
                      <li class="nav-item"><a class="nav-link" href="#"><img src="assets/images/avatar.svg" alt="" /></a></li>
                      <li class="nav-divider"></li>
                   </ul>
 
                   <ul class="navbar-nav nav navbar-icon  align-items-center">
-                          <li class="nav-btn"><a href="#" class="btn btn-default">SIGN IN</a></li>
+                           <li class="nav-btn"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#LoginModal">SIGN IN</a></li>
                           <li class="humburger-btn"><button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                                 <span></span>
                                 <span></span>

@@ -109,6 +109,46 @@
                                     </div>
                                 </div>
                             </form>
+
+                            @elseif($slug == "home_page")
+                            <form method="post" action="{{ url('update_home') }}" enctype="multipart/form-data" autocomplete="off">
+                                @csrf
+                                <div class="pl-lg-4">
+                                    <input type="hidden" name="slug" value="{{$slug}}">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Title') }}</label>
+                                        <input type="text" name="title" id="input-name" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Title') }}" value="@if(!empty($cms_info->title)){{$cms_info->title}} @else {{ old('title') }} @endif" required autofocus>
+
+                                        @if ($errors->has('title'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('title') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    
+                                    <div class="form-group{{ $errors->has('des_first') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Description') }}</label>
+                                        <textarea name="des_first" id="des_first" cols="30" rows="10">@if(!empty($cms_info->des_first)){{$cms_info->des_first}}@else {{old('des_first')}}@endif</textarea>
+
+                                        @if ($errors->has('des_first'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('des_first') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="@if(!empty($cms_info->first_img_url)){{$cms_info->first_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input class="form-control" type="file" id="wizard-picture" name="first_img_url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    </div>
+                                </div>
+                            </form>
                             @else
                             <form method="post" action="{{ url('update_cms') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
