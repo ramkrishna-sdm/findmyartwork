@@ -110,7 +110,7 @@
                                 </div>
                             </form>
 
-                             @elseif($slug == "home_page")
+                            @elseif($slug == "home_page")
                             <form method="post" action="{{ url('update_home') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <div class="pl-lg-4">

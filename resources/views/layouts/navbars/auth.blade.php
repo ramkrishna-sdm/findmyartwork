@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'artists'|| $elementActive == 'artworks'  ? 'active' : '' }}">
-                            <a href="{{ url('artist') }}">
+                            <a href="{{ url('/admin/artist') }}">
                                 <span class="sidebar-mini-icon">{{ __('AM') }}</span>
                                 <span class="sidebar-normal">{{ __(' Artist Management ') }}</span>
                             </a>
@@ -55,13 +55,13 @@
                 </div>
             </li>
             <li class="{{ $elementActive == 'categories' ? 'active' : '' }}">
-                <a href="{{ url('category') }}">
+                <a href="{{ url('/admin/category') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('Category Management') }}</p>
                 </a>
             </li>
               <li class="{{ $elementActive == 'subcategories' ? 'active' : '' }}">
-                <a href="{{ url('subcategory') }}">
+                <a href="{{ url('/admin/subcategory') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('SubCategory Management') }}</p>
                 </a>

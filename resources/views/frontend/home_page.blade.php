@@ -43,15 +43,15 @@
          <!-- Featured Artwork -->
          <section class="featuredArt">
             <div class="featuredImage">
-               <img src="assets/images/featured.png" alt="">
+               <img src="{{$featuredArtworks->artwork_images[1]->media_url}}" alt="">
             </div>
             <div class="featuredDetail">
                <h4>Featured Art</h4>
-               <h1>The Animal kingdom</h1>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+               <h1>{{$featuredArtworks->title}}</h1>
+               <p>{{$featuredArtworks->description}} </p>
                <div class="specifications"> <span class="dimension">65 .45 x 55.35 in</span> <span class="weight">Weight : 10Kg</span></div>
-               <h2>Price: $9456</h2>
-               <div class="col-lg-5pl-0">
+               <h2>Price: ${{$featuredArtworks->variants[0]->price}}</h2>
+               <div class="col-lg-5 pl-0">
                   <a href="#" class="btn btn-default btn-lg btn-block">BUY NOW</a>
                </div>
             </div>
@@ -66,30 +66,25 @@
             </div>
             <div class="container">
                <div class="row">
-                  @foreach($artworks as $key => $artwork)
-                  <div class="col-lg-4 col-md-6">
+
+                 
+                   <div class="artistSLider owl-carousel artistCarousel">
+                         @foreach($topartworks as $key => $artwork)
                         <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
                                  <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
                                  <span class="name">{{$artwork->artist->first_name}} {{$artwork->artist->last_name}}</span>
                               </div>
-                             <!--  <?php
-                              $now = time(); // or your date as well
-                              $your_date = strtotime($artwork->artist->created_at);
-                              $datediff = $now - $your_date;
-
-                              echo round($datediff / (60 * 60 * 24)); 
-                              ?> -->
                               <span class="Posted">2 hours ago</span>
                            </div>
                            <div class="postImage">
-                             <a href="#"><img src="{{$artwork->category_detail->media_url}}" alt=""></a> 
+                             <a href="#"><img src="{{$artwork->artwork_images[1]->media_url}}" alt=""></a> 
                            </div>
                            <div class="postFooter">
                               <div class="leftBlock">
-                                 <h5>{{$artwork->category_detail->name}}</h5>
-                                 <h6>$2076</h6>
+                                 <h5>{{$artwork->title}}</h5>
+                                 <h6>${{$artwork->variants[0]->price}}</h6>
                               </div>
                               <div class="rightBlock">
                                  <span class="likes">456 Likes</span> 
@@ -100,9 +95,11 @@
                      </div></div>
                      </div>
                      </div>
-                  
-                  </div>
-                 @endforeach
+                    @endforeach
+                
+                   </div>
+              
+               
                  <!--  <div class="col-lg-4 col-md-6">
               
                         <div class="artPost">
@@ -174,22 +171,23 @@
             </div>
             <div class="container">
                <div class="row">
+                  @foreach($topartists as $key => $artist)
                   <div class="col-lg-4 col-md-6">
                             <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
                                  <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
+                                 <span class="name">{{$artist->artist->first_name}} {{$artist->artist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
                            </div>
                            <div class="postImage">
-                                <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
+                                <a href="#"> <img src="{{$artist->artwork_images[1]->media_url}}" alt=""></a>
                            </div>
                            <div class="postFooter">
                               <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
+                                 <h5>{{$artist->title}}</h5>
+                                 <h6>${{$artist->variants[0]->price}}</h6>
                               </div>
                               <div class="rightBlock">
                                  <span class="likes">456 Likes</span> 
@@ -202,7 +200,8 @@
                      </div>
                  
                   </div>
-               <!--    <div class="col-lg-4 col-md-6">
+                  @endforeach
+                <!--   <div class="col-lg-4 col-md-6">
                     
                         <div class="artPost">
                            <div class="postHeader">
@@ -352,7 +351,7 @@
                </div> -->
             </div>
             <div class="container text-center mt-5">
-               <a href="#" class="btn btn-default">VIEW ALL</a>
+               <a href="/artist" class="btn btn-default">VIEW ALL</a>
             </div>
          </section>
          <!-- End Top Artists Section -->

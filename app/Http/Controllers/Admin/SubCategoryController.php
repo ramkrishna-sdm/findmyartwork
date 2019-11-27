@@ -94,7 +94,7 @@ class SubCategoryController extends Controller
 
             $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $request->id],$subcategory_array);
             \Session::flash('success_message', "SubCategory Saved Successfully!");
-            return redirect('/subcategory');
+            return redirect('/admin/subcategory');
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -128,7 +128,7 @@ class SubCategoryController extends Controller
     {
         $subcategory = $this->SubCategoryRepository->getData(['id'=>$id],'delete',[],0);
         \Session::flash('success_message', 'Subcategory Deleted Succssfully!.'); 
-            return redirect('subcategory');
+            return redirect('admin/subcategory');
     }
 
     /**
@@ -148,7 +148,7 @@ class SubCategoryController extends Controller
         }
         $subcategory = $this->SubCategoryRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Subcategory Status Changed Succssfully!.'); 
-        return redirect('subcategory');
+        return redirect('admin/subcategory');
     }
 
 

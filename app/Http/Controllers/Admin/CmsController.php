@@ -116,6 +116,7 @@ class CmsController extends Controller
             $title = "Home";
         }
         $cms_info = $this->CmsRepository->getData(['slug'=>$slug],'first',[],0);
+        // echo "<pre>";print_r($cms_info);die;
     	return view('backend/edit_cms', compact('slug', 'title', 'cms_info'));
     }
 

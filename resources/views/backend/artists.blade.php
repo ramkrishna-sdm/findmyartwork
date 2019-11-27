@@ -55,7 +55,7 @@
                                                     <td>{{$artist->country}}</td>
                                                     <td>{{$artist->is_featured}}</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('/admin/edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('delete_artist')}}/{{$artist->id}}" class="btn btn-danger btn-link btn-sm remove delete_artist" title="Delete"><i class="fa fa-times"></i></a>
                                                         <a href="{{url('change_artist_status')}}/{{$artist->id}}/{{$artist->is_active}}" class="btn btn-danger btn-link btn-sm change_artist_status" title="@if($artist->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                         <a href="{{url('change_featured_status')}}/{{$artist->id}}/{{$artist->is_featured}}" class="btn btn-danger btn-link btn-sm change_featured_status" title="@if($artist->is_featured == 'yes') Remove From Featured @else Add To Featured @endif">@if($artist->is_featured == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
@@ -74,5 +74,3 @@
         </div>
     </div>
 @endsection
-
-kehna hai kehna hai aaj tmse

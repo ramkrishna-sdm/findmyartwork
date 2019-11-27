@@ -15,7 +15,7 @@
                                     <h3 class="mb-0">{{ __('Artist Management') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('artist') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/artist') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
