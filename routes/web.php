@@ -14,7 +14,7 @@ Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
 Route::get('/', 'Frontend\HomeController@index');
-
+Route::get('/phpinfo','HomeController@phpinfo');
 
 
 // Route::get('/', function () {
