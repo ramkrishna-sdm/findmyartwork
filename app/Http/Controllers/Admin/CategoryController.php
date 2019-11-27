@@ -87,7 +87,7 @@ class CategoryController extends Controller
             }
             $save_category = $this->categoryRepository->createUpdateData(['id'=> $request->id],$category_array);
 	    	\Session::flash('success_message', "Category Saved Successfully!");
-	    	return redirect('/category');
+	    	return redirect('/admin/category');
     	}catch (\Exception $ex){
     		\Session::flash('error_message', $ex->getMessage());
     		return back()->withInput();
@@ -120,7 +120,7 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->getData(['id'=>$id],'delete',[],0);
         \Session::flash('success_message', 'Category Deleted Succssfully!.'); 
-            return redirect('category');
+            return redirect('/admin/category');
     }
 
     /**
@@ -140,7 +140,7 @@ class CategoryController extends Controller
         }
         $category = $this->categoryRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Category Status Changed Succssfully!.'); 
-        return redirect('category');
+        return redirect('/admin/category');
     }
 
 

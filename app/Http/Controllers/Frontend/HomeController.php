@@ -36,11 +36,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $artworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
-        // echo "<pre>";print_r($artworks);die;
+        $topartworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
+        $featuredArtworks = $this->artworkRepository->getData(['is_featured'=>'yes', 'is_deleted'=>'no'],'first',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
+        $topartists  = $this->artworkRepository->getData(['trending'=>'yes','user_type'=>'artist', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'get',[],0);
-        return view('frontend/home_page',compact('categories','artworks','homes'));
+        return view('frontend/home_page',compact('categories','topartworks','featuredArtworks','homes','topartists'));
     }
 
     /**
@@ -48,5 +49,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    public function about_us(){
+          $about = $this->CmsRepository->getData(['slug'=>'about_us','is_deleted'=>'no'],'get',[],0);
+        return view('frontend/about_us',compact('about'));
+    }
     
+
+    public function artist(){
+        return view('frontend/artist');
+    }
+
+    public function save_artist(){
+        return view('frontend/save_artist');
+    }
 }

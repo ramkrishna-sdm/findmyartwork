@@ -14,50 +14,41 @@ $(document).ready(function(){
   $(".bannerinner").prev(".navbar").addClass("navInner");
 });
 
-$('.services-carousel').owlCarousel({
+$('.artistCarousel').owlCarousel({
   loop:true, 
   dots: false,
+  margin: 20,
+  nav:true,
   responsiveClass:true,
   responsive:{
       1200:{
-          items:6,
-          nav:true
+          items:3
+      
       },
       767:{
-          items:4,
-          nav:true
+          items:2
+         
       },
       580:{
-          items:3,
-          nav:true
+          items:1
+         
       },
       480:{
-          items:2,
-          nav:true
+          items:1
+         
       },
       300:{
-          items:1,
-          nav:true
+          items:1
+         
       },
       990:{
-          items:5,
-          nav:true,
-          loop:false
+          items:1
       }
   }
 });
 
+$('#artwork-images').flexgal();
 
-
-// Init WOW.js and get instance
-wow = new WOW({
-  boxClass: 'wow', // default
-  animateClass: 'animated', // default
-  offset: 0, // default
-  mobile: true, // default
-  live: true // default
-})
-wow.init();
   
 /*  Bootstrap Carousel and Animate.css */
 (function($) {
