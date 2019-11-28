@@ -26,6 +26,7 @@ class CreateGalleryUsersTable extends Migration
             $table->string('state')->nullable();
             $table->string('password')->nullable();
             $table->string('country')->nullable();
+            $table->string('media_url')->nullable();
             $table->enum('is_featured',['yes','no'])->default('no');
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_active',['yes','no'])->default('yes');

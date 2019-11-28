@@ -73,7 +73,7 @@
                         <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                 <div class="image"><a href="/profile_details"><img src="assets/images/profile-sm.jpg" alt=""></a></div>
                                  <span class="name">{{$artwork->artist->first_name}} {{$artwork->artist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
@@ -176,7 +176,7 @@
                             <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                 <div class="image"><a href="/profile_details"><img src="assets/images/profile-sm.jpg" alt=""></a></div>
                                  <span class="name">{{$artist->artist->first_name}} {{$artist->artist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
