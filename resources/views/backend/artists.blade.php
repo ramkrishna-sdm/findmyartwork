@@ -41,6 +41,7 @@
                                                     <th>Email</th>
                                                     <th>City</th>
                                                     <th>Country</th>
+                                                    <th>Profile Image</th>
                                                     <th>Featured</th>
                                                     <th class="disabled-sorting text-right">Actions</th>
                                                 </tr>
@@ -53,6 +54,7 @@
                                                     <td>{{$artist->email}}</td>
                                                     <td>{{$artist->city}}</td>
                                                     <td>{{$artist->country}}</td>
+                                                   <td><img src="{{ $artist->media_url }}" height="80px" width="80px" /></td>
                                                     <td>{{$artist->is_featured}}</td>
                                                     <td class="text-right">
                                                         <a href="{{url('/admin/edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>

@@ -17,6 +17,7 @@ use DateTime;
 
 class ArtistController extends Controller
 {
+    private $users_files;
     /**
     * Construction function
     * @param $request(Array), $galleryUserRepository
@@ -29,6 +30,7 @@ class ArtistController extends Controller
     {
         $this->request = $request;
         $this->galleryUserRepository = $galleryUserRepository;
+        $this->users_files = '/images/users_files/';
     }
 
     /**
@@ -144,7 +146,31 @@ class ArtistController extends Controller
             'last_name'         => 'required|string',
             'user_type'         => 'required|string'
         ]);
-        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+        $artist_array = [];
+        $artist_array['first_name'] = $this->request->first_name;
+        $artist_array['last_name'] = $this->request->last_name;
+        $artist_array['email'] = $this->request->email;
+        $artist_array['alias'] = $this->request->alias;
+        $artist_array['biography'] = $this->request->biography;
+        $artist_array['address'] = $this->request->address;
+        $artist_array['postal_code'] = $this->request->postal_code;
+        $artist_array['city'] = $this->request->city;
+        $artist_array['state'] = $this->request->state;
+        $artist_array['password'] = $this->request->password;
+        $artist_array['country'] = $this->request->country;
+        $artist_array['user_type'] ='artist';
+        if($this->request->hasFile('media_url')){
+            $media_url = $this->request->file('media_url');
+            $parts = pathinfo($media_url->getClientOriginalName());
+            $extension = strtolower($parts['extension']);
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $media_url->move(public_path() . $this->users_files, $imageName);  
+            $image_name = url($this->users_files . $imageName);
+            $artist_array['media_url'] = $image_name;
+
+        }
+        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
         if($artist){
             \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
             return redirect('/admin/artist');

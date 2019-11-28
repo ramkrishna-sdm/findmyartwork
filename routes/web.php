@@ -17,6 +17,7 @@ Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
+Route::get('/profile_details', 'Frontend\HomeController@profile_details');
 
 
 
