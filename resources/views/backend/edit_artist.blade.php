@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_artist') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('update_artist') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="artist">
                                 <input type="hidden" name="id" value="{{$artist->id}}">
@@ -99,6 +99,14 @@
                                     <div class="form-group{{ $errors->has('postal_code') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-postal_code">{{ __('Biography') }}</label>
                                         <textarea class="form-control" rows="3" name="biography">{{$artist->biography}}</textarea>
+                                    </div>
+                                     <div class="col-sm-4">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="@if(!empty($artist->media_url)){{$artist->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input class="form-control" type="file" id="wizard-picture" name="media_url">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>

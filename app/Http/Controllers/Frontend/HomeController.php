@@ -62,4 +62,8 @@ class HomeController extends Controller
     public function save_artist(){
         return view('frontend/save_artist');
     }
+
+    public function profile_details(){
+        return view('frontend/profile_details');
+    }
 }

@@ -18,6 +18,7 @@ Route::get('/phpinfo','HomeController@phpinfo');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
+Route::get('/profile_details', 'Frontend\HomeController@profile_details');
 
 
 
@@ -78,10 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete_category/{id}', 'Admin\CategoryController@delete_category');
 	Route::get('/change_category_status/{id}/{stauts}', 'Admin\CategoryController@change_category_status');
 	//Subject Management
-	Route::get('/admin/add_subject','Admin\SubjectController@add_subject');
+	Route::get('/add_subject','Admin\SubjectController@add_subject');
 	Route::post('update_subject','Admin\SubjectController@update_subject');
-	Route::get('/admin/subject','Admin\SubjectController@index');
-	Route::get('admin/edit_subject/{id}', 'Admin\SubjectController@edit_subject');
+	Route::get('/subject','Admin\SubjectController@index');
+	Route::get('/edit_subject/{id}', 'Admin\SubjectController@edit_subject');
 	Route::get('/delete_subject/{id}', 'Admin\SubjectController@delete_subject');
 	Route::get('/change_subject_status/{id}/{stauts}', 'Admin\SubjectController@change_subject_status');
 	//Style Management
