@@ -10,6 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*************Common Login Controller Routes Start************************/
+Route::get('/user_login','CommonLoginController@login');
+Route::post('/submit_login','CommonLoginController@submitLogin');
+Route::get('/logout','CommonLoginController@logout');
+/*************Common Login Controller Routes End************************/
+
+Auth::routes();
+
+Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => 'ArtistCheck'],function(){ 
+
+	Route::get('/dashboard','ArtistUserController@index');
+
+});
+
+Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => 'BuyerCheck'],function(){ 
+
+	Route::get('/dashboard','BuyerUserController@index');
+
+});
+
+Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => 'GalleryCheck'],function(){ 
+
+	Route::get('/dashboard','GalleryUserController@index');
+
+});
+
+
+
 Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
@@ -18,13 +47,15 @@ Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
 Route::get('/profile_details', 'Frontend\HomeController@profile_details');
+Route::get('/phpinfo','HomeController@phpinfo');
+
 
 
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@index')->name('home');
@@ -116,3 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
