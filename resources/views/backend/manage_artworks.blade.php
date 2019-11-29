@@ -47,6 +47,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($artworks as $key => $artwork)
+
                                                 <tr>
                                                     <td><a href="{{url('view_artwork')}}/{{$artwork->id}}">{{$artwork->title}}</a></td>
                                                     <td>{{$artwork->category_detail->name}}</td>

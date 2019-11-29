@@ -37,6 +37,7 @@ class HomeController extends Controller
     public function index()
     {
         $topartworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
+        // dd($topartworks);die;
         $featuredArtworks = $this->artworkRepository->getData(['is_featured'=>'yes', 'is_deleted'=>'no'],'first',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         $topartists  = $this->artworkRepository->getData(['trending'=>'yes','user_type'=>'artist', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
@@ -64,6 +65,7 @@ class HomeController extends Controller
     }
 
     public function profile_details(){
+       
         return view('frontend/profile_details');
     }
 }
