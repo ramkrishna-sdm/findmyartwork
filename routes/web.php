@@ -39,8 +39,8 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => 'G
 
 });
 
-Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+Route::get('/auth/redirect/{provider}', 'CommonLoginController@redirect');
+Route::get('/callback/{provider}', 'CommonLoginController@callback');
 
 
 
