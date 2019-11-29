@@ -47,21 +47,18 @@ Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
 Route::get('/profile_details', 'Frontend\HomeController@profile_details');
-Route::get('/phpinfo','HomeController@phpinfo');
-
-
 
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-
 Route::get('/home', 'HomeController@index')->name('home');
+
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'AdminCheck']], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
@@ -147,7 +144,3 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
