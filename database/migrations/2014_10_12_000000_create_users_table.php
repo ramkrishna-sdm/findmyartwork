@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('provider');
+            $table->string('provider_id');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -39,6 +39,9 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => 'G
 
 });
 
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
 
 
 Route::get('pay_now', 'Frontend\PaymentController@index');

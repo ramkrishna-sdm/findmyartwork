@@ -116,7 +116,7 @@
                   <div class="col-md-8 offset-md-2">
                      <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal2" data-dismiss="modal" aria-label="Close">sign up with email</a>
                      <span class="or-divider">Or</span>
-                     <a href="#" class="btn btn-default btn-block btn-facebook">sign up with facebook</a>
+                     <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-default btn-block btn-facebook">sign up with facebook</a>
                   </div>
                   <span class="mt-4"> <a href="#" class="btn btn-link btn-sm"  data-dismiss="modal" aria-label="Close">Already a member of ArtviaYou Login</a></span>
                </div>
