@@ -33,5 +33,10 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
+    'facebook' => [
+     'client_id' => '276485999932271',
+     'client_secret' => '552f7b8734fd7b92f301d37caf987d97',
+     'redirect' => 'https://www.tutsmake.com/laravel-example/callback/facebook',
+   ], 
 
 ];

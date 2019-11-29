@@ -39,6 +39,9 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => 'G
 
 });
 
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
 
 
 Route::get('pay_now', 'Frontend\PaymentController@index');
@@ -48,7 +51,7 @@ Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
-Route::get('/profile_details', 'Frontend\HomeController@profile_details');
+Route::get('/profile_details/{id?}', 'Frontend\HomeController@profile_details');
 
 
 // Route::get('/', function () {
