@@ -64,8 +64,8 @@ class HomeController extends Controller
         return view('frontend/save_artist');
     }
 
-    public function profile_details(){
-       
-        return view('frontend/profile_details');
+    public function profile_details($id){
+    $profileDetails = $this->artworkRepository->getData([' gallery_user_id'=>$id, 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist'],0);    
+        return view('frontend/profile_details',compact('profileDetails'));
     }
 }

@@ -95,7 +95,7 @@
                         <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
-                                 <div class="image" style="width: 43px; height: 44px;"><a href="/profile_details"><img src="{{$artwork->artist->media_url}}" alt=""></a></div>
+                                 <div class="image" style="width: 43px; height: 44px;"><a href="/profile_details/{{$artwork->artist->id}}"><img src="{{$artwork->artist->media_url}}" alt=""></a></div>
                                  <span class="name">{{$artwork->artist->first_name}} {{$artwork->artist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
@@ -111,9 +111,9 @@
                               <div class="rightBlock">
                                  <span class="likes">456 Likes</span> 
                                  <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                      </div></div>
                      </div>
                      </div>
@@ -193,32 +193,32 @@
             </div>
             <div class="container">
                <div class="row">
-                  @foreach($topartists as $key => $artist)
+                  @foreach($topartists as $key => $topartist)
                   <div class="col-lg-4 col-md-6">
                             <div class="artPost">
                            <div class="postHeader">
                               <div class="username">
                                  <div class="image">
-                                    <div class="profile_img"><a href="/profile_details"><img src="{{$artist->artist->media_url}}" alt=""></a></div>
+                                    <div class="profile_img"><a href="/profile_details/{{$topartist->artist->id}}"><img src="{{$topartist->artist->media_url}}" alt=""></a></div>
                                  </div>
-                                 <span class="name">{{$artist->artist->first_name}} {{$artist->artist->last_name}}</span>
+                                 <span class="name">{{$topartist->artist->first_name}} {{$topartist->artist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
                            </div>
                            <div class="postImage">
-                                <a href="#"> <img src="{{$artist->artwork_images[1]->media_url}}" alt=""></a>
+                                <a href="#"> <img src="{{$topartist->artwork_images[1]->media_url}}" alt=""></a>
                            </div>
                            <div class="postFooter">
                               <div class="leftBlock">
-                                 <h5>{{$artist->title}}</h5>
-                                 <h6>${{$artist->variants[0]->price}}</h6>
+                                 <h5>{{$topartist->title}}</h5>
+                                 <h6>${{$topartist->variants[0]->price}}</h6>
                               </div>
                               <div class="rightBlock">
                                  <span class="likes">456 Likes</span> 
                                  <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                     <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                      </div></div>
                      </div>
                      </div>

@@ -2,22 +2,23 @@
 <!-- Profile Cover -->
 
 <div class="profileCover">
-    <img src="assets/images/cover.jpg" alt="">
+    <img src="{{asset('assets/images/cover.jpg')}}" alt="">
 </div>
 
 
   <!-- End Profile Cover -->
+@foreach($profileDetails as $key=>$details)
 <section class="profilePage">
  <div class="userStats">
      <div class="container">
        <div class="d-flex align-items-center justify-content-center mainInfo">
            <div class="image">
-               <img src="assets/images/berry2.jpg" class="img-fluid" alt="">
+               <img src="{{$details->artist->media_url}}" class="img-fluid" alt="">
            </div>
            <div class="userStatsinfo">
-            <span class="name">amenda berry</span>  
+            <span class="name">{{$details->artist->first_name}} {{$details->artist->last_name}}</span>  
             <div class="stats"><span>56.6k Likes</span> <span>10k Followers</span> <span class="following">3k Following</span> <a href="#" class="btn btn-border btn-sm">Follow</a></div>  
-            <p>Oil painter, specialized in charcoal drawing mechanism</p>
+            <p>{{$details->artist->biography}}</p>
            </div>
        </div>
    </div>
@@ -27,21 +28,21 @@
     <div class="container">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#artWorks" role="tab" aria-controls="artWorks" aria-selected="true"><img src="assets/images/artwork-icon.svg" alt=""> Artworks</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false"><img src="assets/images/about-icon-light.svg" alt=""> About</a>
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#artWorks" role="tab" aria-controls="artWorks" aria-selected="true"><img src="{{asset('assets/images/artwork-icon.svg')}}" alt=""> Artworks</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false"><img src="{{asset('assets/images/about-icon-light.svg')}}" alt=""> About</a>
                                  </div>
       </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="artWorks" role="tabpanel" aria-labelledby="nav-home-tab">
                   <div class="artwork-images" id="artwork-images">
-                     <figure><img src="assets/images/art1.jpg"></figure>
-                     <figure><img src="assets/images/art2.jpg"></figure>
-                     <figure><img src="assets/images/art3.jpg"></figure>
-                     <figure><img src="assets/images/art4.jpg"></figure>
-                     <figure><img src="assets/images/art4.jpg"></figure>
-                     <figure><img src="assets/images/art2.jpg"></figure>
-                     <figure><img src="assets/images/art3.jpg"></figure>
-                     <figure><img src="assets/images/art1.jpg"></figure>
+                     <figure><img src="{{asset('assets/images/art1.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art2.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art3.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art4.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art4.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art2.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art3.jpg')}}"></figure>
+                     <figure><img src="{{asset('assets/images/art1.jpg')}}"></figure>
                     
               
                   </div>
@@ -53,7 +54,7 @@
             <ul class="pagination mx-auto">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true"> <img src="assets/images/left-arrow.svg" alt=""> Previous</span>
+                        <span aria-hidden="true"> <img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Previous</span>
                        
                     </a>
                 </li>
@@ -69,7 +70,7 @@
                 <li class="page-item"><a class="page-link" href="#">87</a></li>
                                         <li class="page-item">
                     <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">Next <img src="assets/images/right-arrow.svg" alt=""></span>
+                        <span aria-hidden="true">Next <img src="{{asset('assets/images/right-arrow.svg')}}" alt=""></span>
                         
                     </a>
                 </li>
@@ -118,4 +119,5 @@
     </div>
  </div>
 </section>
+@endforeach
 @include('layouts.comman_footer')
