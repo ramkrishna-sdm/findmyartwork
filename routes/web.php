@@ -54,8 +54,6 @@ Route::get('/profile_details', 'Frontend\HomeController@profile_details');
 // });
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'Auth\LoginController@admin')->name('admin');
 
 Route::group(['middleware' => ['auth', 'AdminCheck']], function () {
