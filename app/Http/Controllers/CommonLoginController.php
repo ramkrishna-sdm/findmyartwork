@@ -88,4 +88,7 @@ class CommonLoginController extends Controller
          return redirect()->to('/')->with('message', 'You are Successfully Logged Out');
     }           
 
+    public function phpinfo(){
+    	echo phpinfo();
+    }
 }
