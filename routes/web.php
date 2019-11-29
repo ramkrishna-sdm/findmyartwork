@@ -17,6 +17,8 @@ Route::post('/submit_login','CommonLoginController@submitLogin');
 Route::get('/logout','CommonLoginController@logout');
 /*************Common Login Controller Routes End************************/
 
+Route::get('/checkphp','CommonLoginController@phpinfo');
+
 Auth::routes();
 
 Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => 'ArtistCheck'],function(){ 
