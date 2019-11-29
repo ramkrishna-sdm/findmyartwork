@@ -69,28 +69,43 @@
             <!-- //Copyright -->
          </footer>
          <!-- //Footer Section -->
-         <div class="modal fade getStartedModals LoginModal" id="LoginModal">
-            <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                  <div class="modal-body">
-                     <div class="loginForm text-center">
-                        <h3>Sign In to your account</h3>
-                        <div class="col-md-8 offset-md-2">
-                           <div class="form-group">
-                              <input type="email" class="form-control" placeholder="Email">
+         <form class="form" method="POST" action="{{url('/submit_login')}}">
+          @csrf
+            <div class="modal fade getStartedModals LoginModal" id="LoginModal">
+               <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                     <div class="modal-body">
+                        <div class="loginForm text-center">
+                           <h3>Sign In to your account</h3>
+                           <div class="col-md-8 offset-md-2">
+                              <div class="form-group">
+                                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
+                                
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                              </div>
+                              <div class="form-group">
+                                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" required>
+                                
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                              </div>
+                              <button type="submit" class="btn btn-default btn-block">{{ __('Sign in') }}</button>
+                              <a href="#" class="btn btn-link btn-sm my-3">Forgot Password?</a>
+                              <a href="#" class="btn btn-border btn-block" data-toggle="modal" data-target="#SignUpModal" data-dismiss="modal" aria-label="Close">create account</a>
                            </div>
-                           <div class="form-group">
-                              <input type="password" class="form-control" placeholder="Password">
-                           </div>
-                           <a href="#" class="btn btn-default btn-block">sign in</a>
-                           <a href="#" class="btn btn-link btn-sm my-3">Forgot Password?</a>
-                           <a href="#" class="btn btn-border btn-block" data-toggle="modal" data-target="#SignUpModal" data-dismiss="modal" aria-label="Close">create account</a>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         </form>
          <div class="modal fade getStartedModals SignUpModal" id="SignUpModal">
             <div class="modal-dialog modal-lg">
                <div class="modal-content">
@@ -109,55 +124,92 @@
                </div>
             </div>
          </div>
-         <div class="modal fade getStartedModals SignUpModal2" id="SignUpModal2">
-            <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                  <div class="modal-body">
-                     <a href="#" class="goBack"  data-dismiss="modal" aria-label="Close"><img src="assets/images/left-arrow.svg" alt=""> Go back</a>
-                     <div class="loginForm text-center">
-                        <h3>Enter your details to sign up</h3>
-                        <div class="col-md-8 offset-md-2">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Username">
+         <form class="form" method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="modal fade getStartedModals SignUpModal2" id="SignUpModal2">
+               <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                     <div class="modal-body">
+                        <a href="#" class="goBack" data-toggle="modal" data-target="#SignUpModal"  data-dismiss="modal" aria-label="Close"><img src="assets/images/left-arrow.svg" alt=""> Go back</a>
+                        <div class="loginForm text-center">
+                           <h3>Enter your details to sign up</h3>
+                           <div class="col-md-8 offset-md-2">
+                              <div class="form-group">
+                                 <input name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ old('first_name') }}" required autofocus>
+                                    @if ($errors->has('first_name'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
+                                    @endif
+                              </div>
+                              <div class="form-group">
+                                 <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}" required autofocus>
+                                    @if ($errors->has('last_name'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
+                                    @endif
+                              </div>
+                              <div class="form-group">
+                                 <input name="email" type="email" class="form-control" placeholder="Email" required value="{{ old('email') }}">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                              </div>
+                              <div class="form-group">
+                                 <input name="password" type="password" class="form-control" placeholder="Password" required>
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                              </div>
+                              <input type="hidden" id="user_role" name="role">
+                              <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>  
                            </div>
-                           <div class="form-group">
-                              <input type="email" class="form-control" placeholder="Email">
-                           </div>
-                           <div class="form-group">
-                              <input type="password" class="form-control" placeholder="Password">
-                           </div>
-                           <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
-                              <input type="checkbox" class="custom-control-input" id="customCheck1">
-                              <label class="custom-control-label" for="customCheck1">By signing up you agree to our <a href="#">Terms & Conditions</a>.</label>
-                           </div>
-                           <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">sign up</a>  
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="modal fade getStartedModals SignUpModal3" id="SignUpModal3">
-            <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                  <div class="modal-body">
-                        <a href="#" class="goBack"  data-dismiss="modal" aria-label="Close"><img src="assets/images/left-arrow.svg" alt=""> Go back</a>
-                     <div class="loginForm text-center">
-                        <h3>Account type</h3>
-                        <div class="col-md-8 offset-md-2">
-                           <div class="userTypes d-flex justify-content-between mb-3"> <button class="btn btn-border btn-lg">Buyer</button> <button class="btn btn-border btn-lg">Artist</button> <button class="btn btn-border btn-lg">Gallery</button></div>
-                           <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
-                              <input type="checkbox" class="custom-control-input" id="customCheck1">
-                              <label class="custom-control-label" for="customCheck1">By signing up you agree to our <a href="#">Terms & Conditions</a>.</label>
+            <div class="modal fade getStartedModals SignUpModal3" id="SignUpModal3">
+               <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                     <div class="modal-body">
+                           <a href="#" class="goBack" data-toggle="modal" data-target="#SignUpModal2" data-dismiss="modal" aria-label="Close"><img src="assets/images/left-arrow.svg" alt=""> Go back</a>
+                        <div class="loginForm text-center">
+                           <h3>Account type</h3>
+                           <div class="col-md-8 offset-md-2">
+                              <div class="userTypes d-flex justify-content-between mb-3"> 
+                                 <button type="button" onclick="setUserRole('buyer')" class="btn btn-border btn-lg" >Buyer</button> 
+                                 <button type="button" onclick="setUserRole('artist')" class="btn btn-border btn-lg" >Artist</button> 
+                                 <button type="button" onclick="setUserRole('gallery')" class="btn btn-border btn-lg" >Gallery</button>
+                              </div>
+                              <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
+                                 <input type="checkbox" class="custom-control-input" name="agree_terms_and_conditions" value="1" id="customCheck1">
+                                 <label class="custom-control-label" for="customCheck1">By signing up you agree to our <a href="#">Terms & Conditions</a>.</label>
+                              </div>
+                              <button type="submit" class="btn btn-default btn-block">{{ __('Sign Up') }}</button>
                            </div>
-                           <a href="#" class="btn btn-default btn-block">sign up</a>  
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         </form>
       </div>
+
+      <script type="text/javascript">
+      function setUserRole(value){
+         // alert(value);
+
+         $('#user_role').val(value);
+         e.preventDefault();
+      }
+
+      </script>
       <!-- //Wrapper -->
       <!-- jQuery CDN Link -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
