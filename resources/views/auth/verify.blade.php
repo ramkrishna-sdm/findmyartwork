@@ -1,4 +1,4 @@
-@extends('layouts.app_default')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -22,3 +22,10 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            demo.checkFullPageBackgroundImage();
+        });
+    </script>
+@endpush

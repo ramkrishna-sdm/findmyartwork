@@ -9,13 +9,19 @@
                 <div class="card card-login">
                     <div class="card-body ">
                         <form class="form" method="POST" action="{{ route('password.update') }}">
-
                             @csrf
-
                             <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="card-header ">
                                 <h3 class="header text-center">{{ __('Reset Password') }}</h3>
+                            </div>
+                            <div class="form-group">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" readonly autofocus>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative">
