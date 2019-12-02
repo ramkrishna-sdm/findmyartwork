@@ -1,6 +1,4 @@
-@extends('layouts.app_default', [
-    'class' => ''
-])
+@extends('layouts.app_default')
 
 @section('content')
 <div class="container">
