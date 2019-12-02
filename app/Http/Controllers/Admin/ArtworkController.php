@@ -65,8 +65,9 @@ class ArtworkController extends Controller
     	$artworks = $this->artworkRepository->getData(['id'=>$artwork_id],'first',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants', 'artwork_images', 'style_detail', 'subject_detail'],0);
 
 
-        $artworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants', 'artwork_images', 'style_detail', 'subject_detail'],0);
-
+        // $artworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants', 'artwork_images', 'style_detail', 'subject_detail'],0);
+        // echo "<pre>";
+        // print_r($artworks); die;
 
     	$artist_id = $artworks['gallery_user_id'];
         return view('backend/artwork_detail', compact('artworks', 'artist_id'));

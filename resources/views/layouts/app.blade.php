@@ -81,10 +81,10 @@
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
             var arr = PATH.split('/');
-            if(arr[2] == "buyer" || arr[2] == "artist" || arr[2] == "artwork" || arr[2] == "category" || arr[2] == "subject" || arr[2] == "style" || arr[2] == "subcategory"){
+            if(arr[1] == "buyer" || arr[1] == "gallery" || arr[2] == "artist" || arr[1] == "artwork" || arr[2] == "category" || arr[1] == "subject" || arr[1] == "style" || arr[2] == "subcategory"){
                 $('#datatable').DataTable();
             }
-            if(arr[2] == "manage_cms"){
+            if(arr[1] == "manage_cms"){
                 var ckview = document.getElementById("des_first");
                     CKEDITOR.replace(des_first,{
                         language:'en-gb'
@@ -94,7 +94,7 @@
                     language:'en-gb'
                 });
             }
-            if(arr[2] == "manage_artworks" || arr[2] == "top_artwork" || arr[2] == "trending_artwork"){
+            if(arr[1] == "manage_artworks" || arr[1] == "top_artwork" || arr[1] == "trending_artwork"){
                 $(document).ready(function() {
                    var dataSrc = [];
 

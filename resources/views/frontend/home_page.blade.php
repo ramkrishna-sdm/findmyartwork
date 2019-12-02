@@ -18,7 +18,7 @@
                      <div class="bannerImg align-items-center" style="background-image: url({{$home->first_img_url}}); background-size: cover;">
                         <div class="container text-left">
                            <h3>{{$home->title}}</h3>
-                           <p class="mt-3">{{strip_tags($home->des_first)}}</p>
+                           <p class="mt-3"><?=htmlspecialchars_decode($home->des_first)?></p>
                            <a href="#" class="btn btn-default btn-lg mt-4">SELL NOW</a>
                         </div>
                      </div>
