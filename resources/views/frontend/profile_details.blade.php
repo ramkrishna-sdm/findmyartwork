@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.frontend.header')
 <!-- Profile Cover -->
 
 <div class="profileCover">
@@ -120,4 +120,4 @@
  </div>
 </section>
 @endforeach
-@include('layouts.comman_footer')
+@include('layouts.frontend.comman_footer')

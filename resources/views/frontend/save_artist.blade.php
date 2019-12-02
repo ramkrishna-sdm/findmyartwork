@@ -1,4 +1,4 @@
-    @include('layouts.header')
+    @include('layouts.frontend.header')
      <!-- Page Header Title -->
      <div class="page-title">
           <div class="page-title-inner">
@@ -140,4 +140,4 @@
 <!-- End Top Artworks Section -->
 
 <!-- End Top Artists Section -->
-@include('layouts.comman_footer')
+@include('layouts.frontend.comman_footer')
