@@ -49,6 +49,7 @@
          </section>
          <!-- End Category Section -->
          <!-- Featured Artwork -->
+         @if(!empty($featuredArtworks))
          <section class="featuredArt">
             <div class="featuredImage">
                <img src="{{$featuredArtworks->artwork_images[1]->media_url}}" alt="">
@@ -64,6 +65,7 @@
                </div>
             </div>
          </section>
+         @endif
          <!--End Featured Artwork -->
          <!-- Top Artworks Section -->
          <section class="topArtworks">
@@ -77,6 +79,7 @@
 
                  
                    <div class="artistSLider owl-carousel artistCarousel">
+                        @if(count($topartworks) > 0)
                          @foreach($topartworks as $key => $artwork)
                         <div class="artPost">
                            <div class="postHeader">
@@ -104,6 +107,7 @@
                      </div>
                      </div>
                     @endforeach
+                    @endif
                 
                    </div>
               
@@ -179,6 +183,7 @@
             </div>
             <div class="container">
                <div class="row">
+                  @if(count($topartists) > 0)
                   @foreach($topartists as $key => $topartist)
                   <div class="col-lg-4 col-md-6">
                             <div class="artPost">
@@ -211,6 +216,7 @@
                  
                   </div>
                   @endforeach
+                  @endif
                 <!--   <div class="col-lg-4 col-md-6">
                     
                         <div class="artPost">
