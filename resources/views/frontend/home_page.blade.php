@@ -1,5 +1,5 @@
 
- @include('layouts.header')
+ @include('layouts.frontend.header')
    <!-- Banner/Slider -->
          <div class="message-alert-top">
              @if(Session::has('success'))
@@ -365,5 +365,5 @@
             </div>
          </section>
          <!-- End Top Artists Section -->
-         @include('layouts.comman_footer')
+         @include('layouts..frontend.comman_footer')
       

@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.frontend.header')
 <!-- Page Header Title -->
 @foreach($about as $key => $aboutus)
 <div class="page-title">
@@ -90,4 +90,4 @@
 </div>
 </section>
 <!-- End Team Section -->
-@include('layouts.comman_footer')
+@include('layouts.frontend.comman_footer')

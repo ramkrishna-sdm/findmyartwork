@@ -108,15 +108,15 @@ class CommonLoginController extends Controller
 	 
 	public function createUser($getInfo,$provider){
 
-		$user = User::where('provider_id', $getInfo->id)->first();
-		if (!$user) {
-		      $user = User::create([
-		        'first_name'     => $getInfo->name,
-		        'email'    => $getInfo->email,
-		        'provider' => $provider,
-		        'provider_id' => $getInfo->id
-		     ]);
-		   }
-		   return $user;
-     	}
+	$user = User::where('provider_id', $getInfo->id)->first();
+	if (!$user) {
+	      $user = User::create([
+	        'first_name'     => $getInfo->name,
+	        'email'    => $getInfo->email,
+	        'provider' => $provider,
+	        'provider_id' => $getInfo->id
+	     ]);
+	   }
+	   return $user;
+ 	}
 }

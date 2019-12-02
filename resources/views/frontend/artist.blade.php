@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.frontend.header')
 <!-- Page Header Title -->
 <div class="page-title">
 <div class="page-title-inner">
@@ -217,4 +217,4 @@
   </div>
 </section>
 <!--End Trending Artists Page  -->
-@include('layouts.comman_footer')
+@include('layouts.frontend.comman_footer')
