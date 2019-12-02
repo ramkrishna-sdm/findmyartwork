@@ -155,7 +155,7 @@
     </div>
   </div>
 </div>
-<form class="form" method="POST" action="{{ route('register') }}">
+<form class="form" method="POST" id="registerForm" action="{{ route('register') }}">
   @csrf
   <div class="modal fade getStartedModals SignUpModal2" id="SignUpModal2">
     <div class="modal-dialog modal-lg">
@@ -197,7 +197,7 @@
                 </span>
                 @endif
               </div>
-              <input type="hidden" id="user_role" name="role">
+              <input type="hidden" id="user_role" name="role" required>
               <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>
             </div>
           </div>
@@ -219,7 +219,7 @@
                 <button type="button" onclick="setUserRole('gallery')" class="btn btn-border btn-lg" >Gallery</button>
               </div>
               <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
-                <input type="checkbox" class="custom-control-input" name="agree_terms_and_conditions" value="1" id="customCheck1">
+                <input type="checkbox" class="custom-control-input" name="agree_terms_and_conditions" value="1" id="customCheck1" required>
                 <label class="custom-control-label" for="customCheck1">By signing up you agree to our <a href="#">Terms & Conditions</a>.</label>
               </div>
               <button type="submit" class="btn btn-default btn-block">{{ __('Sign Up') }}</button>
@@ -231,13 +231,7 @@
   </div>
 </form>
 </div>
-<script type="text/javascript">
-function setUserRole(value){
-// alert(value);
-$('#user_role').val(value);
-e.preventDefault();
-}
-</script>
+
 <!-- //Wrapper -->
 <!-- jQuery CDN Link -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -247,5 +241,27 @@ e.preventDefault();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script type="text/javascript">
+function setUserRole(value){
+// alert(value);
+$('#user_role').val(value);
+e.preventDefault();
+}
+$(document).ready(function() {
+  $('#registerForm').submit(function(e) {
+  e.preventDefault();
+  var user_role = $('#user_role').val();
+
+  if($.trim(user_role) == ''){
+    toastr.options.timeOut = 2000; // 2s
+    toastr.error('Please Select Account Type!');
+    return false;
+  }else{
+    $("#registerForm").submit();
+  }
+});
+});
+</script>
 </body>
 </html>
