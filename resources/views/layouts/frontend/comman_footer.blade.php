@@ -166,7 +166,7 @@
             <h3>Enter your details to sign up</h3>
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
-                <input name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ old('first_name') }}" required autofocus>
+                <input name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ old('first_name') }}" required autofocus id="first_name">
                 @if ($errors->has('first_name'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('first_name') }}</strong>
@@ -174,7 +174,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}" required autofocus>
+                <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}" required autofocus id="last_name">
                 @if ($errors->has('last_name'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('last_name') }}</strong>
@@ -182,7 +182,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="email" type="email" class="form-control" placeholder="Email" required value="{{ old('email') }}">
+                <input name="email" type="email" class="form-control" placeholder="Email" required value="{{ old('email') }}" id="email-address">
                 @if ($errors->has('email'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('email') }}</strong>
@@ -190,7 +190,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="password" type="password" class="form-control" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" placeholder="Password" required id="password">
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('password') }}</strong>
@@ -198,7 +198,7 @@
                 @endif
               </div>
               <input type="hidden" id="user_role" name="role" required>
-              <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>
+              <a href="#" class="btn btn-default btn-block" id="registration-form" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>
             </div>
           </div>
         </div>
@@ -246,7 +246,6 @@
 function setUserRole(value){
 // alert(value);
 $('#user_role').val(value);
-e.preventDefault();
 }
 $(document).ready(function() {
   $('#registerForm').submit(function(e) {
@@ -258,9 +257,29 @@ $(document).ready(function() {
     toastr.error('Please Select Account Type!');
     return false;
   }else{
-    $("#registerForm").submit();
+   document.getElementById("registerForm").submit();
   }
 });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#registration-form').click(function(e) {
+     e.preventDefault();
+      var first_name = $('#first_name').val();
+      var last_name = $('#last_name').val();
+      var email = $('#email-address').val();
+      var password = $('#password').val();
+      if($.trim(first_name) == ''||$.trim(last_name) == ''||$.trim(email) == ''||$.trim(password) == ''){
+        toastr.options.timeOut = 2000; // 2s
+        toastr.error('Please Enter Credentials');
+        return false;
+      }
+      else{
+        $("#SignUpModal3").show();
+      }
+  });
 });
 </script>
 </body>
