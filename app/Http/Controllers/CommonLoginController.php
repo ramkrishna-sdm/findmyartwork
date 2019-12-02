@@ -54,32 +54,32 @@ class CommonLoginController extends Controller
 	  		return redirect()->back()->withErrors($validator);   
 		}else{
 	  
-		   $userdata = array(
-	        'email' => Input::get('email'),
-	        'password' => Input::get('password'),
+		   	$userdata = array(
+		        'email' => Input::get('email'),
+		        'password' => Input::get('password'),
 	        );
-	            if(Auth::attempt($userdata)){		
-								$user_role = Auth::user()->role;
-		                
-	              if($user_role == "admin"){
-	                	return redirect()->to('/home'); 
-	              }
-		                 
-	              if($user_role == "buyer"){
-	                	return redirect()->to('/buyer/dashboard'); 
-	              }
-		                 
-	              if($user_role == "artist"){
-	                	return redirect()->to('/artist/dashboard'); 
-	              }
-		                 
-	              if($user_role == "gallery"){
-	                	return redirect()->to('/gallery/dashboard'); 
-	              }
-		                 
-		        }else{
-	              return redirect()->back()->with('error', 'User with these credentials is not found!');
-	            }
+            if(Auth::attempt($userdata)){		
+				$user_role = Auth::user()->role;
+	                
+	            if($user_role == "admin"){
+                	return redirect()->to('/home'); 
+              	}
+	                 
+				if($user_role == "buyer"){
+					return redirect()->to('/buyer/dashboard'); 
+				}
+				     
+				if($user_role == "artist"){
+					return redirect()->to('/artist/dashboard'); 
+				}
+				     
+				if($user_role == "gallery"){
+					return redirect()->to('/gallery/dashboard'); 
+				}
+	                 
+	        }else{
+              return redirect()->back()->with('error', 'User with these credentials is not found!');
+            }
 	    }       
                                                                              
     }
