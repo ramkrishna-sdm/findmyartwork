@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes(['verify' => true]);
 /*************Common Login Controller Routes Start************************/
 Route::get('/user_login','CommonLoginController@login');
 Route::post('/submit_login','CommonLoginController@submitLogin');
@@ -19,7 +19,7 @@ Route::get('/logout','CommonLoginController@logout');
 
 Route::get('/checkphp','CommonLoginController@phpinfo');
 
-Auth::routes(['verify' => true]);
+
 
 Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['verified','ArtistCheck']],function(){ 
 
@@ -139,8 +139,8 @@ Route::group(['middleware' => ['auth', 'AdminCheck']], function () {
 
 });
 
-Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-Route::get('password/reset/{token}', 'ForgotPasswordController@sendResetLinkEmail');
+// Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+// Route::get('password/reset/{token}', 'ForgotPasswordController@sendResetLinkEmail');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
