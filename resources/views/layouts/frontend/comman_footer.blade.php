@@ -149,7 +149,7 @@
             <span class="or-divider">Or</span>
             <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-default btn-block btn-facebook">sign up with facebook</a>
           </div>
-          <span class="mt-4"> <a href="#" class="btn btn-link btn-sm"  data-dismiss="modal" aria-label="Close">Already a member of ArtviaYou Login</a></span>
+          <span class="mt-4"> <a href="#" class="btn btn-link btn-sm" data-toggle="modal" data-target="#LoginModal" data-dismiss="modal" aria-label="Close">Already a member of ArtviaYou Login</a></span>
         </div>
       </div>
     </div>
