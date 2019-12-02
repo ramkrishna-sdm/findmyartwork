@@ -19,21 +19,21 @@ Route::get('/logout','CommonLoginController@logout');
 
 Route::get('/checkphp','CommonLoginController@phpinfo');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => 'ArtistCheck'],function(){ 
+Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['verified','ArtistCheck']],function(){ 
 
 	Route::get('/dashboard','ArtistUserController@index');
 
 });
 
-Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => 'BuyerCheck'],function(){ 
+Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
 	Route::get('/dashboard','BuyerUserController@index');
 
 });
 
-Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => 'GalleryCheck'],function(){ 
+Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['verified','GalleryCheck']],function(){ 
 
 	Route::get('/dashboard','GalleryUserController@index');
 
