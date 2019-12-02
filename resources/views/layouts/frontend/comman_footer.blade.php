@@ -114,7 +114,7 @@
                <div class="modal-body">
                   <a href="#" class="goBack" data-toggle="modal" data-target="#SignUpModal"  data-dismiss="modal" aria-label="Close"><img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Go back</a>
                   <div class="loginForm text-center">
-                     <h3>Enter your details to sign up</h3>
+                     <h3>Reset Password</h3>
                      <div class="col-md-8 offset-md-2">
                         <div class="form-group">
                            <input name="email" type="email" class="form-control" placeholder="Email" required value="{{ old('email') }}">
@@ -126,14 +126,13 @@
                         </div>
                         
                         <input type="hidden" id="user_role" name="role">
-                        <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>  
+                        <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Save</a>  
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-     
    </form>
    <div class="modal fade getStartedModals SignUpModal" id="SignUpModal">
       <div class="modal-dialog modal-lg">
@@ -147,7 +146,7 @@
                      <span class="or-divider">Or</span>
                      <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-default btn-block btn-facebook">sign up with facebook</a>
                   </div>
-                  <span class="mt-4"> <a href="#" class="btn btn-link btn-sm"  data-dismiss="modal" aria-label="Close">Already a member of ArtviaYou Login</a></span>
+                  <span class="mt-4"> <a href="#" class="btn btn-link btn-sm"  data-toggle="modal" data-target="#LoginModal" data-dismiss="modal" aria-label="Close">Already a member of ArtviaYou Login</a></span>
                </div>
             </div>
          </div>
