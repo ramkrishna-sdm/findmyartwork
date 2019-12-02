@@ -97,7 +97,7 @@
                           @endif
                         </div>
                         <button type="submit" class="btn btn-default btn-block">{{ __('Sign in') }}</button>
-                        <a href="#" class="btn btn-link btn-sm my-3">Forgot Password?</a>
+                        <a href="#" class="btn btn-link btn-sm my-3" data-toggle="modal" data-target="#forgetModel" data-dismiss="modal" aria-label="Close">Forgot Password?</a>
                         <a href="#" class="btn btn-border btn-block" data-toggle="modal" data-target="#SignUpModal" data-dismiss="modal" aria-label="Close">create account</a>
                      </div>
                   </div>
@@ -105,6 +105,35 @@
             </div>
          </div>
       </div>
+   </form>
+   <form class="form" method="POST" action="{{ route('register') }}">
+      @csrf
+      <div class="modal fade getStartedModals SignUpModal2" id="forgetModel">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <a href="#" class="goBack" data-toggle="modal" data-target="#SignUpModal"  data-dismiss="modal" aria-label="Close"><img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Go back</a>
+                  <div class="loginForm text-center">
+                     <h3>Enter your details to sign up</h3>
+                     <div class="col-md-8 offset-md-2">
+                        <div class="form-group">
+                           <input name="email" type="email" class="form-control" placeholder="Email" required value="{{ old('email') }}">
+                              @if ($errors->has('email'))
+                                  <span class="invalid-feedback" style="display: block;" role="alert">
+                                      <strong>{{ $errors->first('email') }}</strong>
+                                  </span>
+                              @endif
+                        </div>
+                        
+                        <input type="hidden" id="user_role" name="role">
+                        <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>  
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+     
    </form>
    <div class="modal fade getStartedModals SignUpModal" id="SignUpModal">
       <div class="modal-dialog modal-lg">
