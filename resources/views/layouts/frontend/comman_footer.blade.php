@@ -120,7 +120,7 @@
             {{ session('status') }}
           </div>
           @endif
-          <form method="POST"  action="{{ route('password.email') }}">
+          <form method="POST"  action="{{ route('password.email') }}" id="forgot-password">
             @csrf
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
@@ -131,7 +131,7 @@
                 </span>
                 @enderror
               </div>
-              <button type="submit" class="btn btn-default btn-block">{{ __('Send Verification Link') }}</button>
+              <button type="submit" class="btn btn-default btn-block" id="submit-password">{{ __('Send Verification Link') }}</button>
             </div>
           </form>
         </div>
@@ -334,6 +334,32 @@ document.getElementById("registerForm").submit();
       return false;
     }else{
       document.getElementById("loginForm").submit();
+  }
+});
+});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#submit-password').click(function(e) {
+  e.preventDefault();
+  var email = $('#forgot-email').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }else{
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Email has been sent to your verify email Id');
+      document.getElementById("forgot-password").submit();
   }
 });
 });
