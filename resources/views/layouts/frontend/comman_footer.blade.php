@@ -257,7 +257,7 @@ toastr.options.timeOut = 2000; // 2s
 toastr.error('Please Select Account Type!');
 return false;
 }else{
-toastr.options.timeOut = 1000; // 2s
+toastr.options.timeOut = 1000; // 42s
 toastr.error(' Verification Mail has been sent to your Email Id ');
 document.getElementById("registerForm").submit();
 }
