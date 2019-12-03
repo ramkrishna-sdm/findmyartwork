@@ -37,7 +37,7 @@
                         </div>
                         <div class="card-body">
                             @if($slug == "about_us")
-                            <form method="post" action="{{ url('update_aboutus') }}" enctype="multipart/form-data" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_aboutus') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <div class="pl-lg-4">
                                     <input type="hidden" name="slug" value="{{$slug}}">
@@ -111,7 +111,7 @@
                             </form>
 
                             @elseif($slug == "home_page")
-                            <form method="post" action="{{ url('update_home') }}" enctype="multipart/form-data" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_home') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <div class="pl-lg-4">
                                     <input type="hidden" name="slug" value="{{$slug}}">
@@ -150,7 +150,7 @@
                                 </div>
                             </form>
                             @else
-                            <form method="post" action="{{ url('update_cms') }}" enctype="multipart/form-data" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_cms') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="slug" value="{{$slug}}">
                                 <div class="pl-lg-4">

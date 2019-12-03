@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\CategoryRepository;
-use App\Repository\GalleryUserRepository;
+use App\Repository\UserRepository;
 use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
@@ -19,11 +19,11 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,GalleryUserRepository $galleryUserRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository)
     {
         $this->request = $request;
         $this->categoryRepository = $categoryRepository;
-        $this->galleryUserRepository = $galleryUserRepository;
+        $this->userRepository = $userRepository;
         $this->artworkRepository = $artworkRepository;
         $this->artworkImageRepository = $artworkImageRepository;
         $this->variantRepository = $variantRepository;
@@ -39,7 +39,7 @@ class HomeController extends Controller
         $topartworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         // dd($topartworks);die;
         $featuredArtworks = $this->artworkRepository->getData(['is_featured'=>'yes', 'is_deleted'=>'no'],'first',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
-        $topartists  = $this->artworkRepository->getData(['is_featured'=>'yes','user_type'=>'artist', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
+        $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'get',[],0);
         return view('frontend/home_page',compact('categories','topartworks','featuredArtworks','homes','topartists'));

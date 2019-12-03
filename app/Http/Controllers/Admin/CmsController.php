@@ -82,7 +82,7 @@ class CmsController extends Controller
             	
             $upload_file = $this->CmsRepository->createUpdateData(['slug'=> $this->request->slug],$aboutus_array);
              \Session::flash('success_message', "AboutUs Saved Successfully!");
-            return redirect('/manage_cms/'.$this->request->slug);
+            return redirect('/admin/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -138,7 +138,7 @@ class CmsController extends Controller
 
             $cms = $this->CmsRepository->createUpdateData(['slug'=> $request->slug],$request->all());
             \Session::flash('success_message', "Information Saved Successfully!");
-            return redirect('/manage_cms/'.$this->request->slug);
+            return redirect('/admin/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -177,7 +177,7 @@ class CmsController extends Controller
                 
             $upload_file = $this->CmsRepository->createUpdateData(['slug'=> $this->request->slug],$home_array);
              \Session::flash('success_message', "Home banner Saved Successfully!");
-            return redirect('/manage_cms/'.$this->request->slug);
+            return redirect('/admin/manage_cms/'.$this->request->slug);
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();

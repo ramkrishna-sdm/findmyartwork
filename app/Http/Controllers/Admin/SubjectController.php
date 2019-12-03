@@ -69,7 +69,7 @@ class SubjectController extends Controller
             $subject = $this->subjectRepository->createUpdateData(['id'=> $request->id],$request->all());
             //dd($save_category);
             \Session::flash('success_message', "Subject Saved Successfully!");
-            return redirect('/subject');
+            return redirect('/admin/subject');
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -102,7 +102,7 @@ class SubjectController extends Controller
     {
         $subject = $this->subjectRepository->getData(['id'=>$id],'delete',[],0);
         \Session::flash('success_message', 'Subject Deleted Succssfully!.'); 
-            return redirect('subject');
+            return redirect('/admin/subject');
     }
 
     /**
@@ -122,7 +122,7 @@ class SubjectController extends Controller
         }
         $subject = $this->subjectRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Subject Status Changed Succssfully!.'); 
-        return redirect('subject');
+        return redirect('admin/subject');
     }
 
 

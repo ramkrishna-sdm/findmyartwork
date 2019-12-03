@@ -68,7 +68,7 @@ class StyleController extends Controller
         try{
             $subject = $this->styleRepository->createUpdateData(['id'=> $request->id],$request->all());
             \Session::flash('success_message', "Style Saved Successfully!");
-            return redirect('/style');
+            return redirect('/admin/style');
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
@@ -101,7 +101,7 @@ class StyleController extends Controller
     {
         $style = $this->styleRepository->getData(['id'=>$id],'delete',[],0);
         \Session::flash('success_message', 'Style Deleted Succssfully!.'); 
-            return redirect('style');
+            return redirect('/admin/style');
     }
 
     /**
@@ -121,7 +121,7 @@ class StyleController extends Controller
         }
         $style = $this->styleRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Style Status Changed Succssfully!.'); 
-        return redirect('style');
+        return redirect('/admin/style');
     }
 
 

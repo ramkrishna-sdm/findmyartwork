@@ -8,9 +8,9 @@ class UserRepository implements RepositoryInterface
 {
     private $model;
 
-    public function __construct(GalleryUser $GalleryUser)
+    public function __construct(User $User)
     {
-        $this->model = $GalleryUser;
+        $this->model = $User;
     }
 
     //To create and update data

@@ -110,66 +110,6 @@
                     @endif
                 
                    </div>
-              
-               
-                 <!--  <div class="col-lg-4 col-md-6">
-              
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"><img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-               
-                  </div> -->
-                 <!--  <div class="col-lg-4 col-md-6">
-                
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                    
-                  </div> -->
                </div>
             </div>
          </section>
@@ -190,20 +130,17 @@
                            <div class="postHeader">
                               <div class="username">
                                  <div class="image">
-                                    <div class="profile_img"><a href="/profile_details/{{$topartist->artist->id}}"><img src="{{$topartist->artist->media_url}}" alt=""></a></div>
+                                    <div class="profile_img"><a href="/profile_details/{{$topartist->id}}"><img src="{{$topartist->media_url}}" alt=""></a></div>
                                  </div>
-                                 <span class="name">{{$topartist->artist->first_name}} {{$topartist->artist->last_name}}</span>
+                                 <span class="name">{{$topartist->first_name}} {{$topartist->last_name}}</span>
                               </div>
                               <span class="Posted">2 hours ago</span>
                            </div>
                            <div class="postImage">
-                                <a href="#"> <img src="{{$topartist->artwork_images[1]->media_url}}" alt=""></a>
+                                <a href="#"> <img src="{{$topartist->media_url}}" alt=""></a>
                            </div>
                            <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>{{$topartist->title}}</h5>
-                                 <h6>${{$topartist->variants[0]->price}}</h6>
-                              </div>
+                              
                               <div class="rightBlock">
                                  <span class="likes">456 Likes</span> 
                                  <div class="actionIcons">
@@ -217,154 +154,7 @@
                   </div>
                   @endforeach
                   @endif
-                <!--   <div class="col-lg-4 col-md-6">
-                    
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"> <img src="assets/images/colorfull.png" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                  
-                  </div> -->
-                 <!--  <div class="col-lg-4 col-md-6">
-                   
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                   
-                  </div> -->
                </div>
-               <!-- <div class="row">
-                  <div class="col-lg-4 col-md-6">
-                   
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                    
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                   
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"><img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                  
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                 
-                        <div class="artPost">
-                           <div class="postHeader">
-                              <div class="username">
-                                 <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                                 <span class="name">Amenda Berry</span>
-                              </div>
-                              <span class="Posted">2 hours ago</span>
-                           </div>
-                           <div class="postImage">
-                                <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                           </div>
-                           <div class="postFooter">
-                              <div class="leftBlock">
-                                 <h5>The Wave</h5>
-                                 <h6>$2076</h6>
-                              </div>
-                              <div class="rightBlock">
-                                 <span class="likes">456 Likes</span> 
-                                 <div class="actionIcons">
-                     <a href="#"><img src="assets/images/like.png" alt=""></a>
-                     <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                     <a href="#"><img src="assets/images/saved.png" alt=""></a>
-                     </div></div>
-                     </div>
-                     </div>
-                 
-                  </div>
-               </div> -->
             </div>
             <div class="container text-center mt-5">
                <a href="/artist" class="btn btn-default">VIEW ALL</a>

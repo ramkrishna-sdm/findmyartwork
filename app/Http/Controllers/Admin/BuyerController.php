@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repository\GalleryUserRepository;
+use App\Repository\UserRepository;
 use Validator;
 use Exception;
 use Session;
@@ -19,16 +19,16 @@ class BuyerController extends Controller
 {
     /**
     * Construction function
-    * @param $request(Array), $galleryUserRepository
+    * @param $request(Array), $userRepository
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, GalleryUserRepository $galleryUserRepository)
+    public function __construct(Request $request, UserRepository $userRepository)
     {
         $this->request = $request;
-        $this->galleryUserRepository = $galleryUserRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -41,7 +41,7 @@ class BuyerController extends Controller
     */
     public function index()
     {
-    	$buyers = $this->galleryUserRepository->getData(['user_type'=>'buyer'],'get',[],0);
+    	$buyers = $this->userRepository->getData(['role'=>'buyer'],'get',[],0);
         return view('backend/buyers', compact('buyers'));
     }
 
@@ -68,7 +68,7 @@ class BuyerController extends Controller
     */
     public function edit_buyer($id)
     {
-    	$buyer = $this->galleryUserRepository->getData(['id'=>$id],'first',[],0);
+    	$buyer = $this->userRepository->getData(['id'=>$id],'first',[],0);
     	return view('backend/edit_buyer', compact('buyer'));
     }
 
@@ -82,9 +82,9 @@ class BuyerController extends Controller
     */
     public function delete_buyer($id)
     {
-    	$buyer = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
+    	$buyer = $this->userRepository->getData(['id'=>$id],'delete',[],0);
     	\Session::flash('success_message', 'Buyer Deleted Succssfully!.'); 
-            return redirect('buyer');
+            return redirect('/admin/buyer');
     }
 
     /**
@@ -102,9 +102,9 @@ class BuyerController extends Controller
     	}else{
     		$data['is_active'] = 'yes';
     	}
-    	$buyer = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+    	$buyer = $this->userRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Buyer Status Changed Succssfully!.'); 
-        return redirect('buyer');
+        return redirect('/admin/buyer');
     }
 
     /**
@@ -124,10 +124,10 @@ class BuyerController extends Controller
             'last_name'         => 'required|string',
             'user_type'         => 'required|string'
         ]);
-        $buyer = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+        $buyer = $this->userRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
         if($buyer){
             \Session::flash('success_message', 'Buyer Details Updated Succssfully.'); 
-            return redirect('buyer');
+            return redirect('/admin/buyer');
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();

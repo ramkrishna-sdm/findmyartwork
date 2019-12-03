@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Gallery User') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <!-- <a href="{{ url('add_gallery') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a> -->
+                                    <a href="{{ url('/admin/add_gallery') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -57,9 +57,9 @@
                                                     <td>{{$gallery->city}}</td>
                                                     <td>{{$gallery->country}}</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_gallery')}}/{{$gallery->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_gallery')}}/{{$gallery->id}}" class="btn btn-danger btn-link btn-sm remove delete_gallery" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_gallery_status')}}/{{$gallery->id}}/{{$gallery->is_active}}" class="btn btn-danger btn-link btn-sm change_status" title="@if($gallery->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/edit_gallery')}}/{{$gallery->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('/admin/delete_gallery')}}/{{$gallery->id}}" class="btn btn-danger btn-link btn-sm remove delete_gallery" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('/admin/change_gallery_status')}}/{{$gallery->id}}/{{$gallery->is_active}}" class="btn btn-danger btn-link btn-sm change_status" title="@if($gallery->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

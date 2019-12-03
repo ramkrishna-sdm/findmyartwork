@@ -30,15 +30,15 @@ class Artwork extends Model
     {
         return $this->belongsTo('App\Category','category','id');
     }
-    // Relations with GalleryUser Model
+    // Relations with SubCategory Model
     public function sub_category_detail()
     {
         return $this->belongsTo('App\SubCategory','sub_category','id');
     }
-    // Relations with GalleryUser Model
+    // Relations with User Model
     public function artist()
     {
-        return $this->belongsTo('App\GalleryUser','gallery_user_id','id');
+        return $this->belongsTo('App\User','gallery_user_id','id');
     }
     // Relations with ArtworkImage Model
     public function artwork_images()

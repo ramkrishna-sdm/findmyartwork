@@ -15,7 +15,7 @@
                                     <h3 class="mb-0">{{ __('Edit Category') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('category') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/category') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <form method="post" enctype="multipart/form-data" action="{{ url('update_category') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('/admin/update_category') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="category">
                                 <input type="hidden" name="id" value="{{$category->id}}">

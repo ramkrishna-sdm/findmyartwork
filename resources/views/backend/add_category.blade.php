@@ -31,7 +31,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <form method="post" enctype="multipart/form-data" action="{{ url('update_category') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('/admin/update_category') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="category">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Add Category') }}</h6>

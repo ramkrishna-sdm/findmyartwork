@@ -57,8 +57,8 @@
                                                     <td>@if(!empty($subcategory->created_at)){{date('d/m/Y H:i', strtotime($subcategory->created_at))}}@endif</td>
                                                     <td class="text-right">
                                                         <a href="{{url('/admin/edit_subcategory')}}/{{$subcategory->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_subcategory')}}/{{$subcategory->id}}" class="btn btn-danger btn-link btn-sm remove delete_subcategory" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_subcategory_status')}}/{{$subcategory->id}}/{{$subcategory->is_active}}" class="btn btn-danger btn-link btn-sm change_subcategory_status" title="@if($subcategory->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/delete_subcategory')}}/{{$subcategory->id}}" class="btn btn-danger btn-link btn-sm remove delete_subcategory" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('/admin/change_subcategory_status')}}/{{$subcategory->id}}/{{$subcategory->is_active}}" class="btn btn-danger btn-link btn-sm change_subcategory_status" title="@if($subcategory->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

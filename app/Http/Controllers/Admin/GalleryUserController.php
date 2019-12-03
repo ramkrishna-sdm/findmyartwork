@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repository\GalleryUserRepository;
+use App\Repository\UserRepository;
 use Validator;
 use Exception;
 use Session;
@@ -19,16 +19,16 @@ class GalleryUserController extends Controller
 {
     /**
     * Construction function
-    * @param $request(Array), $galleryUserRepository
+    * @param $request(Array), $userRepository
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, GalleryUserRepository $galleryUserRepository)
+    public function __construct(Request $request, UserRepository $userRepository)
     {
         $this->request = $request;
-        $this->galleryUserRepository = $galleryUserRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -41,7 +41,7 @@ class GalleryUserController extends Controller
     */
     public function index()
     {
-    	$galleries = $this->galleryUserRepository->getData(['user_type'=>'gallery'],'get',[],0);
+    	$galleries = $this->userRepository->getData(['role'=>'gallery'],'get',[],0);
         return view('backend/galleries', compact('galleries'));
     }
 
@@ -68,7 +68,7 @@ class GalleryUserController extends Controller
     */
     public function edit_gallery($id)
     {
-    	$gallery = $this->galleryUserRepository->getData(['id'=>$id],'first',[],0);
+    	$gallery = $this->userRepository->getData(['id'=>$id],'first',[],0);
     	return view('backend/edit_gallery', compact('gallery'));
     }
 
@@ -82,9 +82,9 @@ class GalleryUserController extends Controller
     */
     public function delete_gallery($id)
     {
-    	$gallery = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
+    	$gallery = $this->userRepository->getData(['id'=>$id],'delete',[],0);
     	\Session::flash('success_message', 'Gallery User Deleted Succssfully!.'); 
-            return redirect('gallery');
+            return redirect('/admin/gallery');
     }
 
     /**
@@ -102,9 +102,9 @@ class GalleryUserController extends Controller
     	}else{
     		$data['is_active'] = 'yes';
     	}
-    	$gallery = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+    	$gallery = $this->userRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Gallery User Status Changed Succssfully!.'); 
-        return redirect('gallery');
+        return redirect('/admin/gallery');
     }
 
     /**
@@ -124,10 +124,10 @@ class GalleryUserController extends Controller
             'last_name'         => 'required|string',
             'user_type'         => 'required|string'
         ]);
-        $gallery = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+        $gallery = $this->userRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
         if($gallery){
             \Session::flash('success_message', 'Gallery User Details Updated Succssfully.'); 
-            return redirect('gallery');
+            return redirect('/admin/gallery');
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();

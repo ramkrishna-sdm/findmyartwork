@@ -107,15 +107,15 @@ class ArtworkController extends Controller
     	$artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Artwork Status Changed to '.$new_status.' Succssfully!.'); 
     	if($page == "list"){
-            return redirect('artwork/'.$user_id);
+            return redirect('/admin/artwork/'.$user_id);
         }elseif($page == "manage_artworks"){
-            return redirect('manage_artworks');
+            return redirect('/admin/manage_artworks');
         }elseif($page == "trending_artwork"){
-            return redirect('trending_artwork');
+            return redirect('/admin/trending_artwork');
         }elseif($page == "top_artwork"){
-            return redirect('top_artwork');
+            return redirect('/admin/top_artwork');
         }else{
-            return redirect('view_artwork/'.$id);
+            return redirect('/admin/view_artwork/'.$id);
         }
     }
 
@@ -181,15 +181,15 @@ class ArtworkController extends Controller
         $artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', $new_status); 
         if($page == "list"){
-            return redirect('artwork/'.$user_id);
+            return redirect('/admin/artwork/'.$user_id);
         }elseif($page == "manage_artworks"){
-            return redirect('manage_artworks');
+            return redirect('/admin/manage_artworks');
         }elseif($page == "trending_artwork"){
-            return redirect('trending_artwork');
+            return redirect('/admin/trending_artwork');
         }elseif($page == "top_artwork"){
-            return redirect('top_artwork');
+            return redirect('/admin/top_artwork');
         }else{
-            return redirect('view_artwork/'.$id);
+            return redirect('/admin/view_artwork/'.$id);
         }
     }
 
@@ -213,15 +213,15 @@ class ArtworkController extends Controller
         $artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', $new_status); 
         if($page == "list"){
-            return redirect('artwork/'.$user_id);
+            return redirect('/admin/artwork/'.$user_id);
         }elseif($page == "manage_artworks"){
-            return redirect('manage_artworks');
+            return redirect('/admin/manage_artworks');
         }elseif($page == "trending_artwork"){
-            return redirect('trending_artwork');
+            return redirect('/admin/trending_artwork');
         }elseif($page == "top_artwork"){
-            return redirect('top_artwork');
+            return redirect('/admin/top_artwork');
         }else{
-            return redirect('view_artwork/'.$id);
+            return redirect('/admin/view_artwork/'.$id);
         }
     }
 

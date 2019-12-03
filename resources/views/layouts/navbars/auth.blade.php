@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'buyers' ? 'active' : '' }}">
-                            <a href="{{ url('buyer') }}">
+                            <a href="{{ url('/admin/buyer') }}">
                                 <span class="sidebar-mini-icon">{{ __('BM') }}</span>
                                 <span class="sidebar-normal">{{ __(' Buyer Management ') }}</span>
                             </a>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'gallery' ? 'active' : '' }}">
-                            <a href="{{ url('gallery') }}">
+                            <a href="{{ url('/admin/gallery') }}">
                                 <span class="sidebar-mini-icon">{{ __('GU') }}</span>
                                 <span class="sidebar-normal">{{ __(' Gallery User Management ') }}</span>
                             </a>
@@ -67,13 +67,13 @@
                 </a>
             </li>
              <li class="{{ $elementActive == 'subjects' ? 'active' : '' }}">
-                <a href="{{ url('subject') }}">
+                <a href="{{ url('/admin/subject') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('Subject Management') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'styles' ? 'active' : '' }}">
-                <a href="{{ url('style') }}">
+                <a href="{{ url('/admin/style') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('Style Management') }}</p>
                 </a>
@@ -89,19 +89,19 @@
                 <div class="collapse {{ $elementActive == 'manage_artworks' || $elementActive == 'top_artwork' || $elementActive == 'trending_artwork' ? 'show' : '' }}" id="artwork_collapse">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'manage_artworks' ? 'active' : '' }}">
-                            <a href="{{ url('manage_artworks') }}">
+                            <a href="{{ url('/admin/manage_artworks') }}">
                                 <span class="sidebar-mini-icon">{{ __('A') }}</span>
                                 <span class="sidebar-normal">{{ __(' Artwork ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'top_artwork' ? 'active' : '' }}">
-                            <a href="{{ url('top_artwork') }}">
+                            <a href="{{ url('/admin/top_artwork') }}">
                                 <span class="sidebar-mini-icon">{{ __('TA') }}</span>
                                 <span class="sidebar-normal">{{ __(' Top Artwork ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'trending_artwork' ? 'active' : '' }}">
-                            <a href="{{ url('trending_artwork') }}">
+                            <a href="{{ url('/admin/trending_artwork') }}">
                                 <span class="sidebar-mini-icon">{{ __('TA') }}</span>
                                 <span class="sidebar-normal">{{ __(' Trending Artwork ') }}</span>
                             </a>
@@ -120,31 +120,31 @@
                 <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works'|| $elementActive == 'manage_cms/home_page' ? 'show' : '' }}" id="cms_collapse">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'manage_cms/about_us' ? 'active' : '' }}">
-                            <a href="{{ url('manage_cms/about_us') }}">
+                            <a href="{{ url('/admin/manage_cms/about_us') }}">
                                 <span class="sidebar-mini-icon">{{ __('AU') }}</span>
                                 <span class="sidebar-normal">{{ __(' About Us ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'manage_cms/terms_n_conditions' ? 'active' : '' }}">
-                            <a href="{{ url('manage_cms/terms_n_conditions') }}">
+                            <a href="{{ url('/admin/manage_cms/terms_n_conditions') }}">
                                 <span class="sidebar-mini-icon">{{ __('T&C') }}</span>
                                 <span class="sidebar-normal">{{ __(' Terms & Conditions ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'manage_cms/privacy_policy' ? 'active' : '' }}">
-                            <a href="{{ url('manage_cms/privacy_policy') }}">
+                            <a href="{{ url('/admin/manage_cms/privacy_policy') }}">
                                 <span class="sidebar-mini-icon">{{ __('PP') }}</span>
                                 <span class="sidebar-normal">{{ __(' Privacy Policy ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'manage_cms/how_it_works' ? 'active' : '' }}">
-                            <a href="{{ url('manage_cms/how_it_works') }}">
+                            <a href="{{ url('/admin/manage_cms/how_it_works') }}">
                                 <span class="sidebar-mini-icon">{{ __('HW') }}</span>
                                 <span class="sidebar-normal">{{ __(' How It Works ') }}</span>
                             </a>
                         </li>
                          <li class="{{ $elementActive == 'manage_cms/home_page' ? 'active' : '' }}">
-                            <a href="{{ url('manage_cms/home_page') }}">
+                            <a href="{{ url('/admin/manage_cms/home_page') }}">
                                 <span class="sidebar-mini-icon">{{ __('H') }}</span>
                                 <span class="sidebar-normal">{{ __(' Home') }}</span>
                             </a>

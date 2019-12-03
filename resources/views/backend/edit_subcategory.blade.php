@@ -15,7 +15,7 @@
                                     <h3 class="mb-0">{{ __('Edit Subcategory') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('subcategory') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/subcategory') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form method="post" enctype="multipart/form-data" action="{{ url('update_subcategory') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('/admin/update_subcategory') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="subcategory">
                                 <input type="hidden" name="id" value="{{$subcategory->id}}">
