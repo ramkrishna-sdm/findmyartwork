@@ -1,4 +1,4 @@
-<!-- Footer Section ----->
+<!-- Footer Section ------->
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
@@ -6,7 +6,7 @@
         <div class="Links">
           <h3>About</h3>
           <ul class="navLink">
-            <li><a href="/about_us">About Us</a></li>
+            <li><a href="{{url('about_us')}}">About Us</a></li>
             <!-- <li><a href="#">Careers</a></li> -->
           </ul>
         </div>
@@ -14,7 +14,7 @@
           <h3>Support</h3>
           <ul class="navLink">
             <!-- <li><a href="#">Shipping & Returns</a></li> -->
-            <li><a href="javascript:void(0);">Help/FAQ</a></li>
+            <li><a href="{{url('faq')}}">Help/FAQ</a></li>
             <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
             <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
             <!-- <li><a href="javascript:void(0);">Mounting Instructions</a></li> -->
