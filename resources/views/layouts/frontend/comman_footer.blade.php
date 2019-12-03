@@ -192,7 +192,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="password" type="password" class="form-control" placeholder="Password" required id="password">
+                <input name="password" type="password" class="form-control" placeholder="Password" required id="register-password">
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('password') }}</strong>
@@ -272,11 +272,32 @@ $(document).ready(function() {
       var first_name = $('#first_name').val();
       var last_name = $('#last_name').val();
       var email = $('#email-address').val();
-      var password = $('#password').val();
-      if($.trim(first_name) == ''||$.trim(last_name) == ''||$.trim(email) == ''||$.trim(password) == ''){
-        toastr.options.timeOut = 2000; // 2s
-        toastr.error('Please Enter Credentials');
-        return false;
+      var password = $('#register-password').val();
+      var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if($.trim(first_name) == ''){
+           toastr.options.timeOut = 1500; // 2s
+           toastr.error('Please Enter First Name');
+            return false;
+      }else if($.trim(last_name)==''){
+            toastr.options.timeOut = 1500; // 2s
+            toastr.error('Please Enter Last Name');
+            return false;
+      }else if ($.trim(email)==''){
+            toastr.options.timeOut = 1500; // 2s
+            toastr.error('Please Enter Email');
+            return false;
+      }else if(!email_filter.test(email)){
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.error('Please Enter Valid Email.');
+            return false;
+      }else if($.trim(password)==''){
+            toastr.options.timeOut = 1500; // 2s
+            toastr.error('Please Enter Password');
+            return false;
+      }else if($.trim(password).length<6){
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.error('Please enter Password more than 6 characters.');
+            return false;
       }
       else{
         $("#SignUpModal3").show();
