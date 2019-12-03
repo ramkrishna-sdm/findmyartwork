@@ -14,12 +14,12 @@
           <h3>Support</h3>
           <ul class="navLink">
             <!-- <li><a href="#">Shipping & Returns</a></li> -->
-            <li><a href="#">Help/FAQ</a></li>
-            <li><a href="#">Terms of use</a></li>
-            <!-- <li><a href="#">Project Management</a></li> -->
-            <!-- <li><a href="#">Mounting Instructions</a></li> -->
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="javascript:void(0);">Help/FAQ</a></li>
+            <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
+            <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
+            <!-- <li><a href="javascript:void(0);">Mounting Instructions</a></li> -->
+            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+            <li><a href="javascript:void(0);">Contact Us</a></li>
           </ul>
         </div>
         <!-- <div class="Links">
@@ -51,10 +51,10 @@
         </div>
         <div class="footerLower">
           <div class="lowerLinks">
-            <a href="#">Sell on ArtViaYou</a>
-            <a href="#">Help</a>
-            <a href="#">Pricing</a>
-            <a href="#">Cart</a>
+            <a href="javascript:void(0);">Sell on ArtViaYou</a>
+            <a href="javascript:void(0);">Help</a>
+            <a href="javascript:void(0);">Pricing</a>
+            <a href="javascript:void(0);">Cart</a>
           </div>
         </div>
       </div>
