@@ -120,11 +120,11 @@
             {{ session('status') }}
           </div>
           @endif
-          <form method="POST" action="{{ route('password.email') }}">
+          <form method="POST"  action="{{ route('password.email') }}">
             @csrf
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="forgot-email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -265,78 +265,79 @@ document.getElementById("registerForm").submit();
 });
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
-$('#registration-form').click(function(e) {
-e.preventDefault();
-var first_name = $('#first_name').val();
-var last_name = $('#last_name').val();
-var email = $('#email-address').val();
-var password = $('#register-password').val();
-var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-if($.trim(first_name) == ''){
-toastr.options.timeOut = 1500; // 2s
-toastr.error('Please Enter First Name');
-return false;
-}else if($.trim(last_name)==''){
-toastr.options.timeOut = 1500; // 2s
-toastr.error('Please Enter Last Name');
-return false;
-}else if ($.trim(email)==''){
-toastr.options.timeOut = 1500; // 2s
-toastr.error('Please Enter Email');
-return false;
-}else if(!email_filter.test(email)){
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please Enter Valid Email.');
-return false;
-}else if($.trim(password)==''){
-toastr.options.timeOut = 1500; // 2s
-toastr.error('Please Enter Password');
-return false;
-}else if($.trim(password).length<6){
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please enter Password more than 6 characters.');
-return false;
-}
-else{
-$("#SignUpModal3").show();
-}
-});
-});
+  $(document).ready(function() {
+    $('#registration-form').click(function(e) {
+      e.preventDefault();
+      var first_name = $('#first_name').val();
+      var last_name = $('#last_name').val();
+      var email = $('#email-address').val();
+      var password = $('#register-password').val();
+      var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if($.trim(first_name) == ''){
+        toastr.options.timeOut = 1500; // 2s
+        toastr.error('Please Enter First Name');
+        return false;
+      }else if($.trim(last_name)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Last Name');
+              return false;
+      }else if ($.trim(email)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Email');
+              return false;
+      }else if(!email_filter.test(email)){
+              toastr.options.timeOut = 1500; // 1.5s
+              toastr.error('Please Enter Valid Email.');
+              return false;
+      }else if($.trim(password)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Password');
+              return false;
+      }else if($.trim(password).length<6){
+              toastr.options.timeOut = 1500; // 1.5s
+              toastr.error('Please enter Password more than 6 characters.');
+              return false;
+      }
+      else{
+              $("#SignUpModal3").show();
+      }
+    });
+  });
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
-$('#submit-form').click(function(e) {
-e.preventDefault();
-var email = $('#email').val();
-var password = $('#password').val();
-var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-if($.trim(email) == '')
-{
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please Enter Email.');
-return false;
-}
-else if(!email_filter.test(email))
-{
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please Enter Valid Email.');
-return false;
-}
-else if($.trim(password)==''){
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please Enter Password.');
-return false;
-}
-else if($.trim(password).length<6){
-toastr.options.timeOut = 1500; // 1.5s
-toastr.error('Please enter Password more than 6 characters.');
-return false;
-}else{
-document.getElementById("loginForm").submit();
-}
+  $(document).ready(function() {
+  $('#submit-form').click(function(e) {
+  e.preventDefault();
+  var email = $('#email').val();
+  var password = $('#password').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }
+      else if($.trim(password)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Password.');
+      return false;
+    }
+      else if($.trim(password).length<6){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please enter Password more than 6 characters.');
+      return false;
+    }else{
+      document.getElementById("loginForm").submit();
+  }
 });
 });
 </script>
+
 </body>
 </html>
