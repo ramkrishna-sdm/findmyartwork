@@ -69,7 +69,7 @@
   <!-- //Copyright -->
 </footer>
 <!-- //Footer Section -->
-<form class="form" method="POST" action="{{url('/submit_login')}}">
+<form class="form" method="POST" action="{{url('/submit_login')}}" id="loginForm">
   @csrf
   <div class="modal fade getStartedModals LoginModal" id="LoginModal">
     <div class="modal-dialog modal-lg">
@@ -78,17 +78,19 @@
           <div class="loginForm text-center">
             <h3>Sign In to your account</h3>
             <div class="col-md-8 offset-md-2">
+              
               <div class="form-group">
-                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
+                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}"  autofocus id="email">
                 
                 @if ($errors->has('email'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('email') }}</strong>
                 </span>
                 @endif
+                
               </div>
               <div class="form-group">
-                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" required>
+                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" id="password">
                 
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -96,7 +98,7 @@
                 </span>
                 @endif
               </div>
-              <button type="submit" class="btn btn-default btn-block">{{ __('Sign in') }}</button>
+              <button type="submit" class="btn btn-default btn-block" id="submit-form">{{ __('Sign in') }}</button>
               <a href="#" class="btn btn-link btn-sm my-3" data-toggle="modal" data-target="#forgetModel" data-dismiss="modal" aria-label="Close">Forgot Password?</a>
               <a href="#" class="btn btn-border btn-block" data-toggle="modal" data-target="#SignUpModal" data-dismiss="modal" aria-label="Close">create account</a>
             </div>
@@ -280,6 +282,41 @@ $(document).ready(function() {
         $("#SignUpModal3").show();
       }
   });
+});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#submit-form').click(function(e) {
+        e.preventDefault();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if($.trim(email) == '')
+        {
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.error('Please Enter Email.');
+            return false;
+        }
+        else if(!email_filter.test(email))
+        {
+         toastr.options.timeOut = 1500; // 1.5s
+          toastr.error('Please Enter Valid Email.');
+           return false;
+         }
+         else if($.trim(password)==''){
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.error('Please Enter Password.');
+            return false;
+         }
+         else if($.trim(password).length<6){
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.error('Please enter Password more than 6 characters.');
+            return false;
+         }else{
+          document.getElementById("loginForm").submit();
+         }
+    });
 });
 </script>
 </body>
