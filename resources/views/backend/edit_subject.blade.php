@@ -15,12 +15,12 @@
                                     <h3 class="mb-0">{{ __('Add Subject') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('subject') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/subject') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_subject') }}" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_subject') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="subject">
                                 <input type="hidden" name="id" value="{{$subject->id}}">

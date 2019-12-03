@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Buyers') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <!-- <a href="{{ url('add_buyer') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a> -->
+                                    <!-- <a href="{{ url('/admin/add_buyer') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a> -->
                                 </div>
                             </div>
                         </div>
@@ -57,9 +57,9 @@
                                                     <td>{{$buyer->city}}</td>
                                                     <td>{{$buyer->country}}</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_buyer')}}/{{$buyer->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_buyer')}}/{{$buyer->id}}" class="btn btn-danger btn-link btn-sm remove delete_buyer" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_buyer_status')}}/{{$buyer->id}}/{{$buyer->is_active}}" class="btn btn-danger btn-link btn-sm change_status" title="@if($buyer->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/edit_buyer')}}/{{$buyer->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('/admin/delete_buyer')}}/{{$buyer->id}}" class="btn btn-danger btn-link btn-sm remove delete_buyer" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('/admin/change_buyer_status')}}/{{$buyer->id}}/{{$buyer->is_active}}" class="btn btn-danger btn-link btn-sm change_status" title="@if($buyer->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

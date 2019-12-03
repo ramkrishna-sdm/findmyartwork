@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" enctype="multipart/form-data" action="{{ url('update_artist') }}" autocomplete="off">
+                            <form method="post" enctype="multipart/form-data" action="{{ url('/admin/update_artist') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="artist">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Artist information') }}</h6>

@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Artists') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <!-- <a href="{{ url('add_artist') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a> -->
+                                    <a href="{{ url('/admin/add_artist') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                             <tbody>
                                                 @foreach($artists as $key => $artist)
                                                 <tr>
-                                                    <td><a href="{{url('artwork')}}/{{$artist->id}}">{{$artist->first_name}}</a></td>
+                                                    <td><a href="{{url('/admin/artwork')}}/{{$artist->id}}">{{$artist->first_name}}</a></td>
                                                     <td>{{$artist->last_name}}</td>
                                                     <td>{{$artist->email}}</td>
                                                     <td>{{$artist->city}}</td>
@@ -58,9 +58,9 @@
                                                     <td>{{$artist->is_featured}}</td>
                                                     <td class="text-right">
                                                         <a href="{{url('/admin/edit_artist')}}/{{$artist->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_artist')}}/{{$artist->id}}" class="btn btn-danger btn-link btn-sm remove delete_artist" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_artist_status')}}/{{$artist->id}}/{{$artist->is_active}}" class="btn btn-danger btn-link btn-sm change_artist_status" title="@if($artist->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
-                                                        <a href="{{url('change_featured_status')}}/{{$artist->id}}/{{$artist->is_featured}}" class="btn btn-danger btn-link btn-sm change_featured_status" title="@if($artist->is_featured == 'yes') Remove From Featured @else Add To Featured @endif">@if($artist->is_featured == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
+                                                        <a href="{{url('/admin/delete_artist')}}/{{$artist->id}}" class="btn btn-danger btn-link btn-sm remove delete_artist" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('/admin/change_artist_status')}}/{{$artist->id}}/{{$artist->is_active}}" class="btn btn-danger btn-link btn-sm change_artist_status" title="@if($artist->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/change_featured_status')}}/{{$artist->id}}/{{$artist->is_featured}}" class="btn btn-danger btn-link btn-sm change_featured_status" title="@if($artist->is_featured == 'yes') Remove From Featured @else Add To Featured @endif">@if($artist->is_featured == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

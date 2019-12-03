@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repository\GalleryUserRepository;
+use App\Repository\UserRepository;
 use Validator;
 use Exception;
 use Session;
@@ -20,16 +20,16 @@ class ArtistController extends Controller
     private $users_files;
     /**
     * Construction function
-    * @param $request(Array), $galleryUserRepository
+    * @param $request(Array), $userRepository
     * @return 
     *
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, GalleryUserRepository $galleryUserRepository)
+    public function __construct(Request $request, UserRepository $userRepository)
     {
         $this->request = $request;
-        $this->galleryUserRepository = $galleryUserRepository;
+        $this->userRepository = $userRepository;
         $this->users_files = '/images/users_files/';
     }
 
@@ -43,7 +43,7 @@ class ArtistController extends Controller
     */
     public function index()
     {
-    	$artists = $this->galleryUserRepository->getData(['user_type'=>'artist'],'get',[],0);
+    	$artists = $this->userRepository->getData(['role'=>'artist'],'get',[],0);
         return view('backend/artists', compact('artists'));
     }
 
@@ -70,7 +70,7 @@ class ArtistController extends Controller
     */
     public function edit_artist($id)
     {
-    	$artist = $this->galleryUserRepository->getData(['id'=>$id],'first',[],0);
+    	$artist = $this->userRepository->getData(['id'=>$id],'first',[],0);
     	return view('backend/edit_artist', compact('artist'));
     }
 
@@ -84,7 +84,7 @@ class ArtistController extends Controller
     */
     public function delete_artist($id)
     {
-    	$artist = $this->galleryUserRepository->getData(['id'=>$id],'delete',[],0);
+    	$artist = $this->userRepository->getData(['id'=>$id],'delete',[],0);
     	\Session::flash('success_message', 'Artist Deleted Succssfully!.'); 
             return redirect('/admin/artist');
     }
@@ -104,7 +104,7 @@ class ArtistController extends Controller
         }else{
             $data['is_active'] = 'yes';
         }
-        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+        $artist = $this->userRepository->createUpdateData(['id'=> $id],$data);
         \Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
         return redirect('/admin/artist');
     }
@@ -124,7 +124,7 @@ class ArtistController extends Controller
     	}else{
     		$data['is_featured'] = 'yes';
     	}
-    	$artist = $this->galleryUserRepository->createUpdateData(['id'=> $id],$data);
+    	$artist = $this->userRepository->createUpdateData(['id'=> $id],$data);
     	\Session::flash('success_message', 'Artist Status Changed Succssfully!.'); 
         return redirect('/admin/artist');
     }
@@ -156,7 +156,9 @@ class ArtistController extends Controller
         $artist_array['postal_code'] = $this->request->postal_code;
         $artist_array['city'] = $this->request->city;
         $artist_array['state'] = $this->request->state;
-        $artist_array['password'] = $this->request->password;
+        if(!empty($this->request->password)){
+            $artist_array['password'] = $this->request->password;
+        }
         $artist_array['country'] = $this->request->country;
         $artist_array['user_type'] ='artist';
         if($this->request->hasFile('media_url')){
@@ -170,7 +172,7 @@ class ArtistController extends Controller
             $artist_array['media_url'] = $image_name;
 
         }
-        $artist = $this->galleryUserRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
+        $artist = $this->userRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
         if($artist){
             \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
             return redirect('/admin/artist');

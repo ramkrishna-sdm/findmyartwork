@@ -15,12 +15,12 @@
                                     <h3 class="mb-0">{{ __('Add Style') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('style') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/style') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_style') }}" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_style') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="style">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Add Style') }}</h6>

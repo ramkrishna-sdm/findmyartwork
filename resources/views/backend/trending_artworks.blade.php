@@ -48,15 +48,15 @@
                                             <tbody>
                                                 @foreach($artworks as $key => $artwork)
                                                 <tr>
-                                                    <td><a href="{{url('view_artwork')}}/{{$artwork->id}}">{{$artwork->title}}</a></td>
+                                                    <td><a href="{{url('/admin/view_artwork')}}/{{$artwork->id}}">{{$artwork->title}}</a></td>
                                                     <td>{{$artwork->category_detail->name}}</td>
                                                     <td>{{$artwork->sub_category_detail->name}}</td>
                                                     <td>{{$artwork->artist->first_name}} {{$artwork->artist->last_name}}</td>
                                                     <td><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></td>
                                                     <td class="text-right">
-                                                        <a href="{{url('change_artwork_status')}}/{{$artwork->id}}/{{$artwork->is_publised}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_artwork_status" title="@if($artwork->is_publised == 'publish') Click to Un-Publish @else Click to Publish @endif"><i class="fa fa-power-off"></i></a>
-                                                        <a href="{{url('change_top_status')}}/{{$artwork->id}}/{{$artwork->top}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_top_status" title="@if($artwork->top == 'yes') Remove From Top @else Add to Top @endif">@if($artwork->top == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
-                                                        <a href="{{url('change_trending_status')}}/{{$artwork->id}}/{{$artwork->trending}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_trending_status" title="@if($artwork->trending == 'yes') Remove From Trending @else Add to Trending @endif">@if($artwork->trending == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
+                                                        <a href="{{url('/admin/change_artwork_status')}}/{{$artwork->id}}/{{$artwork->is_publised}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_artwork_status" title="@if($artwork->is_publised == 'publish') Click to Un-Publish @else Click to Publish @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/change_top_status')}}/{{$artwork->id}}/{{$artwork->top}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_top_status" title="@if($artwork->top == 'yes') Remove From Top @else Add to Top @endif">@if($artwork->top == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
+                                                        <a href="{{url('/admin/change_trending_status')}}/{{$artwork->id}}/{{$artwork->trending}}/trending_artwork/{{$artwork->gallery_user_id}}" class="btn btn-danger btn-link btn-sm change_trending_status" title="@if($artwork->trending == 'yes') Remove From Trending @else Add to Trending @endif">@if($artwork->trending == 'yes') <i class="fa fa-minus-square"></i> @else <i class="fa fa-plus-square"></i> @endif</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

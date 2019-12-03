@@ -15,12 +15,12 @@
                                     <h3 class="mb-0">{{ __('Buyer Management') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('buyer') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                    <a href="{{ url('/admin/buyer') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ url('update_buyer') }}" autocomplete="off">
+                            <form method="post" action="{{ url('/admin/update_buyer') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="user_type" value="buyer">
                                 <input type="hidden" name="id" value="{{$buyer->id}}">

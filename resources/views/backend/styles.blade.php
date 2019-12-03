@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Style') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('add_style') }}" class="btn btn-sm btn-primary">{{ __('Add Style') }}</a>
+                                    <a href="{{ url('/admin/add_style') }}" class="btn btn-sm btn-primary">{{ __('Add Style') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +51,9 @@
                                                     <td>{{$style->name}}</td>
                                                     <td>{{$style->created_at->format('d/m/Y H:i')}}</td>
                                                     <td class="text-right">
-                                                        <a href="{{url('edit_style')}}/{{$style->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        <a href="{{url('delete_style')}}/{{$style->id}}" class="btn btn-danger btn-link btn-sm remove delete_style" title="Delete"><i class="fa fa-times"></i></a>
-                                                        <a href="{{url('change_style_status')}}/{{$style->id}}/{{$style->is_active}}" class="btn btn-danger btn-link btn-sm change_style_status" title="@if($style->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+                                                        <a href="{{url('/admin/edit_style')}}/{{$style->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{url('/admin/delete_style')}}/{{$style->id}}" class="btn btn-danger btn-link btn-sm remove delete_style" title="Delete"><i class="fa fa-times"></i></a>
+                                                        <a href="{{url('/admin/change_style_status')}}/{{$style->id}}/{{$style->is_active}}" class="btn btn-danger btn-link btn-sm change_style_status" title="@if($style->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
