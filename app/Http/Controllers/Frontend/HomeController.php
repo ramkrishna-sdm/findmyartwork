@@ -9,6 +9,7 @@ use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
 use App\Repository\CmsRepository;
+use App\Repository\FaqRepository;
 class HomeController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository,FaqRepository $faqRepository)
     {
         $this->request = $request;
         $this->categoryRepository = $categoryRepository;
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $this->artworkImageRepository = $artworkImageRepository;
         $this->variantRepository = $variantRepository;
         $this->CmsRepository = $CmsRepository;
+        $this->FaqRepository = $faqRepository;
     }
     /**
      * Show the application dashboard.
@@ -56,7 +58,8 @@ class HomeController extends Controller
     }
     
     public function faq(){
-        return view('frontend/faq');
+        $faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        return view('frontend.faq', compact('faq'));
     }
     
 

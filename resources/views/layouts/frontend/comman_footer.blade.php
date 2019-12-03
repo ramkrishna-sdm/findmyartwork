@@ -1,4 +1,4 @@
-<!-- Footer Section -->
+<!-- Footer Section ----->
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
@@ -14,7 +14,7 @@
           <h3>Support</h3>
           <ul class="navLink">
             <li><a href="#">Shipping & Returns</a></li>
-            <li><a href="#">Help/FAQ</a></li>
+            <li><a href="/faq">Help/FAQ</a></li>
             <li><a href="#">Terms of use</a></li>
             <li><a href="#">Project Management</a></li>
             <li><a href="#">Mounting Instructions</a></li>
