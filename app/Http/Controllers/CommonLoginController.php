@@ -15,6 +15,7 @@ use Socialite;
 class CommonLoginController extends Controller
 {
 public function login(){
+	
 	if(!Auth::check()){
 		return redirect()->to('/');
 	}else{
@@ -37,7 +38,7 @@ $user_role = Auth::user()->role;
 	}
 }
 public function submitLogin(Request $request){
-	
+
 	$rules = array(
 				'email' => 'required|min:6',
 				'password' => 'required|min:6',
