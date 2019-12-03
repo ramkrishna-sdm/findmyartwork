@@ -12,7 +12,7 @@ class Artwork extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'category', 'sub_category', 'style', 'subject', 'gallery_user_id', 'top', 'trending', 'is_deleted', 'is_publised',
+        'title', 'description', 'category', 'sub_category', 'style', 'subject', 'user_id', 'top', 'trending', 'is_deleted', 'is_publised',
     ];
 
     // Relations with Category Model
@@ -38,7 +38,7 @@ class Artwork extends Model
     // Relations with User Model
     public function artist()
     {
-        return $this->belongsTo('App\User','gallery_user_id','id');
+        return $this->belongsTo('App\User','user_id','id');
     }
     // Relations with ArtworkImage Model
     public function artwork_images()

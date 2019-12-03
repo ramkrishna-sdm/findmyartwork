@@ -7,27 +7,27 @@
           <h3>About</h3>
           <ul class="navLink">
             <li><a href="/about_us">About Us</a></li>
-            <li><a href="#">Careers</a></li>
+            <!-- <li><a href="#">Careers</a></li> -->
           </ul>
         </div>
         <div class="Links">
           <h3>Support</h3>
           <ul class="navLink">
-            <li><a href="#">Shipping & Returns</a></li>
+            <!-- <li><a href="#">Shipping & Returns</a></li> -->
             <li><a href="#">Help/FAQ</a></li>
             <li><a href="#">Terms of use</a></li>
-            <li><a href="#">Project Management</a></li>
-            <li><a href="#">Mounting Instructions</a></li>
+            <!-- <li><a href="#">Project Management</a></li> -->
+            <!-- <li><a href="#">Mounting Instructions</a></li> -->
+            <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
-        <div class="Links">
+        <!-- <div class="Links">
           <h3>Important Links</h3>
           <ul class="navLink">
             <li><a href="#">Sell your Art</a></li>
             <li><a href="#">Buy Art</a></li>
             <li><a href="#">Gallery</a></li>
-            <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Sitemap</a></li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Sitemap</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-5 text-right">
         <div class="social-links">
@@ -63,7 +63,7 @@
   <!-- Copyright -->
   <div class="copyright">
     <div class="container">
-      <p class="copyTxt">© All Right Reserved Artviayou 2019.</p>
+      <p class="copyTxt">© All Right Reserved Artviayou {{date('Y')}}.</p>
     </div>
   </div>
   <!-- //Copyright -->

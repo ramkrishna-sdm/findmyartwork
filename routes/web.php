@@ -50,6 +50,7 @@ Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/faq', 'Frontend\HomeController@faq');
+Route::get('/terms_conditions', 'Frontend\HomeController@terms_conditions');
 Route::get('/artist', 'Frontend\HomeController@artist');
 Route::get('/save_artist', 'Frontend\HomeController@save_artist');
 Route::get('/profile_details/{id?}', 'Frontend\HomeController@profile_details');

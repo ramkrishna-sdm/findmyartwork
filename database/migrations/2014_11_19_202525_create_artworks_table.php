@@ -29,8 +29,8 @@ class CreateArtworksTable extends Migration
         });
 
         Schema::table('artworks', function (Blueprint $table) {
-            $table->unsignedBigInteger('gallery_user_id')->after('id');
-            $table->foreign('gallery_user_id')->references('id')->on('gallery_users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->after('id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
