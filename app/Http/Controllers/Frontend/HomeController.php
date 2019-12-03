@@ -55,6 +55,10 @@ class HomeController extends Controller
         return view('frontend/about_us',compact('about'));
     }
     
+    public function faq(){
+        return view('frontend/faq');
+    }
+    
 
     public function artist(){
         return view('frontend/artist');
