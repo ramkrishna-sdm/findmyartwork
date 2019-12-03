@@ -17,6 +17,7 @@ use DateTime;
 
 class GalleryUserController extends Controller
 {
+    private $users_files;
     /**
     * Construction function
     * @param $request(Array), $userRepository
@@ -29,6 +30,7 @@ class GalleryUserController extends Controller
     {
         $this->request = $request;
         $this->userRepository = $userRepository;
+        $this->users_files = '/images/users_files/';
     }
 
     /**
@@ -118,15 +120,40 @@ class GalleryUserController extends Controller
 
     public function update_gallery()
     {
-        $validate = $this->validate($this->request, [
-            'email'         => trim('required|string|email|max:255|unique:gallery_users,email,'.$this->request->id),
+         $validate = $this->validate($this->request, [
+            'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
             'first_name'         => 'required|string',
             'last_name'         => 'required|string',
-            'user_type'         => 'required|string'
         ]);
-        $gallery = $this->userRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+        $gallery_array = [];
+        $gallery_array['first_name'] = $this->request->first_name;
+        $gallery_array['last_name'] = $this->request->last_name;
+        $gallery_array['email'] = $this->request->email;
+        $gallery_array['alias'] = $this->request->alias;
+        $gallery_array['biography'] = $this->request->biography;
+        $gallery_array['address'] = $this->request->address;
+        $gallery_array['postal_code'] = $this->request->postal_code;
+        $gallery_array['city'] = $this->request->city;
+        $gallery_array['state'] = $this->request->state;
+        if(!empty($this->request->password)){
+            $gallery_array['password'] = $this->request->password;
+        }
+        $gallery_array['country'] = $this->request->country;
+        $gallery_array['role'] ='buyer';
+        if($this->request->hasFile('media_url')){
+            $media_url = $this->request->file('media_url');
+            $parts = pathinfo($media_url->getClientOriginalName());
+            $extension = strtolower($parts['extension']);
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $media_url->move(public_path() . $this->users_files, $imageName);  
+            $image_name = url($this->users_files . $imageName);
+            $gallery_array['media_url'] = $image_name;
+
+        }
+        $gallery = $this->userRepository->createUpdateData(['id'=> $this->request->id],$gallery_array);
         if($gallery){
-            \Session::flash('success_message', 'Gallery User Details Updated Succssfully.'); 
+            \Session::flash('success_message', 'Gallery Details Updated Succssfully.'); 
             return redirect('/admin/gallery');
         }else{
             \Session::flash('error_message', 'Something went wrong.');

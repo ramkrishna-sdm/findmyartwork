@@ -53,7 +53,7 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function about_us(){
-          $about = $this->CmsRepository->getData(['slug'=>'about_us','is_deleted'=>'no'],'get',[],0);
+          $about = $this->CmsRepository->getData(['slug'=>'about_us','is_deleted'=>'no'],'first',[],0);
         return view('frontend/about_us',compact('about'));
     }
     
