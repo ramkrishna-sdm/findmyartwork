@@ -182,7 +182,9 @@ class CmsController extends Controller
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
         }
-    }
+    } 
+
+
 
 
 }

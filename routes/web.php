@@ -136,7 +136,16 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'AdminCheck']], functio
 	Route::post('/update_aboutus', 'Admin\CmsController@update_aboutus');
 	Route::get('/manage_cms/{slug}','Admin\CmsController@manage_cms');
 	Route::post('/update_cms','Admin\CmsController@update_cms');
-	Route::post('/update_home','Admin\CmsController@update_home');
+	Route::post('/update_home','Admin\CmsController@update_home'); 
+
+	//Faq management
+
+	Route:: get('/add_faq', 'Admin\FaqController@add_faq');
+	Route::post('/update_faq', 'Admin\FaqController@update_faq');
+	Route::get('/edit_faq/{id}', 'Admin\FaqController@edit_faq');
+	Route::get('/faq','Admin\FaqController@faq');
+	Route::get('/delete_faq/{id}', 'Admin\FaqController@delete_faq');
+	Route::get('/change_faq_status/{id}/{stauts}', 'Admin\FaqController@change_faq_status');
 
 
 });

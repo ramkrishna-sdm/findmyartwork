@@ -1,4 +1,4 @@
-<!-- Footer Section -->
+<!-- Footer Section ----->
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
@@ -120,16 +120,16 @@
             {{ session('status') }}
           </div>
           @endif
-          <form method="POST" action="{{ route('password.email') }}">
+          <form method="POST"  action="{{ route('password.email') }}">
             @csrf
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
-                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                  @error('email')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+                <input id="forgot-email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <button type="submit" class="btn btn-default btn-block">{{ __('Send Verification Link') }}</button>
             </div>
@@ -192,7 +192,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="password" type="password" class="form-control" placeholder="Password" required id="password">
+                <input name="password" type="password" class="form-control" placeholder="Password" required id="register-password">
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('password') }}</strong>
@@ -233,7 +233,6 @@
   </div>
 </form>
 </div>
-
 <!-- //Wrapper -->
 <!-- jQuery CDN Link -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -250,74 +249,95 @@ function setUserRole(value){
 $('#user_role').val(value);
 }
 $(document).ready(function() {
-  $('#registerForm').submit(function(e) {
+$('#registerForm').submit(function(e) {
+e.preventDefault();
+var user_role = $('#user_role').val();
+if($.trim(user_role) == ''){
+toastr.options.timeOut = 2000; // 2s
+toastr.error('Please Select Account Type!');
+return false;
+}else{
+toastr.options.timeOut = 1000; // 42s
+toastr.error(' Verification Mail has been sent to your Email Id ');
+document.getElementById("registerForm").submit();
+}
+});
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#registration-form').click(function(e) {
+      e.preventDefault();
+      var first_name = $('#first_name').val();
+      var last_name = $('#last_name').val();
+      var email = $('#email-address').val();
+      var password = $('#register-password').val();
+      var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if($.trim(first_name) == ''){
+        toastr.options.timeOut = 1500; // 2s
+        toastr.error('Please Enter First Name');
+        return false;
+      }else if($.trim(last_name)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Last Name');
+              return false;
+      }else if ($.trim(email)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Email');
+              return false;
+      }else if(!email_filter.test(email)){
+              toastr.options.timeOut = 1500; // 1.5s
+              toastr.error('Please Enter Valid Email.');
+              return false;
+      }else if($.trim(password)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter Password');
+              return false;
+      }else if($.trim(password).length<6){
+              toastr.options.timeOut = 1500; // 1.5s
+              toastr.error('Please enter Password more than 6 characters.');
+              return false;
+      }
+      else{
+              $("#SignUpModal3").show();
+      }
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#submit-form').click(function(e) {
   e.preventDefault();
-  var user_role = $('#user_role').val();
-
-  if($.trim(user_role) == ''){
-    toastr.options.timeOut = 2000; // 2s
-    toastr.error('Please Select Account Type!');
-    return false;
-  }else{
-   document.getElementById("registerForm").submit();
+  var email = $('#email').val();
+  var password = $('#password').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }
+      else if($.trim(password)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Password.');
+      return false;
+    }
+      else if($.trim(password).length<6){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please enter Password more than 6 characters.');
+      return false;
+    }else{
+      document.getElementById("loginForm").submit();
   }
 });
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#registration-form').click(function(e) {
-     e.preventDefault();
-      var first_name = $('#first_name').val();
-      var last_name = $('#last_name').val();
-      var email = $('#email-address').val();
-      var password = $('#password').val();
-      if($.trim(first_name) == ''||$.trim(last_name) == ''||$.trim(email) == ''||$.trim(password) == ''){
-        toastr.options.timeOut = 2000; // 2s
-        toastr.error('Please Enter Credentials');
-        return false;
-      }
-      else{
-        $("#SignUpModal3").show();
-      }
-  });
-});
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#submit-form').click(function(e) {
-        e.preventDefault();
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if($.trim(email) == '')
-        {
-            toastr.options.timeOut = 1500; // 1.5s
-            toastr.error('Please Enter Email.');
-            return false;
-        }
-        else if(!email_filter.test(email))
-        {
-         toastr.options.timeOut = 1500; // 1.5s
-          toastr.error('Please Enter Valid Email.');
-           return false;
-         }
-         else if($.trim(password)==''){
-            toastr.options.timeOut = 1500; // 1.5s
-            toastr.error('Please Enter Password.');
-            return false;
-         }
-         else if($.trim(password).length<6){
-            toastr.options.timeOut = 1500; // 1.5s
-            toastr.error('Please enter Password more than 6 characters.');
-            return false;
-         }else{
-          document.getElementById("loginForm").submit();
-         }
-    });
-});
-</script>
 </body>
 </html>
