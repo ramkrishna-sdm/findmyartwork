@@ -1,5 +1,6 @@
 @include('layouts.frontend.header')
-<!-- Page Header Title -->
+<!-- Page Header Title ---->
+@if(!empty($about) > 0)
 <div class="page-title">
 <div class="page-title-inner">
    <span class="pagetitleText">{{$about->title}}</span> 
@@ -37,5 +38,5 @@
    </div>
 </div>
 </section>
-
+@endif
 @include('layouts.frontend.comman_footer')
