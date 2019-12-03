@@ -45,7 +45,7 @@ class HomeController extends Controller
         // print_r($featuredArtworks); die;
         $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'get',[],0);
+        $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'first',[],0);
         return view('frontend/home_page',compact('categories','topartworks','featuredArtworks','homes','topartists'));
     }
 
@@ -67,10 +67,10 @@ class HomeController extends Controller
     public function faq(){
         // $clientIP = request()->ip();
         // dd($clientIP);
-        return view('frontend/faq');
+        //return view('frontend/faq');
 
-        //$faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        //return view('frontend.faq', compact('faq'));
+        $faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        return view('frontend.faq', compact('faq'));
     }
     
 
