@@ -81,7 +81,7 @@
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
             var arr = PATH.split('/');
-            if(arr[2] == "buyer" || arr[2] == "gallery" || arr[2] == "artist" || arr[2] == "artwork" || arr[2] == "category" || arr[2] == "subject" || arr[2] == "style" || arr[2] == "subcategory"){
+            if(arr[2] == "buyer" || arr[2] == "gallery" || arr[2] == "artist" || arr[2] == "artwork" || arr[2] == "category" || arr[2] == "subject" || arr[2] == "style" || arr[2] == "subcategory" || arr[2] == "faq"){
                 $('#datatable').DataTable();
             }
             if(arr[2] == "manage_cms"){
