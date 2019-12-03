@@ -1,5 +1,6 @@
 @include('layouts.frontend.header')
 <!-- Page Header Title ---->
+
 @if(!empty($about) > 0)
 <div class="page-title">
 <div class="page-title-inner">
@@ -35,8 +36,10 @@
       </div>
       <div class="col-md-7 pl-4 ">
         <?=htmlspecialchars_decode($about->des_second)?>
+      </div>
    </div>
 </div>
 </section>
 @endif
+<!-- End About text 2 -->
 @include('layouts.frontend.comman_footer')

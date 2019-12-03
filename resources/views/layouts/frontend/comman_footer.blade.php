@@ -7,27 +7,27 @@
           <h3>About</h3>
           <ul class="navLink">
             <li><a href="/about_us">About Us</a></li>
-            <li><a href="#">Careers</a></li>
+            <!-- <li><a href="#">Careers</a></li> -->
           </ul>
         </div>
         <div class="Links">
           <h3>Support</h3>
           <ul class="navLink">
-            <li><a href="#">Shipping & Returns</a></li>
-            <li><a href="/faq">Help/FAQ</a></li>
-            <li><a href="#">Terms of use</a></li>
-            <li><a href="#">Project Management</a></li>
-            <li><a href="#">Mounting Instructions</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <!-- <li><a href="#">Shipping & Returns</a></li> -->
+            <li><a href="javascript:void(0);">Help/FAQ</a></li>
+            <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
+            <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
+            <!-- <li><a href="javascript:void(0);">Mounting Instructions</a></li> -->
+            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+            <li><a href="javascript:void(0);">Contact Us</a></li>
           </ul>
         </div>
-        <div class="Links">
+        <!-- <div class="Links">
           <h3>Important Links</h3>
           <ul class="navLink">
             <li><a href="#">Sell your Art</a></li>
             <li><a href="#">Buy Art</a></li>
             <li><a href="#">Gallery</a></li>
-            <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Sitemap</a></li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Sitemap</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-5 text-right">
         <div class="social-links">
@@ -51,10 +51,10 @@
         </div>
         <div class="footerLower">
           <div class="lowerLinks">
-            <a href="#">Sell on ArtViaYou</a>
-            <a href="#">Help</a>
-            <a href="#">Pricing</a>
-            <a href="#">Cart</a>
+            <a href="javascript:void(0);">Sell on ArtViaYou</a>
+            <a href="javascript:void(0);">Help</a>
+            <a href="javascript:void(0);">Pricing</a>
+            <a href="javascript:void(0);">Cart</a>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
   <!-- Copyright -->
   <div class="copyright">
     <div class="container">
-      <p class="copyTxt">© All Right Reserved Artviayou 2019.</p>
+      <p class="copyTxt">© All Right Reserved Artviayou {{date('Y')}}.</p>
     </div>
   </div>
   <!-- //Copyright -->
@@ -120,7 +120,7 @@
             {{ session('status') }}
           </div>
           @endif
-          <form method="POST"  action="{{ route('password.email') }}">
+          <form method="POST"  action="{{ route('password.email') }}" id="forgot-password">
             @csrf
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
@@ -131,7 +131,7 @@
                 </span>
                 @enderror
               </div>
-              <button type="submit" class="btn btn-default btn-block">{{ __('Send Verification Link') }}</button>
+              <button type="submit" class="btn btn-default btn-block" id="submit-password">{{ __('Send Verification Link') }}</button>
             </div>
           </form>
         </div>
@@ -257,7 +257,7 @@ toastr.options.timeOut = 2000; // 2s
 toastr.error('Please Select Account Type!');
 return false;
 }else{
-toastr.options.timeOut = 1000; // 2s
+toastr.options.timeOut = 1000; // 42s
 toastr.error(' Verification Mail has been sent to your Email Id ');
 document.getElementById("registerForm").submit();
 }
@@ -334,6 +334,32 @@ document.getElementById("registerForm").submit();
       return false;
     }else{
       document.getElementById("loginForm").submit();
+  }
+});
+});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#submit-password').click(function(e) {
+  e.preventDefault();
+  var email = $('#forgot-email').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }else{
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Email has been sent to your verify email Id');
+      document.getElementById("forgot-password").submit();
   }
 });
 });

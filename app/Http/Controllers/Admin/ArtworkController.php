@@ -47,7 +47,7 @@ class ArtworkController extends Controller
     */
     public function index($artist_id)
     {
-    	$artworks = $this->artworkRepository->getData(['gallery_user_id'=>$artist_id],'get',['category_detail', 'sub_category_detail'],0);
+    	$artworks = $this->artworkRepository->getData(['user_id'=>$artist_id],'get',['category_detail', 'sub_category_detail'],0);
     	
         return view('backend/artworks', compact('artworks', 'artist_id'));
     }
@@ -69,7 +69,7 @@ class ArtworkController extends Controller
         // echo "<pre>";
         // print_r($artworks); die;
 
-    	$artist_id = $artworks['gallery_user_id'];
+    	$artist_id = $artworks['user_id'];
         return view('backend/artwork_detail', compact('artworks', 'artist_id'));
     }
 
