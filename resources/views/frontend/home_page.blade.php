@@ -3,10 +3,10 @@
    <!-- Banner/Slider -->
          <div class="message-alert-top">
              @if(Session::has('success'))
-             <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
+             <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {{ session('success') }}</em></div></div>
              @endif
              @if(Session::has('error'))
-             <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
+             <div><div class="alert alert-danger"><em> {{session('error')}}</em></div></div>
              @endif
          </div>
          <section class="banner">
