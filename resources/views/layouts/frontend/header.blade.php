@@ -80,7 +80,25 @@
                 <li class="nav-divider"></li>
               </ul>
               <ul class="navbar-nav nav navbar-icon  align-items-center">
+                @if (Auth::user())
+                <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->first_name }} <span class="caret"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
+                  </div>
+                </li>
+                @else
                 <li class="nav-btn"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#LoginModal">SIGN IN</a></li>
+                @endif
                 <li class="humburger-btn"><button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                   <span></span>
                   <span></span>
