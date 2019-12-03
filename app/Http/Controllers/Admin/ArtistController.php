@@ -141,10 +141,9 @@ class ArtistController extends Controller
     public function update_artist()
     {
         $validate = $this->validate($this->request, [
-            'email'         => trim('required|string|email|max:255|unique:gallery_users,email,'.$this->request->id),
+            'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
             'first_name'         => 'required|string',
             'last_name'         => 'required|string',
-            'user_type'         => 'required|string'
         ]);
         $artist_array = [];
         $artist_array['first_name'] = $this->request->first_name;
@@ -160,7 +159,7 @@ class ArtistController extends Controller
             $artist_array['password'] = $this->request->password;
         }
         $artist_array['country'] = $this->request->country;
-        $artist_array['user_type'] ='artist';
+        $artist_array['role'] ='artist';
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
             $parts = pathinfo($media_url->getClientOriginalName());

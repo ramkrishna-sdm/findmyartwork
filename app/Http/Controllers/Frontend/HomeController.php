@@ -41,6 +41,8 @@ class HomeController extends Controller
         $topartworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         // dd($topartworks);die;
         $featuredArtworks = $this->artworkRepository->getData(['is_featured'=>'yes', 'is_deleted'=>'no'],'first',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
+        // echo "<pre>";
+        // print_r($featuredArtworks); die;
         $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'get',[],0);
@@ -53,13 +55,22 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function about_us(){
-          $about = $this->CmsRepository->getData(['slug'=>'about_us','is_deleted'=>'no'],'get',[],0);
+          $about = $this->CmsRepository->getData(['slug'=>'about_us','is_deleted'=>'no'],'first',[],0);
         return view('frontend/about_us',compact('about'));
     }
     
+    public function terms_conditions(){
+          $terms = $this->CmsRepository->getData(['slug'=>'terms_n_conditions','is_deleted'=>'no'],'first',[],0);
+        return view('frontend/terms_conditions',compact('terms'));
+    }
+    
     public function faq(){
-        $faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        return view('frontend.faq', compact('faq'));
+        // $clientIP = request()->ip();
+        // dd($clientIP);
+        return view('frontend/faq');
+
+        //$faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        //return view('frontend.faq', compact('faq'));
     }
     
 
@@ -72,7 +83,15 @@ class HomeController extends Controller
     }
 
     public function profile_details($id){
-    $profileDetails = $this->artworkRepository->getData([' gallery_user_id'=>$id, 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist'],0);    
-        return view('frontend/profile_details',compact('profileDetails'));
+        $professional = [];
+        $profileDetails = $this->userRepository->getData(['id'=>$id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail'],0);    
+        
+        if(!empty($profileDetails)){
+            foreach ($profileDetails->artworks as $key => $value) {
+                $professional[] = $value['category_detail']['name'];
+            }
+        }
+        $professional = array_unique($professional);
+        return view('frontend/profile_details',compact('profileDetails', 'professional'));
     }
 }

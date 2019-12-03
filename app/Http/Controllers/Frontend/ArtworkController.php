@@ -77,7 +77,7 @@ class ArtworkController extends Controller
         $artwork_array['sub_category'] = $this->request->sub_category;
         $artwork_array['style'] = $this->request->style;
         $artwork_array['subject'] = $this->request->subject;
-        $artwork_array['gallery_user_id'] = $this->request->gallery_user_id;
+        $artwork_array['user_id'] = $this->request->gallery_user_id;
         $artwork = $this->artworkRepository->createUpdateData(['id'=> $this->request->id],$artwork_array);
         if($artwork){
         	$upload_files = $this->request->file('upload_files');

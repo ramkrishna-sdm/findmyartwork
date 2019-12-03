@@ -47,7 +47,7 @@ $('.artistCarousel').owlCarousel({
   }
 });
 
-$('#artwork-images').flexgal();
+$('.artwork-images').flexgal();
 
   
 /*  Bootstrap Carousel and Animate.css */

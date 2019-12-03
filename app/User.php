@@ -36,4 +36,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relations with ArtworkImage Model
+    public function artworks()
+    {
+        return $this->hasMany('App\Artwork','user_id','id');
+    }
 }
