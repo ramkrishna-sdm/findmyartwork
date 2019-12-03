@@ -1,5 +1,6 @@
 @include('layouts.frontend.header')
-<!-- Page Header Title -->
+<!-- Page Header Title ---->
+
 @if(!empty($about) > 0)
 <div class="page-title">
 <div class="page-title-inner">
@@ -13,7 +14,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-6">
-         {!!$about->des_first!!}
+        <?=htmlspecialchars_decode($about->des_first)?>
       </div>
       <div class="col-md-5 offset-md-1 text-center">
          <div class="aboutTextImage-1">
@@ -34,7 +35,7 @@
          </div>
       </div>
       <div class="col-md-7 pl-4 ">
-         {!!$about->des_second!!}
+        <?=htmlspecialchars_decode($about->des_second)?>
       </div>
    </div>
 </div>

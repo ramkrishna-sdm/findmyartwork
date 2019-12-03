@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body table-responsive">
 
                                         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                             <thead>
@@ -45,6 +45,7 @@
                                                     <th>Email</th>
                                                     <th>City</th>
                                                     <th>Country</th>
+                                                    <th>Profile Image</th>
                                                     <th class="disabled-sorting text-right">Actions</th>
                                                 </tr>
                                             </thead>
@@ -56,6 +57,7 @@
                                                     <td>{{$buyer->email}}</td>
                                                     <td>{{$buyer->city}}</td>
                                                     <td>{{$buyer->country}}</td>
+                                                    <td><img src="{{ $buyer->media_url }}" height="80px" width="80px" /></td>
                                                     <td class="text-right">
                                                         <a href="{{url('/admin/edit_buyer')}}/{{$buyer->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="{{url('/admin/delete_buyer')}}/{{$buyer->id}}" class="btn btn-danger btn-link btn-sm remove delete_buyer" title="Delete"><i class="fa fa-times"></i></a>
