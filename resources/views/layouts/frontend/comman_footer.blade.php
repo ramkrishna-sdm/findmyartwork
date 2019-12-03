@@ -1,4 +1,4 @@
-<!-- Footer Section ----->
+<!-- Footer Section ------->
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
