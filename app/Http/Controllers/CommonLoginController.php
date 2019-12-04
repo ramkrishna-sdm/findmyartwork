@@ -95,29 +95,28 @@ class CommonLoginController extends Controller
 						
 					}
 
+					if($user_role == "buyer" || $user_role == "artist" || $user_role == "gallery"){
+						$user_info = [];
+						$user_info['user_id'] = Auth::user()->id;
+						$user_info['guest_id'] = "";
+						if(Session::has('random_id')){
+							$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
 
-					$user_info = [];
-					$user_info['user_id'] = Auth::user()->id;
-					$user_info['guest_id'] = "";
-					// print_r($user_info);die;
-					if(Session::has('random_id')){
-
-						$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
-
-						if(count($count_artist) > 0){
-							foreach ($count_artist as $key => $value) {
-								$artist = $this->savedArtistRepository->createUpdateData(['id'=> $value['id']],$user_info);
+							if(count($count_artist) > 0){
+								foreach ($count_artist as $key => $value) {
+									$artist = $this->savedArtistRepository->createUpdateData(['id'=> $value['id']],$user_info);
+								}
 							}
-						}
 
-						$count_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
-						if(count($count_artwork) > 0){
-							foreach ($count_artwork as $key => $value) {
-								$artist = $this->savedArtworkRepository->createUpdateData(['id'=> $value['id']],$user_info);
+							$count_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
+							if(count($count_artwork) > 0){
+								foreach ($count_artwork as $key => $value) {
+									$artist = $this->savedArtworkRepository->createUpdateData(['id'=> $value['id']],$user_info);
+								}
 							}
+							Session::forget('random_id');
 						}
-						Session::forget('random_id');
-					}
+					}	
 
 					return response()->json(array(
 						'redirect_url' => $url,
