@@ -21,8 +21,8 @@ class CreateSavedArtistsTable extends Migration
         });
 
         Schema::table('saved_artists', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            $table->unsignedBigInteger('user_id')->after('id')->nullable()->unsigned();
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable()->unsigned();
         });
 
         Schema::table('saved_artists', function (Blueprint $table) {

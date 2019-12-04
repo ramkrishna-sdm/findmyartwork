@@ -35,6 +35,9 @@ class SavedArtistRepository implements RepositoryInterface
         if (!empty($conditions['guest_id'])) {
             $query->where('guest_id', $conditions['guest_id']);
         }
+        if (!empty($conditions['user_id'])) {
+            $query->where('user_id', $conditions['user_id']);
+        }
         if (!empty($conditions['artist_id'])) {
             $query->where('artist_id', $conditions['artist_id']);
         }
