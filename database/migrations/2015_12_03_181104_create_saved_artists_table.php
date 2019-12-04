@@ -15,13 +15,14 @@ class CreateSavedArtistsTable extends Migration
     {
         Schema::create('saved_artists', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('guest_id')->nullable();
             $table->enum('status',['saved','like'])->nullable();
             $table->timestamps();
         });
 
         Schema::table('saved_artists', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
         });
 
         Schema::table('saved_artists', function (Blueprint $table) {

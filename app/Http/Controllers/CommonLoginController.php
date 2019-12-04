@@ -12,8 +12,17 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Redirect,Response,File;
 use Socialite;
+use App\Repository\SavedArtistRepository;
+use App\Repository\SavedArtworkRepository;
 class CommonLoginController extends Controller
 {
+	public function __construct(Request $request,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository)
+    {
+        $this->request = $request;
+        $this->savedArtistRepository = $savedArtistRepository;
+        $this->savedArtworkRepository = $savedArtworkRepository;
+    }
+
 	public function login(){
 		
 		if(!Auth::check()){
@@ -85,6 +94,22 @@ class CommonLoginController extends Controller
 						$url = url('/gallery/dashboard');
 						
 					}
+					$user_info = [];
+					$user_info['user_id'] = Auth::user()->id;
+					$user_info['guest_id'] = "";
+					// dd($user_id);
+					if(Session::has('random_id')){
+						dd(Session::get('random_id'));
+						$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'count',[],0);
+						if($count_artist){
+							$artist = $this->savedArtistRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
+						}
+
+						$count_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id')],'count',[],0);
+						if($count_artwork){
+							$artist = $this->savedArtworkRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
+						}
+					}
 
 					return response()->json(array(
 						'redirect_url' => $url,
@@ -106,10 +131,6 @@ class CommonLoginController extends Controller
 		Auth::logout();
 		Session::flush();
 		return redirect()->to('/')->with('message', 'You are Successfully Logged Out');
-	}
-
-	public function phpinfo(){
-		echo phpinfo();
 	}
 
 	public function redirect($provider){

@@ -244,6 +244,8 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
+
+    
 function setUserRole(value){
 // alert(value);
 $('#user_role').val(value);
@@ -346,11 +348,21 @@ function makeUserLogin(){
     $.ajax({
         url: url,
         type: 'POST',
+<<<<<<< HEAD
+=======
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+>>>>>>> cab56b89f44420c5d6c64a17c13a64dcc2751964
         data:loginDetails,
         
   success: function(res){
     if(res.status=="200"){
+<<<<<<< HEAD
       window.location = res.redirect_url;
+=======
+      window.location.href = res.redirect_url;
+>>>>>>> cab56b89f44420c5d6c64a17c13a64dcc2751964
     }else{
       toastr.options.timeOut = 1500; // 1.5s
       toastr.error(res.message);
