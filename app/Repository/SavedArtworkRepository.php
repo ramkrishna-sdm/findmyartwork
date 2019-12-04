@@ -35,6 +35,9 @@ class SavedArtworkRepository implements RepositoryInterface
         if (!empty($conditions['guest_id'])) {
             $query->where('guest_id', $conditions['guest_id']);
         }
+        if (!empty($conditions['user_id'])) {
+            $query->where('user_id', $conditions['user_id']);
+        }
         if (!empty($conditions['artwork_id'])) {
             $query->where('artwork_id', $conditions['artwork_id']);
         }

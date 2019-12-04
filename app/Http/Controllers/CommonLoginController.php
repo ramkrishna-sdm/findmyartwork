@@ -102,16 +102,21 @@ class CommonLoginController extends Controller
 					// print_r($user_info);die;
 					if(Session::has('random_id')){
 
-						$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'count',[],0);
+						$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
 
-						if($count_artist){
-							$artist = $this->savedArtistRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
+						if(count($count_artist) > 0){
+							foreach ($count_artist as $key => $value) {
+								$artist = $this->savedArtistRepository->createUpdateData(['id'=> $value['id']],$user_info);
+							}
 						}
 
-						$count_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id')],'count',[],0);
-						if($count_artwork){
-							$artist = $this->savedArtworkRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
+						$count_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id')],'get',[],0);
+						if(count($count_artwork) > 0){
+							foreach ($count_artwork as $key => $value) {
+								$artist = $this->savedArtworkRepository->createUpdateData(['id'=> $value['id']],$user_info);
+							}
 						}
+						Session::forget('random_id');
 					}
 
 					return response()->json(array(

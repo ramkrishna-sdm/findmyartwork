@@ -14,6 +14,7 @@ use App\Repository\CmsRepository;
 use App\Repository\FaqRepository;
 use App\SavedArtwork;
 use App\SavedArtist;
+use Illuminate\Support\Facades\Auth;
 use Session;
 class HomeController extends Controller
 {
@@ -135,17 +136,17 @@ class HomeController extends Controller
 
     public function like_artist(){
         // dd($this->request->artist_id);
-        if(Session::has('role')){
+        if(Auth::user()){
             $saved_artist = [];
-            $saved_artist['user_id'] = Session::get('id');
+            $saved_artist['user_id'] = Auth::user()->id;
             $saved_artist['artist_id'] = $this->request->artist_id;
             $saved_artist['status'] = 'like';
 
-            $count_saved = $this->savedArtistRepository->getData(['user_id'=> Session::get('id'), 'artist_id' => $this->request->artist_id, 'status' => 'like'],'count',[],0);    
+            $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artist = $this->savedArtistRepository->createUpdateData(['id'=> $this->request->id],$saved_artist);
             }else{
-                $count_saved = $this->savedArtistRepository->getData(['user_id'=> Session::get('id'), 'artist_id' => $this->request->artist_id, 'status' => 'like'],'delete',[],0);
+                $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'like'],'delete',[],0);
             }
         }else{
             $saved_artist = [];
@@ -169,19 +170,19 @@ class HomeController extends Controller
 
     public function save_artist(){
         // dd(Session::get('random_id'));
-        if(Session::has('role')){
+        if(Auth::user()){
             $saved_artist = [];
-            $saved_artist['user_id'] = Session::get('id');
+            $saved_artist['user_id'] = Auth::user()->id;
             $saved_artist['artist_id'] = $this->request->artist_id;
             $saved_artist['status'] = 'saved';
 
-            $count_saved = $this->savedArtistRepository->getData(['user_id'=> Session::get('id'), 'artist_id' => $this->request->artist_id, 'status' => 'saved'],'count',[],0);    
+            $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'saved'],'count',[],0);    
             if(empty($count_saved)){
                 $artist = $this->savedArtistRepository->createUpdateData(['id'=> $this->request->id],$saved_artist);
             }else{
-                $count_saved = $this->savedArtistRepository->getData(['user_id'=> Session::get('id'), 'artist_id' => $this->request->artist_id, 'status' => 'saved'],'delete',[],0);
+                $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'saved'],'delete',[],0);
             }
-            $artist_saved = $this->savedArtistRepository->getData(['user_id'=> Session::get('id'), 'status' => 'saved'],'count',[],0);
+            $artist_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'saved'],'count',[],0);
         }else{
             $saved_artist = [];
             $saved_artist['guest_id'] = Session::get('random_id');
@@ -204,18 +205,17 @@ class HomeController extends Controller
     }
 
     public function like_artwork(){
-        // dd($this->request->artist_id);
-        if(Session::has('role')){
+        if(Auth::user()){
             $saved_artwork = [];
-            $saved_artwork['user_id'] = Session::get('id');
+            $saved_artwork['user_id'] = Auth::user()->id;
             $saved_artwork['artwork_id'] = $this->request->artwork_id;
             $saved_artwork['status'] = 'like';
 
-            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Session::get('id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
+            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
             }else{
-                $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Session::get('id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'delete',[],0);
+                $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'delete',[],0);
             }
         }else{
             $saved_artwork = [];
@@ -239,19 +239,19 @@ class HomeController extends Controller
 
     public function save_artwork(){
         // dd(Session::get('random_id'));
-        if(Session::has('role')){
+        if(Auth::user()){
             $saved_artwork = [];
-            $saved_artwork['user_id'] = Session::get('id');
+            $saved_artwork['user_id'] = Auth::user()->id;
             $saved_artwork['artwork_id'] = $this->request->artwork_id;
             $saved_artwork['status'] = 'saved';
 
-            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Session::get('id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'count',[],0);    
+            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
             }else{
-                $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Session::get('id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'delete',[],0);
+                $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'delete',[],0);
             }
-            $artwork_saved = $this->savedArtworkRepository->getData(['user_id'=> Session::get('id'), 'status' => 'saved'],'count',[],0);
+            $artwork_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'saved'],'count',[],0);
         }else{
             $saved_artwork = [];
             $saved_artwork['guest_id'] = Session::get('random_id');
