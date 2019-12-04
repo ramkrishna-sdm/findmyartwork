@@ -53,8 +53,12 @@ Route::get('/faq', 'Frontend\HomeController@faq');
 Route::get('/terms_conditions', 'Frontend\HomeController@terms_conditions');
 Route::get('/privacy_policy', 'Frontend\HomeController@privacy_policy');
 Route::get('/artist', 'Frontend\HomeController@artist');
-Route::get('/save_artist', 'Frontend\HomeController@save_artist');
+Route::get('/saved_artist', 'Frontend\HomeController@saved_artist');
 Route::get('/profile_details/{id?}', 'Frontend\HomeController@profile_details');
+Route::post('/like_artist', 'Frontend\HomeController@like_artist');
+Route::post('/save_artist', 'Frontend\HomeController@save_artist');
+Route::post('/like_artwork', 'Frontend\HomeController@like_artwork');
+Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
 
 
 // Route::get('/', function () {

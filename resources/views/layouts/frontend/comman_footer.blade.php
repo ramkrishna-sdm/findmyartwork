@@ -244,6 +244,8 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
+
+    
 function setUserRole(value){
 // alert(value);
 $('#user_role').val(value);
@@ -346,6 +348,9 @@ function makeUserLogin(){
     $.ajax({
         url: url,
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data:loginDetails,
         
   success: function(res){

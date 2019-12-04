@@ -12,7 +12,7 @@ class SavedArtist extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'artist_id', 'status', 
+        'user_id', 'artist_id', 'status', 'guest_id'
     ];
 
     // Relations with Category Model

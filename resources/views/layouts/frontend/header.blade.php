@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.ico')}}">
     <title>:: Mobile Application Development Company & Office 365 Professional ::</title>
     <!-- Bootstrap Core CSS -->
@@ -74,8 +75,8 @@
             </div>
             <div class="ml-auto d-flex align-items-center">
               <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
-                <li class="nav-item" ><a class="nav-link" href="#"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count">5</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/save_artist"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count">5</span></a></li>
+                <li class="nav-item" ><a class="nav-link" href="#"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count">0</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/save_artist"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count saved_count">0</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><img src="{{asset('assets/images/avatar.svg')}}" alt="" /></a></li>
                 <li class="nav-divider"></li>
               </ul>
