@@ -99,7 +99,6 @@ class CommonLoginController extends Controller
 					$user_info = [];
 					$user_info['user_id'] = Auth::user()->id;
 					$user_info['guest_id'] = "";
-					// print_r($user_info);die;
 					if(Session::has('random_id')){
 
 						$count_artist = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id')],'count',[],0);
@@ -113,6 +112,7 @@ class CommonLoginController extends Controller
 							$artist = $this->savedArtworkRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
 						}
 					}
+
 
 					return response()->json(array(
 						'redirect_url' => $url,
