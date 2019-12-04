@@ -348,9 +348,7 @@ function makeUserLogin(){
     $.ajax({
         url: url,
         type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+        
         data:loginDetails,
         
   success: function(res){
