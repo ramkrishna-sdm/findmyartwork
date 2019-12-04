@@ -15,6 +15,15 @@
 <section class="contactPage" >
 <div class="container contact">
    <div class="row">
+      <div class="col-sm-12">
+          @if(Session::has('message'))
+            <div>
+               <div class="alert alert-success"><em> {{session('message')}}</em></div>
+            </div>
+    @endif
+      </div>
+   </div>
+   <div class="row">
       <div class="col-12">
          <div class="contact-frame">
             <div class="contact-text">
@@ -32,18 +41,19 @@
                <h3>Fill the form</h3>
                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt  el facilisis.</p>
 
-               <form action="javascript:;" method="POST" class="row">
+               <form class="row" method="POST" action="{{url('/save_contact_form')}}" >
+                  @csrf
                   <div class="col-12 col-sm-6 form-group">
-                     <input type="text" class="form-control" placeholder="Your Name">
+                     <input type="text" class="form-control" placeholder="Your Name" name="name">
                   </div>
                   <div class="col-12 col-sm-6 form-group">
-                     <input type="tel" class="form-control" placeholder="Phone">
+                     <input type="tel" class="form-control" placeholder="Phone" name="mobile_number">
                   </div>
                   <div class="col-12 form-group">
-                     <input type="email" class="form-control" id="" placeholder="Email Address">
+                     <input type="email" class="form-control" id="" placeholder="Email Address" name="email">
                   </div>
                   <div class="col-12 form-group">
-                     <textarea class="form-control" placeholder="Message"></textarea>
+                     <textarea class="form-control" placeholder="Message" name="message"></textarea>
                   </div>
                   <div class="col-12">
                      <button type="submit" class="btn btn-default">Submit</button>
