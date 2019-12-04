@@ -350,7 +350,7 @@ function makeUserLogin(){
         
   success: function(res){
     if(res.status=="200"){
-      window.location = res.redirect_url;
+      window.location.href = res.redirect_url;
     }else{
       toastr.options.timeOut = 1500; // 1.5s
       toastr.error(res.message);
