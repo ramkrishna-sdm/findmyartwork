@@ -18,7 +18,7 @@
             <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
             <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
             <!-- <li><a href="javascript:void(0);">Mounting Instructions</a></li> -->
-            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+            <li><a href="{{url('privacy_policy')}}">Privacy Policy</a></li>
             <li><a href="javascript:void(0);">Contact Us</a></li>
           </ul>
         </div>

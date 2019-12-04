@@ -63,12 +63,13 @@ class HomeController extends Controller
           $terms = $this->CmsRepository->getData(['slug'=>'terms_n_conditions','is_deleted'=>'no'],'first',[],0);
         return view('frontend/terms_conditions',compact('terms'));
     }
+
+    public function privacy_policy(){
+          $policy = $this->CmsRepository->getData(['slug'=>'privacy_policy','is_deleted'=>'no'],'first',[],0);
+        return view('frontend/privacy_policy',compact('policy'));
+    }
     
     public function faq(){
-        // $clientIP = request()->ip();
-        // dd($clientIP);
-        //return view('frontend/faq');
-
         $faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
         return view('frontend.faq', compact('faq'));
     }
