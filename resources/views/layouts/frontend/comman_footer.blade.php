@@ -216,9 +216,9 @@
             <h3>Account type</h3>
             <div class="col-md-8 offset-md-2">
               <div class="userTypes d-flex justify-content-between mb-3">
-                <button type="button" onclick="setUserRole('buyer')" class="btn btn-border btn-lg" >Buyer</button>
-                <button type="button" onclick="setUserRole('artist')" class="btn btn-border btn-lg" >Artist</button>
-                <button type="button" onclick="setUserRole('gallery')" class="btn btn-border btn-lg" >Gallery</button>
+                <button type="button" onclick="setUserRole('buyer')" class="btn btn-border btn-lg role_btn" >Buyer</button>
+                <button type="button" onclick="setUserRole('artist')" class="btn btn-border btn-lg role_btn" >Artist</button>
+                <button type="button" onclick="setUserRole('gallery')" class="btn btn-border btn-lg role_btn" >Gallery</button>
               </div>
               <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
                 <input type="checkbox" class="custom-control-input" name="agree_terms_and_conditions" value="1" id="customCheck1" required>
@@ -244,10 +244,14 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
-
+$(document).on('click', '.role_btn', function(){
+  $('.role_btn').css("background-color", "");  
+  $(this).css("background-color", "#0e0f11");  
+})
     
 function setUserRole(value){
 // alert(value);
+
 $('#user_role').val(value);
 }
 $(document).ready(function() {
