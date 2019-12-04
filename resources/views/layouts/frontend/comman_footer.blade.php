@@ -260,7 +260,7 @@ toastr.error('Please Select Account Type!');
 return false;
 }else{
 toastr.options.timeOut = 1000; // 42s
-toastr.error(' Verification Mail has been sent to your Email Id ');
+toastr.success(' Verification Mail has been sent to your Email Id ');
 document.getElementById("registerForm").submit();
 }
 });
