@@ -66,8 +66,8 @@
 </div>
 
 <div class="map">
-   <img src="assets/images/map.jpg" alt="map" />
-</div>
+   <!-- <img src="assets/images/map.jpg" alt="map" /> -->
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d65276.652233651694!2d76.63564970785154!3d30.69923820549952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feef68f84e54b%3A0x6d1fe6ad02834905!2ssmartData%20Enterprises!5e0!3m2!1sen!2sin!4v1575501651733!5m2!1sen!2sin" width="800" height="800" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 </section>
 <!-- End contact page -->
 @include('layouts.frontend.comman_footer')
