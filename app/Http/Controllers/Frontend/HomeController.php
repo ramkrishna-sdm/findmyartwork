@@ -277,5 +277,16 @@ class HomeController extends Controller
         ), 200);
     }
 
+    public static function header_counter()
+    {
+        $saved_count = "";
+        $cart_count = 12;
+        if(Auth::user()){
+            $saved_count = SavedArtwork::where(['user_id'=> Auth::user()->id, 'status' => 'saved'])->count();
+        }else{
+            $saved_count = SavedArtwork::where(['guest_id'=> Session::get('random_id'), 'status' => 'saved'])->count();
+        }
+        session(['saved_count' => $saved_count, 'cart_count' => $cart_count]);
+    }
         
 }
