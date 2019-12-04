@@ -69,7 +69,7 @@
   <!-- //Copyright -->
 </footer>
 <!-- //Footer Section -->
-<form class="form" method="POST" action="{{url('/submit_login')}}" id="loginForm">
+<form class="form" method="POST" action="{{url('/submit_login')}}" id="login_form">
   @csrf
   <div class="modal fade getStartedModals LoginModal" id="LoginModal">
     <div class="modal-dialog modal-lg">
@@ -333,10 +333,37 @@ document.getElementById("registerForm").submit();
       toastr.error('Please enter Password more than 6 characters.');
       return false;
     }else{
-      document.getElementById("loginForm").submit();
+      makeUserLogin();
+      // document.getElementById("login_form").submit();
   }
 });
 });
+
+function makeUserLogin(){
+    var url = "{{url('submit_login')}}";
+    var loginDetails = $('#login_form').serialize();
+    console.log(loginDetails);
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data:loginDetails,
+        
+  success: function(res){
+    if(res.status=="200"){
+      window.location = res.redirect_url;
+    }else{
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error(res.message);
+      return false;
+    }
+  },
+  error: function (errormessage) {
+    toastr.options.timeOut = 1500; // 1.5s
+    toastr.error('You are Not Authorised Person.');
+    return false;
+  }
+});
+}  
 </script>
 
 <script type="text/javascript">
