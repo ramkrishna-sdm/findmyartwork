@@ -54,11 +54,11 @@
             
             <div class="collapse navbar-collapse mainNavbar"   id="navbarToggle">
               <ul class="navbar-nav nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Artwork</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about_us">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('about_us')}}">About</a></li>
+                <li class="nav-item"><a href="{{url('contact_us')}}" class="nav-link">Contact</a></li>
               </ul>
             </div>
           </div>

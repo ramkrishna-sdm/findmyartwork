@@ -19,7 +19,7 @@
             <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
             <!-- <li><a href="javascript:void(0);">Mounting Instructions</a></li> -->
             <li><a href="{{url('privacy_policy')}}">Privacy Policy</a></li>
-            <li><a href="javascript:void(0);">Contact Us</a></li>
+            <li><a href="{{url('contact_us')}}">Contact Us</a></li>
           </ul>
         </div>
         <!-- <div class="Links">

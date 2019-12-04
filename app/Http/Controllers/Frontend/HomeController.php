@@ -121,6 +121,10 @@ class HomeController extends Controller
         return view('frontend/save_artist');
     }
 
+    public function contact_us(){
+        return view('frontend/contact_us');
+    }
+
     public function profile_details($id){
         $professional = [];
         $profileDetails = $this->userRepository->getData(['id'=>$id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail'],0);    

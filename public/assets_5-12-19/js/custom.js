@@ -12,11 +12,10 @@ $('#bannerCarousel').carousel({
 
 $(document).ready(function(){
   $(".bannerinner").prev(".navbar").addClass("navInner");
-  
 });
 
 $('.artistCarousel').owlCarousel({
-  loop:true, 
+  loop:false, 
   dots: false,
   margin: 20,
   nav:true,
@@ -48,17 +47,7 @@ $('.artistCarousel').owlCarousel({
   }
 });
 
-// $('#artwork-images').flexgal();
-
-$('.panel-collapse').on('show.bs.collapse', function () {
-  $(this).siblings('.panel-heading').addClass('active');
-});
-
-$('.panel-collapse').on('hide.bs.collapse', function () {
-  $(this).siblings('.panel-heading').removeClass('active');
-});
-
-
+$('.artwork-images').flexgal();
 
   
 /*  Bootstrap Carousel and Animate.css */
