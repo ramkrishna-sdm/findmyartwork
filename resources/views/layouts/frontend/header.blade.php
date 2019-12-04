@@ -1,3 +1,7 @@
+<?php  
+use \App\Http\Controllers\Frontend\HomeController;
+HomeController::header_counter(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,8 +79,8 @@
             </div>
             <div class="ml-auto d-flex align-items-center">
               <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
-                <li class="nav-item" ><a class="nav-link" href="#"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count">0</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/save_artist"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count saved_count">0</span></a></li>
+                <li class="nav-item" ><a class="nav-link" href="#"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count">{{session('cart_count')}}</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/save_artist"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count saved_count">{{session('saved_count')}}</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><img src="{{asset('assets/images/avatar.svg')}}" alt="" /></a></li>
                 <li class="nav-divider"></li>
               </ul>
