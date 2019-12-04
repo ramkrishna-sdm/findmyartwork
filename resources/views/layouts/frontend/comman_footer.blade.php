@@ -394,5 +394,103 @@ function makeUserLogin(){
 });
 </script>
 
+
+
+<script type="text/javascript">
+$(document).on('click', '.like_artist', function(){
+    var artist_id = $(this).attr('data-artist-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('like_artist')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artist_id:artist_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+})
+$(document).on('click', '.save_artist', function(){
+    var artist_id = $(this).attr('data-artist-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('save_artist')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artist_id:artist_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                // $(document).find('.saved_count').html(res.saved_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+})
+$(document).on('click', '.like_artwork', function(){
+    var artwork_id = $(this).attr('data-artwork-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('like_artwork')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artwork_id:artwork_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+})
+$(document).on('click', '.save_artwork', function(){
+    var artwork_id = $(this).attr('data-artwork-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('save_artwork')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artwork_id:artwork_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                $(document).find('.saved_count').html(res.saved_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+})
+</script>
+
+
 </body>
 </html>
