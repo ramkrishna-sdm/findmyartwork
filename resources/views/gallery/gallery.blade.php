@@ -87,13 +87,13 @@
                             <div class="artPost">
                                <div class="postHeader">
                                   <div class="username">
-                                     <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                     <div class="image"><img src="{{asset('assets/images/profile-sm.jpg')}}" alt=""></div>
                                      <span class="name">Amenda Berry</span>
                                   </div>
                                   <span class="Posted">2 hours ago</span>
                                </div>
                                <div class="postImage">
-                                  <a href="#"><img src="assets/images/post.jpg" alt=""></a>
+                                  <a href="#"><img src="{{asset('assets/images/post.jpg')}}" alt=""></a>
                                </div>
                                <div class="postFooter">
                                   <div class="leftBlock">
@@ -103,9 +103,9 @@
                                   <div class="rightBlock">
                                      <span class="likes">456 Likes</span> 
                                      <div class="actionIcons">
-                                        <a href="#"><img src="assets/images/like.png" alt=""></a>
-                                        <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                                        <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                                      </div>
                                   </div>
                                </div>
@@ -115,13 +115,13 @@
                             <div class="artPost">
                                <div class="postHeader">
                                   <div class="username">
-                                     <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                     <div class="image"><img src="{{asset('assets/images/profile-sm.jpg')}}" alt=""></div>
                                      <span class="name">Amenda Berry</span>
                                   </div>
                                   <span class="Posted">2 hours ago</span>
                                </div>
                                <div class="postImage">
-                                  <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
+                                  <a href="#"> <img src="{{asset('assets/images/post.jpg')}}" alt=""></a>
                                </div>
                                <div class="postFooter">
                                   <div class="leftBlock">
@@ -131,9 +131,9 @@
                                   <div class="rightBlock">
                                      <span class="likes">456 Likes</span> 
                                      <div class="actionIcons">
-                                        <a href="#"><img src="assets/images/like.png" alt=""></a>
-                                        <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                                        <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                                      </div>
                                   </div>
                                </div>
@@ -146,13 +146,13 @@
                                <div class="artPost">
                                   <div class="postHeader">
                                      <div class="username">
-                                        <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                        <div class="image"><img src="{{asset('assets/images/profile-sm.jpg')}}" alt=""></div>
                                         <span class="name">Amenda Berry</span>
                                      </div>
                                      <span class="Posted">2 hours ago</span>
                                   </div>
                                   <div class="postImage">
-                                     <a href="#"><img src="assets/images/post.jpg" alt=""></a> 
+                                     <a href="#"><img src="{{asset('assets/images/post.jpg')}}" alt=""></a> 
                                   </div>
                                   <div class="postFooter">
                                      <div class="leftBlock">
@@ -162,9 +162,9 @@
                                      <div class="rightBlock">
                                         <span class="likes">456 Likes</span> 
                                         <div class="actionIcons">
-                                           <a href="#"><img src="assets/images/like.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                                         </div>
                                      </div>
                                   </div>
@@ -174,13 +174,13 @@
                                <div class="artPost">
                                   <div class="postHeader">
                                      <div class="username">
-                                        <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                        <div class="image"><img src="{{asset('assets/images/profile-sm.jpg')}}" alt=""></div>
                                         <span class="name">Amenda Berry</span>
                                      </div>
                                      <span class="Posted">2 hours ago</span>
                                   </div>
                                   <div class="postImage">
-                                     <a href="#"><img src="assets/images/post.jpg" alt=""></a>
+                                     <a href="#"><img src="{{asset('assets/images/post.jpg')}}" alt=""></a>
                                   </div>
                                   <div class="postFooter">
                                      <div class="leftBlock">
@@ -190,9 +190,9 @@
                                      <div class="rightBlock">
                                         <span class="likes">456 Likes</span> 
                                         <div class="actionIcons">
-                                           <a href="#"><img src="assets/images/like.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                                         </div>
                                      </div>
                                   </div>
@@ -202,13 +202,13 @@
                                <div class="artPost">
                                   <div class="postHeader">
                                      <div class="username">
-                                        <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
+                                        <div class="image"><img src="{{asset('assets/images/profile-sm.jpg')}}" alt=""></div>
                                         <span class="name">Amenda Berry</span>
                                      </div>
                                      <span class="Posted">2 hours ago</span>
                                   </div>
                                   <div class="postImage">
-                                     <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
+                                     <a href="#"> <img src="{{asset('assets/images/post.jpg')}}" alt=""></a>
                                   </div>
                                   <div class="postFooter">
                                      <div class="leftBlock">
@@ -218,9 +218,9 @@
                                      <div class="rightBlock">
                                         <span class="likes">456 Likes</span> 
                                         <div class="actionIcons">
-                                           <a href="#"><img src="assets/images/like.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/dislike.png" alt=""></a>
-                                           <a href="#"><img src="assets/images/saved.png" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
+                                           <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                                         </div>
                                      </div>
                                   </div>
@@ -235,7 +235,7 @@
                       <ul class="pagination mx-auto">
                          <li class="page-item disabled">
                             <a class="page-link" href="#" aria-label="Previous">
-                               <span aria-hidden="true"> <img src="assets/images/left-arrow.svg" alt=""> Previous</span>
+                               <span aria-hidden="true"> <img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Previous</span>
                             </a>
                          </li>
                          <li class="page-item active">

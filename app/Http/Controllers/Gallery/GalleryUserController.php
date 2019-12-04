@@ -20,6 +20,6 @@ class GalleryUserController extends Controller
     }
 
     public function index(){
-    	return view('gallery.gallery_dashboard');
+    	return view('gallery.gallery');
     }
 }
