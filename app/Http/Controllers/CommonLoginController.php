@@ -16,7 +16,6 @@ use App\Repository\SavedArtistRepository;
 use App\Repository\SavedArtworkRepository;
 class CommonLoginController extends Controller
 {
-
 	public function __construct(Request $request,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository)
     {
         $this->request = $request;
@@ -110,8 +109,6 @@ class CommonLoginController extends Controller
 						if($count_artwork){
 							$artist = $this->savedArtworkRepository->createUpdateData(['guest_id'=> Session::get('random_id')],$user_info);
 						}
-						dd("asdasd");
-						// Session::forget('random_id');
 					}
 
 					return response()->json(array(
@@ -134,10 +131,6 @@ class CommonLoginController extends Controller
 		Auth::logout();
 		Session::flush();
 		return redirect()->to('/')->with('message', 'You are Successfully Logged Out');
-	}
-
-	public function phpinfo(){
-		echo phpinfo();
 	}
 
 	public function redirect($provider){

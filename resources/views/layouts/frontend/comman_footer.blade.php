@@ -348,7 +348,6 @@ function makeUserLogin(){
     $.ajax({
         url: url,
         type: 'POST',
-        
         data:loginDetails,
         
   success: function(res){
