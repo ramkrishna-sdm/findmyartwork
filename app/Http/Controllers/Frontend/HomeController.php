@@ -12,6 +12,7 @@ use App\Repository\SavedArtistRepository;
 use App\Repository\SavedArtworkRepository;
 use App\Repository\CmsRepository;
 use App\Repository\FaqRepository;
+use App\Repository\ContactFormRepository;
 use App\SavedArtwork;
 use App\SavedArtist;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository)
     {
         // dd(Session::has('random_id'));
         $this->request = $request;
@@ -39,6 +40,7 @@ class HomeController extends Controller
         $this->FaqRepository = $faqRepository;
         $this->savedArtistRepository = $savedArtistRepository;
         $this->savedArtworkRepository = $savedArtworkRepository;
+        $this->contactFormRepository = $contactFormRepository;
     }
 
     public function __destruct(){
@@ -276,6 +278,17 @@ class HomeController extends Controller
             'status' => 200,
         ), 200);
     }
+
+
+
+    public function save_contact_form_details(){
+      
+       $contactForm = $this->contactFormRepository->createUpdateData(['id'=>  $this->request->id], $this->request->all());
+
+       return redirect()->to('/contact_us')->with('message', 'Contact Form Submit Successfully');
+
+    }
+
 
     public static function header_counter()
     {
