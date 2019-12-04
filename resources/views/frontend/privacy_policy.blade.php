@@ -1,9 +1,9 @@
 @include('layouts.frontend.header')
 <!-- Page Header Title -->
-@if(!empty($terms) > 0)
+@if(!empty($policy)>0)
 <div class="page-title">
 <div class="page-title-inner">
-   <span class="pagetitleText">{{$terms->title}}</span> 
+   <span class="pagetitleText">{{$policy->title}}</span> 
    <img src="{{asset('assets/images/about-graphic.svg')}}" class="title-img" alt="">
 </div>
 </div>
@@ -13,7 +13,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12">
-         <?=htmlspecialchars_decode($terms->des_first)?>
+         <?=htmlspecialchars_decode($policy->des_first)?>
       </div>
    </div>
 </div>
