@@ -263,12 +263,12 @@ $(document).on('keyup', '#site_filter', function(){
   var site_filter = $('#site_filter').val();
   var data_from = "ajax";
   $.ajax({
-    url: "{{url('filter_search')}}",
-    type: 'POST',
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: {filter_key:site_filter, data_from:data_from},
+    url: "{{url('filter_search')}}?data_from="+data_from+'&filter_key='+site_filter,
+    type: 'get',
+    // headers: {
+    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    // },
+    // data: {filter_key:site_filter, data_from:data_from},
 
     success: function(res){
         if(res.status=="200"){

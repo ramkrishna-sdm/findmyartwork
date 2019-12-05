@@ -56,7 +56,7 @@ HomeController::header_counter();
               </li>
             </ul> -->
             
-            <div class="collapse navbar-collapse mainNavbar"   id="navbarToggle">
+            <div class="collapse navbar-collapse mainNavbar" id="navbarToggle">
               <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Artwork</a></li>
@@ -72,8 +72,7 @@ HomeController::header_counter();
         <div class="header">
           <div class="container d-flex align-items-center flex-wrap">
             <a class="navbar-brand" href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" class="img-fluid" /></a>
-            <form method="post" enctype="multipart/form-data" action="{{ url('/filter_search') }}" autocomplete="off">
-              @csrf
+            <form method="get" action="{{ url('/filter_search') }}" autocomplete="off">
               <input type="hidden" name="data_from" value="form">
               <div class="searchbar">
                 <input id="site_filter" type="text" class="form-control" name="filter_key" placeholder="Search for paintings, drawings">
