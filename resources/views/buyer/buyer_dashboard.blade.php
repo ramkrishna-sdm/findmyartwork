@@ -25,36 +25,37 @@
 
 
                <div class="filterBlock">
-                  <h5>Price</h5>
-                  <div class="form-group">
-                     <input type="range" class="custom-range" id="customRange1">
-                     <div class="price-fields clearfix">
-                        <input type="text" value="$50" class="float-left">
-                        <input type="text" value="$999999" class="float-right">
-                     </div>
-                  </div>
-               </div>
+                <h5 class="price_selected">Price ($1)</h5>
+                <div class="form-group">
+                   <input type="range" class="custom-range price_range" id="customRange1" min="1" max="9999" value="1">
+                   <div class="price-fields clearfix">
+                      <input type="text" value="$1" class="float-left">  
+                      <input type="text" value="$9999" class="float-right">
+                   </div>
+                </div>
+            </div>
 
-               <div class="filterBlock">
-                  <h5>Size</h5>
-                  <div class="form-group">
-                     <div class="size-space">
-                        <div class="text-right"><span class="unit">Height</span></div>
-                        <input type="range" class="custom-range" id="customRange1">
-                        <div class="price-fields d-flex justify-content-between">
-                           <input type="text" value="$50"> <input type="text" value="$999999">
-                        </div>
-                     </div>
+            <div class="filterBlock">
+                <h5>Size</h5>
+                <div class="form-group">
+                   <div class="size-space unit_filter">
+                      <div class="text-right"><span class="unit">Height</span><span class="unit selected_unit"> (1 In)</span></div>
+                      <input type="range" class="custom-range size_range" id="customRange1" min="1" max="9999" value="1">
+                      <div class="price-fields d-flex justify-content-between">
+                         <input type="text" value="1 In">  <input type="text" value="9999 In">
+                      </div>
+                   </div>
 
-                     <div class="size-space">
-                        <div class="text-right"><span class="unit">Width</span></div>
-                        <input type="range" class="custom-range" id="customRange1">
-                        <div class="price-fields d-flex justify-content-between">
-                           <input type="text" value="$50"> <input type="text" value="$999999">
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                   <div class="size-space unit_filter">
+                      <div class="text-right"><span class="unit">Width</span><span class="unit selected_unit"> (1 In)</span></div>
+                      <input type="range" class="custom-range size_range" id="customRange1" min="1" max="9999" value="1">
+                      <div class="price-fields d-flex justify-content-between">
+                         <input type="text" value="1 In">  <input type="text" value="9999 In">
+                      </div>
+                   </div>
+                </div>
+             </div>
+
 
                <div class="filterBlock no-border">
                   <div class="form-group">
