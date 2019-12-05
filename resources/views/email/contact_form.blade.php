@@ -4,12 +4,20 @@
 		<title>Contact Form Mail</title>
 	</head>
 	<body>
-		<p>Hi,</p>
-		<p></p>
-		<p>Mail Received
-		</p>
-		<p></p>
-		<p></p>
-		<p>This email was sent from Workado</p>
-	</body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					Hello Admin.....
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					Message Received by {{$data['name']}}
+				</div>
+				<div class="col-sm-6">
+					Notification : {{$data['message']}}
+				</div>
+			</div>
+		</div>
+   </body>
 </html>

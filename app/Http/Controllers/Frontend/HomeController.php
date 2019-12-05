@@ -290,9 +290,14 @@ class HomeController extends Controller
        $contactForm = $this->contactFormRepository->createUpdateData(['id'=>  $this->request->id], $this->request->all());
 
          $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);   
-
-
-         Mail::to($toEmail)->send(new ContactForm());
+         $comment =[];
+         $comment['message'] = $this->request->message;
+         $comment['mobile_number'] = $this->request->mobile_number;
+         $comment['name'] = $this->request->name;
+         if($toEmail){
+            Mail::to($toEmail)->send(new ContactForm($comment));
+         }
+         
 
 
        return redirect()->to('/contact_us')->with('message', 'Contact Form Submit Successfully');
