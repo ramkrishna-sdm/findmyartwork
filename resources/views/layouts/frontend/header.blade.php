@@ -74,6 +74,7 @@ HomeController::header_counter();
             <a class="navbar-brand" href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" class="img-fluid" /></a>
             <form method="post" enctype="multipart/form-data" action="{{ url('/filter_search') }}" autocomplete="off">
               @csrf
+              <input type="hidden" name="data_from" value="form">
               <div class="searchbar">
                 <input id="site_filter" type="text" class="form-control" name="filter_key" placeholder="Search for paintings, drawings">
                 <button class="btn-search" type="submit"><img src="{{asset('assets/images/search.svg')}}" alt="" /></button>
