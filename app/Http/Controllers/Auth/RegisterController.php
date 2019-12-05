@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Session; 
+use App\Repository\SavedArtistRepository;
+use App\Repository\SavedArtworkRepository;
 
 class RegisterController extends Controller
 {
@@ -35,9 +40,12 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request, SavedArtistRepository $savedArtistRepository, SavedArtworkRepository $savedArtworkRepository)
     {
         $this->middleware('guest');
+        $this->request = $request;
+        $this->savedArtistRepository = $savedArtistRepository;
+        $this->savedArtworkRepository = $savedArtworkRepository;
     }
 
     /**
@@ -67,12 +75,50 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user_data = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'role' => $data['role'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($data['role'] == "buyer" || $data['role'] == "artist" || $data['role'] == "gallery")
+        {
+            $user_info = [];
+            $user_info['user_id'] = $user_data->id;
+            $user_info['guest_id'] = "";
+            if (Session::has('random_id'))
+            {
+                $count_artist = $this
+                    ->savedArtistRepository
+                    ->getData(['guest_id' => Session::get('random_id') ], 'get', [], 0);
+
+                if (count($count_artist) > 0)
+                {
+                    foreach ($count_artist as $key => $value)
+                    {
+                        $artist = $this
+                            ->savedArtistRepository
+                            ->createUpdateData(['id' => $value['id']], $user_info);
+                    }
+                }
+
+                $count_artwork = $this
+                    ->savedArtworkRepository
+                    ->getData(['guest_id' => Session::get('random_id') ], 'get', [], 0);
+                if (count($count_artwork) > 0)
+                {
+                    foreach ($count_artwork as $key => $value)
+                    {
+                        $artist = $this
+                            ->savedArtworkRepository
+                            ->createUpdateData(['id' => $value['id']], $user_info);
+                    }
+                }
+                Session::forget('random_id');
+            }
+        }
+        return $user_data;
     }
 }
