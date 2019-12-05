@@ -22,4 +22,8 @@ class ArtistUserController extends Controller
     public function index(){
     	return view('artist.artist_dashboard');
     }
+
+    public function add_artwork(){
+        return view('artist.add_artwork');
+    }
 }
