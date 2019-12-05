@@ -60,9 +60,9 @@
                   <div class="form-group">
                      <select name="" id="" class="form-control">
                         <option value="" selected="true" disabled="disabled">Style</option>
-                        <option value="">Style 1</option>
-                        <option value="">Style 2</option>
-                        <option value="">Style 3</option>
+                        @foreach($styles as $style)
+                         <option value="">{{$style->name}}</option>
+                        @endforeach
                      </select>
                   </div>
                </div>
@@ -72,9 +72,9 @@
                   <div class="form-group">
                      <select name="" id="" class="form-control">
                         <option value="" selected="true" disabled="disabled">Subject</option>
-                        <option value="">Style 1</option>
-                        <option value="">Style 2</option>
-                        <option value="">Style 3</option>
+                        @foreach($subjects as $subject)
+                         <option value="">{{$subject->name}}</option>
+                        @endforeach
                      </select>
                   </div>
                </div>
