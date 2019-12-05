@@ -17,6 +17,8 @@ use App\SavedArtwork;
 use App\SavedArtist;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Mail;
+use App\Mail\ContactForm;
 class HomeController extends Controller
 {
     /**
@@ -284,6 +286,12 @@ class HomeController extends Controller
     public function save_contact_form_details(){
       
        $contactForm = $this->contactFormRepository->createUpdateData(['id'=>  $this->request->id], $this->request->all());
+
+         $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);   
+
+
+         Mail::to($toEmail)->send(new ContactForm());
+
 
        return redirect()->to('/contact_us')->with('message', 'Contact Form Submit Successfully');
 
