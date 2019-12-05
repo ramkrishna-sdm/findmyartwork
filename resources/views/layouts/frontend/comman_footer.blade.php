@@ -252,13 +252,14 @@ $(document).on('click', '.role_btn', function(){
 $(document).on('keyup', '#site_filter', function(){
   var this_filter = $(this);
   var site_filter = $('#site_filter').val();
+  var data_from = "ajax";
   $.ajax({
     url: "{{url('filter_search')}}",
     type: 'POST',
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    data: {filter_key:site_filter},
+    data: {filter_key:site_filter, data_from:data_from},
 
     success: function(res){
         if(res.status=="200"){
