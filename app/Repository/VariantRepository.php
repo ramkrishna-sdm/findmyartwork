@@ -37,6 +37,18 @@ class VariantRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['height'])) {
+            $query->where('height', $conditions['height']);
+        }
+
+        if (!empty($conditions['width'])) {
+            $query->where('width', $conditions['width']);
+        }
+
+        if (!empty($conditions['price'])) {
+            $query->where('price', $conditions['price']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }

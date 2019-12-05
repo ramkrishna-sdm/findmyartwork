@@ -37,6 +37,10 @@ class CategoryRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['name'])) {
+            $query->where('name', $conditions['name']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }
