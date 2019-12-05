@@ -7,12 +7,14 @@ use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
-use App\Repository\VariantRepository;
 use App\Repository\SavedArtistRepository;
 use App\Repository\SavedArtworkRepository;
 use App\Repository\CmsRepository;
 use App\Repository\FaqRepository;
 use App\Repository\ContactFormRepository;
+use App\Repository\SubCategoryRepository;
+use App\Repository\StyleRepository;
+use App\Repository\VariantRepository;
 use App\SavedArtwork;
 use App\SavedArtist;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +31,7 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository, SubCategoryRepository $subCategoryRepository, StyleRepository $styleRepository, VariantRepository $variantRepository)
     {
         // dd(Session::has('random_id'));
         $this->request = $request;
@@ -37,12 +39,14 @@ class HomeController extends Controller
         $this->userRepository = $userRepository;
         $this->artworkRepository = $artworkRepository;
         $this->artworkImageRepository = $artworkImageRepository;
-        $this->variantRepository = $variantRepository;
         $this->CmsRepository = $CmsRepository;
         $this->FaqRepository = $faqRepository;
         $this->savedArtistRepository = $savedArtistRepository;
         $this->savedArtworkRepository = $savedArtworkRepository;
         $this->contactFormRepository = $contactFormRepository;
+        $this->subCategoryRepository = $subCategoryRepository;
+        $this->styleRepository = $styleRepository;
+        $this->variantRepository = $variantRepository;
     }
 
     public function __destruct(){
@@ -281,10 +285,7 @@ class HomeController extends Controller
         ), 200);
     }
 
-
-
     public function save_contact_form_details(){
-      
        $contactForm = $this->contactFormRepository->createUpdateData(['id'=>  $this->request->id], $this->request->all());
 
          $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);   
@@ -294,9 +295,7 @@ class HomeController extends Controller
 
 
        return redirect()->to('/contact_us')->with('message', 'Contact Form Submit Successfully');
-
     }
-
 
     public static function header_counter()
     {
@@ -309,5 +308,47 @@ class HomeController extends Controller
         }
         session(['saved_count' => $saved_count, 'cart_count' => $cart_count]);
     }
-        
+     
+    public function filter_search(){
+        // dd($this->request->filter_key);
+        $i = 0;
+        $artwork_name = [];
+        $user_filter_result = $this->userRepository->getData(['role'=> 'artist', 'filter_key' => $this->request->filter_key],'get',['artworks'],0);    
+        if(count($user_filter_result) > 0){
+            foreach($user_filter_result as $key => $user_arr){
+                if(count($user_arr['artworks']) > 0){
+                    foreach ($user_arr['artworks'] as $key => $artwork) {
+                        $artwork_name[$i][0] = $artwork['id'];
+                        $artwork_name[$i][1] = $artwork['title'];
+                        $i++;
+                    }
+                }
+            }
+        }
+        $filter_result = $this->artworkRepository->getData(['is_deleted'=> 'no', 'filter_key' => $this->request->filter_key],'get',[],0);    
+        if(count($filter_result) > 0){
+            foreach ($filter_result as $key => $value) {
+                $artwork_name[$i][0] = $value['id'];
+                $artwork_name[$i][1] = $value['title'];
+                $i++;
+            }
+        }
+
+        $artwork_name = array_map("unserialize", array_unique(array_map("serialize", $artwork_name)));
+        $html = "";
+        $html .= "<ul>";
+        if(count($artwork_name) > 0){
+            foreach ($artwork_name as $key => $artwork) {
+                $url = url('artwork_details').'/'.$artwork[0];
+                $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
+            }
+        }else{
+            $html .= "<li><a href='javascript::void(0)'>No Result Found</a></li>";
+        }
+        $html .= "</ul>";
+        return response()->json(array(
+            'result' => $html,
+            'status' => 200,
+        ), 200);
+    }
 }

@@ -37,6 +37,11 @@ class ArtworkRepository implements RepositoryInterface
             $query->where('top', $conditions['top']);
         }
 
+        if (!empty($conditions['filter_key'])) {
+            $query->where('description', 'like', '%'.$conditions['filter_key'].'%')
+                  ->orWhere('title', 'like', '%'.$conditions['filter_key'].'%');
+        }
+
         if (!empty($conditions['trending'])) {
             $query->where('trending', $conditions['trending']);
         }
