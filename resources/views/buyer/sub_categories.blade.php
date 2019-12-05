@@ -58,14 +58,13 @@
                         <div class="leftBlock">
                             <h5>The Wave</h5>
                             @if($artworks->variants)
-                            <h6>{{$artworks->variants[0]->price}}</h6>
+                            <h6>$ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>
                         <div class="rightBlock">
                             <span class="likes">456 Likes</span>
                             <div class="actionIcons">
                                 <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
-                                <a href="#"><img src="{{asset('assets/images/dislike.png')}}" alt=""></a>
                                 <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
                             </div>
                         </div>
