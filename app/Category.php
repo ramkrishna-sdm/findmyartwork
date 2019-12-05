@@ -20,4 +20,11 @@ class Category extends Model
     {
         return $this->hasMany('App\SubCategory','category_id','id');
     }
+
+    // Relations with Artwork Model
+    public function artwork()
+    {
+        return $this->hasMany('App\Artwork','category','id');
+    }
+    
 }
