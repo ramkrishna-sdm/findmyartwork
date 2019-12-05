@@ -24,6 +24,7 @@ Route::get('/checkphp','CommonLoginController@phpinfo');
 Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['verified','ArtistCheck']],function(){ 
 
 	Route::get('/dashboard','ArtistUserController@index');
+	Route::get('/add_artwork','ArtistUserController@add_artwork');
 
 });
 
@@ -45,10 +46,10 @@ Route::get('/auth/redirect/{provider}', 'CommonLoginController@redirect');
 Route::get('/callback/{provider}', 'CommonLoginController@callback');
 
 
-
 Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
+
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/faq', 'Frontend\HomeController@faq');
@@ -63,6 +64,7 @@ Route::post('/like_artwork', 'Frontend\HomeController@like_artwork');
 Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
 Route::get('/contact_us', 'Frontend\HomeController@contact_us');
 Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
+Route::post('/filter_search', 'Frontend\HomeController@filter_search');
 
 // Route::get('/', function () {
 //     return view('welcome');

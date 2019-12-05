@@ -72,11 +72,17 @@ HomeController::header_counter();
         <div class="header">
           <div class="container d-flex align-items-center flex-wrap">
             <a class="navbar-brand" href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" class="img-fluid" /></a>
-            
-            <div class="searchbar">
-              <input type="text" class="form-control" placeholder="Search for paintings, drawings">
-              <button class="btn-search" type="button"><img src="{{asset('assets/images/search.svg')}}" alt="" /></button>
-            </div>
+            <form method="post" enctype="multipart/form-data" action="{{ url('/filter_search') }}" autocomplete="off">
+              @csrf
+              <input type="hidden" name="data_from" value="form">
+              <div class="searchbar">
+                <input id="site_filter" type="text" class="form-control" name="filter_key" placeholder="Search for paintings, drawings">
+                <button class="btn-search" type="submit"><img src="{{asset('assets/images/search.svg')}}" alt="" /></button>
+                <div class="filter_result">
+                  
+                </div>
+              </div>
+            </form>
             <div class="ml-auto d-flex align-items-center">
               <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
                 <li class="nav-item" ><a class="nav-link" href="#"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count">{{session('cart_count')}}</span></a></li>

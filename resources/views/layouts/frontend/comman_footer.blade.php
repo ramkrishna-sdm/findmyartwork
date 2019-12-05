@@ -243,12 +243,69 @@
 <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
 <script type="text/javascript">
 $(document).on('click', '.role_btn', function(){
   $('.role_btn').css("background-color", "");  
   $(this).css("background-color", "#0e0f11");  
 })
-    
+
+$(document).on('change mousemove', '.size_range', function(){
+  $(this).parents('.unit_filter').find('.selected_unit').html(' ('+$(this).val()+' In)')
+})
+$(document).on('change mousemove', '.price_range', function(){
+  $(this).parents('.filterBlock').find('.price_selected').html('Price ($'+$(this).val()+')')
+})
+
+
+$(document).on('keyup', '#site_filter', function(){
+  var this_filter = $(this);
+  var site_filter = $('#site_filter').val();
+  var data_from = "ajax";
+  $.ajax({
+    url: "{{url('filter_search')}}",
+    type: 'POST',
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {filter_key:site_filter, data_from:data_from},
+
+    success: function(res){
+        if(res.status=="200"){
+            $(this_filter).parents('.searchbar').find('.filter_result').html(res.result);
+        }else{
+            
+        }
+    },
+    error: function (errormessage) {
+        console.log(errormessage);
+    }
+});
+})
+
+$(document).ready(function(){
+  $('#site_filter').typeahead({
+    ajax: {
+        url: '/cities/list',
+        method: 'post',
+        triggerLength: 1
+    },
+    onSelect: displayResult
+  });  
+  $('#site_filter').typeahead({
+    ajax:'AJAX URL'
+  // source: [
+  //   { id: 1, name:'Value 1' },
+  //   { id: 2, name:'Value 2' },
+  //   { id: 3, name:'Value 3' },
+  // ]
+});
+
+function displayResult(item) {
+  $('.alert').show().html('You selected <strong>' + item.value + '</strong>: <strong>' + item.text + '</strong>');
+}
+
+})
 function setUserRole(value){
 // alert(value);
 
