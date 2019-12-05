@@ -362,3 +362,4 @@
 </section>
 <!-- End Artworks Section -->
 @include('layouts.frontend.comman_footer')
+

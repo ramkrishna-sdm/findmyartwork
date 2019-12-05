@@ -249,6 +249,15 @@ $(document).on('click', '.role_btn', function(){
   $('.role_btn').css("background-color", "");  
   $(this).css("background-color", "#0e0f11");  
 })
+
+$(document).on('change mousemove', '.size_range', function(){
+  $(this).parents('.unit_filter').find('.selected_unit').html(' ('+$(this).val()+' In)')
+})
+$(document).on('change mousemove', '.price_range', function(){
+  $(this).parents('.filterBlock').find('.price_selected').html('Price ($'+$(this).val()+')')
+})
+
+
 $(document).on('keyup', '#site_filter', function(){
   var this_filter = $(this);
   var site_filter = $('#site_filter').val();

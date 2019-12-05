@@ -43,10 +43,10 @@ Route::get('/auth/redirect/{provider}', 'CommonLoginController@redirect');
 Route::get('/callback/{provider}', 'CommonLoginController@callback');
 
 
-
 Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
+
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
 Route::get('/faq', 'Frontend\HomeController@faq');
