@@ -24,6 +24,7 @@ Route::get('/checkphp','CommonLoginController@phpinfo');
 Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['verified','ArtistCheck']],function(){ 
 
 	Route::get('/dashboard','ArtistUserController@index');
+	Route::get('/add_artwork','ArtistUserController@add_artwork');
 
 });
 
