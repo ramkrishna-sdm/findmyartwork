@@ -71,10 +71,10 @@
 
                <div class="filterBlock no-border">
                   <div class="form-group">
-                     <select name="" id="" class="form-control">
+                     <select name="" id="subject_id" class="form-control">
                         <option value="" selected="true" disabled="disabled">Subject</option>
                         @foreach($subjects as $subject)
-                         <option value="">{{$subject->name}}</option>
+                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                         @endforeach
                      </select>
                   </div>
@@ -84,16 +84,16 @@
                   <h5>Type</h5>
                   <div class="form-group">
                      <div class="custom-control custom-checkbox d-flex align-items-center">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Limited Periods</label>
+                        <!-- custom-control-input -->
+                        <label class="custom-control-label variant_checkbox" for="customCheck">Limited Periods<input type="checkbox" class="" name="variant_type" value="limited_edition"></label>
                      </div>
                      <div class="custom-control custom-checkbox d-flex align-items-center">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Originals</label>
+                        
+                        <label class="custom-control-label variant_checkbox" for="customCheck">Originals<input type="checkbox" class="" name="variant_type" value="original"></label>
                      </div>
                      <div class="custom-control custom-checkbox d-flex align-items-center">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Prints</label>
+                        
+                        <label class="custom-control-label variant_checkbox" for="customCheck">Prints<input type="checkbox" class="" name="variant_type" value="art_paint"></label>
                      </div>
                   </div>
                </div>
@@ -116,63 +116,77 @@
 </script>
 
 <script>
+   var category_id = '';
    function getSubCategory(id) {
-      var url = "{{url('buyer/sub-categories')}}";
-      var data = id;
-
+      category_id = id;
+      // var url = "{{url('buyer/sub-categories')}}";
+      var data = {'id':category_id};
+      applyFilter(data);
+   }
+   
+   function applyFilter(data){
       $.ajax({
-         url: url,
-         type: 'POST',
-         data: { id: data },
-         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
+            url: '{{url('buyer/sub-categories')}}',
+            type: 'POST',
+            data: data,
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
 
-         success: function (res) {
-            if (res.status == "200") {
-               console.log(res.html);
-               $("#sub-category").html(res.html);
-            } else {
+            success: function (res) {
+               if (res.status == "200") {
+                  $("#sub-category").html(res.html);
+               } else {
+
+                  return false;
+               }
+            },
+            error: function (errormessage) {
 
                return false;
             }
-         },
-         error: function (errormessage) {
-
-            return false;
-         }
       });
    }
-
+</script>
+<script>
+$(document).on('click', '.variant_checkbox', function () { 
+  // alert("here");
+  var favorite = [];
+  $.each($("input[name='variant_type']:checked"), function(){
+    favorite.push($(this).val());
+  });
+   // alert("My favourite sports are: " + favorite.join(", "));
+});
+</script>   
+<script>
+     $("#price-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$("#subject_id").val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
 </script>
 
-<!-- <script>
-   $("#price-filter").on('change keyup paste', function () {
-      ApplyFilter();
-   });
-
-   function ApplyFilter() {
-      var url = "{{url('buyer/sub-categories')}}";
-      var price = $("#price-filter").val();
-      $.ajax({
-         url: url,
-         type: 'POST',
-         data: { price: price,id:1},
-         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
-
-         success: function (res) {
-            if (res.status == "200") {
-               console.log(res.html);
-               $("#sub-category").html(res.html);
-            } else {
-               return false;
-            }
-         },
-         error: function (errormessage) {
-               return false;
-         }
+<script>
+     $("#height-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
       });
-   }
-</script> -->
+      data = {'id':category_id,'height':$("#height-filter").val(),'price':$("#price-filter").val(),'width':$("#width-filter").val(),'subject_id':$("#subject_id").val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>
+
+<script>
+     $("#width-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'width':$("#width-filter").val(),'height':$("#height-filter").val(),'price':$("#price-filter").val(),'subject_id':$("#subject_id").val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>

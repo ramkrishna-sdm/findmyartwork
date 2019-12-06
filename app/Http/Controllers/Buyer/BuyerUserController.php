@@ -40,7 +40,19 @@ class BuyerUserController extends Controller
     public function getSubCategories(){
         
         $categories = $this->categoryRepository->getData(['id'=>$this->request->id],'first',['artwork','subcategories','artwork.artist','artwork.variants'],0);
-       
+      
+        if($this->request->price){
+           
+        }
+
+        if($this->request->height){
+            
+        }
+
+        if($this->request->width){
+            
+        }
+        
         $returnHTML = view('buyer.sub_categories',compact('categories'))->render();// or method that you prefere to return data + RENDER is the key here
                       return response()->json(array('status' => '200', 'html'=>$returnHTML));
     }
