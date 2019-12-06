@@ -322,7 +322,7 @@ class HomeController extends Controller
         $i = 0;
         $artwork_name = [];
         $all_artwork = [];
-        $user_filter_result = $this->userRepository->getData(['role'=> 'artist', 'filter_key' => $filter_key],'get',['artworks'],0);    
+        $user_filter_result = $this->userRepository->getData(['role'=> 'artist', 'filter_key' => $filter_key],'get',['artworks', 'artworks.artwork_images', 'artworks.variants', 'artworks.artist'],0);
         if(count($user_filter_result) > 0){
             foreach($user_filter_result as $key => $user_arr){
                 if(count($user_arr['artworks']) > 0){
@@ -336,7 +336,7 @@ class HomeController extends Controller
             }
         }
         // dd($user_filter_result);
-        $artwork_result = $this->artworkRepository->getData(['is_deleted'=> 'no', 'filter_key' => $filter_key],'get',[],0);    
+        $artwork_result = $this->artworkRepository->getData(['is_deleted'=> 'no', 'filter_key' => $filter_key],'get',['artwork_images', 'variants', 'artist'],0);
         if(count($artwork_result) > 0){
             foreach ($artwork_result as $key => $value) {
                 $all_artwork[] = $value;
@@ -345,6 +345,8 @@ class HomeController extends Controller
                 $i++;
             }
         }
+        // echo "<pre>";
+        // print_r($all_artwork); die;
         if($data_from == "form"){
             $all_artwork = array_map("unserialize", array_unique(array_map("serialize", $all_artwork)));
             return view('frontend/artwork_lists', compact('all_artwork'));
@@ -355,7 +357,8 @@ class HomeController extends Controller
             if(count($artwork_name) > 0){
                 foreach ($artwork_name as $key => $artwork) {
                     $url = url('artwork_details').'/'.$artwork[0];
-                    $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
+                    // $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
+                    $html .= "<li><a href='javascript::void(0)'>Artwork Detail Page Not Implemented</a></li>";
                 }
             }else{
                 $html .= "<li><a href='javascript::void(0)'>No Result Found</a></li>";
