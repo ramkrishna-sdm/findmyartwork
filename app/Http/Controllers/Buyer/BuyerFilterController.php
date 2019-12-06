@@ -84,12 +84,16 @@ class BuyerFilterController extends Controller
 
         if(count($artwork_array) > 0){
             foreach ($artwork_array as $key => $value) {
-                if(!in_array($value->artwork->id, $artwork_id)){
-                    $artwork_id[] = $value->artwork->id;
-                    $filter_artwork[] = $value->artwork;
+                foreach ($value as $key => $artwork) {
+                    if(!in_array($artwork->id, $artwork_id)){
+                        $artwork_id[] = $artwork->id;
+                        $filter_artwork[] = $artwork;
+                    }
                 }
             }
         }
+        // echo "<pre>";
+        // print_r($filter_artwork); die;
         $categories['artwork'] = $filter_artwork;
         // echo "<pre>";
         // print_r($categories['artwork'] = $filter_artwork); die;
