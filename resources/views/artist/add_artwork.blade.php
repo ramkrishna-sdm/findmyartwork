@@ -1,173 +1,424 @@
 @extends('layouts.frontend.artist.app')
 @section('content')
 <section class="form-box" >
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 form-wizard">
-                <!-- Form Wizard -->
-                <form role="form" enctype="multipart/form-data" action="{{ url('update_artwork') }}" autocomplete="off" method="post">
-                @csrf
-                    <p>Fill all form field to go next step</p>
-                    <!-- Form progress -->
-                    <div class="form-wizard-steps form-wizard-tolal-steps-4">
-                        <div class="form-wizard-progress">
-                            <div class="form-wizard-progress-line" data-now-value="12.25" data-number-of-steps="4" style="width: 12.25%;"></div>
-                        </div>
-                        <!-- Step 1 -->
-                        <div class="form-wizard-step active">
-                            <div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                            <p>Images</p>
-                        </div>
-                        <!-- Step 1 -->
-                        <!-- Step 2 -->
-                        <div class="form-wizard-step">
-                            <div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
-                            <p>Title and description</p>
-                        </div>
-                        <!-- Step 2 -->
-                        <!-- Step 3 -->
-                        <div class="form-wizard-step">
-                            <div class="form-wizard-step-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                            <p>Categorization</p>
-                        </div>
-                        <!-- Step 3 -->
-                        <!-- Step 4 -->
-                        <div class="form-wizard-step">
-                            <div class="form-wizard-step-icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-                            <p>Inventory and pricing</p>
-                        </div>
-                        <!-- Step 4 -->
-                    </div>
-                    <!-- Form progress -->
-                    <!-- Form Step 1 -->
-                    <fieldset>
-                        <h4>Add a primary image of your artwork. To create the best listing, please crop the image to only show the artwork itself: <span>Step 1 - 4</span></h4>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 form-wizard">
+            <!-- Form Wizard -->
+            <form role="form" id="upload_form" enctype="multipart/form-data" action="{{ url('update_artwork') }}" autocomplete="off" method="post">
+               @csrf
+               <p>Fill all form field to go next step</p>
+               <!-- Form progress -->
+               <div class="form-wizard-steps form-wizard-tolal-steps-4">
+                  <div class="form-wizard-progress">
+                     <div class="form-wizard-progress-line" data-now-value="12.25" data-number-of-steps="4" style="width: 12.25%;"></div>
+                  </div>
+                  <!-- Step 1 -->
+                  <div class="form-wizard-step active">
+                     <div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                     <p>Images</p>
+                  </div>
+                  <!-- Step 1 -->
+                  <!-- Step 2 -->
+                  <div class="form-wizard-step">
+                     <div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
+                     <p>Title and description</p>
+                  </div>
+                  <!-- Step 2 -->
+                  <!-- Step 3 -->
+                  <div class="form-wizard-step">
+                     <div class="form-wizard-step-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                     <p>Categorization</p>
+                  </div>
+                  <!-- Step 3 -->
+                  <!-- Step 4 -->
+                  <div class="form-wizard-step">
+                     <div class="form-wizard-step-icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                     <p>Inventory and pricing</p>
+                  </div>
+                  <!-- Step 4 -->
+               </div>
+               <!-- Form progress -->
+               <!-- Form Step 1 -->
+               <fieldset>
+                  <h4>Add a primary image of your artwork. To create the best listing, please crop the image to only show the artwork itself: <span class="steps_number">Step 1 - 4</span></h4>
+                  <div class="container">
+                     <div id="carbon-block" style="margin:50px auto"></div>
+                     <div class="imageSelector">
+                        <label for="cropzee-input" class="image-previewer" data-cropzee="cropzee-input"></label>
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <label for="cropzee-input" class="imageInput" >
+                        <input id="cropzee-input" class="image-label" name="cropzee-input" type="file" accept="image/*"> 
+                        Select Artwork
+                        </label>
+                     </div>
+                     <div class="form-wizard-buttons">
+                        <button type="button" class="btn btn-next">Next</button>
+                     </div>
+                  </div>
+               </fieldset>
+               <fieldset>
+                  <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou. : <span class="steps_number">Step 2 - 4</span></h4>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
+                     </div>
+                     <div class="col-md-6" >
                         <div class="form-group">
-                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                              <div class="fileinput-new thumbnail">
-                                <div id="" class="image-previewer" data-cropzee="cropzee-input"></div>
-
-                                <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
+                           <label>title: <span>*</span></label>
+                           <input type="text" name="title" placeholder="Title" class="form-control required">
+                           <span class="characterLeft">Characters left: 50</span>
+                        </div>
+                        <div class="form-group">
+                           <label>Description: <span>*</span></label>
+                           <textarea class="form-control textarea" rows="9" cols="50">
+                           </textarea>
+                           <span class="characterLeft">Characters left: 50</span>
+                        </div>
+                        <div class="form-group">
+                           <label>Additional Images: </label>
+                           <div class="imagesRow">
+                              <div class="addedImage">
+                                 <div class="imageBox">
+                                    <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="">
+                                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                 </div>
                               </div>
-                              <div class="fileinput-preview fileinput-exists thumbnail" style=""></div>
-                              <div>
-                                <span class="btn btn-rose btn-round btn-file">
-                                  <span class="fileinput-new">Upload</span>
-                                  <span class="fileinput-exists">image</span>
-                                  <input id="cropzee-input" type="file" accept="image/*">
-                                </span>
-                              </div>
-                            </div>
+                              <button class="addImage" data-toggle="modal" data-target="#addArtworkModal" >+</button>
+                           </div>
                         </div>
                         <div class="form-wizard-buttons">
-                            <button type="button" class="btn btn-next">Next</button>
+                           <button type="button" class="btn btn-previous">Previous</button>
+                           <button type="button" class="btn btn-next">Next</button>
                         </div>
-                    </fieldset>
-                    <!-- Form Step 1 -->
-                    <!-- Form Step 2 -->
-                    <fieldset>
-                        <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou. : <span>Step 2 - 4</span></h4>
-                        <div class="form-group">
-                            <div class="col-md-4">
-                                <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
-                            </div>
-                            <div class="col-md-8"  style="float: left;">
-                                    <label>title: <span>*</span></label>
-                                    <input type="text" name="title" placeholder="Title" class="form-control required">
-                                    <label>Description: <span>*</span></label>
-                                    <div class="textarea textarea-muted">
-                                    <textarea rows="4" cols="50">
-                                    At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies. 
-                                    </textarea>
+                     </div>
+                  </div>
+                  <div class="modal fade getStartedModals LoginModal" id="addArtworkModal">
+                     <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                           <div class="modal-body">
+                              <div class="loginForm text-center">
+                                 <div class="col-md-8 offset-md-2">
+                                    <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
+                                    <div class="form-group mt-5">
+                                       <label for="selectImage" > Select Image
+                                       <input type="file"  name="selectImage" id="selectImage">
+                                       </label>
                                     </div>
-                             </div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                       
-                        <div class="form-wizard-buttons">
-                            <button type="button" class="btn btn-previous">Previous</button>
-                            <button type="button" class="btn btn-next">Next</button>
+                     </div>
+                  </div>
+               </fieldset>
+               <!-- Form Step 2 -->
+               <!-- Form Step 3 -->
+               <fieldset>
+                  <h4>The better you describe your artwork using keywords, the higher you will get ranked by search engines: <span class="steps_number">Step 3 - 4</span></h4>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
+                     </div>
+                     <div class="col-md-6 categorySection">
+                        <div class="d-flex justify-content-between cat-sub">
+                           <div class="form-group">
+                              <label>Category: <span>*</span></label>
+                              <select class="form-control">
+                                 <option>Australia</option>
+                                 <option>America</option>
+                                 <option>Bangladesh</option>
+                                 <option>Canada</option>
+                                 <option>England</option>
+                              </select>
+                           </div>
+                           <div class="form-group">
+                              <label>Sub-category: <span>*</span></label>
+                              <select class="form-control">
+                                 <option>Australia</option>
+                                 <option>America</option>
+                                 <option>Bangladesh</option>
+                                 <option>Canada</option>
+                                 <option>England</option>
+                              </select>
+                           </div>
                         </div>
-                    </fieldset>
-                    <!-- Form Step 2 -->
-                    <!-- Form Step 3 -->
-                    <fieldset>
-                        <h4>The better you describe your artwork using keywords, the higher you will get ranked by search engines: <span>Step 3 - 4</span></h4>
                         <div class="form-group">
-                            <div class="col-md-4">
-                                <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
-                            </div>
-                            <div class="col-md-8"  style="float: left;">
-                                <div class="container-fluid">
-                                <div class="row form-inline">
-                                <div class="form-group col-md-6 col-xs-6">
-                                  <label>Category: <span>*</span></label>
-                                    <select class="form-control">
-                                      <option>Australia</option>
-                                      <option>America</option>
-                                      <option>Bangladesh</option>
-                                      <option>Canada</option>
-                                      <option>England</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6 col-xs-6">
-                                    <label>Sub-category: <span>*</span></label>
-                                    <select class="form-control">
-                                      <option>Australia</option>
-                                      <option>America</option>
-                                      <option>Bangladesh</option>
-                                      <option>Canada</option>
-                                      <option>England</option>
-                                    </select>
-                                </div>
-                                </div>
-                                </div>
-                                <div class="form-group">
-                                     <label>Category: <span>*</span></label>
-                                    <select class="form-control">
-                                      <option>Australia</option>
-                                      <option>America</option>
-                                      <option>Bangladesh</option>
-                                      <option>Canada</option>
-                                      <option>England</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Style: <span>*</span></label>
-                                    <div style="float: right;"><input type="checkbox" id="subject_animals"><label for="subject_animals">Animals</label></div>
-                                    <div style="float: right;"><input type="checkbox" id="subject_animals"><label for="subject_animals">Architecture</label></div>
-                                    <div style="float: right;"><input type="checkbox" id="subject_animals"><label for="subject_animals">Flowers and plants</label></div>
-                                    <div style="float: right;"><input type="checkbox" id="subject_animals"><label for="subject_animals">Landscapes</label></div>
-                                </div>     
-                            </div>
+                           <label>Category: <span>*</span></label>
+                           <select class="form-control">
+                              <option>Australia</option>
+                              <option>America</option>
+                              <option>Bangladesh</option>
+                              <option>Canada</option>
+                              <option>England</option>
+                           </select>
                         </div>
-                        
-                        <br/>
-                        <div class="form-wizard-buttons">
-                            <button type="button" class="btn btn-previous">Previous</button>
-                            <button type="button" class="btn btn-next">Next</button>
+                        <div>
+                           <label>Style: <span>*</span></label>
+                           <div class="d-flex justify-content-between cat-sub">
+                              <div class="form-group">
+                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Animals</label></div>
+                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Architecture</label></div>
+                              </div>
+                              <div class="form-group">
+                                 <div ><input type="checkbox" id="subject_animals"><label for="subject_animals">Flowers and plants</label></div>
+                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Landscapes</label></div>
+                              </div>
+                           </div>
                         </div>
-                    </fieldset>
-                    <!-- Form Step 3 -->
-                    <!-- Form Step 4 -->
-                    <fieldset>
-                        <h4>Are you selling an original piece, limited editions or art prints? You can add as many variants as you want now, and always add more later on: <span>Step 4 - 4</span></h4>
-                        <div style="clear:both;"></div>
-                        <div class="form-group">
-                            <label>Bank Name: <span>*</span></label>
-                            <input type="text" name="Bank Name" placeholder="Bank Name" class="form-control required">
+                     </div>
+                  </div>
+                  <br/>
+                  <div class="form-wizard-buttons">
+                     <button type="button" class="btn btn-previous">Previous</button>
+                     <button type="button" class="btn btn-next">Next</button>
+                  </div>
+               </fieldset>
+               <!-- Form Step 3 -->
+               <!-- Form Step 4 -->
+               <fieldset class="inventoryPricing">
+                  <h4>Are you selling an original piece, limited editions or art prints? You can add as many variants as you want now, and always add more later on: <span class="steps_number">Step 4 - 4</span></h4>
+                  <div class="">
+                     <div class="col-md-12 text-center">
+                        <h2>Inventory and pricing</h2>
+                     </div>
+                     <div class="col-md-8 offset-md-2">
+                        <div class="checkboxes d-flex justify-content-center ">
+                           <div class="form-group">
+                              <div ><input type="checkbox" id="subject_animals">
+                                 <label for="subject_animals">Orignal</label>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div ><input type="checkbox" id="subject_animals">
+                                 <label for="subject_animals">Limited Edition</label>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div ><input type="checkbox" id="subject_animals">
+                                 <label for="subject_animals">Art Prints</label>
+                              </div>
+                           </div>
                         </div>
-                        
-                        <br/>
-                        <div class="form-wizard-buttons">
-                            <button type="button" class="btn btn-previous">Previous</button>
-                            <button type="submit" class="btn btn-submit">Submit</button>
+                     </div>
+                  </div>
+                  <div class="sizeRow">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Original</h3>
+                        <a href="#" class="addAnother">add another size</a>
+                     </div>
+                     <div class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                                 <option value="">in</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                                 <option value="">in</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                                 <option value="">in</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                                 <option value="">in</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                                 <option value="">in</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                           </div>
+                           <div class="deleteType">
+                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
                         </div>
-                    </fieldset>
-                    <!-- Form Step 4 -->
-                </form>
-                <!-- Form Wizard -->
-            </div>
-        </div>
-    </div>
+                     </div>
+                  </div>
+                  <div class="modal fade getStartedModals LoginModal" id="addShipping">
+                     <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                           <div class="modal-body">
+                              <div class="loginForm text-center">
+                                 <div class="col-md-12">
+                                    <div class="heading">
+                                       <h2>Shipping</h2>
+                                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo quam blanditiis optio ea, expedita voluptas?</p>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <table class="table table-hover table-bordered tableShipping">
+                                       <thead class="thead-light">
+                                          <tr>
+                                             <th></th>
+                                             <th>Name</th>
+                                             <th>Origins</th>
+                                             <th>Destinations</th>
+                                             <th></th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td>
+                                                <div class=""><input type="radio" name="" id=""></div>
+                                             </td>
+                                             <td>Default</td>
+                                             <td></td>
+                                             <td>Worldwide</td>
+                                             <td>Free</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <div class="d-flex justify-content-between align-item-center shippingButtons">
+                                       <a href="" class="btn btn-border" data-toggle="modal" data-target="#ShippingModal">+ Add New Shipping</a>
+                                       <a href="" class="btn btn-submit">Submit</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal fade getStartedModals LoginModal" id="ShippingModal">
+                     <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                           <div class="modal-body">
+                              <div class="loginForm text-center">
+                                 <div class="col-md-12">
+                                    <div class="heading">
+                                       <h2>Shipping</h2>
+                                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo quam blanditiis optio ea, expedita voluptas?</p>
+                                    </div>
+                                    <div class="divider"></div>
+
+                                       <div class="col-md-12">
+                                       <div class="d-flex justify-content-between shippingDetails">
+                                          <div class="shippingText">
+                                             <h6>Shipping origin</h6>
+                                             <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                          </div>
+                                          <div class="shippingCurrency d-flex justify-content-between">
+                                             <div class="form-group shippingCountry">
+                                                <select class="form-control">
+                                                    <option>USA</option>
+                                                    <option>INDIA</option>
+                                                </select>
+                                               
+                                             </div>
+
+                                               <div class="form-group shippingCurrency">
+                                                <select class="form-control">
+                                                    <option>USA</option>
+                                                  
+                                                </select>
+                                               
+                                             </div>
+                             
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <div class="d-flex justify-content-between shippingDetails">
+                                          <div class="shippingText">
+                                             <h6>Worldwide</h6>
+                                            
+                                          </div>
+                                          <div class="shippingCurrency d-flex justify-content-between">
+                                             <div class="form-group shippingCountry">
+                                                <input type="text" class="form-control" value="0">
+                                                <span class="valueType">INR</span>
+                                             </div>
+                                             
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                      <div class="col-md-12">
+                                       <div class="d-flex justify-content-between shippingDetails">
+                                          <div class="shippingText">
+                                            <h6>Worldwide</h6>
+                                          </div>
+                                          <div class="shippingCurrency d-flex justify-content-between">
+                                             <div class="form-group shippingCountry">
+                                                <input type="text" class="form-control" value="0">
+                                                <span class="valueType">INR</span>
+                                             </div>
+                                             <button class="delCurrency">
+                                             <i class="fa fa-trash" aria-hidden="true"></i>
+                                             </button>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <a href="#" class="btn btn-secondary btn-block my-2">Add another location</a>
+
+                                    </div>
+
+
+                                    <div class="divider"></div>
+
+                                    <div class="col-md-12">
+                                        <h6>
+                                            Shipping specification name
+                   
+                                        </h6>
+                                        <p>Name your setting so you can use it in the future</p>
+                    
+                                    </div>
+                                     <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="" class="form-control" placeholder="From 5 USD international" name="">
+                                        </div>
+
+                                     </div>
+
+
+
+
+                                    <div class="d-flex justify-content-between align-item-center shippingButtons">
+                                       <a href="" class="btn btn-border">Cancel</a>
+                                       <a href="" class="btn btn-submit">Save</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-wizard-buttons">
+                     <button type="button" class="btn btn-previous">Previous</button>
+                     <button type="submit" class="btn btn-submit">Submit</button>
+                  </div>
+               </fieldset>
+               <!-- Form Step 4 -->
+            </form>
+            <!-- Form Wizard -->
+         </div>
+      </div>
+   </div>
 </section>
 @endsection
