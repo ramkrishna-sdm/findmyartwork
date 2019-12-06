@@ -33,6 +33,8 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::get('/dashboard','BuyerUserController@index');
 	Route::get('/categories','BuyerUserController@getCategories');
 	Route::post('/sub-categories','BuyerUserController@getSubCategories');
+	Route::post('/sub-categories-with-price','BuyerUserController@getSubCategoriesWithPrice');
+
 
 });
 

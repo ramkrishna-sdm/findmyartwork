@@ -27,7 +27,7 @@
                <div class="filterBlock">
                 <h5 class="price_selected">Price ($1)</h5>
                 <div class="form-group">
-                   <input type="range" class="custom-range price_range" id="customRange1" min="1" max="9999" value="1">
+                   <input type="range" class="custom-range price_range" id="price-filter" min="1" max="9999" value="1">
                    <div class="price-fields clearfix">
                       <input type="text" value="$1" class="float-left">  
                       <input type="text" value="$9999" class="float-right">
@@ -40,7 +40,7 @@
                 <div class="form-group">
                    <div class="size-space unit_filter">
                       <div class="text-right"><span class="unit">Height</span><span class="unit selected_unit"> (1 In)</span></div>
-                      <input type="range" class="custom-range size_range" id="customRange1" min="1" max="9999" value="1">
+                      <input type="range" class="custom-range size_range" id="height-filter" min="1" max="9999" value="1">
                       <div class="price-fields d-flex justify-content-between">
                          <input type="text" value="1 In">  <input type="text" value="9999 In">
                       </div>
@@ -48,7 +48,7 @@
 
                    <div class="size-space unit_filter">
                       <div class="text-right"><span class="unit">Width</span><span class="unit selected_unit"> (1 In)</span></div>
-                      <input type="range" class="custom-range size_range" id="customRange1" min="1" max="9999" value="1">
+                      <input type="range" class="custom-range size_range" id="width-filter" min="1" max="9999" value="1">
                       <div class="price-fields d-flex justify-content-between">
                          <input type="text" value="1 In">  <input type="text" value="9999 In">
                       </div>
@@ -145,3 +145,34 @@
    }
 
 </script>
+
+<!-- <script>
+   $("#price-filter").on('change keyup paste', function () {
+      ApplyFilter();
+   });
+
+   function ApplyFilter() {
+      var url = "{{url('buyer/sub-categories')}}";
+      var price = $("#price-filter").val();
+      $.ajax({
+         url: url,
+         type: 'POST',
+         data: { price: price,id:1},
+         headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+
+         success: function (res) {
+            if (res.status == "200") {
+               console.log(res.html);
+               $("#sub-category").html(res.html);
+            } else {
+               return false;
+            }
+         },
+         error: function (errormessage) {
+               return false;
+         }
+      });
+   }
+</script> -->
