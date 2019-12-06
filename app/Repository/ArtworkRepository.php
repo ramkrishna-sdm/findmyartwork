@@ -54,6 +54,14 @@ class ArtworkRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['style'])) {
+            $query->where('style', $conditions['style']);
+        }
+
+        if (!empty($conditions['subject'])) {
+            $query->where('subject', $conditions['subject']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }

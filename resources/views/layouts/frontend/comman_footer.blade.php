@@ -244,6 +244,94 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script>
+   var category_id = '';
+   function getSubCategory(id) {
+      category_id = id;
+      // var url = "{{url('buyer/sub-categories')}}";
+      var data = {'id':category_id};
+      applyFilter(data);
+   }
+   
+   function applyFilter(data){
+      $.ajax({
+            url: '{{url('buyer/sub-categories')}}',
+            type: 'POST',
+            data: data,
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+
+            success: function (res) {
+               if (res.status == "200") {
+                  $("#sub-category").html(res.html);
+               } else {
+
+                  return false;
+               }
+            },
+            error: function (errormessage) {
+
+               return false;
+            }
+      });
+   }
+</script>
+<script>
+  $(document).on('click', '.variant_checkbox', function () { 
+    var favorite = [];
+    $.each($("input[name='variant_type']:checked"), function(){
+      favorite.push($(this).val());
+    });
+     // alert("My favourite sports are: " + favorite.join(", "));
+     data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+  });
+</script>   
+<script>
+     $("#price-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>
+
+<script>
+     $("#height-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>
+
+<script>
+     $("#width-filter").on('change keyup paste', function () {
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>
+
+<script>
+      $(document).on('change', 'select', function(){
+        var favorite = [];
+      $.each($("input[name='variant_type']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+   });
+</script>
+
 <script type="text/javascript">
 $(document).on('click', '.role_btn', function(){
   $('.role_btn').css("background-color", "");  

@@ -38,15 +38,19 @@ class VariantRepository implements RepositoryInterface
         }
 
         if (!empty($conditions['height'])) {
-            $query->where('height', $conditions['height']);
+            $query->whereBetween('height', [0,$conditions['height']]);
         }
 
         if (!empty($conditions['width'])) {
-            $query->where('width', $conditions['width']);
+            $query->whereBetween('width', [0,$conditions['width']]);
         }
 
         if (!empty($conditions['price'])) {
             $query->whereBetween('price', [0,$conditions['price']]);
+        }
+
+        if (!empty($conditions['variant_type'])) {
+            $query->whereIn('variant_type', $conditions['variant_type']);
         }
 
         if (!empty($withArr)) {
