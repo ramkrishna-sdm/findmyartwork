@@ -46,7 +46,7 @@ class VariantRepository implements RepositoryInterface
         }
 
         if (!empty($conditions['price'])) {
-            $query->where('price', $conditions['price']);
+            $query->whereBetween('price', [0,$conditions['price']]);
         }
 
         if (!empty($withArr)) {
