@@ -12,7 +12,7 @@ HomeController::header_counter();
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.ico')}}">
-    <title>:: Mobile Application Development Company & Office 365 Professional ::</title>
+    <title>:: ArtViaYou ::</title>
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700&display=swap" rel="stylesheet">

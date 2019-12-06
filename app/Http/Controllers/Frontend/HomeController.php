@@ -297,9 +297,6 @@ class HomeController extends Controller
          if($toEmail){
             Mail::to($toEmail)->send(new ContactForm($comment));
          }
-         
-
-
        return redirect()->to('/contact_us')->with('message', 'Contact Form Submit Successfully');
     }
 
