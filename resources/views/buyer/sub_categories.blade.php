@@ -56,17 +56,22 @@
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">
-                            <h5>The Wave</h5>
+                            <h5>{{$artworks->title}}</h5>
                             @if($artworks->variants)
                             <h6>$ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>
                         <div class="rightBlock">
-                            <span class="likes">456 Likes</span>
+                            <span class="likes">{{count($artworks->artwork_like)}} Likes</span> 
+                            <div class="actionIcons">
+                                <a  class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                            </div>
+                            <!-- <span class="likes">{{count($artworks->artwork_like)}} Likes</span>
                             <div class="actionIcons">
                                 <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
                                 <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

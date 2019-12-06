@@ -50,4 +50,9 @@ class Artwork extends Model
     {
         return $this->hasMany('App\Variant','artwork_id','id');
     } 
+    // Relations with Variant Model
+    public function artwork_like()
+    {
+        return $this->hasMany('App\SavedArtwork','artwork_id','id')->where('status', 'like');
+    } 
 }
