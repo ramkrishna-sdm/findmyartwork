@@ -684,7 +684,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-  background-color: #51cbce;
+  background-color: #2e3192;
   color: #FFFFFF;
 }
 
@@ -732,13 +732,13 @@ fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus,
 fieldset[disabled] .btn-primary:active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #51cbce;
-  border-color: #51cbce;
+  background-color: #2e3192;
+  border-color: #2e3192;
 }
 
 .btn-primary.btn-simple {
-  color: #51cbce;
-  border-color: #51cbce;
+  color: #2e3192;
+  border-color: #2e3192;
 }
 
 .btn-primary.btn-simple:hover,
@@ -751,7 +751,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-primary.btn-link {
-  color: #51cbce;
+  color: #2e3192;
 }
 
 .btn-primary.btn-link:hover,
@@ -1008,7 +1008,7 @@ fieldset[disabled] .btn-warning.active {
 }
 
 .btn-danger {
-  background-color: #ef8157;
+  background-color: #2e3192;
   color: #FFFFFF;
 }
 
@@ -1056,13 +1056,13 @@ fieldset[disabled] .btn-danger:focus,
 fieldset[disabled] .btn-danger.focus,
 fieldset[disabled] .btn-danger:active,
 fieldset[disabled] .btn-danger.active {
-  background-color: #ef8157;
-  border-color: #ef8157;
+  background-color: #2e3192;
+  border-color: #2e3192;
 }
 
 .btn-danger.btn-simple {
-  color: #ef8157;
-  border-color: #ef8157;
+  color: #2e3192;
+  border-color: #2e3192;
 }
 
 .btn-danger.btn-simple:hover,
@@ -1075,7 +1075,7 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .btn-danger.btn-link {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .btn-danger.btn-link:hover,
@@ -1150,8 +1150,8 @@ fieldset[disabled] .btn-outline-default.active {
 
 .btn-outline-primary {
   background: transparent;
-  border: 2px solid #51cbce !important;
-  color: #51cbce;
+  border: 2px solid #2e3192 !important;
+  color: #2e3192;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -1162,9 +1162,9 @@ fieldset[disabled] .btn-outline-default.active {
 .btn-outline-primary:focus:active,
 .btn-outline-primary.active,
 .open>.btn-outline-primary.dropdown-toggle {
-  background-color: #51cbce !important;
+  background-color: #2e3192 !important;
   color: rgba(255, 255, 255, 0.8) !important;
-  border-color: #51cbce !important;
+  border-color: #2e3192 !important;
 }
 
 .btn-outline-primary:hover .caret,
@@ -1205,7 +1205,7 @@ fieldset[disabled] .btn-outline-primary.focus,
 fieldset[disabled] .btn-outline-primary:active,
 fieldset[disabled] .btn-outline-primary.active {
   background-color: transparent !important;
-  border-color: #51cbce !important;
+  border-color: #2e3192 !important;
 }
 
 .btn-outline-success {
@@ -1390,8 +1390,8 @@ fieldset[disabled] .btn-outline-warning.active {
 
 .btn-outline-danger {
   background: transparent;
-  border: 2px solid #ef8157 !important;
-  color: #ef8157;
+  border: 2px solid #2e3192 !important;
+  color: #2e3192;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -1402,9 +1402,9 @@ fieldset[disabled] .btn-outline-warning.active {
 .btn-outline-danger:focus:active,
 .btn-outline-danger.active,
 .open>.btn-outline-danger.dropdown-toggle {
-  background-color: #ef8157 !important;
+  background-color: #2e3192 !important;
   color: rgba(255, 255, 255, 0.8) !important;
-  border-color: #ef8157 !important;
+  border-color: #2e3192 !important;
 }
 
 .btn-outline-danger:hover .caret,
@@ -1445,7 +1445,7 @@ fieldset[disabled] .btn-outline-danger.focus,
 fieldset[disabled] .btn-outline-danger:active,
 fieldset[disabled] .btn-outline-danger.active {
   background-color: transparent !important;
-  border-color: #ef8157 !important;
+  border-color: #2e3192 !important;
 }
 
 .btn-outline-neutral {
@@ -1516,7 +1516,7 @@ fieldset[disabled] .btn-outline-neutral.active {
 
 .btn-neutral {
   background-color: #FFFFFF;
-  color: #51cbce;
+  color: #2e3192;
   color: #66615B;
 }
 
@@ -1569,7 +1569,7 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .btn-neutral.btn-danger {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .btn-neutral.btn-danger:hover,
@@ -1900,8 +1900,8 @@ fieldset[disabled] .btn-link.active {
 
 .has-danger .form-control {
   background-color: #FFC0A4;
-  border: 1px solid #ef8157;
-  color: #ef8157;
+  border: 1px solid #2e3192;
+  color: #2e3192;
 }
 
 .has-danger .form-control.form-control-danger {
@@ -1910,7 +1910,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-danger .form-control:focus {
   background-color: #FFFFFF;
-  border: 1px solid #ef8157;
+  border: 1px solid #2e3192;
 }
 
 .form-control+.form-control-feedback {
@@ -2082,7 +2082,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-error .form-control-feedback,
 .has-error .control-label {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .has-success .form-control-feedback,
@@ -2095,14 +2095,14 @@ fieldset[disabled] .btn-link.active {
 }
 
 .input-group.has-danger .input-group-prepend .input-group-text {
-  border: 1px solid #ef8157;
+  border: 1px solid #2e3192;
   border-right: none;
 }
 
 .input-group.has-danger .error {
   display: block;
   width: 100%;
-  color: #ef8157;
+  color: #2e3192;
   margin-top: 3px;
 }
 
@@ -2169,7 +2169,7 @@ fieldset[disabled] .btn-link.active {
 .has-danger.input-group-focus .input-group-append .input-group-text,
 .has-danger.input-group-focus .input-group-prepend .input-group-text {
   background-color: #FFFFFF;
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .has-success.input-group-focus .input-group-append .input-group-text,
@@ -2180,7 +2180,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-danger .form-control:focus+.input-group-append .input-group-text,
 .has-danger .form-control:focus+.input-group-prepend .input-group-text {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .has-success .form-control:focus+.input-group-append .input-group-text,
@@ -2227,7 +2227,7 @@ fieldset[disabled] .btn-link.active {
 
 .input-group.has-danger .error,
 .form-group.has-danger .error {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .input-group[disabled] .input-group-prepend .input-group-text,
@@ -2370,12 +2370,12 @@ h6 {
 }
 
 a {
-  color: #51cbce;
+  color: #2e3192;
 }
 
 a:hover,
 a:focus {
-  color: #51cbce;
+  color: #2e3192;
 }
 
 h1,
@@ -2501,7 +2501,7 @@ p.description {
 .text-primary,
 a.text-primary:focus,
 a.text-primary:hover {
-  color: #51cbce !important;
+  color: #2e3192 !important;
 }
 
 .text-info,
@@ -2525,7 +2525,7 @@ a.text-warning:hover {
 .text-danger,
 a.text-danger:focus,
 a.text-danger:hover {
-  color: #ef8157 !important;
+  color: #2e3192 !important;
 }
 
 .text-gray,
@@ -2549,21 +2549,21 @@ a.text-gray:hover {
 }
 
 .blockquote.blockquote-primary {
-  border-color: #51cbce;
-  color: #51cbce;
+  border-color: #2e3192;
+  color: #2e3192;
 }
 
 .blockquote.blockquote-primary small {
-  color: #51cbce;
+  color: #2e3192;
 }
 
 .blockquote.blockquote-danger {
-  border-color: #ef8157;
-  color: #ef8157;
+  border-color: #2e3192;
+  color: #2e3192;
 }
 
 .blockquote.blockquote-danger small {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .blockquote.blockquote-white {
@@ -2748,8 +2748,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .badge.badge-primary {
-  border-color: #51cbce;
-  background-color: #51cbce;
+  border-color: #2e3192;
+  background-color: #2e3192;
 }
 
 .badge.badge-info {
@@ -2768,8 +2768,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .badge.badge-danger {
-  border-color: #ef8157;
-  background-color: #ef8157;
+  border-color: #2e3192;
+  background-color: #2e3192;
 }
 
 .badge.badge-neutral {
@@ -3183,7 +3183,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .navbar.navbar-transparent .nav-item .nav-link:not(.btn):hover,
 .navbar.navbar-transparent .nav-item .nav-link:not(.btn):focus:hover,
 .navbar.navbar-transparent .nav-item .nav-link:not(.btn):active {
-  color: #51cbce;
+  color: #2e3192;
 }
 
 .navbar.bg-white a:not(.dropdown-item):not(.btn) {
@@ -3219,7 +3219,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .bg-primary {
-  background-color: #51cbce !important;
+  background-color: #2e3192 !important;
 }
 
 .bg-info {
@@ -3231,7 +3231,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .bg-danger {
-  background-color: #ef8157 !important;
+  background-color: #2e3192 !important;
 }
 
 .bg-warning {
@@ -3713,13 +3713,13 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .dropdown-actions .dropdown-item .link-danger {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .dropdown-actions .dropdown-item .link-danger:hover,
 .dropdown-actions .dropdown-item .link-danger:active,
 .dropdown-actions .dropdown-item .link-danger:focus {
-  color: #ef8157;
+  color: #2e3192;
 }
 
 .dropdown-actions li:hover a,
@@ -5047,7 +5047,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
 .off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
-  color: #51cbce;
+  color: #2e3192;
   opacity: 1;
 }
 
@@ -5111,7 +5111,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
-  color: #ef8157;
+  color: #2e3192;
   opacity: 1;
 }
 
@@ -5354,7 +5354,7 @@ License - nucleoapp.com/license/
 }
 
 .fixed-plugin .badge-orange {
-  background-color: #51cbce;
+  background-color: #2e3192;
 }
 
 .fixed-plugin .badge-yellow {
@@ -5362,7 +5362,7 @@ License - nucleoapp.com/license/
 }
 
 .fixed-plugin .badge-red {
-  background-color: #ef8157;
+  background-color: #2e3192;
 }
 
 .fixed-plugin h5 {
@@ -5633,11 +5633,11 @@ License - nucleoapp.com/license/
 }
 
 .card[data-background-color="orange"] {
-  background-color: #51cbce;
+  background-color: #2e3192;
 }
 
 .card[data-background-color="orange"] .card-header {
-  background-color: #51cbce;
+  background-color: #2e3192;
 }
 
 .card[data-background-color="orange"] .card-footer .stats {
@@ -5645,7 +5645,7 @@ License - nucleoapp.com/license/
 }
 
 .card[data-background-color="red"] {
-  background-color: #ef8157;
+  background-color: #2e3192;
 }
 
 .card[data-background-color="yellow"] {

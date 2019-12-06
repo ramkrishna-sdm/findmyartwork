@@ -26,4 +26,8 @@ class ArtistUserController extends Controller
     public function add_artwork(){
         return view('artist.add_artwork');
     }
+    public function upload_artwork(){
+        dd('hii');
+    }
+
 }

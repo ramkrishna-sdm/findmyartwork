@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 
 	Route::get('/dashboard','ArtistUserController@index');
 	Route::get('/add_artwork','ArtistUserController@add_artwork');
+	Route::get('/upload_artwork','ArtistUserController@upload_artwork');
 
 });
 
