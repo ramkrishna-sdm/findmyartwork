@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Buyer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repository\CategoryRepository;
+use App\Repository\VariantRepository;
 use App\Style;
 use App\Subject;
 
@@ -15,13 +16,15 @@ class BuyerUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request,CategoryRepository $categoryRepository)
+    public function __construct(Request $request,CategoryRepository $categoryRepository,VariantRepository $variantRepository)
     {
         $this->middleware('auth');
 
         $this->request = $request;
 
         $this->categoryRepository = $categoryRepository;
+
+        $this->variantRepository = $variantRepository;
     }
 
     public function index(){
@@ -40,8 +43,6 @@ class BuyerUserController extends Controller
        
         $returnHTML = view('buyer.sub_categories',compact('categories'))->render();// or method that you prefere to return data + RENDER is the key here
                       return response()->json(array('status' => '200', 'html'=>$returnHTML));
-
-
     }
 
 
