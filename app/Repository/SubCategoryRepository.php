@@ -41,6 +41,10 @@ class SubCategoryRepository implements RepositoryInterface
             $query->where('name', $conditions['name']);
         }
 
+        if (!empty($conditions['categoy_id'])) {
+            $query->where('categoy_id', $conditions['categoy_id']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }
