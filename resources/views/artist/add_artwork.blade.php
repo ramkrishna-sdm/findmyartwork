@@ -48,7 +48,7 @@
                         <label for="cropzee-input" class="image-previewer" data-cropzee="cropzee-input"></label>
                         <i class="fa fa-picture-o" aria-hidden="true"></i>
                         <label for="cropzee-input" class="imageInput" >
-                        <input id="cropzee-input" class="image-label" name="media_url" type="file" accept="image/*"> 
+                        <input id="cropzee-input" class="image-label" name="main_image" type="file" accept="image/*"> 
                         Select Artwork
                         </label>
                      </div>
@@ -71,20 +71,21 @@
                         </div>
                         <div class="form-group">
                            <label>Description: <span>*</span></label>
-                           <textarea class="form-control textarea" rows="9" cols="50">
+                           <textarea class="form-control textarea" name="description" rows="9" cols="50">
                            </textarea>
                            <span class="characterLeft">Characters left: 50</span>
                         </div>
                         <div class="form-group">
                            <label>Additional Images: </label>
                            <div class="imagesRow">
-                              <div class="addedImage">
+                              <div class="addedImage" style="display: none;">
                                  <div class="imageBox">
                                     <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="">
                                     <button><i class="fa fa-trash" aria-hidden="true"></i></button>
                                  </div>
                               </div>
-                              <button class="addImage" data-toggle="modal" data-target="#addArtworkModal" >+</button>
+                              <!-- <button class="addImage" data-toggle="modal" data-target="#addArtworkModal" >+</button> -->
+                           <button class="addImage">+<input type="file" multiple id="gallery-photo-add" name="upload_files[]"></button>
                            </div>
                         </div>
                         <div class="form-wizard-buttons">
@@ -102,7 +103,7 @@
                                     <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
                                     <div class="form-group mt-5">
                                        <label for="selectImage" > Select Image
-                                       <input type="file"  name="selectImage" id="selectImage">
+                                       <input id="cropzee-input" class="image-label" name="media_url" type="file" accept="image/*"> 
                                        </label>
                                     </div>
                                  </div>
@@ -136,12 +137,8 @@
                            </div>
                            <div class="form-group">
                               <label>Sub-category: <span>*</span></label>
-                              <select class="form-control" name="sub_category">
-                                 <option value="">Select Sub-category</option>
-                                 <option>America</option>
-                                 <option>Bangladesh</option>
-                                 <option>Canada</option>
-                                 <option>England</option>
+                              <select class="form-control" name="sub_category" id="sub_category">
+                                
                               </select>
                            </div>
                         </div>
@@ -162,7 +159,7 @@
                            <div class="d-flex justify-content-between cat-sub">
                             @foreach ($subjects as $key => $subject)
                               <div class="form-group">
-                                 <div><input type="checkbox" id="subject_animals" name="subject"><label for="subject_animals">{{$subject->name}}</label></div>
+                                 <div><input type="checkbox" class="subject_animals" name="subject"><label for="subject_animals">{{$subject->name}}</label></div>
                               </div>
                             @endforeach
                            </div>
@@ -186,17 +183,17 @@
                      <div class="col-md-8 offset-md-2">
                         <div class="checkboxes d-flex justify-content-center ">
                            <div class="form-group">
-                              <div ><input type="checkbox" id="subject_animals">
+                              <div ><input type="checkbox" name="variant_type" value="original">
                                  <label for="subject_animals">Orignal</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" id="subject_animals">
+                              <div ><input type="checkbox" name="variant_type" value="limited_edition">
                                  <label for="subject_animals">Limited Edition</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" id="subject_animals">
+                              <div ><input type="checkbox" name="variant_type" value="art_paint">
                                  <label for="subject_animals">Art Prints</label>
                               </div>
                            </div>
@@ -213,41 +210,30 @@
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
                               <input class="form-control" type="text" value="0">
-                              <select name="" class="form-control" id="">
+                              <select name="width" class="form-control" id="">
                                  <option value="">cm</option>
-                                 <option value="">in</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
-                              <label for="">Width <span>*</span></label>
+                              <label for="">Height <span>*</span></label>
                               <input class="form-control" type="text" value="0">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
-                                 <option value="">in</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
-                              <label for="">Width <span>*</span></label>
+                              <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="0">
-                              <select name="" class="form-control" id="">
-                                 <option value="">cm</option>
-                                 <option value="">in</option>
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
                               </select>
                            </div>
+                          
                            <div class="col-md-6 form-group">
-                              <label for="">Width <span>*</span></label>
+                              <label for="">Editions <span>*</span></label>
                               <input class="form-control" type="text" value="0">
-                              <select name="" class="form-control" id="">
-                                 <option value="">cm</option>
-                                 <option value="">in</option>
-                              </select>
-                           </div>
-                           <div class="col-md-6 form-group">
-                              <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
-                              <select name="" class="form-control" id="">
-                                 <option value="">cm</option>
-                                 <option value="">in</option>
+                              <select name="editions_count" class="form-control" id="">
+                                 <option value="">Ed.</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
