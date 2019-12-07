@@ -5,8 +5,8 @@
       <div class="row">
          <div class="col-md-12 form-wizard">
             <!-- Form Wizard -->
-            <form role="form" id="upload_form" enctype="multipart/form-data" action="{{ url('update_artwork') }}" autocomplete="off" method="post">
-               @csrf
+            <form role="form" id="upload_form" enctype="multipart/form-data" action="{{url('upload_artwork')}}" autocomplete="off" method="post">
+                @csrf
                <p>Fill all form field to go next step</p>
                <!-- Form progress -->
                <div class="form-wizard-steps form-wizard-tolal-steps-4">
@@ -48,7 +48,7 @@
                         <label for="cropzee-input" class="image-previewer" data-cropzee="cropzee-input"></label>
                         <i class="fa fa-picture-o" aria-hidden="true"></i>
                         <label for="cropzee-input" class="imageInput" >
-                        <input id="cropzee-input" class="image-label" name="cropzee-input" type="file" accept="image/*"> 
+                        <input id="cropzee-input" class="image-label" name="media_url" type="file" accept="image/*"> 
                         Select Artwork
                         </label>
                      </div>
@@ -66,7 +66,7 @@
                      <div class="col-md-6" >
                         <div class="form-group">
                            <label>title: <span>*</span></label>
-                           <input type="text" name="title" placeholder="Title" class="form-control required">
+                           <input id="mkl" type="text" name="title" placeholder="Title" class="form-control required" value="">
                            <span class="characterLeft">Characters left: 50</span>
                         </div>
                         <div class="form-group">
@@ -124,18 +124,20 @@
                         <div class="d-flex justify-content-between cat-sub">
                            <div class="form-group">
                               <label>Category: <span>*</span></label>
-                              <select class="form-control">
-                                 <option>Australia</option>
-                                 <option>America</option>
-                                 <option>Bangladesh</option>
-                                 <option>Canada</option>
-                                 <option>England</option>
+                              <select class="form-control" name="category" id="category_id">
+                                 <option value="">Select Category</option>
+                                 @foreach ($categories as $key => $category)
+                                    <option value="{{ $category->id }}"> 
+                                        {{ $category->name }} 
+                                    </option>
+                                  @endforeach    
+                            </select>
                               </select>
                            </div>
                            <div class="form-group">
                               <label>Sub-category: <span>*</span></label>
-                              <select class="form-control">
-                                 <option>Australia</option>
+                              <select class="form-control" name="sub_category">
+                                 <option value="">Select Sub-category</option>
                                  <option>America</option>
                                  <option>Bangladesh</option>
                                  <option>Canada</option>
@@ -144,26 +146,25 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label>Category: <span>*</span></label>
-                           <select class="form-control">
-                              <option>Australia</option>
-                              <option>America</option>
-                              <option>Bangladesh</option>
-                              <option>Canada</option>
-                              <option>England</option>
+                           <label>Style: <span>*</span></label>
+                           <select class="form-control" name="style">
+                              <option value="">Slecte Subject</option>
+                              @foreach ($styles as $key => $style)
+                                <option value="{{ $style->id }}"> 
+                                    {{ $style->name }} 
+                                </option>
+                              @endforeach  
+                              
                            </select>
                         </div>
                         <div>
-                           <label>Style: <span>*</span></label>
+                           <label>Subject: <span>*</span></label>
                            <div class="d-flex justify-content-between cat-sub">
+                            @foreach ($subjects as $key => $subject)
                               <div class="form-group">
-                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Animals</label></div>
-                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Architecture</label></div>
+                                 <div><input type="checkbox" id="subject_animals" name="subject"><label for="subject_animals">{{$subject->name}}</label></div>
                               </div>
-                              <div class="form-group">
-                                 <div ><input type="checkbox" id="subject_animals"><label for="subject_animals">Flowers and plants</label></div>
-                                 <div><input type="checkbox" id="subject_animals"><label for="subject_animals">Landscapes</label></div>
-                              </div>
+                            @endforeach
                            </div>
                         </div>
                      </div>
