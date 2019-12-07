@@ -12,6 +12,7 @@
     <title>
         {{ __('ArtViaYou') }}
     </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
@@ -168,13 +169,64 @@ $(document).ready(function(){
         }
         })
     }); 
-    $('#category_id').on('click',function(){
-       var id = $('#category_id').val();
 
-    });
 
 });
+$(document).on('change', '#category_id', function() {
+    var category_id = $(this).val();
+    $.ajax({
+        url: "{{ url('/artist/getSubcategory') }}",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: "category_id="+category_id,
+        success: function(res){
+            if(res.status=="200"){
+                $("#sub_category").html(res.result);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+});
 
+
+
+$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        alert(placeToInsertImagePreview);
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    var html = '<div class="addedImage" style="margin-left: 15px;"><div class="imageBox"><img src="'+event.target.result+'"><button><i class="fa fa-trash" aria-hidden="true" onClick="removeDiv(this)"></i></button></div></div>'
+                    $($.parseHTML(html)).insertAfter($('[class^="addedImage"]').last());
+
+                    // $($.parseHTML(html)).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.imagesRow');
+    });
+});
+
+function removeDiv(elem){
+    $(elem).parent('div.addedImage').remove();
+}
 </script>
 
 </body>
