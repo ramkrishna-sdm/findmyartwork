@@ -65,6 +65,7 @@ Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
 Route::get('/contact_us', 'Frontend\HomeController@contact_us');
 Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
 Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
+Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
 
 // Route::get('/', function () {
 //     return view('welcome');

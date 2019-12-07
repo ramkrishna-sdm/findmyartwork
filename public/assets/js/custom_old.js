@@ -48,22 +48,6 @@ $('.artistCarousel').owlCarousel({
   }
 });
 
-
-$('.productDetailCarousel').owlCarousel({
-  loop:true, 
-  dots: false,
-  margin: 20,
-  nav:true,
-  responsiveClass:true,
-  responsive:{
-      200:{
-          items:1
-      
-      }
-  }
- 
-});
-
 // $('#artwork-images').flexgal();
 
 $('.panel-collapse').on('show.bs.collapse', function () {

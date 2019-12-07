@@ -37,6 +37,14 @@ class ArtworkController extends Controller
         $this->artwork_files = '/images/artwork_files/';
     }
 
+    public function artwork_details($id){
+        $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'like_count'],0);
+        // echo "<pre>";
+        // print_r($artwork_result['artist']); die;
+        $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'like_count'],0);
+        return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork'));
+    }
+
     /**
     * Function to create/update artist
     * @param $request(Array)
