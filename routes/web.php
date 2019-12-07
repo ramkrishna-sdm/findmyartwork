@@ -62,9 +62,12 @@ Route::post('/like_artist', 'Frontend\HomeController@like_artist');
 Route::post('/save_artist', 'Frontend\HomeController@save_artist');
 Route::post('/like_artwork', 'Frontend\HomeController@like_artwork');
 Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
+Route::post('/add_to_cart', 'Frontend\HomeController@add_to_cart');
 Route::get('/contact_us', 'Frontend\HomeController@contact_us');
 Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
 Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
+Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
+Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
 
 // Route::get('/', function () {

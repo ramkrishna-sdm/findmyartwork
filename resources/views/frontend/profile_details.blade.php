@@ -29,39 +29,54 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="artWorks" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="artwork-images" id="artwork-images">
+                    <!-- <div class="artwork-images" id="artwork-images">
                         @if(count($profileDetails->artworks) > 0)
                         @foreach($profileDetails->artworks as $key => $artwork)
                         <figure><img src="{{asset('assets/images/art1.jpg')}}"></figure>
                         @endforeach
                         @endif
-                    </div>
-                    <!-- <div class="container">
-                        <div class="col-lg-12  py-4 border d-flex paginationContainer">
-                            <ul class="pagination mx-auto">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"> <img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">.....</a></li>
-                                <li class="page-item"><a class="page-link" href="#">87</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">Next <img src="{{asset('assets/images/right-arrow.svg')}}" alt=""></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div> -->
+
+
+                    <div class="row">
+                    @if(count($profileDetails->artworks) > 0)
+                        @foreach($profileDetails->artworks as $key => $artwork)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="artPost">
+                            <div class="postHeader">
+                                <div class="username">
+                                    <div class="image">
+                                        <div class="profile_img">
+                                            <a href="{{url('profile_details')}}/{{$profileDetails->id}}">
+                                            <img src="{{$profileDetails->media_url}}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <span class="name">{{$profileDetails->first_name}} {{$profileDetails->last_name}}</span>
+                                </div>
+                                <span class="Posted">2 hours ago</span>
+                            </div>
+                            <div class="postImage">
+                                <a href="{{url('artwork_details')}}/{{$artwork->id}}"> <img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a>
+                            </div>
+                            <div class="postFooter">
+                                <div class="leftBlock">
+                                    <h5>{{$artwork->title}}</h5>
+                                    <h6>${{$artwork->variants[0]->price}}</h6>
+                                </div>
+                                <div class="rightBlock">
+                                    <span class="likes">{{count($artwork->artwork_like)}} Likes</span> 
+                                    <div class="actionIcons">
+                                        <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                        <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                </div>
                 </div>
                 <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="profileAbout">

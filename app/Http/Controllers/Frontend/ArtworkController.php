@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
+use App\Repository\SavedArtworkRepository;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
 use Session;
@@ -28,20 +30,43 @@ class ArtworkController extends Controller
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository)
+    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,SavedArtworkRepository $savedArtworkRepository)
     {
         $this->request = $request;
         $this->artworkRepository = $artworkRepository;
         $this->artworkImageRepository = $artworkImageRepository;
         $this->variantRepository = $variantRepository;
+        $this->savedArtworkRepository = $savedArtworkRepository;
         $this->artwork_files = '/images/artwork_files/';
     }
 
-    public function artwork_details($id){
-        $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'like_count'],0);
+    public function items_cart(){
+        $items_cart = [];
+        if(Auth::user()){
+            $items_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
+        }else{
+            $items_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
+        }
+        return view('frontend/items_cart', compact('items_cart'));
+    }
+
+    public function saved_artwork(){
+        $saved_artwork = [];
+        if(Auth::user()){
+            $saved_artwork = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'saved'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
+        }else{
+            $saved_artwork = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'saved'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
+        }
         // echo "<pre>";
-        // print_r($artwork_result['artist']); die;
-        $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'like_count'],0);
+        // print_r($saved_artwork[0]->saved_artwork); die;
+        return view('frontend/saved_artwork', compact('saved_artwork'));
+    }
+
+    public function artwork_details($id){
+        $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
+        // echo "<pre>";
+        // print_r($artwork_result->variants[0]); die;
+        $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
         return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork'));
     }
 
