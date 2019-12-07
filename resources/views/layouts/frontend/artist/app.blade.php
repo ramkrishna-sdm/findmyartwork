@@ -146,10 +146,34 @@
     @include('layouts.navbars.fixed-plugin-js') -->
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
+$(document).ready(function(){
+    $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
+    $('#upload_form').on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+        url:"{{ url('/artist/upload_artwork') }}",
+        method:"POST",
+        data:new FormData(this),
+        dataType:'JSON',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success:function(data)
+        {
+
+        $('#message').css('display', 'block');
+        $('#message').html(data.message);
+        $('#message').addClass(data.class_name);
+        $('#uploaded_image').html(data.uploaded_image);
+        }
+        })
+    }); 
+    $('#category_id').on('click',function(){
+       var id = $('#category_id').val();
 
     });
+
+});
 
 </script>
 
