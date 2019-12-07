@@ -94,7 +94,7 @@
                         <span class="Posted">2 hours ago</span>
                     </div>
                     <div class="postImage">
-                        <a href="#"><img src="{{$artwork->artwork_images[1]->media_url}}" alt=""></a> 
+                        <a href="#"><img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a> 
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">
@@ -104,8 +104,8 @@
                         <div class="rightBlock">
                             <span class="likes">{{$artwork->like_count}} Likes</span> 
                             <div class="actionIcons">
-                                <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
-                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
                             </div>
                         </div>
                     </div>
@@ -152,8 +152,8 @@
                         <div class="rightBlock">
                             <span class="likes">{{$topartist->like_count}} Likes</span> 
                             <div class="actionIcons">
-                                <a class="like_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/like.png')}}" title="Like Artist"></a>
-                                <a class="save_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/saved.png')}}" title="Save for later"></a>
+                                <a class="like_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><i class="far fa-heart"></i> <i class="fas fa-heart"></i></a>
+                                <a class="save_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><i class="far fa-bookmark"></i> <i class="fas fa-bookmark"></i></a>
                             </div>
                         </div>
                     </div>

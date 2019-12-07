@@ -176,7 +176,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}" required autofocus id="last_name">
+                <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}" required id="last_name">
                 @if ($errors->has('last_name'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('last_name') }}</strong>
@@ -196,6 +196,14 @@
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
                   <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+              </div>
+              <div class="form-group">
+                <input name="user_name" type="text" class="form-control" placeholder="User Name" value="{{ old('user_name') }}" id="user_name">
+                @if ($errors->has('user_name'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                  <strong>{{ $errors->first('user_name') }}</strong>
                 </span>
                 @endif
               </div>
@@ -417,6 +425,7 @@ document.getElementById("registerForm").submit();
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#user_name').val('');
     $('#registration-form').click(function(e) {
       e.preventDefault();
       var first_name = $('#first_name').val();

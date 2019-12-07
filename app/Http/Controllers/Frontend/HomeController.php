@@ -354,8 +354,7 @@ class HomeController extends Controller
             if(count($artwork_name) > 0){
                 foreach ($artwork_name as $key => $artwork) {
                     $url = url('artwork_details').'/'.$artwork[0];
-                    // $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
-                    $html .= "<li><a href='javascript::void(0)'>Artwork Detail Page Not Implemented</a></li>";
+                    $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
                 }
             }else{
                 $html .= "<li><a href='javascript::void(0)'>No Result Found</a></li>";
