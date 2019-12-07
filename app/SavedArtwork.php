@@ -20,4 +20,9 @@ class SavedArtwork extends Model
     {
         return $this->hasMany('App\User','user_id','id');
     }
+    // Relations with Category Model
+    public function saved_artwork()
+    {
+        return $this->belongsTo('App\Artwork','artwork_id','id');
+    }
 }

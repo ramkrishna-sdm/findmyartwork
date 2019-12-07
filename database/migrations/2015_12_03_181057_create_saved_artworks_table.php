@@ -16,7 +16,7 @@ class CreateSavedArtworksTable extends Migration
         Schema::create('saved_artworks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('guest_id')->nullable();
-            $table->enum('status',['saved','like'])->nullable();
+            $table->enum('status',['saved','like','cart'])->nullable();
             $table->timestamps();
         });
 

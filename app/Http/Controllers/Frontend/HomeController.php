@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -136,7 +137,7 @@ class HomeController extends Controller
 
     public function profile_details($id){
         $professional = [];
-        $profileDetails = $this->userRepository->getData(['id'=>$id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail'],0);    
+        $profileDetails = $this->userRepository->getData(['id'=>$id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);    
         
         if(!empty($profileDetails)){
             foreach ($profileDetails->artworks as $key => $value) {
@@ -286,6 +287,42 @@ class HomeController extends Controller
         ), 200);
     }
 
+    public function add_to_cart(){
+        // dd(Session::get('random_id'));
+        if(Auth::user()){
+            $saved_artwork = [];
+            $saved_artwork['user_id'] = Auth::user()->id;
+            $saved_artwork['artwork_id'] = $this->request->artwork_id;
+            $saved_artwork['status'] = 'cart';
+
+            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'count',[],0);    
+            if(empty($count_saved)){
+                $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+            }else{
+                $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
+            }
+            $artwork_in_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'count',[],0);
+        }else{
+            $saved_artwork = [];
+            $saved_artwork['guest_id'] = Session::get('random_id');
+            $saved_artwork['artwork_id'] = $this->request->artwork_id;
+            $saved_artwork['status'] = 'cart';
+
+            $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'count',[],0);    
+            if(empty($count_saved)){
+                $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+            }else{
+                $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
+            }
+            $artwork_in_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'count',[],0);
+        }
+        
+        return response()->json(array(
+            'saved_count' => $artwork_in_cart,
+            'status' => 200,
+        ), 200);
+    }
+
     public function save_contact_form_details(){
        $contactForm = $this->contactFormRepository->createUpdateData(['id'=>  $this->request->id], $this->request->all());
 
@@ -302,12 +339,15 @@ class HomeController extends Controller
 
     public static function header_counter()
     {
+        // dd(Request::url());
         $saved_count = "";
-        $cart_count = 12;
+        $cart_count = "";
         if(Auth::user()){
             $saved_count = SavedArtwork::where(['user_id'=> Auth::user()->id, 'status' => 'saved'])->count();
+            $cart_count = SavedArtwork::where(['user_id'=> Auth::user()->id, 'status' => 'cart'])->count();
         }else{
             $saved_count = SavedArtwork::where(['guest_id'=> Session::get('random_id'), 'status' => 'saved'])->count();
+            $cart_count = SavedArtwork::where(['guest_id'=> Session::get('random_id'), 'status' => 'cart'])->count();
         }
         session(['saved_count' => $saved_count, 'cart_count' => $cart_count]);
     }

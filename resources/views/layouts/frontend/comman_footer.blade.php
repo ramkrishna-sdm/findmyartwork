@@ -615,6 +615,7 @@ $(document).on('click', '.like_artwork', function(){
         success: function(res){
             if(res.status=="200"){
                 $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+                $(this_like).parents('.actionBlock').find('.likes').html(res.like_count);
             }else{
                 
             }
@@ -638,6 +639,29 @@ $(document).on('click', '.save_artwork', function(){
         success: function(res){
             if(res.status=="200"){
                 $(document).find('.saved_count').html(res.saved_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+})
+$(document).on('click', '.add_to_cart', function(){
+    var artwork_id = $(this).attr('data-artwork-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('add_to_cart')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artwork_id:artwork_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                $(document).find('.cart_count').html(res.saved_count);
             }else{
                 
             }

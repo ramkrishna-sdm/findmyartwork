@@ -31,21 +31,22 @@
                     <div class="text">
                         <p>{{$artwork_result->desacription}}</p>
                         <ul>
-                            <li>Dimensions, 87 x 110 cm</li>
-                            <li>Mechanism,  Oil colors</li>
-                            <li>Frame,  Wooden</li>
-                            <li>Shipping,  Free</li>
+                            <li>Dimensions, {{$artwork_result->variants[0]->height}} x {{$artwork_result->variants[0]->width}} cm</li>
+                            <li>{{$artwork_result->category_detail->name}}</li>
+                            <li>{{$artwork_result->sub_category_detail->name}}</li>
+                            <li>{{$artwork_result->style_detail->name}}</li>
+                            <li>{{$artwork_result->subject_detail->name}}</li>
                         </ul>
                     </div>
                     <div class="button d-flex align-items-center">
-                        <a href="#" class="btn btn-default btn-block mr-2 mb-2">ADD TO CART</a>
+                        <a href="javascript:void(0)" data-artwork-id="{{$artwork_result->id}}" class="add_to_cart btn btn-default btn-block mr-2 mb-2">ADD TO CART</a>
                         <a href="#" class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
                     </div>
                     <div class="actionBlock">
-                        <span class="likes">{{count($artwork_result->like_count)}} Likes</span> 
+                        <span class="likes">{{count($artwork_result->artwork_like)}} Likes</span> 
                         <div class="actionIcons">
-                            <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
-                            <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
+                            <a  class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
                         </div>
                     </div>
                 </div>
@@ -54,17 +55,18 @@
     </div>
 </section>
 <!-- //Product Details -->
-<!-- Top Artworks Section -->
+<!-- Similar Artworks Section -->
 <section class="topArtworks">
     <div class="container">
         <div class="sectionHeading">
-            <h2 >Top Artworks</h2>
+            <h2 >Similar Artworks</h2>
         </div>
     </div>
     <div class="container">
         <div class="artistSLider">
             <div class="owl-carousel artistCarousel">
                 @foreach($similar_artwork as $artworks)
+                @if($artwork_result->id != $artworks->id)
                 <div class="artPost">
                     <div class="postHeader">
                         <div class="username">
@@ -74,7 +76,7 @@
                         <span class="Posted">2 hours ago</span>
                     </div>
                     <div class="postImage">
-                        <a href="#"> <img src="{{$artworks->artwork_images[0]->media_url}}" alt=""></a>
+                        <a href="{{url('artwork_details')}}/{{$artworks->id}}"> <img src="{{$artworks->artwork_images[0]->media_url}}" alt=""></a>
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">
@@ -84,71 +86,20 @@
                             @endif
                         </div>
                         <div class="rightBlock">
-                            <span class="likes">{{count($artworks->like_count)}} Likes</span> 
+                            <span class="likes">{{count($artworks->artwork_like)}} Likes</span> 
                             <div class="actionIcons">
-                                <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
-                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                <a  class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endif
                 @endforeach
-                
-               <!--  <div class="artPost">
-                    <div class="postHeader">
-                        <div class="username">
-                            <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                            <span class="name">Amenda Berry</span>
-                        </div>
-                        <span class="Posted">2 hours ago</span>
-                    </div>
-                    <div class="postImage">
-                        <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                    </div>
-                    <div class="postFooter">
-                        <div class="leftBlock">
-                            <h5>The Wave</h5>
-                            <h6>$2076</h6>
-                        </div>
-                        <div class="rightBlock">
-                            <span class="likes">456 Likes</span> 
-                            <div class="actionIcons">
-                                <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
-                                <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="artPost">
-                    <div class="postHeader">
-                        <div class="username">
-                            <div class="image"><img src="assets/images/profile-sm.jpg" alt=""></div>
-                            <span class="name">Amenda Berry</span>
-                        </div>
-                        <span class="Posted">2 hours ago</span>
-                    </div>
-                    <div class="postImage">
-                        <a href="#"> <img src="assets/images/post.jpg" alt=""></a>
-                    </div>
-                    <div class="postFooter">
-                        <div class="leftBlock">
-                            <h5>The Wave</h5>
-                            <h6>$2076</h6>
-                        </div>
-                        <div class="rightBlock">
-                            <span class="likes">456 Likes</span> 
-                            <div class="actionIcons">
-                                <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
-                                <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
 </section>
-<!-- End Top Artworks Section -->
-<!-- End Top Artists Section -->
+<!-- End Similar Artworks Section -->
 <!-- Footer Section -->
 @include('layouts.frontend.comman_footer')

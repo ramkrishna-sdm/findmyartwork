@@ -22,7 +22,7 @@
                     <div class="container text-left">
                         <h3>{{$homes->title}}</h3>
                         <p class="mt-3"><?=htmlspecialchars_decode($homes->des_first)?></p>
-                        <a href="#" class="btn btn-default btn-lg mt-4">SELL NOW</a>
+                        <a @if(Auth::user()) href="javascript:void(0);" @else href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" @endif class="btn btn-default btn-lg mt-4">SELL NOW</a>
                     </div>
                 </div>
                 @endif
@@ -94,7 +94,7 @@
                         <span class="Posted">2 hours ago</span>
                     </div>
                     <div class="postImage">
-                        <a href="#"><img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a> 
+                        <a href="{{url('artwork_details')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a> 
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">
@@ -134,7 +134,7 @@
                         <div class="username">
                             <div class="image">
                                 <div class="profile_img">
-                                    <a href="/profile_details/{{$topartist->id}}">
+                                    <a href="{{url('profile_details')}}/{{$topartist->id}}">
                                     <img src="{{$topartist->media_url}}" alt="">
                                     </a>
                                 </div>
@@ -144,7 +144,7 @@
                         <span class="Posted">2 hours ago</span>
                     </div>
                     <div class="postImage">
-                        <a href="#"> <img src="{{$topartist->media_url}}" alt=""></a>
+                        <a href="{{url('profile_details')}}/{{$topartist->id}}"> <img src="{{$topartist->media_url}}" alt=""></a>
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">
@@ -164,7 +164,7 @@
         </div>
     </div>
     <div class="container text-center mt-5">
-        <a href="/artist" class="btn btn-default">VIEW ALL</a>
+        <a href="{{url('artist')}}" class="btn btn-default">VIEW ALL</a>
     </div>
 </section>
 <!-- End Top Artists Section -->
