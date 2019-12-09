@@ -108,12 +108,12 @@
                         <div class="col-sm-6">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="@if(!empty($buyer->media_url)){{$buyer->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100">
+                                    <img src="@if(!empty($buyer->media_url)){{$buyer->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100"  style="border-radius:50%;">
                                     <input  type="file" id="wizard-picture" name="media_url">
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><br>
                     <div class="row">
                         <div class="col-sm-6">
                             <input type="hidden" name="id" value="{{$buyer->id}}">
