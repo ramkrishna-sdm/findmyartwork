@@ -36,7 +36,7 @@
 <section class="topArtworks">
     <div class="container">
         <div class="sectionHeading">
-            <h2>Result Artworks</h2>
+            <h2>Top Artworks</h2>
         </div>
     </div>
     <div class="container">
@@ -65,7 +65,7 @@
                         <div class="rightBlock">
                             <span class="likes">{{count($artworks->artwork_like)}} Likes</span> 
                             <div class="actionIcons">
-                                <a  class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                <a class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
                                 <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
                             </div>
                             <!-- <span class="likes">{{count($artworks->artwork_like)}} Likes</span>

@@ -257,7 +257,6 @@ $(document).ready(function(){
     // .appendTo($('#artPrint'));
     // });
 
-
 });
 $(document).on('change', '#category_id', function() {
     var category_id = $(this).val();

@@ -9,9 +9,18 @@ use App\Repository\VariantRepository;
 use App\Repository\UserRepository;
 use App\Style;
 use App\Subject;
+use Exception;
+use Session;
+use Mail;
+use DB;
+use Hash;
+use Cookie;
+use Segment;
+use DateTime;
 
 class BuyerUserController extends Controller
 {
+    private $users_files;
     /**
      * Create a new controller instance.
      *
@@ -22,6 +31,8 @@ class BuyerUserController extends Controller
         $this->middleware('auth');
 
         $this->request = $request;
+
+        $this->users_files = '/images/users_files/';
 
         $this->categoryRepository = $categoryRepository;
 
@@ -61,8 +72,15 @@ class BuyerUserController extends Controller
     }
 
     public function profile($id){
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+
+        $styles= Style::get();
+
+        $subjects= Subject::get();
+    
         $buyer = $this->userRepository->getData(['id'=>$id],'first',[],0);
-    	return view('buyer.profile', compact('buyer'));
+        
+        return view('buyer.profile', compact('buyer','categories','styles','subjects'));
     }
 
     public function update_buyer()
@@ -79,6 +97,19 @@ class BuyerUserController extends Controller
         $buyer_array['address'] = $this->request->address;
         $buyer_array['postal_code'] = $this->request->postal_code;
         $buyer_array['city'] = $this->request->city;
+        $buyer_array['user_name'] = $this->request->user_name;
+        $buyer_array['country'] = $this->request->country;
+        if($this->request->hasFile('media_url')){
+            $media_url = $this->request->file('media_url');
+            $parts = pathinfo($media_url->getClientOriginalName());
+            $extension = strtolower($parts['extension']);
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $media_url->move(public_path() . $this->users_files, $imageName);  
+            $image_name = url($this->users_files . $imageName);
+            $buyer_array['media_url'] = $image_name;
+
+        }
       
         $buyer = $this->userRepository->createUpdateData(['id'=> $this->request->id],$buyer_array);
         if($buyer){
