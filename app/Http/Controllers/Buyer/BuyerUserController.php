@@ -87,6 +87,7 @@ class BuyerUserController extends Controller
     {
         $validate = $this->validate($this->request, [
             'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
+            'user_name'         => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
             'first_name'         => 'required|string',
             'last_name'         => 'required|string',
         ]);
