@@ -188,10 +188,10 @@ $(document).ready(function(){
     });
     $(document).on('click', '#printsCheck', function(){
         if($(this).prop("checked") == true){
-            $("#artPrint").show();
+            $(".artPrint").show();
         }
         else{
-            $("#artPrint").hide();
+            $(".artPrint").hide();
         }
     });
 
@@ -214,6 +214,48 @@ $(document).ready(function(){
         
     });
 
+
+    $(document).on('click', '.deleteArtprint', function(){
+        var newlen = $('.another_art_print').length;
+        if(newlen == 1){
+            var val = 'art_paint';
+            $('input:checkbox[value="' + val + '"]').prop('checked', false);
+            $(".artPrint").hide();
+        }else{
+            $(this).parents('.another_art_print').remove();
+        }
+    });
+
+    $(document).on('click', '.deleteOriginal', function(){
+        var newlen = $('.another_original').length;
+        if(newlen){
+            var val = 'original';
+            $('input:checkbox[value="' + val + '"]').prop('checked', false);
+            $(".original").hide();
+        }else{
+            $(this).parents('.another_original').remove();
+        }
+    })
+
+    // $(document).on('click','.addAnother', function(){ 
+    //     var clone = $('.'+$(this).attr('rel')).last().clone();
+
+    //     clone.insertAfter($('.artPrint').last());
+        
+    // });
+
+    // $('#addlimtedEadi').click(function() {
+    //     var clone_ltd = $('#limitedEdition').clone();
+    //     clone_ltd.find('.addAnother').remove();
+    //     clone_ltd.remove_
+    //     .appendTo($('#limitedEdition'));
+    // });
+
+    // $('#addArtprint').click(function() {
+    // $('#artPrint')
+    // .clone()
+    // .appendTo($('#artPrint'));
+    // });
 
 });
 $(document).on('change', '#category_id', function() {

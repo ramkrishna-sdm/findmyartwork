@@ -205,7 +205,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="sizeRow" id="original">
+                  <div class="sizeRow original another_original" id="original">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Original</h3>
                      </div>
@@ -236,7 +236,7 @@
                               <label for="">Shipping <span>*</span></label>
                               <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
-                           <div class="deleteType">
+                           <div class="deleteOriginal deleteType">
                               <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
@@ -288,11 +288,11 @@
                         </div>
                      </div>
                   </div>
-                  </div>
-                  <div class="sizeRow" id="artPrint">
+                  <!-- </div> -->
+                  <div class="sizeRow artPrint another_art_print">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Art print</h3>
-                        <a href="#" class="addAnother" id="addArtprint">add another size</a>
+                        <a href="#" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
                      </div>
                      <div id = "AddInventory" class="col-md-12 ">
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
@@ -321,7 +321,7 @@
                               <label for="">Shipping <span>*</span></label>
                               <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
-                           <div class="deleteType">
+                           <div class="deleteArtprint deleteType">
                               <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
