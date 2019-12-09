@@ -105,9 +105,11 @@
       toastr.error('Please Enter Valid Email.');
       return false;
     }else{
-        document.getElementById("buyer-profile-form").submit();
+      
         toastr.options.timeOut = 1500; // 1.5s
-        toastr.submit('Buyer Details Updated Succssfully');    
+        toastr.success('Buyer Details Updated Succssfully');    
+        setTimeout(function(){ document.getElementById("buyer-profile-form").submit(); }, 600);
+       
     }
 });
 });
