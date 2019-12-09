@@ -667,6 +667,8 @@ $(document).on('click', '.save_artwork', function(){
 
         success: function(res){
             if(res.status=="200"){
+                // toastr.options.timeOut = 2000;
+                // toastr.success(res.msg);
                 $(document).find('.saved_count').html(res.saved_count);
             }else{
                 
@@ -690,6 +692,8 @@ $(document).on('click', '.add_to_cart', function(){
 
         success: function(res){
             if(res.status=="200"){
+                toastr.options.timeOut = 2000; // 2s
+                toastr.success(res.msg);
                 $(document).find('.cart_count').html(res.saved_count);
             }else{
                 

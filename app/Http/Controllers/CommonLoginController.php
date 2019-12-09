@@ -64,7 +64,6 @@ class CommonLoginController extends Controller
 
     public function submitLogin(Request $request)
     {
-
         $rules = array(
             'email' => 'required|min:6',
             'password' => 'required|min:6',
@@ -99,8 +98,13 @@ class CommonLoginController extends Controller
 
                 if ($user_role == "buyer")
                 {
-
-                    $url = url('/buyer/dashboard');
+                    if(url()->previous() != url('/')){
+                        // return redirect()->to();
+                        $url = url()->previous();
+                    }else{
+                        $url = url('/buyer/dashboard');
+                    }
+                        
 
                 }
 
