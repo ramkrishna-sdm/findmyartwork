@@ -191,18 +191,15 @@
                      <div class="col-md-8 offset-md-2">
                         <div class="checkboxes d-flex justify-content-center ">
                            <div class="form-group">
-                              <div ><input type="checkbox" id="originalCheck" name="variant_type" value="original">
-                                 <label for="subject_animals">Orignal</label>
+                              <div ><label for="subject_animals"><input type="checkbox" id="originalCheck" name="variant_type" value="original">Orignal</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" id="limitedCheck" name="variant_type" value="limited_edition">
-                                 <label for="subject_animals">Limited Edition</label>
+                              <div ><label for="subject_animals"><input type="checkbox" id="limitedCheck" name="variant_type" value="limited_edition">Limited Edition</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" name="variant_type" id="printsCheck" value="art_paint">
-                                 <label for="subject_animals">Art Prints</label>
+                              <div ><label for="subject_animals"><input type="checkbox" name="variant_type" id="printsCheck" value="art_paint">Art Prints</label>
                               </div>
                            </div>
                         </div>
@@ -245,11 +242,10 @@
                         </div>
                      </div>
                   </div>
-                  <div id="limitedEdition_main">
-                  <div class="sizeRow" id="limitedEdition">
+                  <div class="sizeRow limitedEdition another_limited_edition">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Limited Edition</h3>
-                        <a href="#" class="addAnother" id="addlimtedEadi">add another size</a>
+                        <a href="#" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
                      </div>
                      <div id = "AddInventory" class="col-md-12 ">
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
@@ -286,7 +282,7 @@
                               <label for="">Shipping <span>*</span></label>
                               <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
-                           <div class="deleteType">
+                           <div class="deleteLimtedEdition deleteType">
                               <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
