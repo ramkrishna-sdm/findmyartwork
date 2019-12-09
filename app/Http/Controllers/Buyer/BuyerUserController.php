@@ -72,8 +72,15 @@ class BuyerUserController extends Controller
     }
 
     public function profile($id){
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+
+        $styles= Style::get();
+
+        $subjects= Subject::get();
+    
         $buyer = $this->userRepository->getData(['id'=>$id],'first',[],0);
-    	return view('buyer.profile', compact('buyer'));
+        
+        return view('buyer.profile', compact('buyer','categories','styles','subjects'));
     }
 
     public function update_buyer()
