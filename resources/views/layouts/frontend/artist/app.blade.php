@@ -180,10 +180,10 @@ $(document).ready(function(){
     });
     $(document).on('click', '#limitedCheck', function(){
         if($(this).prop("checked") == true){
-            $("#limitedEdition").show();
+            $(".limitedEdition").show();
         }
         else{
-            $("#limitedEdition").hide();
+            $(".limitedEdition").hide();
         }
     });
     $(document).on('click', '#printsCheck', function(){
@@ -195,18 +195,39 @@ $(document).ready(function(){
         }
     });
 
-    $('#addlimtedEadi').click(function() {
-        var clone_ltd = $('#limitedEdition').clone();
-        clone_ltd.find('.addAnother').remove();
-        clone_ltd.remove_
-        .appendTo($('#limitedEdition'));
+    $(document).on('click', '.deleteLimtedEdition', function(){
+        var newlen = $('.another_limited_edition').length;
+        if(newlen == 1){
+            var val = 'limited_edition';
+            $('input:checkbox[value="' + val + '"]').prop('checked', false);
+
+            // $('#limitedCheck').attr('checked', false);
+            $(".limitedEdition").hide();
+        }else{
+            $(this).parents('.another_limited_edition').remove();
+        }
+    })
+
+    $(document).on('click','#addlimtedEadi', function(){ 
+        var clone = $('.'+$(this).attr('rel')).last().clone();
+        // clone.find('.addAnother').remove();
+
+        clone.insertAfter($('.limitedEdition').last());
+        
     });
 
-    $('#addArtprint').click(function() {
-    $('#artPrint')
-    .clone()
-    .appendTo($('#artPrint'));
-    });
+    // $('#addlimtedEadi').click(function() {
+    //     var clone_ltd = $('#limitedEdition').clone();
+    //     clone_ltd.find('.addAnother').remove();
+    //     clone_ltd.remove_
+    //     .appendTo($('#limitedEdition'));
+    // });
+
+    // $('#addArtprint').click(function() {
+    // $('#artPrint')
+    // .clone()
+    // .appendTo($('#artPrint'));
+    // });
 
 
 });
