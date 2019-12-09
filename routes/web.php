@@ -35,7 +35,9 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 
 	Route::get('/dashboard','BuyerUserController@index');
 	Route::post('/sub-categories','BuyerFilterController@getSubCategories');
-	Route::get('/profile','BuyerUserController@profile');
+	Route::get('/profile/{id}', 'BuyerUserController@profile');
+	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
+	
 
 });
 
