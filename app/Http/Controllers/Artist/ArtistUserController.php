@@ -11,6 +11,8 @@ use App\Repository\CategoryRepository;
 use App\Repository\SubCategoryRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\StyleRepository;
+use App\Repository\UserRepository;
+
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
@@ -30,7 +32,7 @@ class ArtistUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository)
+    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository,UserRepository $userRepository)
     {
         $this->middleware('auth');
         $this->request = $request;
@@ -53,6 +55,49 @@ class ArtistUserController extends Controller
         $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
         return view('artist.add_artwork', compact('categories','subjects','styles'));
+    }
+
+    public function profile(){
+        
+        return view('artist.profile');
+    } 
+
+    public function update_artist(){
+        $validate = $this->validate($this->request, [
+            'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
+            'user_name'         => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
+            'first_name'         => 'required|string',
+            'last_name'         => 'required|string',
+        ]);
+        $artist_array = [];
+        $artist_array['first_name'] = $this->request->first_name;
+        $artist_array['last_name'] = $this->request->last_name;
+        $artist_array['email'] = $this->request->email;
+        $artist_array['address'] = $this->request->address;
+        $artist_array['postal_code'] = $this->request->postal_code;
+        $artist_array['city'] = $this->request->city;
+        $artist_array['user_name'] = $this->request->user_name;
+        $artist_array['country'] = $this->request->country;
+        if($this->request->hasFile('media_url')){
+            $media_url = $this->request->file('media_url');
+            $parts = pathinfo($media_url->getClientOriginalName());
+            $extension = strtolower($parts['extension']);
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $media_url->move(public_path() . $this->users_files, $imageName);  
+            $image_name = url($this->users_files . $imageName);
+            $artist_array['media_url'] = $image_name;
+
+        }
+      
+        $artist = $this->userRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
+        if($artist){
+            \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
+            return redirect('/artist/profile/'.$artist->id);
+        }else{
+            \Session::flash('error_message', 'Something went wrong.');
+            return back()->withInput();
+        }
     }
     
     function upload_artwork(Request $request)

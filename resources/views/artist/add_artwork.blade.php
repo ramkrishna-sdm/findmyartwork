@@ -234,10 +234,10 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
                            <div class="deleteOriginal deleteType">
-                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
                      </div>
@@ -245,7 +245,7 @@
                   <div class="sizeRow limitedEdition another_limited_edition">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Limited Edition</h3>
-                        <a href="#" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
+                        <a href="javascript:void(0);" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
                      </div>
                      <div id = "AddInventory" class="col-md-12 ">
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
@@ -280,10 +280,10 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
                            <div class="deleteLimtedEdition deleteType">
-                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
                      </div>
@@ -292,7 +292,7 @@
                   <div class="sizeRow artPrint another_art_print">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Art print</h3>
-                        <a href="#" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
+                        <a href="javascript:void(0);" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
                      </div>
                      <div id = "AddInventory" class="col-md-12 ">
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
@@ -319,10 +319,10 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
                            </div>
                            <div class="deleteArtprint deleteType">
-                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
                            </div>
                         </div>
                      </div>
@@ -442,7 +442,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <a href="#" class="btn btn-secondary btn-block my-2">Add another location</a>
+                                        <a href="javascript:void(0);" class="btn btn-secondary btn-block my-2">Add another location</a>
 
                                     </div>
 
