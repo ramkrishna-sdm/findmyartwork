@@ -13,8 +13,18 @@
                 <h4>Profile Management</h4>
             </div>      
         </div>
-        <form method="post"  action="{{ url('/buyer/update_buyer') }}">
+        <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data">
         @csrf
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="picture-container">
+                        <div class="picture">
+                            <img src="@if(!empty($buyer->media_url)){{$buyer->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100">
+                            <input  type="file" id="wizard-picture" name="media_url">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <input type="hidden" name="id" value="{{$buyer->id}}">

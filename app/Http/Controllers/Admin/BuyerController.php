@@ -149,7 +149,7 @@ class BuyerController extends Controller
             $media_url->move(public_path() . $this->users_files, $imageName);  
             $image_name = url($this->users_files . $imageName);
             $buyer_array['media_url'] = $image_name;
-
+          
         }
         $buyer = $this->userRepository->createUpdateData(['id'=> $this->request->id],$buyer_array);
         if($buyer){
