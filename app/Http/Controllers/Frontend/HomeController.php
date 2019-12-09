@@ -15,6 +15,7 @@ use App\Repository\FaqRepository;
 use App\Repository\ContactFormRepository;
 use App\Repository\SubCategoryRepository;
 use App\Repository\StyleRepository;
+use App\Repository\SubjectRepository;
 use App\Repository\VariantRepository;
 use App\SavedArtwork;
 use App\SavedArtist;
@@ -33,7 +34,7 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository, SubCategoryRepository $subCategoryRepository, StyleRepository $styleRepository, VariantRepository $variantRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository, SubCategoryRepository $subCategoryRepository, StyleRepository $styleRepository, VariantRepository $variantRepository, SubjectRepository $subjectRepository)
     {
         // dd(Session::has('random_id'));
         $this->request = $request;
@@ -49,6 +50,7 @@ class HomeController extends Controller
         $this->subCategoryRepository = $subCategoryRepository;
         $this->styleRepository = $styleRepository;
         $this->variantRepository = $variantRepository;
+        $this->subjectRepository = $subjectRepository;
     }
 
     public function __destruct(){
@@ -354,56 +356,68 @@ class HomeController extends Controller
      
     public function filter_search(){
         // dd(Input::get('filter_key'));
-        $filter_key = Input::get('filter_key');
-        $data_from = Input::get('data_from');
-        $i = 0;
-        $artwork_name = [];
-        $all_artwork = [];
-        $user_filter_result = $this->userRepository->getData(['role'=> 'artist', 'filter_key' => $filter_key],'get',['artworks', 'artworks.artwork_images', 'artworks.variants', 'artworks.artist'],0);
-        if(count($user_filter_result) > 0){
-            foreach($user_filter_result as $key => $user_arr){
-                if(count($user_arr['artworks']) > 0){
-                    foreach ($user_arr['artworks'] as $key => $artwork) {
-                        $all_artwork[] = $artwork;
-                        $artwork_name[$i][0] = $artwork['id'];
-                        $artwork_name[$i][1] = $artwork['title'];
-                        $i++;
+        if(!empty(Input::get('data_from'))){
+            $filter_key = Input::get('filter_key');
+            $data_from = Input::get('data_from');
+            $i = 0;
+            $artwork_name = [];
+            $all_artwork = [];
+            $user_filter_result = $this->userRepository->getData(['role'=> 'artist', 'filter_key' => $filter_key],'get',['artworks', 'artworks.artwork_images', 'artworks.variants', 'artworks.artist', 'artworks.artwork_like'],0);
+            if(count($user_filter_result) > 0){
+                foreach($user_filter_result as $key => $user_arr){
+                    if(count($user_arr['artworks']) > 0){
+                        foreach ($user_arr['artworks'] as $key => $artwork) {
+                            $all_artwork[] = $artwork;
+                            $artwork_name[$i][0] = $artwork['id'];
+                            $artwork_name[$i][1] = $artwork['title'];
+                            $i++;
+                        }
                     }
                 }
             }
-        }
-        // dd($user_filter_result);
-        $artwork_result = $this->artworkRepository->getData(['is_deleted'=> 'no', 'filter_key' => $filter_key],'get',['artwork_images', 'variants', 'artist'],0);
-        if(count($artwork_result) > 0){
-            foreach ($artwork_result as $key => $value) {
-                $all_artwork[] = $value;
-                $artwork_name[$i][0] = $value['id'];
-                $artwork_name[$i][1] = $value['title'];
-                $i++;
-            }
-        }
-        // echo "<pre>";
-        // print_r($all_artwork); die;
-        if($data_from == "form"){
-            $all_artwork = array_map("unserialize", array_unique(array_map("serialize", $all_artwork)));
-            return view('frontend/artwork_lists', compact('all_artwork'));
-        }else{
-            $artwork_name = array_map("unserialize", array_unique(array_map("serialize", $artwork_name)));
-            $html = "";
-            $html .= "<ul>";
-            if(count($artwork_name) > 0){
-                foreach ($artwork_name as $key => $artwork) {
-                    $url = url('artwork_details').'/'.$artwork[0];
-                    $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
+            // dd($user_filter_result);
+            $artwork_result = $this->artworkRepository->getData(['is_deleted'=> 'no', 'filter_key' => $filter_key],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+            if(count($artwork_result) > 0){
+                foreach ($artwork_result as $key => $value) {
+                    $all_artwork[] = $value;
+                    $artwork_name[$i][0] = $value['id'];
+                    $artwork_name[$i][1] = $value['title'];
+                    $i++;
                 }
-            }else{
-                $html .= "<li><a href='javascript::void(0)'>No Result Found</a></li>";
             }
-            $html .= "</ul>";
-            return response()->json(array(
-                'result' => $html,
-                'status' => 200,
-            ), 200);
+            // echo "<pre>";
+            // print_r($all_artwork); die;
+            if($data_from == "form"){
+                $all_artwork = array_map("unserialize", array_unique(array_map("serialize", $all_artwork)));
+                // echo "<pre>";
+                // print_r($all_artwork); die;
+                // $type = "buyer_dashboard";
+                $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
+                $styles= $this->styleRepository->getData([], 'get', [], 0);
+                $subjects= $this->subjectRepository->getData([], 'get', [], 0);
+
+                return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects'));
+            }else{
+                $artwork_name = array_map("unserialize", array_unique(array_map("serialize", $artwork_name)));
+                $html = "";
+                $html .= "<ul>";
+                if(count($artwork_name) > 0){
+                    foreach ($artwork_name as $key => $artwork) {
+                        $url = url('artwork_details').'/'.$artwork[0];
+                        $html .= "<li><a href='".$url."'>".$artwork[1]."</a></li>";
+                    }
+                }else{
+                    $html .= "<li><a href='javascript::void(0)'>No Result Found</a></li>";
+                }
+                $html .= "</ul>";
+                return response()->json(array(
+                    'result' => $html,
+                    'status' => 200,
+                ), 200);
+            }
+        }else{
+            return redirect('/');
         }
+            
     }
 }

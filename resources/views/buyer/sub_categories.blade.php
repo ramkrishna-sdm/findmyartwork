@@ -36,11 +36,12 @@
 <section class="topArtworks">
     <div class="container">
         <div class="sectionHeading">
-            <h2>Top Artworks</h2>
+            <h2>Result Artworks</h2>
         </div>
     </div>
     <div class="container">
         <div class="row">
+            @if(count($categories->artwork) > 0)
             @foreach($categories->artwork as $artworks)
             <div class="col-lg-4 col-md-6">
                 <div class="artPost">
@@ -77,22 +78,9 @@
                 </div>
             </div>
             @endforeach
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12  py-4 border d-flex paginationContainer">
-                <ul class="pagination mx-auto">
-                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span
-                                aria-hidden="true"> <img src="{{asset('assets/images/left-arrow.svg')}}" alt="">
-                                Previous</span></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">Next
-                                <img src="{{asset('assets/images/right-arrow.svg')}}" alt=""></span></a></li>
-                </ul>
-            </div>
+            @else
+            <h5 style="text-align:center;">No Result Found</h5>
+            @endif
         </div>
     </div>
 </section>

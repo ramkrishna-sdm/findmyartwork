@@ -249,8 +249,15 @@
    function getSubCategory(id) {
       category_id = id;
       // var url = "{{url('buyer/sub-categories')}}";
-      var data = {'id':category_id};
+      // var data = {'id':category_id};
+      var favorite = [];
+        $.each($("input[name='variant_type']:checked"), function(){
+          favorite.push($(this).val());
+        });
+      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
+      
+      // applyFilter(data);
    }
    
    function applyFilter(data){
@@ -291,9 +298,9 @@
 <script>
      $("#price-filter").on('change keyup paste', function () {
         var favorite = [];
-      $.each($("input[name='variant_type']:checked"), function(){
-        favorite.push($(this).val());
-      });
+        $.each($("input[name='variant_type']:checked"), function(){
+          favorite.push($(this).val());
+        });
       data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
    });
