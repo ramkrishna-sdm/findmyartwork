@@ -199,14 +199,6 @@
                 </span>
                 @endif
               </div>
-              <div class="form-group">
-                <input name="user_name" type="text" class="form-control" placeholder="User Name" value="{{ old('user_name') }}" id="user_name">
-                @if ($errors->has('user_name'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                  <strong>{{ $errors->first('user_name') }}</strong>
-                </span>
-                @endif
-              </div>
               <input type="hidden" id="user_role" name="role" required>
               <a href="#" class="btn btn-default btn-block" id="registration-form" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>
             </div>
