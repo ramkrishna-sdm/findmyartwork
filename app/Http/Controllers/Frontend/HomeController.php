@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-// use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
+// use Request;
 use App\Http\Controllers\Controller;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
