@@ -14,6 +14,7 @@ Auth::routes(['verify' => true]);
 /*************Common Login Controller Routes Start************************/
 Route::get('/user_login','CommonLoginController@login');
 Route::post('/submit_login','CommonLoginController@submitLogin');
+Route::post('/check_email', 'CommonLoginController@check_email_status');
 Route::get('/logout','CommonLoginController@logout');
 /*************Common Login Controller Routes End************************/
 
@@ -34,7 +35,9 @@ Route::post('/buyer/sub-categories','Buyer\BuyerFilterController@getSubCategorie
 
 Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
-	Route::get('/dashboard','BuyerUserController@index');
+Route::get('/dashboard','BuyerUserController@index');
+Route::get('/profile/{id}', 'BuyerUserController@profile');
+Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 
 });
 

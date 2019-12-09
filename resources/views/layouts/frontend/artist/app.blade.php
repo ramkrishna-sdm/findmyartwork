@@ -51,7 +51,7 @@
                 <img src="{{ asset('paper') }}/img/logo-small.png">
               </div>
             </a>
-            <a href="{{url('/artist/dashboard')}}" class="simple-text logo-normal">
+            <a href="{{url('/')}}" class="simple-text logo-normal">
              ArtViaYou
             </a>
         </div>
@@ -149,26 +149,64 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
-    $('#upload_form').on('submit', function(event){
-        event.preventDefault();
-        $.ajax({
-        url:"{{ url('/artist/upload_artwork') }}",
-        method:"POST",
-        data:new FormData(this),
-        dataType:'JSON',
-        contentType: false,
-        cache: false,
-        processData: false,
-        success:function(data)
-        {
+    // $('#upload_form').on('submit', function(event){
+    // event.preventDefault();
+    // $.ajax({
+    // url:"{{ url('/artist/upload_artwork') }}",
+    // method:"POST",
+    // data:new FormData(this),
+    // dataType:'JSON',
+    // contentType: false,
+    // cache: false,
+    // processData: false,
+    // success:function(data)
+    // {
 
-        $('#message').css('display', 'block');
-        $('#message').html(data.message);
-        $('#message').addClass(data.class_name);
-        $('#uploaded_image').html(data.uploaded_image);
+    // $('#message').css('display', 'block');
+    // $('#message').html(data.message);
+    // $('#message').addClass(data.class_name);
+    // $('#uploaded_image').html(data.uploaded_image);
+    // }
+    // })
+    // }); 
+    $(".sizeRow").hide();
+    $(document).on('click', '#originalCheck', function(){
+        if($(this).prop("checked") == true){
+            $("#original").show();
         }
-        })
-    }); 
+        else{
+            $("#original").hide();
+        }
+    });
+    $(document).on('click', '#limitedCheck', function(){
+        if($(this).prop("checked") == true){
+            $("#limitedEdition").show();
+        }
+        else{
+            $("#limitedEdition").hide();
+        }
+    });
+    $(document).on('click', '#printsCheck', function(){
+        if($(this).prop("checked") == true){
+            $("#artPrint").show();
+        }
+        else{
+            $("#artPrint").hide();
+        }
+    });
+
+    $('#addlimtedEadi').click(function() {
+        var clone_ltd = $('#limitedEdition').clone();
+        clone_ltd.find('.addAnother').remove();
+        clone_ltd.remove_
+        .appendTo($('#limitedEdition'));
+    });
+
+    $('#addArtprint').click(function() {
+    $('#artPrint')
+    .clone()
+    .appendTo($('#artPrint'));
+    });
 
 
 });
@@ -199,7 +237,6 @@ $(document).on('change', '#category_id', function() {
 $(function() {
     // Multiple images preview in browser
     var imagesPreview = function(input, placeToInsertImagePreview) {
-        alert(placeToInsertImagePreview);
         if (input.files) {
             var filesAmount = input.files.length;
 
@@ -227,6 +264,8 @@ $(function() {
 function removeDiv(elem){
     $(elem).parent('div.addedImage').remove();
 }
+
+
 </script>
 
 </body>

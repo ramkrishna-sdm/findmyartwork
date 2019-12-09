@@ -206,5 +206,18 @@ class CommonLoginController extends Controller
         }
         return $user;
     }
+
+    public function check_email_status(){
+       
+        $users = User::where('email', $this->request->email)->first();
+
+        if(!empty($users)){
+            return response()->json(array(
+                'message' => 'Email Already Exists',
+                'status' => 200,
+            ) , 200);
+        }
+        
+    }
 }
 

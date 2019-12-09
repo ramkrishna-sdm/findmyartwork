@@ -200,7 +200,7 @@
                 @endif
               </div>
               <input type="hidden" id="user_role" name="role" required>
-              <a href="#" class="btn btn-default btn-block" id="registration-form" data-toggle="modal" data-target="#SignUpModal3"  data-dismiss="modal" aria-label="Close">Next Step</a>
+              <a href="#" class="btn btn-default btn-block" id="registration-form" data-toggle="modal" aria-label="Close">Next Step</a>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-body">
-          <a href"=#" class="goBack" data-toggle="modal" data-target="#SignUpModal2" data-dismiss="modal" aria-label="Close"><img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Go back</a>
+          <a href="#" class="goBack" data-toggle="modal" data-target="#SignUpModal2" data-dismiss="modal" aria-label="Close"><img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Go back</a>
           <div class="loginForm text-center">
             <h3>Account type</h3>
             <div class="col-md-8 offset-md-2">
@@ -456,9 +456,39 @@ document.getElementById("registerForm").submit();
               toastr.options.timeOut = 1500; // 1.5s
               toastr.error('Please enter Password more than 6 characters.');
               return false;
-      }
-      else{
-              $("#SignUpModal3").show();
+      }else if($.trim(email)){
+        $.ajax({
+        url: "{{url('check_email')}}",
+        type: 'POST',
+        data:{'email':email},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        
+        success: function(res){
+          if(res.status=="200"){
+            toastr.options.timeOut = 1500; // 2s
+            toastr.error(res.message);
+            return false;
+          }
+          else{
+            console.log('ajax else');
+            //$("#SignUpModal3").show();
+            $('#SignUpModal2').modal('hide');
+            $('#SignUpModal3').modal('show');
+          }
+        },
+        error: function (errormessage) {
+          toastr.options.timeOut = 1500; // 1.5s
+          toastr.error('You are Not Authorised Person.');
+          return false;
+        }
+        });
+      }else{
+              console.log('else----condition');
+              //$("#SignUpModal3").show();
+              $('#SignUpModal2').modal('hide');
+              $('#SignUpModal3').modal('show');
       }
     });
   });
