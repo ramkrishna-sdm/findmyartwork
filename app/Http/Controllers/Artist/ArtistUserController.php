@@ -58,8 +58,8 @@ class ArtistUserController extends Controller
     function upload_artwork(Request $request)
     {
 
-        // echo "<pre>";
-        // print_r($this->request->file('upload_files')); die;
+        echo "<pre>";
+        print_r($this->request->file('upload_files')); die;
         // $validator = $this->validate($request,[
         //     'media_url' => 'required_without:old_image|mimes:jpg,png,jpeg,gif',
         // ]);
