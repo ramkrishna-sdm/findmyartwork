@@ -214,19 +214,6 @@ $(document).ready(function(){
         
     });
 
-    // $('#addlimtedEadi').click(function() {
-    //     var clone_ltd = $('#limitedEdition').clone();
-    //     clone_ltd.find('.addAnother').remove();
-    //     clone_ltd.remove_
-    //     .appendTo($('#limitedEdition'));
-    // });
-
-    // $('#addArtprint').click(function() {
-    // $('#artPrint')
-    // .clone()
-    // .appendTo($('#artPrint'));
-    // });
-
 
 });
 $(document).on('change', '#category_id', function() {
