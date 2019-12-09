@@ -199,6 +199,14 @@
                 </span>
                 @endif
               </div>
+              <div class="form-group">
+                <input name="user_name" type="user_name" class="form-control" placeholder="User Name" required id="user_name">
+                @if ($errors->has('user_name'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                  <strong>{{ $errors->first('user_name') }}</strong>
+                </span>
+                @endif
+              </div>
               <input type="hidden" id="user_role" name="role" required>
               <a href="#" class="btn btn-default btn-block" id="registration-form" data-toggle="modal" aria-label="Close">Next Step</a>
             </div>
@@ -431,6 +439,7 @@ document.getElementById("registerForm").submit();
       var last_name = $('#last_name').val();
       var email = $('#email-address').val();
       var password = $('#register-password').val();
+      var username=$('#user_name').val();
       var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       if($.trim(first_name) == ''){
         toastr.options.timeOut = 1500; // 2s
@@ -456,6 +465,10 @@ document.getElementById("registerForm").submit();
               toastr.options.timeOut = 1500; // 1.5s
               toastr.error('Please enter Password more than 6 characters.');
               return false;
+      }else if($.trim(username)==''){
+              toastr.options.timeOut = 1500; // 2s
+              toastr.error('Please Enter UserName');
+              return false;
       }else if($.trim(email)){
         $.ajax({
         url: "{{url('check_email')}}",
@@ -467,15 +480,45 @@ document.getElementById("registerForm").submit();
         
         success: function(res){
           if(res.status=="200"){
+            console.log('test');
             toastr.options.timeOut = 1500; // 2s
             toastr.error(res.message);
+            e.preventDefault();
             return false;
           }
           else{
-            console.log('ajax else');
+            console.log('ajax else email');
+            if($.trim(username)){
+        $.ajax({
+        url: "{{url('check_username')}}",
+        type: 'POST',
+        data:{'user_name':username},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        
+        success: function(res){
+          if(res.status=="200"){
+            toastr.options.timeOut = 1500; // 2s
+            toastr.error(res.message);
+            e.preventDefault();
+            return false;
+          }
+          else{
+            console.log('ajax else username');
             //$("#SignUpModal3").show();
             $('#SignUpModal2').modal('hide');
             $('#SignUpModal3').modal('show');
+          }
+        },
+        error: function (errormessage) {
+          toastr.options.timeOut = 1500; // 1.5s
+          toastr.error('You are Not Authorised Person.');
+          return false;
+        }
+        });
+      }
+            
           }
         },
         error: function (errormessage) {

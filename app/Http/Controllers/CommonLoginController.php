@@ -223,5 +223,16 @@ class CommonLoginController extends Controller
         }
         
     }
+
+    public function check_username_status(){
+        $users = User::where('user_name', $this->request->user_name)->first();
+
+        if(!empty($users)){
+            return response()->json(array(
+                'message' => 'UserName Already Exists',
+                'status' => 200,
+            ) , 200);
+        }
+    }
 }
 
