@@ -200,15 +200,13 @@ $(document).ready(function(){
         if(newlen == 1){
             var val = 'limited_edition';
             $('input:checkbox[value="' + val + '"]').prop('checked', false);
-
-            // $('#limitedCheck').attr('checked', false);
             $(".limitedEdition").hide();
         }else{
             $(this).parents('.another_limited_edition').remove();
         }
     })
 
-    $(document).on('click','#addlimtedEadi', function(){ 
+    $(document).on('click','.addAnother', function(){ 
         var clone = $('.'+$(this).attr('rel')).last().clone();
         // clone.find('.addAnother').remove();
 
