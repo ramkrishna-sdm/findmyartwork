@@ -291,6 +291,7 @@ class HomeController extends Controller
 
     public function add_to_cart(){
         // dd(Session::get('random_id'));
+        $message = "";
         if(Auth::user()){
             $saved_artwork = [];
             $saved_artwork['user_id'] = Auth::user()->id;
@@ -300,8 +301,10 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $message = "Item Added to Cart!";
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
+                $message = "Item Removed from Cart!";
             }
             $artwork_in_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'count',[],0);
         }else{
@@ -313,14 +316,17 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $message = "Item Added to Cart!";
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
+                $message = "Item Removed from Cart!";
             }
             $artwork_in_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'count',[],0);
         }
         
         return response()->json(array(
             'saved_count' => $artwork_in_cart,
+            'msg' => $message,
             'status' => 200,
         ), 200);
     }
@@ -341,7 +347,6 @@ class HomeController extends Controller
 
     public static function header_counter()
     {
-        // dd(Request::url());
         $saved_count = "";
         $cart_count = "";
         if(Auth::user()){
