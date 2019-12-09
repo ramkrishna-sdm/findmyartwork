@@ -101,6 +101,7 @@
                    
             </div>
             <div id="" class="col-md-9 col-lg-9 col-sm-9">
+                <h4 class="text-center">Profile Mangement</h4>
                 <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data" id="buyer-profile-form">
                 @csrf
                     <div class="row">
