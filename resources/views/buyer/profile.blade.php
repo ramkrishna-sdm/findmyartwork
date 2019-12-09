@@ -1,19 +1,12 @@
 @include('layouts.frontend.header')
-    <div class="message-alert-top">
-        @if(Session::has('success_message'))
-        <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
-        @endif
-        @if(Session::has('error_message'))
-        <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
-        @endif
-    </div>
+    
     <div class="container">
         <div class="row">
            <div class="col-sm-12 text-center">
                 <h4>Profile Management</h4>
             </div>      
         </div>
-        <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data">
+        <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data" id="buyer-profile-form">
         @csrf
             <div class="row">
                 <div class="col-sm-4">
@@ -44,7 +37,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class=" form-control"  placeholder="Enter Email" value="{{$buyer->email}}" name="email">
+                        <input type="text" class=" form-control"  placeholder="Enter Email" value="{{$buyer->email}}" name="email" id="buyer-email">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -69,8 +62,23 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-sm-6">
+                <div class="form-group">
+                        <label for="user_name">User Name</label>
+                        <input type="text" class=" form-control"  placeholder="Enter UserName" value="{{$buyer->user_name}}" name="user_name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                        <label for="postal_code">Country</label>
+                        <input type="text" class=" form-control"  placeholder="Enter Country" value="{{$buyer->country}}" name="country">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-sm-12 text-center" >
-                    <button type="submit" class="btn btn-primary" >Update</button>
+                    <button type="submit" class="btn btn-primary" id="update-profile">Update</button>
                 </div>
             </div>
 
@@ -78,3 +86,29 @@
     </div>
 </section>
 @include('layouts.frontend.comman_footer')
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#update-profile').click(function(e) {
+  e.preventDefault();
+  var email = $('#buyer-email').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }else{
+        document.getElementById("buyer-profile-form").submit();
+        toastr.options.timeOut = 1500; // 1.5s
+        toastr.submit('Buyer Details Updated Succssfully');    
+    }
+});
+});
+</script>

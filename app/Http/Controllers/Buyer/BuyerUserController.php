@@ -90,6 +90,8 @@ class BuyerUserController extends Controller
         $buyer_array['address'] = $this->request->address;
         $buyer_array['postal_code'] = $this->request->postal_code;
         $buyer_array['city'] = $this->request->city;
+        $buyer_array['user_name'] = $this->request->user_name;
+        $buyer_array['country'] = $this->request->country;
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
             $parts = pathinfo($media_url->getClientOriginalName());
