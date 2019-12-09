@@ -15,6 +15,7 @@ Auth::routes(['verify' => true]);
 Route::get('/user_login','CommonLoginController@login');
 Route::post('/submit_login','CommonLoginController@submitLogin');
 Route::post('/check_email', 'CommonLoginController@check_email_status');
+Route::post('/check_username', 'CommonLoginController@check_username_status');
 Route::get('/logout','CommonLoginController@logout');
 /*************Common Login Controller Routes End************************/
 
