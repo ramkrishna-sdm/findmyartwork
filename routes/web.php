@@ -30,10 +30,11 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 
 });
 
+Route::post('/buyer/sub-categories','Buyer\BuyerFilterController@getSubCategories');
+
 Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
 	Route::get('/dashboard','BuyerUserController@index');
-	Route::post('/sub-categories','BuyerFilterController@getSubCategories');
 
 });
 
