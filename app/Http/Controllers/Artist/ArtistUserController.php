@@ -50,10 +50,9 @@ class ArtistUserController extends Controller
 
     public function add_artwork(){
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $subcategories = $this->SubCategoryRepository->getData(['is_deleted'=>'no'],'get',['category'],0);
         $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        return view('artist.add_artwork', compact('categories','subcategories','subjects','styles'));
+        return view('artist.add_artwork', compact('categories','subjects','styles'));
     }
     
     function upload_artwork(Request $request)

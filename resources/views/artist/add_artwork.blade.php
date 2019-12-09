@@ -58,7 +58,7 @@
                   </div>
                </fieldset>
                <fieldset>
-                  <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou. : <span class="steps_number">Step 2 - 4</span></h4>
+                  <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou: <span class="steps_number">Step 2 - 4</span></h4>
                   <div class="row">
                      <div class="col-md-6">
                         <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
@@ -71,8 +71,7 @@
                         </div>
                         <div class="form-group">
                            <label>Description: <span>*</span></label>
-                           <textarea class="form-control textarea" name="description" rows="9" cols="50">
-                           </textarea>
+                           <textarea class="form-control textarea" name="description" rows="9" cols="50"></textarea>
                            <span class="characterLeft">Characters left: 50</span>
                         </div>
                         <div class="form-group">
@@ -145,7 +144,7 @@
                         <div class="form-group">
                            <label>Style: <span>*</span></label>
                            <select class="form-control" name="style">
-                              <option value="">Slecte Subject</option>
+                              <option value="">Slecte Style</option>
                               @foreach ($styles as $key => $style)
                                 <option value="{{ $style->id }}"> 
                                     {{ $style->name }} 
@@ -156,13 +155,22 @@
                         </div>
                         <div>
                            <label>Subject: <span>*</span></label>
-                           <div class="d-flex justify-content-between cat-sub">
+                           <select class="form-control" name="style">
+                              <option value="">Slecte Subject</option>
+                              @foreach ($subjects as $key => $subject)
+                                <option value="{{ $subject->id }}"> 
+                                    {{ $subject->name }} 
+                                </option>
+                              @endforeach  
+                              
+                           </select>
+                           <!-- <div class="d-flex justify-content-between cat-sub">
                             @foreach ($subjects as $key => $subject)
                               <div class="form-group">
                                  <div><input type="checkbox" class="subject_animals" name="subject"><label for="subject_animals">{{$subject->name}}</label></div>
                               </div>
                             @endforeach
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                   </div>
@@ -183,29 +191,67 @@
                      <div class="col-md-8 offset-md-2">
                         <div class="checkboxes d-flex justify-content-center ">
                            <div class="form-group">
-                              <div ><input type="checkbox" name="variant_type" value="original">
+                              <div ><input type="checkbox" id="originalCheck" name="variant_type" value="original">
                                  <label for="subject_animals">Orignal</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" name="variant_type" value="limited_edition">
+                              <div ><input type="checkbox" id="limitedCheck" name="variant_type" value="limited_edition">
                                  <label for="subject_animals">Limited Edition</label>
                               </div>
                            </div>
                            <div class="form-group">
-                              <div ><input type="checkbox" name="variant_type" value="art_paint">
+                              <div ><input type="checkbox" name="variant_type" id="printsCheck" value="art_paint">
                                  <label for="subject_animals">Art Prints</label>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <div class="sizeRow">
+                  <div class="sizeRow" id="original">
                      <div class="col-md-12 d-flex justify-content-between">
                         <h3>Original</h3>
-                        <a href="#" class="addAnother">add another size</a>
                      </div>
-                     <div class="col-md-12 ">
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                           </div>
+                           <div class="deleteType">
+                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="limitedEdition_main">
+                  <div class="sizeRow" id="limitedEdition">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Limited Edition</h3>
+                        <a href="#" class="addAnother" id="addlimtedEadi">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
@@ -234,6 +280,45 @@
                               <input class="form-control" type="text" value="0">
                               <select name="editions_count" class="form-control" id="">
                                  <option value="">Ed.</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <a href="#" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                           </div>
+                           <div class="deleteType">
+                              <a href="#">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+                  <div class="sizeRow" id="artPrint">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Art print</h3>
+                        <a href="#" class="addAnother" id="addArtprint">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="0">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
