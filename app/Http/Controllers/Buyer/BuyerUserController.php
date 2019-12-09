@@ -57,5 +57,9 @@ class BuyerUserController extends Controller
                       return response()->json(array('status' => '200', 'html'=>$returnHTML));
     }
 
+    public function profile(){
+        return view('buyer.profile');
+    }
+
 
 }
