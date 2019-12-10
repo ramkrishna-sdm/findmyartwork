@@ -13,54 +13,96 @@
                   <div class="row">
                      
                      <div class="col-md-8 categorySection">
-                        <div class="d-flex justify-content-between cat-sub">
-                           <div class="form-group">
-                              <label>First Name: <span>*</span></label>
-                              <input type="text" name=" first_name" placeholder="First Name" class="form-control required" value="">
-                           </div>
-                           <div class="form-group">
-                              <label>Last Name: <span>*</span></label>
-                              <input  type="text" name="last_name" placeholder="Last Name" class="form-control required" value="">
-                           </div>
+                        <div class="form-group">
+                              <label>Title: <span>*</span></label>
+                              <input id="mkl" type="text" name="title" placeholder="Title" class="form-control required" value="">
+                              <span class="characterLeft">Characters left: 50</span>
                         </div>
                         <div class="form-group">
-                              <label>Email: <span>*</span></label>
-                              <input  type="email" name="email" placeholder="Email" class="form-control required" value="">
+                              <label>Description: <span>*</span></label>
+                              <textarea class="form-control textarea" name="description" rows="9" cols="50"></textarea>
+                              <span class="characterLeft">Characters left: 50</span>
                         </div>
                         <div class="form-group">
-                              <label>Alias: <span>*</span></label>
-                              <input  type="text" name="user_name" placeholder="Gallery/artist name" class="form-control required" value="">
-                        </div>
-                        <div class="form-group">
-                              <label>Biography: <span>*</span></label>
-                              <textarea class="form-control textarea" name="biography" rows="9" cols="50" value=""></textarea>
-                        </div>
-                        <div class="d-flex justify-content-between cat-sub">
-                           <div class="form-group">
-                              <label>Address / Street name: <span>*</span></label>
-                              <input type="text" name="address" placeholder="Address / Street name" class="form-control required" value="">
-                           </div>
-                           <div class="form-group">
-                              <label>Zip / Postal code: <span>*</span></label>
-                              <input  type="text" name=" postal_code" placeholder="Zip / Postal code" class="form-control required" value="">
-                           </div>
-                        </div>
-                         <div class="d-flex justify-content-between cat-sub">
-                           <div class="form-group">
-                              <label>State: <span>*</span></label>
-                              <input type="text" name="state" placeholder="State" class="form-control required" value="">
-                           </div>
-                           <div class="form-group">
-                              <label>Country: <span>*</span></label>
-                              <input  type="text" name=" country" placeholder="Country" class="form-control required" value="">
+                           <label>Additional Images: </label>
+                           <div class="imagesRow">
+                              <div class="addedImage" style="display: none;">
+                                 <div class="imageBox">
+                                    <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="">
+                                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                 </div>
+                              </div>
+                              <!-- <button class="addImage" data-toggle="modal" data-target="#addArtworkModal" >+</button> -->
+                           <button class="addImage">+<input type="file" multiple id="gallery-photo-add" name="upload_files[]"></button>
                            </div>
                         </div>
                      </div>
                      <div class="col-md-4">
-                     <img src="" alt="...">
-                     <input class="image-label" name="media_url" type="file" accept="image/*"> 
+                           <div class="form-group">
+                              <label>Category: <span>*</span></label>
+                              <select class="form-control" name="category" id="category_id">
+                                 <option value="">Select Category</option>
+                            </select>
+                           </div>
+                    
+                           <div class="form-group">
+                              <label>Type of painting: <span>*</span></label>
+                              <select class="form-control" name="sub_category" id="sub_category_id">
+                                 <option value="">Select Type</option>
+                            </select>
+                           </div>
+                            <div class="form-group">
+                           <label>Style: <span>*</span></label>
+                           <select class="form-control" name="style" id="style_id">
+                          
+                           </select>
+                        </div>
+                        <div>
+                           <label>Subject: <span>*</span></label>
+                           <select class="form-control" name="subject" id="subject_id">
+                              <option value="">Slecte Subject</option>
+                        
+                           </select>
+                        </div>
+
+
                      </div>
 
+                  </div>
+
+                  <h3>Shambhu</h3>
+                  <div class="">
+
+                     <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">First</th>
+                           <th scope="col">Last</th>
+                           <th scope="col">Handle</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <th scope="row">1</th>
+                           <td>Mark</td>
+                           <td>Otto</td>
+                           <td>@mdo</td>
+                         </tr>
+                         <tr>
+                           <th scope="row">2</th>
+                           <td>Jacob</td>
+                           <td>Thornton</td>
+                           <td>@fat</td>
+                         </tr>
+                         <tr>
+                           <th scope="row">3</th>
+                           <td>Larry</td>
+                           <td>the Bird</td>
+                           <td>@twitter</td>
+                         </tr>
+                       </tbody>
+                     </table>
                   </div>
                   <div class="form-wizard-buttons">
                      <button type="submit" class="btn btn-submit">Submit</button>
