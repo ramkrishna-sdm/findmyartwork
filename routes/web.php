@@ -34,7 +34,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/add_artwork','ArtistUserController@add_artwork');
 	Route::post('/upload_artwork','ArtistUserController@upload_artwork');
 	Route::post('/getSubcategory','ArtistUserController@getSubcategory');
-	Route::get('/profile','ArtistUserController@profile');
+	Route::get('/profile/{id}','ArtistUserController@profile');
 	Route::post('/update_artist','ArtistUserController@update_artist');
 
 });
