@@ -9,6 +9,8 @@ use App\Repository\VariantRepository;
 use App\Repository\UserRepository;
 use Exeception;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
 use App\Style;
 use App\Subject;
 use Exception;
@@ -114,6 +116,7 @@ class BuyerUserController extends Controller
         $buyer_array['city'] = $this->request->city;
         $buyer_array['user_name'] = $this->request->user_name;
         $buyer_array['country'] = $this->request->country;
+        $buyer_array['biography']=$this->request->biography;
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
             $parts = pathinfo($media_url->getClientOriginalName());
@@ -134,6 +137,19 @@ class BuyerUserController extends Controller
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();
         }
+    }
+
+    /**
+     * Change the password
+     *
+     * @param  \App\Http\Requests\PasswordRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function password(PasswordRequest $request)
+    {
+        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withPasswordStatus(__('Password successfully updated.'));
     }
 
 

@@ -5,7 +5,7 @@
       <div class="row">
          <div class="col-md-12 form-wizard">
             <!-- Form Wizard -->
-            <form role="form" id="upload_form" enctype="multipart/form-data" action="{{url('upload_artwork')}}" autocomplete="off" method="post">
+            <form role="form" id="upload_form" enctype="multipart/form-data" action="{{url('artist/upload_artwork')}}" autocomplete="off" method="post">
                 @csrf
                <p>Fill all form field to go next step</p>
                <!-- Form progress -->

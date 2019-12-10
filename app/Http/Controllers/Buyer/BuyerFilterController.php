@@ -42,6 +42,10 @@ class BuyerFilterController extends Controller
             $categories = $this->categoryRepository->getData([],'first',['subcategories'],0);
         }
 
+        if (!empty($request->sub_category_id)) {
+            $filter_artwork->where('sub_category', $request->sub_category_id)->get();
+        }
+
         if (!empty($request->subject_id)) {
             $filter_artwork->where('subject', $request->subject_id)->get();
         }
@@ -93,6 +97,7 @@ class BuyerFilterController extends Controller
         // foreach($categories['artwork'] as $artworks){
         //     print_r($artworks);die;
         // }dd("mkl");
+        
         $returnHTML = view('buyer.sub_categories',compact('categories'))->render();
         return response()->json(array('status' => '200', 'html'=>$returnHTML));
     }

@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
 	Route::get('/view_artwork/{key}', 'ArtistUserController@view_artwork');
 	Route::get('/edit_artwork/{key}', 'ArtistUserController@edit_artwork');
+	Route::put('profile/password','ArtistUserController@password');
 
 });
 
@@ -48,9 +49,10 @@ Route::post('/buyer/sub-categories','Buyer\BuyerFilterController@getSubCategorie
 
 Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
-Route::get('/dashboard','BuyerUserController@index');
-Route::get('/profile/{id}', 'BuyerUserController@profile');
-Route::post('/update_buyer', 'BuyerUserController@update_buyer');
+	Route::get('/dashboard','BuyerUserController@index');
+	Route::get('/profile/{id}', 'BuyerUserController@profile');
+	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
+	Route::put('profile/password','BuyerUserController@password');
 
 });
 
@@ -87,6 +89,7 @@ Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_sear
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
 Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
+Route::get('/artworks', 'Frontend\ArtworkController@artworks');
 
 // Route::get('/', function () {
 //     return view('welcome');

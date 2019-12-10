@@ -54,6 +54,10 @@ class ArtworkRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['sub_category'])) {
+            $query->where('sub_category', $conditions['sub_category']);
+        }
+
         if (!empty($conditions['style'])) {
             $query->where('style', $conditions['style']);
         }
@@ -66,7 +70,7 @@ class ArtworkRepository implements RepositoryInterface
             $query->with($withArr);
         }
 
-        $resultSet = $query->orderBy('created_at', 'desc')->$method();
+        $resultSet = $query->orderBy('id', 'desc')->$method();
 
         if (!empty($resultSet) && $toArray) {
             $resultSet = $resultSet->toArray();
