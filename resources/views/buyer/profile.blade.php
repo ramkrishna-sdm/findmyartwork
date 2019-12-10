@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="postal_code">Biography</label>
                                 <!-- <textarea type="text" class=" form-control"  placeholder="Enter Biography" value="{{$buyer->biography}}" name="biography" id="buyer-biography"></text-area> -->
@@ -111,22 +111,11 @@
 
                     <div class="row">
                         <div class="col-sm-12 text-center" >
-                            <button type="submit" class="btn btn-primary" id="update-profile">Update</button>
+                            <button type="submit" class="btn btn-default" id="update-profile">Update</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
-<section class="artworksSection">
-<h4 class="text-center">Change Password</h4>
-    <div class="container">
-       <div class="row">
-           <div class="col-sm-4">
-          </div>
-          <div class="col-sm-8">
-                <form class="col-md-12" action="{{ url('buyer/profile/password') }}" method="POST">
+                    <div class="change-password">
+                        <form class="col-md-12" action="{{ url('buyer/profile/password') }}" method="POST">
                         @csrf
                         @method('PUT')
                     <div class="card">
@@ -145,8 +134,8 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Old Password') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-12 col-form-label">{{ __('Old Password') }}</label>
+                                <div class="col-12">
                                     <div class="form-group">
                                         <input type="password" name="old_password" class="form-control" placeholder="Old password" required>
                                     </div>
@@ -158,8 +147,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('New Password') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-12 col-form-label">{{ __('New Password') }}</label>
+                                <div class="col-12">
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                                     </div>
@@ -171,8 +160,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Password Confirmation') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-12 col-form-label">{{ __('Password Confirmation') }}</label>
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
                                     </div>
@@ -183,18 +172,19 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Save Changes') }}</button>
+                                    <button type="submit" class="btn btn-default">{{ __('Save Changes') }}</button>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </form>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 
