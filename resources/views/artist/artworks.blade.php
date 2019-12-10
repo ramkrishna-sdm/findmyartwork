@@ -1,5 +1,4 @@
 @extends('layouts.frontend.artist.app')
-
 @section('content')
     <div class="content">
         <div class="container-fluid mt--7">
@@ -41,7 +40,7 @@
                                                 @foreach($artworks as $key => $artwork)
 
                                                 <tr>
-                                                    <td><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></td>
+                                                    <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
                                                     <td>{{$artwork->title}}</td>
                                                     
                                                     <td class="text-right">

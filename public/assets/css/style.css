@@ -604,7 +604,46 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
     border: 1px solid #f2f2f2;
     padding: 10px;
     -webkit-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
+	-moz-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
+	box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
 }
-
+.artist-frame {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px;
+}
+.artist-frame .artist-detail{
+	display: flex;
+	justify-content: space-between;
+}
+.artist-detail .profile_img,.artist-detail .profile_img a,.artist-detail .profile_img img{
+	width:44px;
+	height:44px;
+	border-radius: 100%
+}
+.artist-detail .profile_img{
+	margin-right: 15px;
+}
+.artist-detail .profile_img a,.artist-detail .profile_img img{
+	display: block
+}
+.profile-summary{
+	font-size: 14px;
+	line-height: 24px
+}
+.profile-summary h6{
+	font-weight: 700;
+}
+.profile-summary .account{
+	color: #9e9e9e
+}
+.profile-summary p a{
+	color: #9e9e9e
+}
+.profile-summary p a:hover{
+	color: #2e3192
+}
+.artist-frame .btn{
+	padding: 8px 15px;
+	border-radius: 20px
+}
