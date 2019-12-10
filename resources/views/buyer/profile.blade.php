@@ -102,6 +102,7 @@
             </div>
             <div id="" class="col-md-9 col-lg-9 col-sm-9">
                 <h4 class="text-center">Profile Mangement</h4>
+               
                 <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data" id="buyer-profile-form">
                 @csrf
                     <div class="row">
@@ -162,6 +163,11 @@
                         <div class="form-group">
                                 <label for="user_name">User Name</label>
                                 <input type="text" class=" form-control"  placeholder="Enter UserName" value="{{$buyer->user_name}}" name="user_name" id="buyer-user_name">
+                                @if(Session::has('validator')) 
+                                <div class="alert alert-danger">
+                                    {{ Session::get('validator')}}
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -251,12 +257,11 @@
       toastr.error('Please Enter Biography.');
       return false;
     }else{
-      
-        toastr.options.timeOut = 1500; // 1.5s
-        toastr.success('Buyer Details Updated Succssfully');    
-        setTimeout(function(){ document.getElementById("buyer-profile-form").submit(); }, 600);
-       
+            toastr.options.timeOut = 1500; // 1.5s
+            toastr.success('Buyer Details Updated Succssfully');    
+            setTimeout(function(){ document.getElementById("buyer-profile-form").submit(); }, 600);
     }
+    
 });
 });
 </script>

@@ -103,12 +103,20 @@ class ArtistUserController extends Controller
 
 
     public function update_artist(){
-        $validate = $this->validate($this->request, [
+
+        $rules = array(
             'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
             'user_name'         => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
             'first_name'         => 'required|string',
             'last_name'         => 'required|string',
-        ]);
+        );
+
+        $validator = Validator::make($this->request->all() , $rules);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('validator','User Name Already Exists');
+        }
+        
         $artist_array = [];
         $artist_array['first_name'] = $this->request->first_name;
         $artist_array['last_name'] = $this->request->last_name;

@@ -32,6 +32,11 @@
                         <div class="form-group">
                               <label>Alias: <span>*</span></label>
                               <input  type="text" name="user_name" placeholder="Gallery/artist name" class="form-control required" value="{{$artist->user_name}}" id="artist-user_name">
+                              @if(Session::has('validator')) 
+                                <div class="alert alert-danger">
+                                    {{ Session::get('validator')}}
+                                </div>
+                              @endif
                         </div>
                         <div class="form-group">
                               <label>Biography: <span>*</span></label>
