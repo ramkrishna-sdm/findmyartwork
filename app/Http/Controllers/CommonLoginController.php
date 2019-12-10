@@ -109,12 +109,12 @@ class CommonLoginController extends Controller
 
                 if ($user_role == "artist")
                 {
-                    if(url()->previous() != url('/')){
-                        $url = url()->previous();
-                    }else{
-                        $url = url('/artist/dashboard');
-                    }
-                    // $url = url('/artist/dashboard');
+                    // if(url()->previous() != url('/')){
+                    //     $url = url()->previous();
+                    // }else{
+                    //     $url = url('/artist/dashboard');
+                    // }
+                    $url = url('/artist/dashboard');
 
                 }
 
