@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                               <label>Biography: <span></span></label>
-                              <textarea class="form-control textarea" name="biography" rows="9" cols="50" value="{{$artist->  biography}}" id="artist-biography">{{$artist->  biography}}</textarea>
+                              <textarea class="form-control textarea" name="biography" rows="9" cols="50" value="{{$artist->  biography}}" id="artist-biography">{{$artist->biography}}</textarea>
                         </div>
                         <div class="d-flex justify-content-between cat-sub">
                            <div class="form-group">
