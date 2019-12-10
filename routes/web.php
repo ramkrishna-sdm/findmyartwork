@@ -15,6 +15,7 @@ Auth::routes(['verify' => true]);
 Route::get('/user_login','CommonLoginController@login');
 Route::post('/submit_login','CommonLoginController@submitLogin');
 Route::post('/check_email', 'CommonLoginController@check_email_status');
+Route::post('/check_username', 'CommonLoginController@check_username_status');
 Route::get('/logout','CommonLoginController@logout');
 /*************Common Login Controller Routes End************************/
 
@@ -33,6 +34,8 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/add_artwork','ArtistUserController@add_artwork');
 	Route::post('/upload_artwork','ArtistUserController@upload_artwork');
 	Route::post('/getSubcategory','ArtistUserController@getSubcategory');
+	Route::get('/profile','ArtistUserController@profile');
+	Route::post('/update_artist','ArtistUserController@update_artist');
 
 });
 

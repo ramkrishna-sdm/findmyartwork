@@ -111,7 +111,7 @@
                             </form>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a>
+                                <a class="dropdown-item" href="{{url('/artist/profile') }}">{{ __('My profile') }}</a>
                             </div>
                         </div>
                     </li>
@@ -158,26 +158,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
-    // $('#upload_form').on('submit', function(event){
-    // event.preventDefault();
-    // $.ajax({
-    // url:"{{ url('/artist/upload_artwork') }}",
-    // method:"POST",
-    // data:new FormData(this),
-    // dataType:'JSON',
-    // contentType: false,
-    // cache: false,
-    // processData: false,
-    // success:function(data)
-    // {
+    $('#upload_form').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({
+    url:"{{ url('/artist/upload_artwork') }}",
+    method:"POST",
+    data:new FormData(this),
+    dataType:'JSON',
+    contentType: false,
+    cache: false,
+    processData: false,
+    success:function(data)
+    {
 
-    // $('#message').css('display', 'block');
-    // $('#message').html(data.message);
-    // $('#message').addClass(data.class_name);
-    // $('#uploaded_image').html(data.uploaded_image);
-    // }
-    // })
-    // }); 
+    $('#message').css('display', 'block');
+    $('#message').html(data.message);
+    $('#message').addClass(data.class_name);
+    $('#uploaded_image').html(data.uploaded_image);
+    }
+    })
+    }); 
     $(".sizeRow").hide();
     $(document).on('click', '#originalCheck', function(){
         if($(this).prop("checked") == true){
