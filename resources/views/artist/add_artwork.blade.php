@@ -52,7 +52,7 @@
                         Select Artwork
                         </label>
                      </div>
-                     <input type="hidden" name="main_image" id="main_image" value="">
+                     <input type="hidden" name="main_image_base64" id="main_image" value="">
                      <div class="form-wizard-buttons">
                         <button type="button" class="btn btn-next first_step">Next</button>
                      </div>
@@ -197,6 +197,7 @@
                               <div ><label for="subject_animals"><input type="checkbox" name="variant_type" id="printsCheck" value="art_paint">Art Prints</label>
                               </div>
                            </div>
+                           <input type="hidden" name="checked_variant_type" value="" id="checked_variant_type">
                         </div>
                      </div>
                   </div>
@@ -208,21 +209,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="width">
+                              <input class="form-control" type="text" value="" name="original_width">
                               <select name="width_unit" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="height">
+                              <input class="form-control" type="text" value="" name="original_height">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="price">
+                              <input class="form-control" type="text" value="" name="original_price">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>
@@ -246,21 +247,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="limited_width[]">
+                              <input class="form-control" type="text" value="" name="limited_width[]">
                               <select name="width" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="limited_height[]">
+                              <input class="form-control" type="text" value="" name="limited_height[]">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="limited_price[]">
+                              <input class="form-control" type="text" value="" name="limited_price[]">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>
@@ -268,7 +269,7 @@
                           
                            <div class="col-md-6 form-group">
                               <label for="">Editions <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="limited_edition_count[]">
+                              <input class="form-control" type="text" value="" name="limited_edition_count[]">
                               <select name="editions_count" class="form-control" id="">
                                  <option value="">Ed.</option>
                               </select>
@@ -293,21 +294,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="art_width[]">
+                              <input class="form-control" type="text" value="" name="art_width[]">
                               <select name="width" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="art_height[]">
+                              <input class="form-control" type="text" value="" name="art_height[]">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0" name="art_price[]">
+                              <input class="form-control" type="text" value="" name="art_price[]">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>

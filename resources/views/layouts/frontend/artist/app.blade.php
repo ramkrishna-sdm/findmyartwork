@@ -160,24 +160,26 @@
 $(document).ready(function(){
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
     $('#upload_form').on('submit', function(event){
-    event.preventDefault();
-    $.ajax({
-    url:"{{ url('/artist/upload_artwork') }}",
-    method:"POST",
-    data:new FormData(this),
-    dataType:'JSON',
-    contentType: false,
-    cache: false,
-    processData: false,
-    success:function(data)
-    {
-
-    $('#message').css('display', 'block');
-    $('#message').html(data.message);
-    $('#message').addClass(data.class_name);
-    $('#uploaded_image').html(data.uploaded_image);
-    }
-    })
+        event.preventDefault();
+        $.ajax({
+            url:"{{ url('/artist/upload_artwork') }}",
+            method:"POST",
+            data:new FormData(this),
+            dataType:'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+            success:function(data)
+            {
+                // $('#message').css('display', 'block');
+                // $('#message').html(data.message);
+                // $('#message').addClass(data.class_name);
+                // $('#uploaded_image').html(data.uploaded_image);
+                window.location.reload('/artist/add_artwork')
+                toastr.options.timeOut = 3500; // 2s
+                toastr.success('Artwork Saved Successfully');
+            }
+        })
     }); 
     $(".sizeRow").hide();
     $(document).on('click', '#originalCheck', function(){
@@ -219,7 +221,7 @@ $(document).ready(function(){
     $(document).on('click','.addAnother', function(){ 
         var clone = $('.'+$(this).attr('rel')).last().clone();
         // clone.find('.addAnother').remove();
-
+        clone.find('input[type=text]').val('');
         clone.insertAfter($('.limitedEdition').last());
         
     });
@@ -318,12 +320,11 @@ $(function() {
                 var reader = new FileReader();
 
                 reader.onload = function(event) {
-                    var html = '<div class="addedImage" style="margin-left: 15px;"><div class="imageBox"><img src="'+event.target.result+'"><button><i class="fa fa-trash" aria-hidden="true" onClick="removeDiv(this)"></i></button></div></div>'
+                    var html = '<div class="addedImage" style="margin-left: 15px;"><div class="imageBox"><img src="'+event.target.result+'"><button><i class="fa fa-trash" aria-hidden="true" onClick="removeDiv(this)"></i></button></div><input type="hidden" name="hidden_image[]" value="'+event.target.result+'"></div>'
                     $($.parseHTML(html)).insertAfter($('[class^="addedImage"]').last());
 
                     // $($.parseHTML(html)).appendTo(placeToInsertImagePreview);
                 }
-
                 reader.readAsDataURL(input.files[i]);
             }
         }
