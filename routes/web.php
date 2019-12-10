@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
 	Route::get('/view_artwork/{key}', 'ArtistUserController@view_artwork');
 	Route::get('/edit_artwork/{key}', 'ArtistUserController@edit_artwork');
+	Route::put('profile/password','ArtistUserController@password');
 
 });
 

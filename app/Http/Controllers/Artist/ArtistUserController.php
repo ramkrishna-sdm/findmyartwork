@@ -14,6 +14,9 @@ use App\Repository\StyleRepository;
 use App\Repository\UserRepository;
 use Exeception;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
+
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -276,6 +279,19 @@ class ArtistUserController extends Controller
             'result' => $options,
             'status' => 200,
         ), 200);
+    }
+
+    /**
+     * Change the password
+     *
+     * @param  \App\Http\Requests\PasswordRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function password(PasswordRequest $request)
+    {
+        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withPasswordStatus(__('Password successfully updated.'));
     }
 
 }
