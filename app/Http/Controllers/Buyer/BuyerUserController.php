@@ -86,18 +86,18 @@ class BuyerUserController extends Controller
 
     public function update_buyer()
     {
-        $rules = array(
+        $validate = $this->validate($this->request, [
             'email'        => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
             'user_name'    => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
             'first_name'   => 'required|string',
             'last_name'    => 'required|string',
-        );
+        ]);
 
-        $validator = Validator::make($this->request->all() , $rules);
+        // $validator = Validator::make($this->request->all() , $rules);
 
-        if ($validator->fails()){
-            return redirect()->back()->with('validator','User Name Already Exists');
-        }
+        // if ($validator->fails()){
+        //     return redirect()->back()->with('validator','User Name Already Exists');
+        // }
 
         $buyer_array = [];
         $buyer_array['first_name'] = $this->request->first_name;

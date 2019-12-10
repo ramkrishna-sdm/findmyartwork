@@ -12,6 +12,8 @@ use App\Repository\SubCategoryRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\StyleRepository;
 use App\Repository\UserRepository;
+use Exeception;
+use Illuminate\Validation\ValidationException;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -103,18 +105,22 @@ class ArtistUserController extends Controller
 
 
     public function update_artist(){
-
-        $rules = array(
+        $validation = Validator::make($this->request->all(), [
+        // $validate = $this->validate($this->request, [
             'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
             'user_name'         => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
-            'first_name'         => 'required|string',
-            'last_name'         => 'required|string',
-        );
+            'first_name'         => trim('required|string'),
+            'last_name'         => trim('required|string'),
+            'address'         => trim('required|string'),
+            'postal_code'         => trim('required|string'),
+            'state'         => trim('required|string'),
+            'country'         => trim('required|string'),
+        ]);
 
-        $validator = Validator::make($this->request->all() , $rules);
+        // $validator = Validator::make($this->request->all() , $rules);
 
-        if ($validator->fails()){
-            return redirect()->back()->with('validator','User Name Already Exists');
+       if ($validation->fails()) {
+                throw new ValidationException($validation);
         }
         
         $artist_array = [];
@@ -123,7 +129,6 @@ class ArtistUserController extends Controller
         $artist_array['email'] = $this->request->email;
         $artist_array['address'] = $this->request->address;
         $artist_array['postal_code'] = $this->request->postal_code;
-        $artist_array['city'] = $this->request->city;
         $artist_array['user_name'] = $this->request->user_name;
         $artist_array['state'] = $this->request->state;
         $artist_array['country'] = $this->request->country;
