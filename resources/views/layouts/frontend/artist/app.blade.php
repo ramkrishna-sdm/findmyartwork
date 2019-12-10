@@ -342,6 +342,76 @@ function removeDiv(elem){
 
 </script>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#update-artist-profile').click(function(e) {
+  e.preventDefault();
+  console.log('test');
+  var email = $('#artist-email').val();        
+  var first_name=$('#artist-first_name').val();
+  var last_name=$('#artist-last_name').val();
+  var user_name=$('#artist-user_name').val();
+  var biography=$('#artist-biography').val();
+  var address=$('#artist-address').val();
+  var postal_code=$('#artist-postal_code').val();
+  var state=$('#artist-state').val();
+  var country=$('#artist-country').val();
+  var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+  if($.trim(first_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter First Name.');
+      return false;
+  }else if($.trim(last_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Last Name.');
+      return false;
+  }else if($.trim(email) == '')
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Email.');
+      return false;
+    }
+    else if(!email_filter.test(email))
+    {
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Valid Email.');
+      return false;
+    }else if($.trim(user_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter User Name.');
+      return false;
+    }else if($.trim(biography)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Biography.');
+      return false;
+    }else if($.trim(address)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Address.');
+      return false;
+    }else if($.trim(postal_code)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Postal Code.');
+      return false;
+    }else if($.trim(state)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter State.');
+      return false;
+    }else if($.trim(country)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Country.');
+      return false;
+    }else{
+      
+        toastr.options.timeOut = 1500; // 1.5s
+        toastr.success('Artist Details Updated Succssfully');    
+        setTimeout(function(){ document.getElementById("artist-profile-form").submit(); }, 600);
+       
+    }
+});
+});
+</script>
+
 </body>
 
 </html>
