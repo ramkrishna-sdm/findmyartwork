@@ -111,7 +111,8 @@
                             </form>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
-                                <a class="dropdown-item" href="{{url('/artist/profile') }}">{{ __('My profile') }}</a>
+                                <!-- <a class="dropdown-item" href="{{url('/artist/profile') }}">{{ __('My profile') }}</a> -->
+                                <a class="dropdown-item" href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}"> My Profile</a>
                             </div>
                         </div>
                     </li>

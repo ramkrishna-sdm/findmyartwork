@@ -60,9 +60,9 @@ class ArtistUserController extends Controller
         return view('artist.add_artwork', compact('categories','subjects','styles'));
     }
 
-    public function profile(){
-        $userId = Auth::id();
-        $artist = $this->userRepository->getData(['id'=>$userId,'role'=>'artist'],'first',[],0);
+    public function profile($id){
+        // $userId = Auth::id();
+        $artist =  $this->userRepository->getData(['id'=>$id],'first',[],0);
         return view('artist.profile',compact('artist'));
     } 
 
