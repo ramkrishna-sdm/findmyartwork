@@ -1,6 +1,6 @@
 @include('layouts.frontend.header')
 <section class="artworksSection">  
- <h4 class="text-center">Profile Management</h4>
+ <h2 class="text-center">Profile Management</h2>
     <div class="container">
         
             <div class="message-alert-top">
@@ -120,6 +120,7 @@
     </div>
 </section>
 <section class="artworksSection">
+<h4 class="text-center">Change Password</h4>
     <div class="container">
        <div class="row">
            <div class="col-sm-4">
