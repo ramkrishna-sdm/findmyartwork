@@ -157,6 +157,50 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+    $('.change_artwork_status').click(function(event) {
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Artwork status will be changed.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
+        });
+    });
+    $('.delete_artwork').click(function(event) {
+            event.preventDefault();
+            var link = $(this).attr('href');
+            swal({
+                title: "Please confirm this action",
+                text: "By this action you are confirming that the selected Artwork will be deleted permanently.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, I am sure!',
+                cancelButtonText: "No, cancel it!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    window.location = link;
+                } else {
+                   swal("Cancelled", "You cancelled this action", "error");
+                }
+            });
+        });
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
     $('#upload_form').on('submit', function(event){
     event.preventDefault();

@@ -66,6 +66,42 @@ class ArtistUserController extends Controller
         return view('artist.profile',compact('artist'));
     } 
 
+    public function artworks(){
+        $artworks = $this->artworkRepository->getData(['is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail'],0);
+        return view('artist.artworks',compact('artworks'));
+    } 
+
+    public function change_artwork_status($id, $status, $page, $user_id)
+    {
+
+        if($status == 'publish'){
+            $data['is_publised'] = 'unpublish';
+            $new_status = "Un-Published";
+        }else{
+            $data['is_publised'] = 'publish';
+            $new_status = "Published";
+        }
+        $artist = $this->artworkRepository->createUpdateData(['id'=> $id],$data);
+        \Session::flash('success_message', 'Artwork Status Changed to '.$new_status.' Succssfully!.');
+        return redirect('/artist/artworks'); 
+        
+    }
+
+    public function delete_artwork($id)
+    {
+        $artwork = $this->artworkRepository->getData(['id'=>$id],'delete',[],0);
+        \Session::flash('success_message', 'Artwork Deleted Succssfully!.'); 
+            return redirect('/artist/artworks');
+    } 
+
+    public function view_artwork($id){
+        $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
+       
+        return view('artist/view_artwork',compact('artwork_result'));
+    }
+
+
+
     public function update_artist(){
         $validate = $this->validate($this->request, [
             'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
