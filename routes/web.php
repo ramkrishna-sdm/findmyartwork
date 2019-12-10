@@ -49,9 +49,10 @@ Route::post('/buyer/sub-categories','Buyer\BuyerFilterController@getSubCategorie
 
 Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
-Route::get('/dashboard','BuyerUserController@index');
-Route::get('/profile/{id}', 'BuyerUserController@profile');
-Route::post('/update_buyer', 'BuyerUserController@update_buyer');
+	Route::get('/dashboard','BuyerUserController@index');
+	Route::get('/profile/{id}', 'BuyerUserController@profile');
+	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
+	Route::put('profile/password','BuyerUserController@password');
 
 });
 
