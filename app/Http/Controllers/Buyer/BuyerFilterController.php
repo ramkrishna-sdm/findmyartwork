@@ -42,6 +42,10 @@ class BuyerFilterController extends Controller
             $categories = $this->categoryRepository->getData([],'first',['subcategories'],0);
         }
 
+        if (!empty($request->sub_category_id)) {
+            $filter_artwork->where('sub_category', $request->sub_category_id)->get();
+        }
+
         if (!empty($request->subject_id)) {
             $filter_artwork->where('subject', $request->subject_id)->get();
         }
@@ -84,7 +88,7 @@ class BuyerFilterController extends Controller
         // print_r($all_artwork); die;
         if(count($all_artwork) > 0){
             foreach ($all_artwork as $key => $value) {
-                $artwork_array[] = $this->artworkRepository->getData(['id'=>$value->id],'first',['artist', 'artwork_images', 'variants', 'artwork_like','sub_category_detail'],0);
+                $artwork_array[] = $this->artworkRepository->getData(['id'=>$value->id],'first',['artist', 'artwork_images', 'variants', 'artwork_like'],0);
             }
         }
         $categories['artwork'] = $artwork_array;
