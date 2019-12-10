@@ -129,25 +129,40 @@
         <div class="row">
             @if(count($topartists) > 0)
             @foreach($topartists as $key => $topartist)
-            <div class="col-lg-4 col-md-6">
+            <div class="col-12 col-md-6">
                 <div class="artPost">
-                    <div class="postHeader">
+                    <div class="artist-frame">
+                        <div class="artist-detail">
+                            <div class="profile_img">
+                                <a href="{{url('profile_details')}}/{{$topartist->id}}">
+                                    <img src="{{$topartist->media_url}}" alt="">
+                                </a>
+                            </div>
+                            <div class="profile-summary">
+                                <!-- <div class="name">{{$topartist->first_name}} {{$topartist->last_name}}</div> -->
+                                <h6>newt aka PARSLSEY!!</h6>
+                                <p class="account">@milktpapi</p>
+                                <p>Lorem Ipsum is simply dummy text <a href="#">instagram.com/milktpapi</a></p>
+                            </div>
+                        </div>
+                        <div class="artist-follow">
+                            <a href="#" class="btn btn-default">Following</a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="postHeader">
                         <div class="username">
                             <div class="image">
-                                <div class="profile_img">
-                                    <a href="{{url('profile_details')}}/{{$topartist->id}}">
-                                    <img src="{{$topartist->media_url}}" alt="">
-                                    </a>
-                                </div>
+                                
                             </div>
-                            <span class="name">{{$topartist->first_name}} {{$topartist->last_name}}</span>
+                            
                         </div>
                         <span class="Posted">2 hours ago</span>
-                    </div>
-                    <div class="postImage">
+                    </div> -->
+                    <!-- <div class="postImage">
                         <a href="{{url('profile_details')}}/{{$topartist->id}}"> <img src="{{$topartist->media_url}}" alt=""></a>
-                    </div>
-                    <div class="postFooter">
+                    </div> -->
+                    <!-- <div class="postFooter">
                         <div class="leftBlock">
                         </div>
                         <div class="rightBlock">
@@ -157,7 +172,7 @@
                                 <a class="save_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><i class="far fa-bookmark"></i> <i class="fas fa-bookmark"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @endforeach
