@@ -101,8 +101,26 @@
                    
             </div>
             <div id="" class="col-md-9 col-lg-9 col-sm-9">
-                <h4 class="text-center">Profile Mangement</h4>
-               
+                <h4 class="text-center">Profile Management</h4>
+                <div class="message-alert-top">
+                @if(Session::has('validation'))
+                <div><div class="alert alert-danger"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
+                @endif
+                <!-- @if(Session::has('error_message'))
+                <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
+                @endif -->
+            </div>
+            <div class="message-alert-top">
+                 @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
+             </div>
                 <form method="post"  action="{{ url('/buyer/update_buyer') }}" enctype="multipart/form-data" id="buyer-profile-form">
                 @csrf
                     <div class="row">
@@ -199,7 +217,7 @@
 </section>
 @include('layouts.frontend.comman_footer')
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function() {
   $('#update-profile').click(function(e) {
   e.preventDefault();
@@ -264,4 +282,4 @@
     
 });
 });
-</script>
+</script> -->

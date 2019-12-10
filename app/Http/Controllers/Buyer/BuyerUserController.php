@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Repository\CategoryRepository;
 use App\Repository\VariantRepository;
 use App\Repository\UserRepository;
+use Exeception;
+use Illuminate\Validation\ValidationException;
 use App\Style;
 use App\Subject;
 use Exception;
@@ -86,19 +88,23 @@ class BuyerUserController extends Controller
 
     public function update_buyer()
     {
-        $validate = $this->validate($this->request, [
-            'email'        => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
-            'user_name'    => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
-            'first_name'   => 'required|string',
-            'last_name'    => 'required|string',
-        ]);
-
-        // $validator = Validator::make($this->request->all() , $rules);
-
-        // if ($validator->fails()){
-        //     return redirect()->back()->with('validator','User Name Already Exists');
-        // }
-
+        $validation = Validator::make($this->request->all(), [
+            // $validate = $this->validate($this->request, [
+                'email'         => trim('required|string|email|max:255|unique:users,email,'.$this->request->id),
+                'user_name'         => trim('required|string|max:255|unique:users,user_name,'.$this->request->id),
+                'first_name'         => trim('required|string'),
+                'last_name'         => trim('required|string'),
+                'address'         => trim('required|string'),
+                'postal_code'         => trim('required|string'),
+                'city'         => trim('required|string'),
+                'country'         => trim('required|string'),
+            ]);
+    
+            // $validator = Validator::make($this->request->all() , $rules);
+    
+           if ($validation->fails()) {
+                    throw new ValidationException($validation);
+            }
         $buyer_array = [];
         $buyer_array['first_name'] = $this->request->first_name;
         $buyer_array['last_name'] = $this->request->last_name;
