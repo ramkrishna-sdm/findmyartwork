@@ -96,6 +96,9 @@ HomeController::header_counter();
                     {{ Auth::user()->first_name }} <span class="caret"></span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/{{Auth::user()->role}}/dashboard">
+                       Dashboard
+                    </a>
                   <a class="dropdown-item" href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}">
                        My Profile
                     </a>
