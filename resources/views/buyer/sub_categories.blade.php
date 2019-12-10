@@ -47,13 +47,13 @@
                 <div class="artPost">
                     <div class="postHeader">
                         <div class="username">
-                            <div class="image"><img src="{{$artworks->artist->media_url}}" alt=""></div>
+                            <div class="image">><a href="{{url('profile_details')}}/{{$artworks->artist->id}}"><img src="{{$artworks->artist->media_url}}" alt=""></a></div>
                             <span class="name">{{$artworks->artist->first_name}}</span>
                         </div>
                         <span class="Posted">2 hours ago</span>
                     </div>
                     <div class="postImage">
-                        <a href="#"><img src="{{asset('assets/images/post.jpg')}}" alt=""></a>
+                        <a href="{{url('artwork_details')}}/{{$artworks->id}}"><img src="{{$artworks->artwork_images[0]->media_url}}" alt=""></a>
                     </div>
                     <div class="postFooter">
                         <div class="leftBlock">

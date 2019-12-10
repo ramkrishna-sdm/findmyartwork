@@ -59,8 +59,8 @@ HomeController::header_counter();
             <div class="collapse navbar-collapse mainNavbar" id="navbarToggle">
               <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Artwork</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('artworks')}}">Artwork</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('about_us')}}">About</a></li>
                 <li class="nav-item"><a href="{{url('contact_us')}}" class="nav-link">Contact</a></li>
               </ul>
@@ -86,7 +86,7 @@ HomeController::header_counter();
               <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
                 <li class="nav-item" ><a class="nav-link" href="{{url('items_cart')}}"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count cart_count">{{session('cart_count')}}</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('saved_artwork')}}"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count saved_count">{{session('saved_count')}}</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><img src="{{asset('assets/images/avatar.svg')}}" alt="" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:void(0);"><img src="{{asset('assets/images/avatar.svg')}}" alt="" /></a></li>
                 <li class="nav-divider"></li>
               </ul>
               <ul class="navbar-nav nav navbar-icon  align-items-center">

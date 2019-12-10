@@ -171,105 +171,126 @@ jQuery(document).ready(function() {
     });
 
     // Final step
-    $('.submit_artwork').on('click', function(e) {
+    $(document).on('click','.submit_artwork',function(e){
         e.preventDefault();
         var album_text = [];
-        var arr = [];
+        var error_count =0;
         $("input[name='variant_type']:checked").each(function() {
             var value = $(this).val();
-            arr.push($(this).val());
             if (value) {
                 album_text.push(value);
-                if (value == "original") {
-                    var width_original = $("input[name=original_width]").val();
-                    var height_original = $("input[name=original_height]").val();
-                    var price_original = $("input[name=original_price]").val();
-                    if ($.trim(width_original) == "" || $.trim(width_original) == '0' || $.trim(width_original) == "undefined") {
-                        toastr.options.timeOut = 2500; // 2s
-                        toastr.error('Width is Required');
-                        return false;
-                    }
-                    if ($.trim(height_original) == "" || $.trim(height_original) == '0' || $.trim(height_original) == "undefined") {
-                        toastr.options.timeOut = 2500; // 2s
-                        toastr.error('Height is Required');
-                        return false;
-                    }
-                    if ($.trim(price_original) == "" || $.trim(price_original) == '0' || $.trim(price_original) == "undefined") {
-                        toastr.options.timeOut = 2500; // 2s
-                        toastr.error('Price is Required');
-                        return false;
-                    }
-                }
-                if (value == "limited_edition") {
-                    $("input[name='limited_width[]']").each(function() {
-                        var limited_width = $(this).val();
-                        if ($.trim(limited_width) == "" || $.trim(limited_width) == '0' || $.trim(limited_width) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Width Field is Required in Limited Edition');
-                            return false;
-                        }
-                    })
-                    $("input[name='limited_height[]']").each(function() {
-                        var limited_height = $(this).val();
-                        if ($.trim(limited_height) == "" || $.trim(limited_height) == '0' || $.trim(limited_height) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Height Field is Required in Limited Edition');
-                            return false;
-                        }
-                    })
-                    $("input[name='limited_price[]']").each(function() {
-                        var limited_price = $(this).val();
-                        if ($.trim(limited_price) == "" || $.trim(limited_price) == '0' || $.trim(limited_price) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Price Field is Required in Limited Edition');
-                            return false;
-                        }
-                    })
-                    $("input[name='limited_edition_count[]']").each(function() {
-                        var limited_edition_count = $(this).val();
-                        if ($.trim(limited_edition_count) == "" || $.trim(limited_edition_count) == '0' || $.trim(limited_edition_count) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Count Field is Required in Limited Edition');
-                            return false;
-                        }
-                    })
-                }
-                if (value == "art_paint") {
-                    $("input[name='art_width[]']").each(function() {
-                        var art_width = $(this).val();
-                        if ($.trim(art_width) == "" || $.trim(art_width) == '0' || $.trim(art_width) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Width Field is Required in Art Paints');
-                            return false;
-                        }
-                    })
-                    $("input[name='art_height[]']").each(function() {
-                        var art_height = $(this).val();
-                        if ($.trim(art_height) == "" || $.trim(art_height) == '0' || $.trim(art_height) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Height Field is Required in Art Paints');
-                            return false;
-                        }
-                    })
-                    $("input[name='art_price[]']").each(function() {
-                        var art_price = $(this).val();
-                        if ($.trim(art_price) == "" || $.trim(art_price) == '0' || $.trim(art_price) == "undefined") {
-                            toastr.options.timeOut = 2500; // 2s
-                            toastr.error('Price Field is Required in Art Paints');
-                            return false;
-                        }
-                    })
-                }
             }
         });
         if (album_text.length === 0) {
-            toastr.options.timeOut = 2500; // 2s
+            toastr.options.timeOut = 2500;
             toastr.error('Please Select Variant Type');
             return false;
         }else{
-            $('#checked_variant_type').val(arr);
-            $('#upload_form').submit();
+            $('#checked_variant_type').val(album_text);
+            $("input[name='variant_type']:checked").each(function() {
+                var value = $(this).val();
+                if (value) {
+                    if (value == "original") {
+                        var width_original = $("input[name=original_width]").val();
+                        var height_original = $("input[name=original_height]").val();
+                        var price_original = $("input[name=original_price]").val();
+                        if ($.trim(width_original) == "" || $.trim(width_original) == '0' || $.trim(width_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Width is Required');
+                            error_count++;
+                            return false;
+                        }
+                        if ($.trim(height_original) == "" || $.trim(height_original) == '0' || $.trim(height_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Height is Required');
+                            error_count++;
+                            return false;
+                        }
+                        if ($.trim(price_original) == "" || $.trim(price_original) == '0' || $.trim(price_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Price is Required');
+                            error_count++;
+                            return false;
+                        }
+                    }
+                    if (value == "limited_edition") {
+                        $("input[name='limited_width[]']").each(function() {
+                            var limited_width = $(this).val();
+                            if ($.trim(limited_width) == "" || $.trim(limited_width) == '0' || $.trim(limited_width) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Width Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_height[]']").each(function() {
+                            var limited_height = $(this).val();
+                            if ($.trim(limited_height) == "" || $.trim(limited_height) == '0' || $.trim(limited_height) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Height Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_price[]']").each(function() {
+                            var limited_price = $(this).val();
+                            if ($.trim(limited_price) == "" || $.trim(limited_price) == '0' || $.trim(limited_price) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Price Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_edition_count[]']").each(function() {
+                            var limited_edition_count = $(this).val();
+                            if ($.trim(limited_edition_count) == "" || $.trim(limited_edition_count) == '0' || $.trim(limited_edition_count) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Count Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                    }
+                    if (value == "art_paint") {
+                        $("input[name='art_width[]']").each(function() {
+                            var art_width = $(this).val();
+                            if ($.trim(art_width) == "" || $.trim(art_width) == '0' || $.trim(art_width) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Width Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='art_height[]']").each(function() {
+                            var art_height = $(this).val();
+                            if ($.trim(art_height) == "" || $.trim(art_height) == '0' || $.trim(art_height) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Height Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='art_price[]']").each(function() {
+                            var art_price = $(this).val();
+                            if ($.trim(art_price) == "" || $.trim(art_price) == '0' || $.trim(art_price) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Price Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                    }
+                }
+            });
         }
+        if(error_count == 0){
+            // alert("execute code");
+            $('#upload_form').submit();
+        }else{
+            // alert(error_count);
+        }
+            
+           
     });
     // previous step
     $('.form-wizard .btn-previous').on('click', function() {

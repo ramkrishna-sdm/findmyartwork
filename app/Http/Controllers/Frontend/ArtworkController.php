@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\ArtworkRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
+use App\Repository\StyleRepository;
+use App\Repository\SubjectRepository;
 use App\Repository\SavedArtworkRepository;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -30,13 +33,16 @@ class ArtworkController extends Controller
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,SavedArtworkRepository $savedArtworkRepository)
+    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,SavedArtworkRepository $savedArtworkRepository,CategoryRepository $categoryRepository,StyleRepository $styleRepository,SubjectRepository $subjectRepository)
     {
         $this->request = $request;
         $this->artworkRepository = $artworkRepository;
         $this->artworkImageRepository = $artworkImageRepository;
         $this->variantRepository = $variantRepository;
         $this->savedArtworkRepository = $savedArtworkRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->styleRepository = $styleRepository;
+        $this->subjectRepository = $subjectRepository;
         $this->artwork_files = '/images/artwork_files/';
     }
 
@@ -60,6 +66,14 @@ class ArtworkController extends Controller
         // echo "<pre>";
         // print_r($saved_artwork[0]->saved_artwork); die;
         return view('frontend/saved_artwork', compact('saved_artwork'));
+    }
+
+    public function artworks(){
+        $all_artwork = $this->artworkRepository->getData(['is_deleted'=> 'no', 'is_publised' => 'yes'],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+        $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
+        $styles= $this->styleRepository->getData([], 'get', [], 0);
+        $subjects= $this->subjectRepository->getData([], 'get', [], 0);
+        return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects'));
     }
 
     public function artwork_details($id){

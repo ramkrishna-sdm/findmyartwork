@@ -203,28 +203,24 @@ $(document).ready(function(){
             });
         });
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
-    $('#upload_form').on('submit', function(event){
-        event.preventDefault();
-        $.ajax({
-            url:"{{ url('/artist/upload_artwork') }}",
-            method:"POST",
-            data:new FormData(this),
-            dataType:'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-            success:function(data)
-            {
-                // $('#message').css('display', 'block');
-                // $('#message').html(data.message);
-                // $('#message').addClass(data.class_name);
-                // $('#uploaded_image').html(data.uploaded_image);
-                window.location.reload('/artist/add_artwork')
-                toastr.options.timeOut = 3500; // 2s
-                toastr.success('Artwork Saved Successfully');
-            }
-        })
-    }); 
+    // $('#upload_form').on('submit', function(event){
+    //     event.preventDefault();
+    //     $.ajax({
+    //         url:"{{ url('/artist/upload_artwork') }}",
+    //         method:"POST",
+    //         data:new FormData(this),
+    //         dataType:'JSON',
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         success:function(data)
+    //         {
+    //             window.location.reload('/artist/add_artwork')
+    //             toastr.options.timeOut = 3500; // 2s
+    //             toastr.success('Artwork Saved Successfully');
+    //         }
+    //     })
+    // }); 
     $(".sizeRow").hide();
     $(document).on('click', '#originalCheck', function(){
         if($(this).prop("checked") == true){
