@@ -142,6 +142,7 @@ class ArtistUserController extends Controller
         $artist_array['user_name'] = $this->request->user_name;
         $artist_array['state'] = $this->request->state;
         $artist_array['country'] = $this->request->country;
+        $artist_array['biography'] = $this->request->biography;
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
             $parts = pathinfo($media_url->getClientOriginalName());
