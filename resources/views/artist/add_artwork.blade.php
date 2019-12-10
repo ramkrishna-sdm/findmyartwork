@@ -133,7 +133,6 @@
                                     </option>
                                   @endforeach    
                             </select>
-                              </select>
                            </div>
                            <div class="form-group">
                               <label>Sub-category: <span>*</span></label>

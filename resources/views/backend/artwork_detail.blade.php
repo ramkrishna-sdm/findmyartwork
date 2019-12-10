@@ -56,16 +56,12 @@
 
                         <div class="col-12">
                             <div class="responsive">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
+                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                              
 
                             </div>
                         </div>
