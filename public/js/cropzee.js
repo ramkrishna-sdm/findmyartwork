@@ -132,6 +132,8 @@ jQuery.fn.extend({
             } else {
                 window.cropzeeReturnImage = [];
                 cropzeeReturnImage[id] = canvas.toDataURL(options.imageExtension);
+                // console.log(cropzeeReturnImage[id]);
+                $('#main_image').val(cropzeeReturnImage[id]);
             }
             // cropping finished, close modal
             closeModal();
