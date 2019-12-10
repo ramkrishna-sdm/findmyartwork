@@ -1,6 +1,9 @@
 @include('layouts.frontend.header')
+<div class="heading">
+       <h2 class="text-center">Profile Management</h2>
+ </div>
 <section class="artworksSection">  
- <h2 class="text-center">Profile Management</h2>
+  
     <div class="container">
         
             <div class="message-alert-top">
