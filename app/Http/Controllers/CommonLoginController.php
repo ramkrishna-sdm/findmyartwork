@@ -99,7 +99,6 @@ class CommonLoginController extends Controller
                 if ($user_role == "buyer")
                 {
                     if(url()->previous() != url('/')){
-                        // return redirect()->to();
                         $url = url()->previous();
                     }else{
                         $url = url('/buyer/dashboard');
@@ -110,15 +109,23 @@ class CommonLoginController extends Controller
 
                 if ($user_role == "artist")
                 {
-
-                    $url = url('/artist/dashboard');
+                    if(url()->previous() != url('/')){
+                        $url = url()->previous();
+                    }else{
+                        $url = url('/artist/dashboard');
+                    }
+                    // $url = url('/artist/dashboard');
 
                 }
 
                 if ($user_role == "gallery")
                 {
-
-                    $url = url('/gallery/dashboard');
+                    if(url()->previous() != url('/')){
+                        $url = url()->previous();
+                    }else{
+                        $url = url('/gallery/dashboard');
+                    }
+                    // $url = url('/gallery/dashboard');
 
                 }
 

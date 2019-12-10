@@ -52,8 +52,9 @@
                         Select Artwork
                         </label>
                      </div>
+                     <input type="hidden" name="main_image" id="main_image" value="">
                      <div class="form-wizard-buttons">
-                        <button type="button" class="btn btn-next">Next</button>
+                        <button type="button" class="btn btn-next first_step">Next</button>
                      </div>
                   </div>
                </fieldset>
@@ -61,7 +62,7 @@
                   <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou: <span class="steps_number">Step 2 - 4</span></h4>
                   <div class="row">
                      <div class="col-md-6">
-                        <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
+                        <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
                      </div>
                      <div class="col-md-6" >
                         <div class="form-group">
@@ -89,7 +90,7 @@
                         </div>
                         <div class="form-wizard-buttons">
                            <button type="button" class="btn btn-previous">Previous</button>
-                           <button type="button" class="btn btn-next">Next</button>
+                           <button type="button" class="btn btn-next second_step">Next</button>
                         </div>
                      </div>
                   </div>
@@ -102,7 +103,7 @@
                                     <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
                                     <div class="form-group mt-5">
                                        <label for="selectImage" > Select Image
-                                       <input id="cropzee-input" class="image-label" name="media_url" type="file" accept="image/*"> 
+                                       <input id="cropzee-input-multiple" class="image-label" name="media_url" type="file" accept="image/*"> 
                                        </label>
                                     </div>
                                  </div>
@@ -118,7 +119,7 @@
                   <h4>The better you describe your artwork using keywords, the higher you will get ranked by search engines: <span class="steps_number">Step 3 - 4</span></h4>
                   <div class="row">
                      <div class="col-md-6">
-                        <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
+                        <img class="img_preview" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
                      </div>
                      <div class="col-md-6 categorySection">
                         <div class="d-flex justify-content-between cat-sub">
@@ -143,26 +144,20 @@
                         </div>
                         <div class="form-group">
                            <label>Style: <span>*</span></label>
-                           <select class="form-control" name="style">
+                           <select class="form-control" name="style" id="style_id">
                               <option value="">Slecte Style</option>
                               @foreach ($styles as $key => $style)
-                                <option value="{{ $style->id }}"> 
-                                    {{ $style->name }} 
-                                </option>
+                                <option value="{{$style->id}}">{{ $style->name }}</option>
                               @endforeach  
-                              
                            </select>
                         </div>
                         <div>
                            <label>Subject: <span>*</span></label>
-                           <select class="form-control" name="style">
+                           <select class="form-control" name="subject" id="subject_id">
                               <option value="">Slecte Subject</option>
                               @foreach ($subjects as $key => $subject)
-                                <option value="{{ $subject->id }}"> 
-                                    {{ $subject->name }} 
-                                </option>
+                                <option value="{{$subject->id}}">{{ $subject->name }}</option>
                               @endforeach  
-                              
                            </select>
                            <!-- <div class="d-flex justify-content-between cat-sub">
                             @foreach ($subjects as $key => $subject)
@@ -177,7 +172,7 @@
                   <br/>
                   <div class="form-wizard-buttons">
                      <button type="button" class="btn btn-previous">Previous</button>
-                     <button type="button" class="btn btn-next">Next</button>
+                     <button type="button" class="btn btn-next third_step">Next</button>
                   </div>
                </fieldset>
                <!-- Form Step 3 -->
@@ -213,21 +208,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
-                              <select name="width" class="form-control" id="">
+                              <input class="form-control" type="text" value="0" name="width">
+                              <select name="width_unit" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="height">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="price">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>
@@ -251,21 +246,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="limited_width[]">
                               <select name="width" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="limited_height[]">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="limited_price[]">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>
@@ -273,7 +268,7 @@
                           
                            <div class="col-md-6 form-group">
                               <label for="">Editions <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="limited_edition_count[]">
                               <select name="editions_count" class="form-control" id="">
                                  <option value="">Ed.</option>
                               </select>
@@ -298,21 +293,21 @@
                         <div class="inputsRow d-flex justify-content-between flex-wrap">
                            <div class="col-md-6 form-group">
                               <label for="">Width <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="art_width[]">
                               <select name="width" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Height <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="art_height[]">
                               <select name="" class="form-control" id="">
                                  <option value="">cm</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Price <span>*</span></label>
-                              <input class="form-control" type="text" value="0">
+                              <input class="form-control" type="text" value="0" name="art_price[]">
                               <select name="price" class="form-control" id="">
                                  <option value="">USD</option>
                               </select>
@@ -416,7 +411,7 @@
                                           </div>
                                           <div class="shippingCurrency d-flex justify-content-between">
                                              <div class="form-group shippingCountry">
-                                                <input type="text" class="form-control" value="0">
+                                                <input type="text" class required="form-control" value="0">
                                                 <span class="valueType">INR</span>
                                              </div>
                                              
@@ -431,7 +426,7 @@
                                           </div>
                                           <div class="shippingCurrency d-flex justify-content-between">
                                              <div class="form-group shippingCountry">
-                                                <input type="text" class="form-control" value="0">
+                                                <input type="text" class required="form-control" value="0">
                                                 <span class="valueType">INR</span>
                                              </div>
                                              <button class="delCurrency">
@@ -479,7 +474,7 @@
                   </div>
                   <div class="form-wizard-buttons">
                      <button type="button" class="btn btn-previous">Previous</button>
-                     <button type="submit" class="btn btn-submit">Submit</button>
+                     <button type="submit" class="btn btn-submit submit_artwork">Submit</button>
                   </div>
                </fieldset>
                <!-- Form Step 4 -->

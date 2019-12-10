@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css')  }}">
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -57,18 +58,20 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-              <li class="active ">
-                <a href="{{url('/artist/dashboard')}}">
-                  <i class="nc-icon nc-bank"></i>
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              <li class="active ">
-                <a href="{{url('/artist/add_artwork')}}">
-                  <i class="nc-icon nc-bank"></i>
-                  <p>Artworks</p>
-                </a>
-              </li>
+                <li class="active ">
+                    <a href="{{url('/artist/dashboard')}}">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav">
+                <li class="active ">
+                    <a href="{{url('/artist/add_artwork')}}">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Add Artwork</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -144,9 +147,9 @@
   
     <script src="{{ asset('js/sweetalert-data.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <script src="{{asset('js/artwork.js')}}"></script>
     <script src="{{asset('js/cropzee.js')}}"></script>
-
 <!-- 
     @stack('scripts')
 
@@ -264,6 +267,22 @@ $(document).ready(function(){
     // });
 
 });
+
+
+      
+
+// $('.first_step').on('click', function (ev) {
+//     $.ajax({
+//         url: "/validate_first_step",
+//         type: "POST",
+//         data: {"image":resp},
+//         success: function (data) {
+//             html = '<img src="' + resp + '" />';
+//             $("#upload-demo-i").html(html);
+//         }
+//     });
+// });
+
 $(document).on('change', '#category_id', function() {
     var category_id = $(this).val();
     $.ajax({
