@@ -164,8 +164,8 @@
                                 <label for="user_name">User Name</label>
                                 <input type="text" class=" form-control"  placeholder="Enter UserName" value="{{$buyer->user_name}}" name="user_name" id="buyer-user_name">
                                 @if(Session::has('validator')) 
-                                <div class="alert alert-danger">
-                                    {{ Session::get('validator')}}
+                                <div class="alert" style="color:red;background-color:none;font-size:12px;">
+                                    *{{ Session::get('validator')}}
                                 </div>
                                 @endif
                             </div>

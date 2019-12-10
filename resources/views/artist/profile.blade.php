@@ -33,8 +33,8 @@
                               <label>Alias: <span>*</span></label>
                               <input  type="text" name="user_name" placeholder="Gallery/artist name" class="form-control required" value="{{$artist->user_name}}" id="artist-user_name">
                               @if(Session::has('validator')) 
-                                <div class="alert alert-danger">
-                                    {{ Session::get('validator')}}
+                                <div class="alert" style="color:red;background-color:none;font-size:12px;">
+                                    *{{ Session::get('validator')}}
                                 </div>
                               @endif
                         </div>
