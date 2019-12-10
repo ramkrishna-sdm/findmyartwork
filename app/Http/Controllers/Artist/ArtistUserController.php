@@ -199,9 +199,9 @@ class ArtistUserController extends Controller
                     $variant = [];
                     $variant['artwork_id'] = $artwork['id'];
                     $variant['variant_type'] = $this->request->variant_type;
-                    $variant['width'] = $this->request->width;
-                    $variant['height'] = $this->request->height;
-                    $variant['price'] = $this->request->price;
+                    $variant['width'] = $this->request->original_width;
+                    $variant['height'] = $this->request->original_height;
+                    $variant['price'] = $this->request->original_price;
                     $variant['worldwide_shipping_charge'] = 0;
                     $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->id],$variant);
                 }
@@ -234,25 +234,23 @@ class ArtistUserController extends Controller
                 }
             }
                     
-            // \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
-            // return redirect('/artist/add_artwork');
+            \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
+            return redirect('/artist/dashboard');
             $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
-            // echo "<pre>";
-            // print_r($artwork_details); die;
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Artwork Updated Succssfully',
-                'data'  => $artwork_details,
-            ], 200);
+            
+            // return response()->json([
+            //     'status' => 'success',
+            //     'message' => 'Artwork Updated Succssfully',
+            //     'data'  => $artwork_details,
+            // ], 200);
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();
         }
-           
-     
     } 
 
     public function getSubcategory(){
+        $subcategories = [];
         if(!empty($this->request->category_id)){
             $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
         }

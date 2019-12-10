@@ -86,6 +86,7 @@ Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_sear
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
 Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
+Route::get('/artworks', 'Frontend\ArtworkController@artworks');
 
 // Route::get('/', function () {
 //     return view('welcome');
