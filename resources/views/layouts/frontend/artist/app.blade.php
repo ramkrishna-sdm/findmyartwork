@@ -63,6 +63,12 @@
                   <p>Dashboard</p>
                 </a>
               </li>
+              <li class="active ">
+                <a href="{{url('/artist/add_artwork')}}">
+                  <i class="nc-icon nc-bank"></i>
+                  <p>Artworks</p>
+                </a>
+              </li>
             </ul>
         </div>
     </div>
@@ -102,7 +108,7 @@
                             </form>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a>
+                                <a class="dropdown-item" href="{{url('/artist/profile') }}">{{ __('My profile') }}</a>
                             </div>
                         </div>
                     </li>

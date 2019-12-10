@@ -31,6 +31,7 @@
         </div>
     </div>
 </section>
+
 <!-- End Banner/Slider -->
 <!-- Start Category Section -->
 <section class="Categories">

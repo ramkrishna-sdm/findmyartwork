@@ -27,6 +27,7 @@ use DateTime;
 class ArtistUserController extends Controller
 {
     private $artwork_files;
+    private $users_files;
     /**
      * Create a new controller instance.
      *
@@ -43,7 +44,9 @@ class ArtistUserController extends Controller
         $this->SubCategoryRepository = $SubCategoryRepository;
         $this->subjectRepository = $subjectRepository;
         $this->styleRepository = $styleRepository;
+        $this->userRepository = $userRepository;
         $this->artwork_files = '/images/artwork_files/';
+        $this->users_files = '/images/users_files/';
     }
 
     public function index(){
@@ -58,8 +61,9 @@ class ArtistUserController extends Controller
     }
 
     public function profile(){
-        
-        return view('artist.profile');
+        $userId = Auth::id();
+        $artist = $this->userRepository->getData(['id'=>$userId,'role'=>'artist'],'first',[],0);
+        return view('artist.profile',compact('artist'));
     } 
 
     public function update_artist(){
@@ -77,6 +81,7 @@ class ArtistUserController extends Controller
         $artist_array['postal_code'] = $this->request->postal_code;
         $artist_array['city'] = $this->request->city;
         $artist_array['user_name'] = $this->request->user_name;
+        $artist_array['state'] = $this->request->state;
         $artist_array['country'] = $this->request->country;
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
@@ -93,7 +98,7 @@ class ArtistUserController extends Controller
         $artist = $this->userRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
         if($artist){
             \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
-            return redirect('/artist/profile/'.$artist->id);
+            return redirect('/artist/profile/');
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();
