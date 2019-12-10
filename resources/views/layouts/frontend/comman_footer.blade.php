@@ -254,18 +254,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
 <script>
    var category_id = '';
-   function getSubCategory(id) {
-      category_id = id;
-      // var url = "{{url('buyer/sub-categories')}}";
-      // var data = {'id':category_id};
+   var sub_category_id = '';
+   function subCategoryInfo(id) {
+      sub_category_id = id;
       var favorite = [];
         $.each($("input[name='variant_type']:checked"), function(){
           favorite.push($(this).val());
         });
-      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
-      
-      // applyFilter(data);
+   }
+
+   function getSubCategory(id) {
+      category_id = id;
+      sub_category_id = "";
+      var favorite = [];
+        $.each($("input[name='variant_type']:checked"), function(){
+          favorite.push($(this).val());
+        });
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
    }
    
    function applyFilter(data){
@@ -293,13 +301,24 @@
    }
 </script>
 <script>
+  $(document).on('click', '.categoryItem', function () { 
+    var favorite = [];
+    $.each($("input[name='variant_type']:checked"), function(){
+      favorite.push($(this).val());
+    });
+     // alert("My favourite sports are: " + favorite.join(", "));
+     data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      applyFilter(data);
+  });
+</script>   
+<script>
   $(document).on('click', '.variant_checkbox', function () { 
     var favorite = [];
     $.each($("input[name='variant_type']:checked"), function(){
       favorite.push($(this).val());
     });
      // alert("My favourite sports are: " + favorite.join(", "));
-     data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+     data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
   });
 </script>   
@@ -309,7 +328,7 @@
         $.each($("input[name='variant_type']:checked"), function(){
           favorite.push($(this).val());
         });
-      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
    });
 </script>
@@ -320,7 +339,7 @@
       $.each($("input[name='variant_type']:checked"), function(){
         favorite.push($(this).val());
       });
-      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
    });
 </script>
@@ -331,7 +350,7 @@
       $.each($("input[name='variant_type']:checked"), function(){
         favorite.push($(this).val());
       });
-      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
    });
 </script>
@@ -342,7 +361,7 @@
       $.each($("input[name='variant_type']:checked"), function(){
         favorite.push($(this).val());
       });
-      data = {'id':category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
+      data = {'id':category_id,'sub_category_id':sub_category_id,'price':$("#price-filter").val(),'height':$("#height-filter").val(),'width':$("#width-filter").val(),'subject_id':$('#subject_id').val(),'style_id':$('#style_id').val(),'variant_type':favorite.join(",")}
       applyFilter(data);
    });
 </script>

@@ -110,7 +110,7 @@
                       <!-- Category Item -->
                       @foreach($categories[0]->subcategories as $subcategory)
                       <div class="categoryItem">
-                          <a href="#">
+                          <a href="javascript:void(0);" onclick="subCategoryInfo('{{$subcategory->id}}')">
                               <div class="image"><img src="{{$subcategory->media_url}}" alt=""></div>
                               <h3>{{$subcategory->name}}</h3>
                           </a>
