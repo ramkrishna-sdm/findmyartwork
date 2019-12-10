@@ -84,7 +84,7 @@ class BuyerFilterController extends Controller
         // print_r($all_artwork); die;
         if(count($all_artwork) > 0){
             foreach ($all_artwork as $key => $value) {
-                $artwork_array[] = $this->artworkRepository->getData(['id'=>$value->id],'first',['artist', 'artwork_images', 'variants', 'artwork_like'],0);
+                $artwork_array[] = $this->artworkRepository->getData(['id'=>$value->id],'first',['artist', 'artwork_images', 'variants', 'artwork_like','sub_category_detail'],0);
             }
         }
         $categories['artwork'] = $artwork_array;
@@ -93,6 +93,7 @@ class BuyerFilterController extends Controller
         // foreach($categories['artwork'] as $artworks){
         //     print_r($artworks);die;
         // }dd("mkl");
+        
         $returnHTML = view('buyer.sub_categories',compact('categories'))->render();
         return response()->json(array('status' => '200', 'html'=>$returnHTML));
     }
