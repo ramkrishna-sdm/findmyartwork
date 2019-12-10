@@ -119,13 +119,13 @@
                             <input type="hidden" name="id" value="{{$buyer->id}}">
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input type="text" class=" form-control"  placeholder="Enter First Name" value="{{$buyer->first_name}}" name="first_name">
+                                <input type="text" class=" form-control"  placeholder="Enter First Name" value="{{$buyer->first_name}}" name="first_name" id="buyer-first_name">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" class=" form-control"  placeholder="Enter Last Name" value="{{$buyer->last_name}}" name="last_name">
+                                <input type="text" class=" form-control"  placeholder="Enter Last Name" value="{{$buyer->last_name}}" name="last_name" id="buyer-last_name">
                             </div>
                         </div>
                     </div>
@@ -133,13 +133,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class=" form-control"  placeholder="Enter Email" value="{{$buyer->email}}" name="email" id="buyer-email">
+                                <input type="text" class=" form-control"  placeholder="Enter Email" value="{{$buyer->email}}" name="email" id="buyer-email" id="buyer-first_name">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class=" form-control"  placeholder="Enter Address" value="{{$buyer->address}}" name="address">
+                                <input type="text" class=" form-control"  placeholder="Enter Address" value="{{$buyer->address}}" name="address" id="buyer-address">
                             </div>
                         </div>
                     </div>
@@ -147,13 +147,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="postal_code">Postal Code</label>
-                                <input type="text" class=" form-control"  placeholder="Enter Postal Code" value="{{$buyer->postal_code}}" name="postal_code">
+                                <input type="text" class=" form-control"  placeholder="Enter Postal Code" value="{{$buyer->postal_code}}" name="postal_code" id="buyer-postal_code">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input type="text" class=" form-control"  placeholder="Enter City" value="{{$buyer->city}}" name="city">
+                                <input type="text" class=" form-control"  placeholder="Enter City" value="{{$buyer->city}}" name="city" id="buyer-city">
                             </div>
                         </div>
                     </div>
@@ -161,13 +161,21 @@
                         <div class="col-sm-6">
                         <div class="form-group">
                                 <label for="user_name">User Name</label>
-                                <input type="text" class=" form-control"  placeholder="Enter UserName" value="{{$buyer->user_name}}" name="user_name">
+                                <input type="text" class=" form-control"  placeholder="Enter UserName" value="{{$buyer->user_name}}" name="user_name" id="buyer-user_name">
                             </div>
                         </div>
                         <div class="col-sm-6">
                         <div class="form-group">
                                 <label for="postal_code">Country</label>
-                                <input type="text" class=" form-control"  placeholder="Enter Country" value="{{$buyer->country}}" name="country">
+                                <input type="text" class=" form-control"  placeholder="Enter Country" value="{{$buyer->country}}" name="country" id="buyer-country">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                                <label for="postal_code">Biography</label>
+                                <input type="text" class=" form-control"  placeholder="Enter Biography" value="{{$buyer->biography}}" name="biography" id="buyer-biography">
                             </div>
                         </div>
                     </div>
@@ -189,9 +197,25 @@
   $(document).ready(function() {
   $('#update-profile').click(function(e) {
   e.preventDefault();
-  var email = $('#buyer-email').val();
+  var email = $('#buyer-email').val();       
+  var first_name=$('#buyer-first_name').val();
+  var last_name=$('#buyer-last_name').val();
+  var user_name=$('#buyer-user_name').val();
+  var address=$('#buyer-address').val();
+  var postal_code=$('#buyer-postal_code').val();
+  var city=$('#buyer-city').val();
+  var country=$('#buyer-country').val();
+  var biography=$('#buyer-biography').val();
   var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  if($.trim(email) == '')
+  if($.trim(first_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter First Name.');
+      return false;
+  }else if($.trim(last_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Last Name.');
+      return false;
+  }else if($.trim(email) == '')
     {
       toastr.options.timeOut = 1500; // 1.5s
       toastr.error('Please Enter Email.');
@@ -201,6 +225,30 @@
     {
       toastr.options.timeOut = 1500; // 1.5s
       toastr.error('Please Enter Valid Email.');
+      return false;
+    }else if($.trim(user_name)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter User Name.');
+      return false;
+    }else if($.trim(address)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Address.');
+      return false;
+    }else if($.trim(postal_code)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Postal Code.');
+      return false;
+    }else if($.trim(city)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter City.');
+      return false;
+    }else if($.trim(country)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Country.');
+      return false;
+    }else if($.trim(biography)==''){
+      toastr.options.timeOut = 1500; // 1.5s
+      toastr.error('Please Enter Biography.');
       return false;
     }else{
       

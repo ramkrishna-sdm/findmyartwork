@@ -98,7 +98,7 @@ class ArtistUserController extends Controller
         $artist = $this->userRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
         if($artist){
             \Session::flash('success_message', 'Artist Details Updated Succssfully.'); 
-            return redirect('/artist/profile/');
+            return redirect('/artist/profile/'.$artist->id);
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();
