@@ -20,10 +20,6 @@ Route::get('/logout','CommonLoginController@logout');
 /*************Common Login Controller Routes End************************/
 
 
-// Route::get('/file_cropper','CommonLoginController@logout');
-Route::view('/file_cropper', 'file_cropper');
-
-
 Route::get('/checkphp','CommonLoginController@phpinfo');
 
 
