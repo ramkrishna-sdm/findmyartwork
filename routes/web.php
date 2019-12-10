@@ -36,6 +36,10 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::post('/getSubcategory','ArtistUserController@getSubcategory');
 	Route::get('/profile/{id}','ArtistUserController@profile');
 	Route::post('/update_artist','ArtistUserController@update_artist');
+	Route::get('/artworks','ArtistUserController@artworks');
+	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'ArtistUserController@change_artwork_status');
+	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
+	Route::get('/view_artwork/{key}', 'ArtistUserController@view_artwork');
 
 });
 
