@@ -143,11 +143,11 @@
                                     <div class="form-group">
                                         <input type="password" name="old_password" class="form-control" placeholder="Old password" required>
                                     </div>
-                                    @if ($errors->has('old_password'))
+                                    <!-- @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('old_password') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
@@ -156,11 +156,11 @@
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                                     </div>
-                                    @if ($errors->has('password'))
+                                    <!-- @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
@@ -169,11 +169,11 @@
                                     <div class="form-group">
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
                                     </div>
-                                    @if ($errors->has('password_confirmation'))
+                                    <!-- @if ($errors->has('password_confirmation'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password_confirmation') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
