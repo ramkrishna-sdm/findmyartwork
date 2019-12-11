@@ -16,7 +16,7 @@ use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
-
+// use Image;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -191,8 +191,24 @@ class ArtistUserController extends Controller
             $uploads['artwork_id'] = $artwork['id'];
             $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
 
+
+                    
+
+
             if($this->request->hasFile('upload_files')){
                 foreach ($upload_files as $file) {
+                    
+                    // $resize_image = Image::make($file->getRealPath());
+                    // $parts = pathinfo($file->getClientOriginalName());
+                    // $extension = strtolower($parts['extension']);
+                    // $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                    
+                    // $resize_image->resize(700, 350, function($constraint){
+                    // $constraint->aspectRatio();
+                    // })->save($destinationPath . '/' . $imageName);
+                    // $destinationPath = public_path() . $this->artwork_files;
+                    // $file->move($destinationPath, $imageName);
+
                     $parts = pathinfo($file->getClientOriginalName());
                     $extension = strtolower($parts['extension']);
                     $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
