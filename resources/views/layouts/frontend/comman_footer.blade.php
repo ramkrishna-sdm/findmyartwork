@@ -301,6 +301,7 @@
       });
    }
 </script>
+
 <script>
   $(document).on('click', '.categoryItem', function () { 
     var favorite = [];

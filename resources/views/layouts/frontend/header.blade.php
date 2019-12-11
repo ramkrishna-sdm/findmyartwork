@@ -117,7 +117,7 @@ HomeController::header_counter();
                   </div>
                 </li>
                 @else
-                <li class="nav-btn"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#LoginModal">SIGN IN</a></li>
+                <li class="nav-btn"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#LoginModal" id="show-toaster">SIGN IN</a></li>
                 @endif
                 <li class="humburger-btn"><button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                   <span></span>
