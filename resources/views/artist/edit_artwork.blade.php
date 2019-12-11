@@ -70,7 +70,7 @@
 
                   </div>
 
-                  <h3>Shambhu</h3>
+                  <h3>Variants</h3>
                   <div class="">
 
                      <table class="table">

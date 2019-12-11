@@ -73,7 +73,7 @@ class ArtistUserController extends Controller
 
     public function artworks(){
         $artworks = $this->artworkRepository->getData(['is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail'],0);
-        return view('artist.artworks',compact('artworks'));
+        return view('artist/artworks',compact('artworks'));
     } 
 
     public function change_artwork_status($id, $status, $page, $user_id)
@@ -246,7 +246,7 @@ class ArtistUserController extends Controller
             }
                     
             \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
-            return redirect('/artist/dashboard');
+            return redirect('/artist/artworks');
             $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
             
             // return response()->json([
