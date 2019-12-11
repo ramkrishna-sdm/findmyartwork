@@ -69,7 +69,7 @@
     </div>
     <div class="container">
         <div class="artistSLider">
-            <div class="owl-carousel artistCarousel">
+            <div class="owl-carousel artistCarousel ">
                 @foreach($similar_artwork as $artworks)
                 @if($artwork_result->id != $artworks->id)
                 <div class="artPost">

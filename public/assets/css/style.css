@@ -353,6 +353,8 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
 .productDetails {
   padding: 4rem 0;
 }
+.productDetailCarousel .owl-item .item{height: 350px;}
+.productDetailCarousel .owl-item .item img{height: 100%; width:auto !important;}
 
 .productDetails .detail .head {
   display: flex;

@@ -102,7 +102,7 @@ class ArtistUserController extends Controller
     public function view_artwork($id){
         $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
         // echo "<pre>";
-        // print_r($artwork_result->variants[0]); die;
+        // print_r($artwork_result->variants[0]->price); die;
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
         return view('artist/view_artwork',compact('artwork_result', 'similar_artwork'));
     } 
