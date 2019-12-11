@@ -55,6 +55,10 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['verified','GalleryCheck']],function(){ 
 
 	Route::get('/dashboard','GalleryUserController@index');
+	Route::get('/profile/{id}', 'GalleryUserController@profile');
+	Route::post('/update_buyer', 'GalleryUserController@update_buyer');
+	Route::put('profile/password','GalleryUserController@password');
+	
 
 });
 
