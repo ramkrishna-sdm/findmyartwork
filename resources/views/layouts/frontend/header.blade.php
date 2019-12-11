@@ -25,9 +25,9 @@ HomeController::header_counter();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
   </head>
   <body>
-    <!-- <div id="loader_gif">
+    <div id="loader_gif">
       <img src="{{asset('assets/images/loader.gif')}}">
-    </div> -->
+    </div>
     <!-- Wrapper -->
     <div class="wrapper">
       <!-- Header Navigation -->
