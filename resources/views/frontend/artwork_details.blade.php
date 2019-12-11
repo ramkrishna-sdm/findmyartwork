@@ -25,13 +25,16 @@
                             </div>
                         </div>
                         <div class="price">
+                            @if(count($artwork_result->variants) > 0)
                             ${{$artwork_result->variants[0]->price}}
+                            @endif
+                            
                         </div>
                     </div>
                     <div class="text">
                         <p>{{$artwork_result->desacription}}</p>
                         <ul>
-                            <li>Dimensions, {{$artwork_result->variants[0]->height}} x {{$artwork_result->variants[0]->width}} cm</li>
+                            <li>Dimensions, @if(count($artwork_result->variants) > 0){{$artwork_result->variants[0]->height}} x {{$artwork_result->variants[0]->width}} @endif cm</li>
                             <li>{{$artwork_result->category_detail->name}}</li>
                             <li>{{$artwork_result->sub_category_detail->name}}</li>
                             <li>{{$artwork_result->style_detail->name}}</li>
@@ -86,7 +89,7 @@
                     <div class="postFooter">
                         <div class="leftBlock">
                             <h5>{{$artworks->title}}</h5>
-                            @if($artworks->variants)
+                            @if(count($artworks->variants) > 0)
                             <h6>$ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>

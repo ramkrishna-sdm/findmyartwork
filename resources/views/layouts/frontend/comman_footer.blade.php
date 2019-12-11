@@ -379,31 +379,35 @@ $(document).on('change mousemove', '.price_range', function(){
   $(this).parents('.filterBlock').find('.price_selected').html('Price ($'+$(this).val()+')')
 })
 
-
-$(document).on('keyup', '#site_filter', function(){
-  var this_filter = $(this);
-  var site_filter = $('#site_filter').val();
-  var data_from = "ajax";
-  $.ajax({
-    url: "{{url('filter_search')}}?data_from="+data_from+'&filter_key='+site_filter,
-    type: 'get',
-    // headers: {
-    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    // },
-    // data: {filter_key:site_filter, data_from:data_from},
-
-    success: function(res){
-        if(res.status=="200"){
-            $(this_filter).parents('.searchbar').find('.filter_result').html(res.result);
-        }else{
-            
+$("#site_filter").focus(function() {
+  $(document).on('keyup', '#site_filter', function(){
+    var this_filter = $(this);
+    var site_filter = $('#site_filter').val();
+    var data_from = "ajax";
+    if(site_filter == ""){
+      $(this_filter).parents('.searchbar').find('.filter_result').html('');
+    }else{
+      $.ajax({
+        url: "{{url('filter_search')}}?data_from="+data_from+'&filter_key='+site_filter,
+        type: 'get',
+        success: function(res){
+            if(res.status=="200"){
+                $(this_filter).parents('.searchbar').find('.filter_result').html(res.result);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
         }
-    },
-    error: function (errormessage) {
-        console.log(errormessage);
+      });
     }
+
+  })
+}).blur(function() {
+  $('#site_filter').val('')
+  $(document).find('.filter_result').html('');
 });
-})
 
 $(document).ready(function(){
   $('#site_filter').typeahead({
