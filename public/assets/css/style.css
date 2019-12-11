@@ -28,6 +28,18 @@ svg:not(:root){overflow:hidden}
 .btn-sm{font-size:18px}
 .text-primary{color:#2e3192!important}
 .text-underline{text-decoration:underline}
+div#loader_gif {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    background: #fff;
+    opacity: 0.8;
+
+}
+div#loader_gif  img{position: absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 100px;}
 .navbar-header.navbar{background:#fff;position:fixed;padding:0;top:0;transition:all .3s ease;width:100%;z-index:9}
 .navbar-header .topbar{border-bottom:1px solid #f8f8f8;padding:4px 0;width:100%}
 .navbar .navbar-nav > li{margin:0 13px;position:relative;align-items:center}
@@ -61,7 +73,8 @@ svg:not(:root){overflow:hidden}
 .Categories{padding:3rem 0}
 .categoryItem{text-align:center;width:20%;box-shadow:0 10px 20.64px 3.36px rgba(0,0,0,0.07);max-width:208px;margin-right:15px}
 .categoryItem:last-child{margin-right:0}
-.categoryItem img{width:100%}
+.categoryItem  .image{height: 125px;}
+.categoryItem img{width:100%; height:100%; object-fit:cover;}
 .categoryList{display:flex; flex-wrap:wrap;}
 .categoryItem h3{font-size:16px;color:#0e0f11;font-weight:600;padding:12px 0;background:#fff}
 .artPost{overflow:hidden;background:#fff;border-radius:6px;border:1px solid #f7f7f7;margin-bottom:2rem;box-shadow:0 10px 20.64px 3.36px rgba(0,0,0,0.04)}
@@ -536,6 +549,7 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
   .pagination .page-item .page-link{padding:.5rem .4rem}
   .contact-frame{flex-direction:column}
   .contact-text,.contact-form{flex:0 0 100%;max-width:100%;min-width:100%;padding-left:40px;padding-right:40px}
+ .categoryItem{width: 49% !important; margin-right: 4px;}
 }
 @media (max-width: 640px) {
   .footerLink .col-md-7.d-flex{display:block!important}
@@ -554,6 +568,7 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
   .userStatsinfo p{font-size:14px}
   .profileAbout h4{font-size:14px}
   .aboutHeader .btn{font-size:14px;padding:.6rem .5rem}
+ 
 }
 @media (max-width: 576px) {
   .navbar-header a.navbar-brand{max-width:160px}
