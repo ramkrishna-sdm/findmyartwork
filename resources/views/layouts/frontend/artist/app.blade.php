@@ -34,6 +34,8 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script>
+
+    </script>
     <!-- End Google Tag Manager -->
     <style>
         .container {  text-align: center; }
@@ -158,6 +160,13 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+    var PATH = $(location).attr('pathname');
+    var arr = PATH.split('/');
+    if(arr[2] == "artworks"){
+        $('#datatable').DataTable();
+    }
+   
     $('.change_artwork_status').click(function(event) {
         event.preventDefault();
         var link = $(this).attr('href');
@@ -348,15 +357,34 @@ $(document).on('change', '#category_id', function() {
     });
 });
 
+$('#mkl').on('keyup', function(){
+    var len = $(this).val().length;
+    if (len < 100) {
+        $(this).val().substring(0, 100);
+        $('.characterLeft').text('Characters left: '+(100 - len));
+    } else {
+        $('.characterLeft').text('Characters left: '+(100 - len));
+    }
+})
+    
 
+function countChar(val) {
+    var len = $('.textarea').val().length;
+    if (len < 1000) {
+        $('.textarea').val().substring(0, 1000);
+        $('.descCharacterLeft').text('Characters left: '+(1000 - len));
+    } else {
+        $('.descCharacterLeft').text('Characters left: '+(1000 - len));
+    }
+};
 
 $(function() {
     // Multiple images preview in browser
     var imagesPreview = function(input, placeToInsertImagePreview) {
         if (input.files) {
-            var filesAmount = input.files.length;
-
-            for (i = 0; i < filesAmount; i++) {
+            var filesCount = input.files.length;
+            // var files = Array.prototype.slice.call(input.files, 0, 3 );
+            for (i = 0; i < 4; i++) {
                 var reader = new FileReader();
 
                 reader.onload = function(event) {
@@ -367,6 +395,7 @@ $(function() {
                 }
                 reader.readAsDataURL(input.files[i]);
             }
+
         }
 
     };
@@ -377,9 +406,8 @@ $(function() {
 });
 
 function removeDiv(elem){
-    $(elem).parent('div.addedImage').remove();
+    $(elem).closest("div.addedImage").remove();
 }
-
 
 </script>
 

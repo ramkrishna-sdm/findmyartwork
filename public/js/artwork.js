@@ -77,6 +77,7 @@ jQuery(document).ready(function() {
         e.preventDefault();
         var title = $("input[name=title]").val();
         var description = $('textarea[name=description]').val();
+        var all_image = $( ".imagesRow" ).children( ".addedImage" ).length;
         if ($.trim(title) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Title is Required');
@@ -85,6 +86,11 @@ jQuery(document).ready(function() {
         if ($.trim(description) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Description is Required');
+            return false;
+        }
+        if ($.trim(all_image) > 5) {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Only 4 Images can be uploaded. Please remove rest image');
             return false;
         }
 
