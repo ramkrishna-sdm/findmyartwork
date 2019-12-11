@@ -67,13 +67,13 @@
                      <div class="col-md-6" >
                         <div class="form-group">
                            <label>title: <span>*</span></label>
-                           <input id="mkl" type="text" name="title" placeholder="Title" class="form-control required" value="">
-                           <span class="characterLeft">Characters left: 50</span>
+                           <input id="mkl" type="text" name="title" placeholder="Title" maxlength="100" class="form-control required" value="">
+                           <span class="characterLeft">Characters left: 100</span>
                         </div>
                         <div class="form-group">
                            <label>Description: <span>*</span></label>
-                           <textarea class="form-control textarea" name="description" rows="9" cols="50"></textarea>
-                           <span class="characterLeft">Characters left: 50</span>
+                           <textarea class="form-control textarea" maxlength="1000" name="description" onkeyup="countChar(this)" rows="9" cols="50"></textarea>
+                           <span class="descCharacterLeft">Characters left: 1000</span>
                         </div>
                         <div class="form-group">
                            <label>Additional Images: </label>

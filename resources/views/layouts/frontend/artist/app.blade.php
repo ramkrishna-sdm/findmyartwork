@@ -357,16 +357,33 @@ $(document).on('change', '#category_id', function() {
     });
 });
 
+$('#mkl').on('keyup', function(){
+    var len = $(this).val().length;
+    if (len < 100) {
+        $(this).val().substring(0, 100);
+        $('.characterLeft').text('Characters left: '+(100 - len));
+    } else {
+        $('.characterLeft').text('Characters left: '+(100 - len));
+    }
+})
+    
 
+function countChar(val) {
+    var len = $('.textarea').val().length;
+    if (len < 1000) {
+        $('.textarea').val().substring(0, 1000);
+        $('.descCharacterLeft').text('Characters left: '+(1000 - len));
+    } else {
+        $('.descCharacterLeft').text('Characters left: '+(1000 - len));
+    }
+};
 
 $(function() {
     // Multiple images preview in browser
     var imagesPreview = function(input, placeToInsertImagePreview) {
         if (input.files) {
-            var filesCount=array();
             var filesCount = input.files.length;
             // var files = Array.prototype.slice.call(input.files, 0, 3 );
-            if(filesCount<=4){
             for (i = 0; i < 4; i++) {
                 var reader = new FileReader();
 
@@ -377,10 +394,6 @@ $(function() {
                     // $($.parseHTML(html)).appendTo(placeToInsertImagePreview);
                 }
                 reader.readAsDataURL(input.files[i]);
-            } 
-            }
-            else{
-                alert('max 4 image upload');
             }
 
         }
