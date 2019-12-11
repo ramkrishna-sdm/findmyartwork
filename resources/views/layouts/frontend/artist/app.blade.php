@@ -192,46 +192,29 @@ $(document).ready(function(){
         });
     });
     $('.delete_artwork').click(function(event) {
-            event.preventDefault();
-            var link = $(this).attr('href');
-            swal({
-                title: "Please confirm this action",
-                text: "By this action you are confirming that the selected Artwork will be deleted permanently.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes, I am sure!',
-                cancelButtonText: "No, cancel it!",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    window.location = link;
-                } else {
-                   swal("Cancelled", "You cancelled this action", "error");
-                }
-            });
+        event.preventDefault();
+        var link = $(this).attr('href');
+        swal({
+            title: "Please confirm this action",
+            text: "By this action you are confirming that the selected Artwork will be deleted permanently.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = link;
+            } else {
+               swal("Cancelled", "You cancelled this action", "error");
+            }
         });
+    });
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
-    // $('#upload_form').on('submit', function(event){
-    //     event.preventDefault();
-    //     $.ajax({
-    //         url:"{{ url('/artist/upload_artwork') }}",
-    //         method:"POST",
-    //         data:new FormData(this),
-    //         dataType:'JSON',
-    //         contentType: false,
-    //         cache: false,
-    //         processData: false,
-    //         success:function(data)
-    //         {
-    //             window.location.reload('/artist/add_artwork')
-    //             toastr.options.timeOut = 3500; // 2s
-    //             toastr.success('Artwork Saved Successfully');
-    //         }
-    //     })
-    // }); 
+    
     $(".sizeRow").hide();
     $(document).on('click', '#originalCheck', function(){
         if($(this).prop("checked") == true){
@@ -300,43 +283,7 @@ $(document).ready(function(){
         }
     })
 
-    // $(document).on('click','.addAnother', function(){ 
-    //     var clone = $('.'+$(this).attr('rel')).last().clone();
-
-    //     clone.insertAfter($('.artPrint').last());
-        
-    // });
-
-    // $('#addlimtedEadi').click(function() {
-    //     var clone_ltd = $('#limitedEdition').clone();
-    //     clone_ltd.find('.addAnother').remove();
-    //     clone_ltd.remove_
-    //     .appendTo($('#limitedEdition'));
-    // });
-
-    // $('#addArtprint').click(function() {
-    // $('#artPrint')
-    // .clone()
-    // .appendTo($('#artPrint'));
-    // });
-
 });
-
-
-      
-
-// $('.first_step').on('click', function (ev) {
-//     $.ajax({
-//         url: "/validate_first_step",
-//         type: "POST",
-//         data: {"image":resp},
-//         success: function (data) {
-//             html = '<img src="' + resp + '" />';
-//             $("#upload-demo-i").html(html);
-//         }
-//     });
-// });
-
 $(document).on('change', '#category_id', function() {
     var category_id = $(this).val();
     $.ajax({
@@ -358,6 +305,7 @@ $(document).on('change', '#category_id', function() {
         }
     });
 });
+
 
 $('#mkl').on('keyup', function(){
     var len = $(this).val().length;
