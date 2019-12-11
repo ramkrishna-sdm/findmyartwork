@@ -240,6 +240,7 @@
     </div>
   </div>
 </form>
+
 </div>
 <!-- //Wrapper -->
 <!-- jQuery CDN Link -->
@@ -771,6 +772,15 @@ $(document).on('click', '.add_to_cart', function(){
     });
 })
 </script>
+<script>
+  $(function(){
+    setTimeout(function() {
+      $("#loader_gif").hide();
+    }, 600); 
+   
+  });
+</script>
+
 
 
 </body>
