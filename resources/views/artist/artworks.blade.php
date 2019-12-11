@@ -62,28 +62,4 @@
         </div>
     </div>
 
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Gallery Images</h5>
-            </div>
-            <div class="modal-body">
-                <!--CAROUSEL CODE GOES HERE-->
-
-                <!--end modal-body-->
-            </div>
-            <div class="modal-footer">
-                <button class="btn-sm close" type="button" data-dismiss="modal">Close</button>
-                <!--end modal-footer-->
-            </div>
-            <!--end modal-content-->
-        </div>
-        <!--end modal-dialoge-->
-    </div>
-    <!--end myModal-->
-</div>
 @endsection

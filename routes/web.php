@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/artworks','ArtistUserController@artworks');
 	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'ArtistUserController@change_artwork_status');
 	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
-	Route::get('/view_artwork/{key}', 'ArtistUserController@view_artwork');
+	Route::get('/view_artwork/{id}', 'ArtistUserController@view_artwork');
 	Route::get('/edit_artwork/{key}', 'ArtistUserController@edit_artwork');
 	Route::put('profile/password','ArtistUserController@password');
 

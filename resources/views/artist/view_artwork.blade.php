@@ -1,5 +1,4 @@
-@extends('layouts.frontend.artist.app')
-@section('content')
+@include('layouts.frontend.header')
 <section class="productDetails">
     <div class="container">
         <div class="row">
@@ -106,4 +105,6 @@
         </div>
     </div>
 </section>
-@endsection
+<!-- End Similar Artworks Section -->
+<!-- Footer Section -->
+@include('layouts.frontend.comman_footer')
