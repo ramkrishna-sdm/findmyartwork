@@ -16,7 +16,7 @@ use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
-// use Image;
+use Image;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;

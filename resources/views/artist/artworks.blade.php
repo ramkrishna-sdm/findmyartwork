@@ -41,7 +41,6 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($artworks as $key => $artwork)
-
                                                 <tr>
                                                     <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
                                                     <td>{{$artwork->title}}</td>
