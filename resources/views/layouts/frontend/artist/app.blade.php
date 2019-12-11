@@ -34,8 +34,6 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script>
-
-    </script>
     <!-- End Google Tag Manager -->
     <style>
         .container {  text-align: center; }
@@ -160,13 +158,6 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-
-    var PATH = $(location).attr('pathname');
-    var arr = PATH.split('/');
-    if(arr[2] == "artworks"){
-        $('#datatable').DataTable();
-    }
-   
     $('.change_artwork_status').click(function(event) {
         event.preventDefault();
         var link = $(this).attr('href');
@@ -363,11 +354,9 @@ $(function() {
     // Multiple images preview in browser
     var imagesPreview = function(input, placeToInsertImagePreview) {
         if (input.files) {
-            var filesCount=array();
-            var filesCount = input.files.length;
-            // var files = Array.prototype.slice.call(input.files, 0, 3 );
-            if(filesCount<=4){
-            for (i = 0; i < 4; i++) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
 
                 reader.onload = function(event) {
@@ -377,12 +366,7 @@ $(function() {
                     // $($.parseHTML(html)).appendTo(placeToInsertImagePreview);
                 }
                 reader.readAsDataURL(input.files[i]);
-            } 
             }
-            else{
-                alert('max 4 image upload');
-            }
-
         }
 
     };
@@ -393,8 +377,9 @@ $(function() {
 });
 
 function removeDiv(elem){
-    $(elem).closest("div.addedImage").remove();
+    $(elem).parent('div.addedImage').remove();
 }
+
 
 </script>
 
