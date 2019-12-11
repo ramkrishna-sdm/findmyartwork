@@ -141,39 +141,39 @@
                                 <label class="col-12 col-form-label">{{ __('Old Password') }}</label>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="password" name="old_password" class="form-control" placeholder="Old password" required>
+                                        <input type="password" name="old_password" class="form-control" placeholder="Old password">
                                     </div>
-                                    @if ($errors->has('old_password'))
+                                    <!-- @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('old_password') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-12 col-form-label">{{ __('New Password') }}</label>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                        <input type="password" name="password" class="form-control" placeholder="Password">
                                     </div>
-                                    @if ($errors->has('password'))
+                                    <!-- @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-12 col-form-label">{{ __('Password Confirmation') }}</label>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
+                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation">
                                     </div>
-                                    @if ($errors->has('password_confirmation'))
+                                    <!-- @if ($errors->has('password_confirmation'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password_confirmation') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="row">
