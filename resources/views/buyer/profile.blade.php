@@ -117,6 +117,7 @@
                             <button type="submit" class="btn btn-default" id="update-profile">Update</button>
                         </div>
                     </div>
+    </form>
                     <div class="change-password">
                         <form class="col-md-12" action="{{ url('buyer/profile/password') }}" method="POST">
                         @csrf
@@ -187,7 +188,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        
     </div>
 </section>
 
