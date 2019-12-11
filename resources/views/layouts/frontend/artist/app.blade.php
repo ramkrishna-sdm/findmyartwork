@@ -35,7 +35,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script>
 
-    </script>
     <!-- End Google Tag Manager -->
     <style>
         .container {  text-align: center; }
@@ -44,6 +43,9 @@
 </head>
 
 <body class="">
+<!-- <div id="loader_gif">
+      <img src="{{asset('assets/images/loader.gif')}}">
+</div> -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrapper ">
