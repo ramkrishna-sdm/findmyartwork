@@ -43,7 +43,7 @@
 </head>
 
 <body class="{{ $class }}">
-    <!-- Google Tag Manager (noscript) -->
+   <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -80,7 +80,6 @@
     <script src="{{ asset('js/sweetalert-data.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
     <script type="text/javascript">
         $('document').ready(function() {
             var PATH = $(location).attr('pathname');
