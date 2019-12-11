@@ -1,4 +1,7 @@
-@extends('layouts.frontend.artist.app')
+@extends('layouts.frontend.artist.app', [
+    'class' => '',
+    'elementActive' => 'artworks',
+])
 @section('content')
     <div class="content">
         <div class="container-fluid mt--7">
