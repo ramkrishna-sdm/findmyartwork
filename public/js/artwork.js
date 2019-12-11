@@ -32,6 +32,48 @@ jQuery(document).ready(function() {
         $(this).removeClass('input-error');
     });
 
+    $('.formSubmit').on('click', function(e) {
+        e.preventDefault();
+        var title = $("input[name=title]").val();
+        var description = $('textarea[name=description]').val();
+        var category_id = $("#category_id").val();
+        var sub_category = $("#sub_category").val();
+        var style_id = $("#style_id").val();
+        var subject_id = $("#subject_id").val();
+
+        if ($.trim(title) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Title is Required');
+            return false;
+        }
+        if ($.trim(description) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Description is Required');
+            return false;
+        }
+
+        if ($.trim(category_id) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Please Select Category');
+            return false;
+        }
+        if ($.trim(sub_category) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Please Select Sub-Category');
+            return false;
+        }
+        if ($.trim(style_id) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Please Select Style');
+            return false;
+        }
+        if ($.trim(subject_id) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Please Select Subject');
+            return false;
+        }
+    });
+
     // First step
     $('.first_step').on('click', function(e) {
         e.preventDefault();

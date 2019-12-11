@@ -108,7 +108,12 @@ class ArtistUserController extends Controller
     } 
 
     public function edit_artwork($id){
-       return view('artist/edit_artwork');
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
+       $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
+       return view('artist/edit_artwork',compact('artwork','categories','subjects','styles','subcategories'));
 
     }
 
@@ -166,7 +171,8 @@ class ArtistUserController extends Controller
     }
     
     function upload_artwork(Request $request)
-    {   
+    { 
+        
         $artwork_array = [];
         $artwork_array['title'] = $this->request->title;
         $artwork_array['description'] = $this->request->description;
@@ -282,7 +288,7 @@ class ArtistUserController extends Controller
             $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
         }
         $options = "";
-        $options .='<option value="">Select Sub-category</option>';
+        $options .='<option value="">Select Type</option>';
         if(!empty($this->request->category_id)){
             if(count($subcategories) > 0){
                 foreach ($subcategories as $key => $value) {
