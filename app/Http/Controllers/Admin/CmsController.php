@@ -109,8 +109,8 @@ class CmsController extends Controller
         if($slug == "terms_n_conditions"){
             $title = "Terms & Conditions";
         }   
-        if($slug == "how_it_works"){
-            $title = "How It Works";
+        if($slug == "blog"){
+            $title = "Blog";
         }
         if($slug == "home_page"){
             $title = "Home";

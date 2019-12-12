@@ -13,6 +13,9 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">{{ __('Your Artworks') }}</h3>
                                 </div>
+                                <div class="col-4 text-right">
+                                    <a href="{{ url('/artist/add_artwork') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a>
+                                </div>
                             </div>
                         </div>
                         

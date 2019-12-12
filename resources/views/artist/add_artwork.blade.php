@@ -1,4 +1,7 @@
-@extends('layouts.frontend.artist.app')
+@extends('layouts.frontend.artist.app', [
+    'class' => '',
+    'elementActive' => 'new_artwork',
+])
 @section('content')
 <section class="form-box" >
    <div class="container">
