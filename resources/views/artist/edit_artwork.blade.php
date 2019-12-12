@@ -33,13 +33,13 @@
                         <div class="form-group">
                            <label>Additional Images: </label>
                            
-                           <div class="imagesRow">
+                           <div class="imagesRow" id="imagesRow">
                               @foreach($artwork->artwork_images as $images)
                               <div class="addedImage">
                                  <div class="imageBox">
                                     <img src="{{$images->media_url}}" alt="">
                                  <!--    <button><i class="fa fa-trash remove_artwork_image" aria-hidden="true" data-artwork-image-id="{{$images->id}}"></i></button> -->
-                                  <button><i class="fa fa-trash" aria-hidden="true" onClick="removeImage({{$images->id}})"></i></button>
+                                  <button type="button" onClick="removeImage({{$images->id}},{{$artwork->id}})"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                  </div>
                               </div>
                               @endforeach

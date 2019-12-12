@@ -118,13 +118,18 @@ class ArtistUserController extends Controller
     }
 
     public function deleteImage(){
-        $image = ArtworkImage::find($this->request->id);
-        $image->delete();
-         return response()->json(array(
-                //'redirect_url' => 'artist/edit_artwork',,
-                'message' => "image Succssfully deleted",   
-                'status' => 200,
-                ) , 200);
+        $image = ArtworkImage::where(['id'=> $this->request->id, 'artwork_id'=>$this->request->artwork_id])->forcedelete();
+
+        $artwork_images = ArtworkImage::where('artwork_id',$this->request->artwork_id)->get();
+
+        return view('artist.artwork_images',compact('artwork_images'));
+
+         // return response()->json(array(
+         //        // 'redirect_url' => '/artist/edit_artwork/'.$this->request->artwork_id,
+         //        'message' => "image Succssfully deleted",   
+         //        'status' => 200,
+         //        'images' => view('artist.artwork_images',compact('artwork_images'))
+         //        ) , 200);
     }
 
 
