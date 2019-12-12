@@ -1,5 +1,7 @@
-@extends('layouts.frontend.artist.app')
-
+@extends('layouts.frontend.artist.app', [
+    'class' => '',
+    'elementActive' => 'dashboard',
+])
 @section('content')
  <div class="container">
     <div class="row">
@@ -83,7 +85,7 @@
 	            <p class="card-category">Your gallery is empty. For now, buyers and other artists won’t see you on ArtViaYou.</p>
 	          </div>
 	          <div class="card-body ">
-	            <a  href="#" class="btn btn-outline-primary">Add your first artwork<i class="icon-arrow-right-long right"></i></a>
+	            <a  href="{{ url('/artist/add_artwork') }}" class="btn btn-outline-primary">Add your first artwork<i class="icon-arrow-right-long right"></i></a>
 	          </div>
 	          
 	        </div>

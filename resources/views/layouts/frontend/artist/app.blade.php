@@ -65,10 +65,10 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active ">
-                    <a href="{{url('/artist/dashboard')}}">
+                <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
+                    <a href="{{ url('/artist/dashboard') }}">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Dashboard</p>
+                        <p>{{ __('Dashboard') }}</p>
                     </a>
                 </li>
                
@@ -394,41 +394,53 @@ function removeDiv(elem){
 }
 
 
-$(document).on('click', '#remove_artwork_image', function(){
-    var artwork_image_id = $(this).attr('data-artwork-image-id');
-    alert(artwork_image_id);
-    $.ajax({
-        type:"POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url:"{{url('artist/deleteImage')}}",
-        data:{artwork_image_id:artwork_image_id},
-        success(res){
-            console.log(res);
-            return false;
-            // alert('Deleted');
-        }
-    });
-})
-
-// function removeImage(id){
-//     var status = confirm("Are you sure you want to delete ?");  
-//     if(status==true)
-//     {
-//         $.ajax({
-//           type:"POST",
-//           headers: {
+// $(document).on('click', '.remove_artwork_image', function(){
+//     alert('ok'); return fasle;
+//     var artwork_image_id = $(this).attr('data-artwork-image-id');
+//     alert(artwork_image_id); return false;
+//     $.ajax({
+//         type:"POST",
+//         headers: {
 //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//            },
-//           url:"{{url('/artist/deleteImage')}}",
-//           data:{artimage_id:id},
-//           success(html){
-//            alert('Deleted');
-//           }
-//         });
-//     }
-// }
+//         },
+//         url:"{{url('artist/deleteImage')}}",
+//         data:{artwork_image_id:artwork_image_id},
+//         success(res){
+//             console.log(res);
+//             return false;
+//             // alert('Deleted');
+//         }
+//     });
+// })
+
+
+</script>
+<script>
+    function removeImage(id){
+        var status = confirm("Are you sure you want to delete ?");  
+        if(status==true)
+        {
+            $.ajax({
+              type:"POST",
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+              url:"{{url('artist/deleteImage')}}", 
+              data:{'id':id},
+              success: function(res){
+                if(res.status=="200"){
+                    
+                   console.log(res.message);
+                }else{
+                    
+                }
+                },
+                error: function (errormessage) {
+                    console.log(errormessage);
+                }
+            });
+        }
+    }
 
 </script>
 
