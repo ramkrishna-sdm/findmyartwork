@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Artist;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repository\ArtworkRepository;
@@ -17,7 +15,6 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Image;
-
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
@@ -53,32 +50,26 @@ class ArtistUserController extends Controller
         $this->artwork_files = '/images/artwork_files/';
         $this->users_files = '/images/users_files/';
     }
-
     public function index(){
     	return view('artist.artist_dashboard');
     }
-
     public function add_artwork(){
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
         return view('artist.add_artwork', compact('categories','subjects','styles'));
     }
-
     public function profile($id){
         // $userId = Auth::id();
         $artist =  $this->userRepository->getData(['id'=>$id],'first',[],0);
         return view('artist.profile',compact('artist'));
     } 
-
     public function artworks(){
         $artworks = $this->artworkRepository->getData(['is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail'],0);
         return view('artist/artworks',compact('artworks'));
     } 
-
     public function change_artwork_status($id, $status, $page, $user_id)
     {
-
         if($status == 'publish'){
             $data['is_publised'] = 'unpublish';
             $new_status = "Un-Published";
@@ -91,14 +82,12 @@ class ArtistUserController extends Controller
         return redirect('/artist/artworks'); 
         
     }
-
     public function delete_artwork($id)
     {
         $artwork = $this->artworkRepository->getData(['id'=>$id],'delete',[],0);
         \Session::flash('success_message', 'Artwork Deleted Succssfully!.'); 
             return redirect('/artist/artworks');
     } 
-
     public function view_artwork($id){
         $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
         // echo "<pre>";
@@ -106,7 +95,6 @@ class ArtistUserController extends Controller
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
         return view('artist/view_artwork',compact('artwork_result', 'similar_artwork'));
     } 
-
     public function edit_artwork($id){
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
@@ -114,9 +102,7 @@ class ArtistUserController extends Controller
         $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
        $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
        return view('artist/edit_artwork',compact('artwork','categories','subjects','styles','subcategories'));
-
     }
-
     public function deleteImage(){
         $image = ArtworkImage::find($this->request->id);
         $image->delete();
@@ -126,9 +112,6 @@ class ArtistUserController extends Controller
                 'status' => 200,
                 ) , 200);
     }
-
-
-
     public function update_artist(){
         $validation = Validator::make($this->request->all(), [
         // $validate = $this->validate($this->request, [
@@ -141,9 +124,7 @@ class ArtistUserController extends Controller
             'state'         => trim('required|string'),
             'country'         => trim('required|string'),
         ]);
-
         // $validator = Validator::make($this->request->all() , $rules);
-
        if ($validation->fails()) {
                 throw new ValidationException($validation);
         }
@@ -167,7 +148,6 @@ class ArtistUserController extends Controller
             $media_url->move(public_path() . $this->users_files, $imageName);  
             $image_name = url($this->users_files . $imageName);
             $artist_array['media_url'] = $image_name;
-
         }
       
         $artist = $this->userRepository->createUpdateData(['id'=> $this->request->id],$artist_array);
@@ -194,22 +174,16 @@ class ArtistUserController extends Controller
         if($artwork){
             $upload_files = $this->request->file('upload_files');
             $main_image = $this->request->file('main_image_base64');
-
             $image = $request->main_image_base64;  // your base64 encoded
             $image = str_replace('data:image/jpeg;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $imageName = str_random(10).'.'.'jpeg';
             $success = file_put_contents(public_path() . $this->artwork_files.$imageName, base64_decode($image));
             $image_name = url($this->artwork_files . $imageName); 
-
             $uploads['media_url'] = $image_name;
             $uploads['artwork_id'] = $artwork['id'];
             $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
-
-
                     
-
-
             if($this->request->hasFile('upload_files')){
                 foreach ($upload_files as $file) {
                     
@@ -223,7 +197,6 @@ class ArtistUserController extends Controller
                     // })->save($destinationPath . '/' . $imageName);
                     // $destinationPath = public_path() . $this->artwork_files;
                     // $file->move($destinationPath, $imageName);
-
                     $parts = pathinfo($file->getClientOriginalName());
                     $extension = strtolower($parts['extension']);
                     $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
@@ -290,7 +263,6 @@ class ArtistUserController extends Controller
             return back()->withInput();
         }
     } 
-
     public function getSubcategory(){
         $subcategories = [];
         if(!empty($this->request->category_id)){
@@ -310,7 +282,6 @@ class ArtistUserController extends Controller
             'status' => 200,
         ), 200);
     }
-
     /**
      * Change the password
      *
@@ -320,8 +291,6 @@ class ArtistUserController extends Controller
     public function password(PasswordRequest $request)
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
-
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
-
 }

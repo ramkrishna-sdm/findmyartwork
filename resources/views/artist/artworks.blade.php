@@ -3,19 +3,19 @@
     'elementActive' => 'artworks',
 ])
 @section('content')
-    <div class="content">
-        <div class="container-fluid mt--7">
-            <div class="row">
+    <div class="content p-0">
+        <div class="container-fluid mt--7 p-0">
+            <div class="row noRowMargin">
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
+                            <div class="row noRowMargin align-items-center">
+                                <div class="col-md-12 d-flex justify-content-between align-items-center">
                                     <h3 class="mb-0">{{ __('Your Artworks') }}</h3>
+
+                                       <a href="{{ url('/artist/add_artwork') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a>
                                 </div>
-                                <div class="col-4 text-right">
-                                    <a href="{{ url('/artist/add_artwork') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a>
-                                </div>
+                              
                             </div>
                         </div>
                         
@@ -29,12 +29,12 @@
                         </div>
 
 
-                        <div class="row">
+                        <div class="row noRowMargin">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Image</th>
@@ -45,13 +45,16 @@
                                             <tbody>
                                                 @foreach($artworks as $key => $artwork)
                                                 <tr>
-                                                    <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider" height="50px" width="100px" data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
+                                                    <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider"  data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
                                                     <td>{{$artwork->title}}</td>
                                                     
                                                     <td class="text-right">
-                                                        <a href="{{url('/artist/view_artwork')}}/{{$artwork->id}}" class="btn btn-danger btn-link btn-sm view view_artwork" title="View artwork"><i class="fa fa-eye"></i></a>
+                                                        <div class="d-flex justify-content-between">
+                                                               <a href="{{url('/artist/view_artwork')}}/{{$artwork->id}}" class="btn btn-danger btn-link btn-sm view view_artwork" title="View artwork"><i class="fa fa-eye"></i></a>
                                                         <a href="{{url('/artist/change_artwork_status')}}/{{$artwork->id}}/{{$artwork->is_publised}}/artworks/{{$artwork->user_id}}" class="btn btn-danger btn-link btn-sm change_artwork_status" title="@if($artwork->is_publised == 'publish') Click to Un-Publish @else Click to Publish @endif"><i class="fa fa-power-off"></i></a>
                                                         <a href="{{url('/artist/delete_artwork')}}/{{$artwork->id}}" class="btn btn-danger btn-link btn-sm remove delete_artwork" title="Delete"><i class="fa fa-times"></i></a>
+                                                        </div>
+                                                     
                                                     </td>
                                                 </tr>
                                                 @endforeach

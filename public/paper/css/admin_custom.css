@@ -11,3 +11,20 @@
     position: relative;
     top: -10px;
     left: 45px;}
+    table.dataTable tbody td:first-child{width: 100px;}
+table.dataTable tbody td:first-child a{width: 100px;}
+table.dataTable tbody td:first-child a img{width: 100%;}
+    
+   
+    table.dataTable tbody td:nth-child(2){
+    	word-break: break-all;
+    	max-width: 574px;
+    }
+
+@media (max-width: 767px){
+ table.dataTable tbody td:nth-child(2){
+    	word-break: inherit;
+    }
+}
+
+    

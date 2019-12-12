@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-5">
                 <div class="detail">
-                    <div class="head align-items-center">
+                    <div class="head justify-content-between">
                         <div class="title">
                             <h3>{{$artwork_result->title}}</h3>
                             <div class="breadcrumb">

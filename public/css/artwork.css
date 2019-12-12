@@ -20,7 +20,7 @@
     line-height: 30px;
     text-align: center;
 }
-.noRowMargin{margin:0 !important;}
+.noRowMargin{margin:0 !important; }
     .mainRow fieldset .row:first-child{}
 }
 .form-wizard strong { font-weight: 500; }
@@ -433,10 +433,11 @@ background: #bbb;
 
         .form-group{position: relative; margin-bottom: 45px;}
         .characterLeft{position:absolute; right:0; bottom:-30px; font-size: 14px; color:#000; text-transform: capitalize;}
-        .imagesRow{display: flex;}
+        .imagesRow{display: flex; flex-wrap: wrap; justify-content: flex-start;}
         .imagesRow .addImage{ margin-left:15px; cursor:pointer; width: 100px; height: 100px; text-align: center; 
             line-height: 100px; font-size: 24px; color:rgb(102, 102, 102); background: #f2f2f2; 
         border:2px dashed rgb(102, 102, 102);position: relative;}
+        .imagesRow  .addedImage{margin-bottom: 20px;}
         .addedImage .imageBox{height: 100px;
         width: 100px; position: relative;}
         .addedImage .imageBox img{width: 100%; height: 100%; object-fit: cover;}
@@ -630,7 +631,13 @@ button.delCurrency {
     border-bottom: 1px solid #e6e6e6;
     line-height: normal
 }
-
+@media (max-width: 767px){
+    .img_preview{width: 100%;}
+    .categorySection{margin-top: 15px;}
+    .form-control{height: 42px !important;}
+    textarea.form-control{height: auto !important;}
+   
+}
 
 @media (max-width: 640px) {
     .form-wizard-buttons .btn{
@@ -639,7 +646,14 @@ button.delCurrency {
     }
     .form-wizard-step p{font-size: 10px;  line-height: 15px;}
     .form-wizard-tolal-steps-4 .form-wizard-step{min-height: 90px;}
+    .imageSelector .fa-picture-o{font-size: 50px;}
+    .imageInput{font-size: 1rem;}
+    .noRowMargin h3{font-size: 1rem;}
 }
+@media (max-width: 460px) {
+    .image-previewer{height: 320px; width:320px;}
+}
+
 
 
 @media (max-width: 420px) {
@@ -648,6 +662,7 @@ button.delCurrency {
     width: 100%;
     margin-bottom: 0;
 }
+.image-previewer{height: 270px; width:270px;}
 
 }
 

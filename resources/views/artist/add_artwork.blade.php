@@ -336,7 +336,10 @@
                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo quam blanditiis optio ea, expedita voluptas?</p>
                                     </div>
                                     <div class="divider"></div>
-                                    <table class="table table-hover table-bordered table-responsive tableShipping">
+                                    <div>
+                                       
+                                    </div class=" ">
+                                  <table class="table table-responsive-sm  table-hover table-bordered tableShipping">
                                        <thead class="thead-light">
                                           <tr>
                                              <th></th>
@@ -358,6 +361,9 @@
                                           </tr>
                                        </tbody>
                                     </table>
+    
+                                 </div>
+                              
                                     <div class="d-flex justify-content-between align-item-center shippingButtons">
                                        <a href="" class="btn btn-border" data-toggle="modal" data-target="#ShippingModal">+ Add New Shipping</a>
                                        <a href="" class="btn btn-submit">Submit</a>
