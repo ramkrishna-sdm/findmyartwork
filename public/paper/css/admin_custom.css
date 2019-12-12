@@ -2,3 +2,5 @@
 .slick-slide{
 	padding:0 15px!important;
 }
+.actionLink{font-size: 12px; text-decoration: none; font-weight: 600; color: #222222; cursor: pointer; text-align: center; width: 100%;     display: block;
+    padding: 15px 0;}

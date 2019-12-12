@@ -1,7 +1,10 @@
 @include('layouts.frontend.header')
-<div class="heading">
-       <h2 class="text-center">Profile Management</h2>
- </div>
+<div class="page-title">
+<div class="page-title-inner">
+   <span class="pagetitleText">Profile Management</span> 
+   <img src="http://localhost:8000/assets/images/about-graphic.svg" class="title-img" alt="">
+</div>
+</div>
 <section class="artworksSection">  
   
     <div class="container">
@@ -39,10 +42,22 @@
                 <div class="col-sm-4">
                     <div class="picture-container">
                         <div class="picture">
-                            <img src="@if(!empty($buyer->media_url)){{$buyer->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100"  style="border-radius:50%;">
-                            <input  type="file" id="wizard-picture" name="media_url">
+                            <img src="@if(!empty($buyer->media_url)){{$buyer->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100" >
+                         
                         </div>
+                        
+                        <div class="pictureUploader">
+                            <label for="wizard-picture">
+                                Browse
+
+                                 <input  type="file" id="wizard-picture" name="wizard-picture">
+                            </label>
+                            
+                        </div>
+                       
                     </div>
+
+                    <a class="actionLink" data-toggle="modal" data-target="#ChangePassword"><i class="fas fa-key"></i> Change Password</a>
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
@@ -118,7 +133,18 @@
                         </div>
                     </div>
     </form>
-                    <div class="change-password">
+
+
+    <div class="modal fade getStartedModals SignUpModal2" id="ChangePassword">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+         
+          <div class="loginForm">
+            <h3 class="text-center">Change Password</h3>
+            <div class="col-md-8 offset-md-2">
+           
+           <div class="change-password">
                         <form class="col-md-12" action="{{ url('buyer/profile/password') }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -186,6 +212,18 @@
                     </div>
                 </form>
                     </div>
+          
+          
+          
+                         </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+                  
                 </div>
             </div>
         
