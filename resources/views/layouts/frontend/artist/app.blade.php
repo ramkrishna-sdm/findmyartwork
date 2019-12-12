@@ -71,6 +71,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+               
                 <li class="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'active' : '' }}">
                     <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'true' : 'false' }}" href="#artwork_collapse" class="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'collapsed' : '' }}">
                         <i class="nc-icon nc-image"></i>
@@ -99,8 +100,14 @@
                 </li>
                 <li class="active ">
                     <a href="javascript:void()">
-                        <i class="nc-icon nc-bank"></i>
+                        <i class="nc-icon nc-minimal-down"></i>
                         <p>Orders</p>
+                    </a>
+                </li>
+                <li class="active ">
+                    <a href="javascript:void()">
+                        <i class="nc-icon nc-settings-gear-65"></i>
+                        <p>Settings</p>
                     </a>
                 </li>
             </ul>
