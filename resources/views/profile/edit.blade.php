@@ -43,16 +43,17 @@
                         <div class="card-header">
                             <h5 class="title">{{ __('Edit Profile') }}</h5>
                         </div>
+                        <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Name') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Name" value="{{ auth()->user()->first_name }}" required>
+                                        <input type="text" name="first_name" class="form-control" placeholder="Name" value="{{ $user->first_name }}" required>
                                     </div>
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('first_name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('first_name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -61,7 +62,7 @@
                                 <label class="col-md-3 col-form-label">{{ __('Email') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ auth()->user()->email }}" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $user->email }}" required>
                                     </div>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">

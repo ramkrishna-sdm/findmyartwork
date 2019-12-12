@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('user_name')->unique()->nullable();
             $table->enum('role',['admin','artist','buyer','gallery'])->default('admin');
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->enum('is_featured',['yes','no'])->default('no');
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_active',['yes','no'])->default('yes');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable()->nullable();
             $table->string('password')->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
