@@ -2,7 +2,7 @@
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
-      <div class="col-md-7 d-flex">
+      <div class="col-md-4 d-flex justify-content-between flex-wrap">
         <div class="Links">
           <h3>About</h3>
           <ul class="navLink">
@@ -42,7 +42,7 @@
           </ul>
         </div> -->
       </div>
-      <div class="col-md-5 text-right">
+      <div class="col-md-8 text-right">
         <div class="social-links">
           <a href="#"><img src="{{asset('assets/images/fb.png')}}" alt=""></a>
           <a href="#"><img src="{{asset('assets/images/insta.png')}}" alt=""></a>

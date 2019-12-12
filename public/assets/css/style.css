@@ -142,6 +142,7 @@ div#loader_gif  img{position: absolute; left:50%; top:50%; transform:translate(-
 .siteFooter a{color:#0e0f11}
 .siteFooter a:hover{color:#2e3192}
 .siteFooter .aboutTxt{font-size:13px;font-weight:400;line-height:1.7rem}
+.siteFooter ul.navLink {margin-left: 0; padding-left: 0;}
 .siteFooter ul.navLink li a{font-size:14px;line-height:1;display:block;padding:9px 10px 9px 0;position:relative}
 .siteFooter .footerLink{padding-bottom:15px;margin-bottom:30px}
 .footerLink .col-md-7{justify-content:space-between}
@@ -415,6 +416,7 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
   list-style: disc;
   list-style-position: inside;
   color: #3f3f41;
+  padding-left: 0;
 }
 
 .productDetails .detail .text ul li {
@@ -530,6 +532,7 @@ transition: all .3s;
   .wrapper{padding-top:76px}
   .navbar-header.navbar{padding:1.3rem 10px 1.3rem 15px}
   .navbar .navbar-nav > li > a{margin:0 10px}
+  .navbar-header .topbar{border:0;}
   .mainNavbar{position:absolute;width:100%;z-index:99;margin:0!important;left:0;top:156px}
   .navbar-header.navbar .nav-language{position:absolute;right:65px;top:21px;margin:0}
   .navbar-header.navbar .navbar-collapse ul.navbar-nav li a{padding-left:15px}
@@ -603,6 +606,9 @@ transition: all .3s;
  .productDetails .image{padding-right: 0;}
  .productDetails .image .owl-nav button.owl-next{right: -5px;}
  .artPostNew .btn-sm{font-size: 12px; padding:8px 10px !important;}
+ .productDetails .detail .head{margin-top: 20px;}
+ .productDetails .detail .button{flex-direction: column;}
+ .productDetails .detail .button .btn{width: 100%; margin:0 !important; margin-bottom: 10px !important;}
 }
 @media (max-width: 640px) {
   .footerLink .col-md-7.d-flex{display:block!important}
@@ -645,7 +651,7 @@ transition: all .3s;
   .artistHeaderLeft .image{height:46px;width:46px}
   .nameFollowers{left:100px}
   .userStatsinfo .stats span{font-size:12px}
-  .navbar-header a.navbar-brand{max-width: 120px;}
+  .navbar-header a.navbar-brand{max-width: 100px;}
   
 }
 
