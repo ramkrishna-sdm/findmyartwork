@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Gallery User') }}</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ url('/admin/add_gallery') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a>
+                                    <a href="{{ url('/admin/add_gallery') }}" class="btn btn-sm btn-primary">{{ __('Add Gallery') }}</a>
                                 </div>
                             </div>
                         </div>

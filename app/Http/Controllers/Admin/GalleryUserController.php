@@ -139,7 +139,7 @@ class GalleryUserController extends Controller
             $gallery_array['password'] = $this->request->password;
         }
         $gallery_array['country'] = $this->request->country;
-        $gallery_array['role'] ='buyer';
+        $gallery_array['role'] ='gallery';
         if($this->request->hasFile('media_url')){
             $media_url = $this->request->file('media_url');
             $parts = pathinfo($media_url->getClientOriginalName());
