@@ -5,7 +5,7 @@
 @section('content')
 <section class="form-box" >
    <div class="container">
-      <div class="row">
+      <div class="row noRowMargin">
          <div class="col-md-12 form-wizard">
             <!-- Form Wizard -->
             <form role="form" enctype="multipart/form-data" action="{{url('artist/upload_artwork')}}" autocomplete="off" method="post" id="edit-artwork">
@@ -17,7 +17,7 @@
             
                <h2>Artwork details</h2>
                <fieldset>
-                  <div class="row">
+                  <div class="row noRowMargin">
                      
                      <div class="col-md-8 categorySection">
                         <div class="form-group">
@@ -100,10 +100,11 @@
 
                   </div>
 
-                  <h3>Variants</h3>
+                  <div class="col-md-12">
+                        <h3 class="mt-3 variantNumber">Variants <strong><span ">4</span></strong></h3>
                   <div class="">
 
-                     <table class="table">
+                     <table class="table table-responsive-xs table-bordered table-hover table-striped">
                        <thead>
                          <tr>
                            
@@ -119,13 +120,20 @@
                            <td>{{$variants->variant_type}}</td>
                            <td>{{$variants->height}}*{{$variants->width}} cm</td>
                            <td>{{$variants->price}}</td>
-                         <td><a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                         <td>
+                       <div class="d-flex justify-content-around">
+                          <a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                       </div>
+                         </td>
                          </tr>
                         @endforeach
                         
                        </tbody>
                      </table>
                   </div>
+                  </div>
+
+              
                   <div class="form-wizard-buttons">
                      <button type="submit" class="btn btn-submit formSubmit">Submit</button>
                   </div>
