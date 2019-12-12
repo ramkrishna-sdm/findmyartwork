@@ -83,17 +83,17 @@
                <div class="filterBlock">
                   <h5>Type</h5>
                   <div class="form-group">
-                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                        <!-- custom-control-input -->
-                        <label class="custom-control-label variant_checkbox" for="customCheck">Limited Periods<input type="checkbox" class="" name="variant_type" value="limited_edition"></label>
+                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                         <input type="checkbox" class="custom-control-input" id="limitedPeriods" name="variant_type" value="limited_edition">
+                        <label class="custom-control-label variant_checkbox" for="limitedPeriods">Limited Periods</label>
                      </div>
-                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                        
-                        <label class="custom-control-label variant_checkbox" for="customCheck">Originals<input type="checkbox" class="" name="variant_type" value="original"></label>
+                   <div class="custom-control custom-checkbox d-flex align-items-center">
+                        <input type="checkbox" class="custom-control-input" id="originals" name="variant_type" value="original">
+                        <label class="custom-control-label variant_checkbox" for="originals">Originals</label>
                      </div>
-                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                        
-                        <label class="custom-control-label variant_checkbox" for="customCheck">Prints<input type="checkbox" class="" name="variant_type" value="art_paint"></label>
+                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                        <input type="checkbox" class="custom-control-input" id="prints"  name="variant_type" value="art_paint">
+                        <label class="custom-control-label variant_checkbox" for="prints">Prints</label>
                      </div>
                   </div>
                </div>
