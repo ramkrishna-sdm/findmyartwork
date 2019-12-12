@@ -429,6 +429,7 @@ function removeDiv(elem){
               data:{'id':id},
               success: function(res){
                 if(res.status=="200"){
+                    
                    console.log(res.message);
                 }else{
                     

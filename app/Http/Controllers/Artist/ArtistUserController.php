@@ -121,6 +121,7 @@ class ArtistUserController extends Controller
         $image = ArtworkImage::find($this->request->id);
         $image->delete();
          return response()->json(array(
+                //'redirect_url' => 'artist/edit_artwork',,
                 'message' => "image Succssfully deleted",   
                 'status' => 200,
                 ) , 200);
