@@ -50,7 +50,7 @@
                             <label for="wizard-picture">
                                 Browse
 
-                                 <input  type="file" id="wizard-picture" name="wizard-picture">
+                                 <input  type="file" id="wizard-picture" name="media_url">
                             </label>
                             
                         </div>
