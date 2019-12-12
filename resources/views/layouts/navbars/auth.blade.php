@@ -1,11 +1,11 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        <a href="{{url('/dashboard')}}" class="simple-text logo-mini">
+        <a href="{{url('/home')}}" class="simple-text logo-mini">
             <div class="logo-image-small">
                 <img src="{{ asset('paper') }}/img/logo-small.png">
             </div>
         </a>
-        <a href="{{url('/dashboard')}}" class="simple-text logo-normal">
+        <a href="{{url('/home')}}" class="simple-text logo-normal">
             {{ __('ArtViaYou') }}
         </a>
     </div>
