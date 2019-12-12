@@ -1,12 +1,25 @@
 @include('layouts.frontend.header')
-<div class="heading">
-       <h2 class="text-center">Profile Management</h2>
- </div>
+<div class="page-title">
+<div class="page-title-inner">
+   <span class="pagetitleText">Profile Management</span> 
+   <img src="http://localhost:8000/assets/images/about-graphic.svg" class="title-img" alt="">
+</div>
+</div>
 <section class="artworksSection">  
   
     <div class="container">
         
             <div class="message-alert-top">
+                 @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if (session('password_status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('password_status') }}
+                    </div>
+                @endif
                 @if(Session::has('validation'))
                     <div class="alert alert-danger">
                         <span class="glyphicon glyphicon-ok"></span>
@@ -39,10 +52,22 @@
                 <div class="col-sm-4">
                     <div class="picture-container">
                         <div class="picture">
-                            <img src="@if(!empty($gallery->media_url)){{$gallery->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100"  style="border-radius:50%;">
-                            <input  type="file" id="wizard-picture" name="media_url">
+                            <img src="@if(!empty($gallery->media_url)){{$gallery->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="" height="100" width="100" >
+                         
                         </div>
+                        
+                        <div class="pictureUploader">
+                            <label for="wizard-picture">
+                                Browse
+
+                                 <input  type="file" id="wizard-picture" name="media_url">
+                            </label>
+                            
+                        </div>
+                       
                     </div>
+
+                    <a class="actionLink" data-toggle="modal" data-target="#ChangePassword"><i class="fas fa-key"></i> Change Password</a>
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
@@ -118,7 +143,18 @@
                         </div>
                     </div>
     </form>
-                    <div class="change-password">
+
+
+    <div class="modal fade getStartedModals SignUpModal2" id="ChangePassword">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+         
+          <div class="loginForm">
+            <h3 class="text-center">Change Password</h3>
+            <div class="col-md-8 offset-md-2">
+           
+           <div class="change-password">
                         <form class="col-md-12" action="{{ url('gallery/profile/password') }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -141,7 +177,7 @@
                                 <label class="col-12 col-form-label">{{ __('Old Password') }}</label>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="password" name="old_password" class="form-control" placeholder="Old password">
+                                        <input type="password" name="old_password" class="form-control" placeholder="Old password" required>
                                     </div>
                                     <!-- @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -154,7 +190,7 @@
                                 <label class="col-12 col-form-label">{{ __('New Password') }}</label>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
                                     </div>
                                     <!-- @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -167,7 +203,7 @@
                                 <label class="col-12 col-form-label">{{ __('Password Confirmation') }}</label>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation">
+                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
                                     </div>
                                     <!-- @if ($errors->has('password_confirmation'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -186,6 +222,18 @@
                     </div>
                 </form>
                     </div>
+          
+          
+          
+                         </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+                  
                 </div>
             </div>
         

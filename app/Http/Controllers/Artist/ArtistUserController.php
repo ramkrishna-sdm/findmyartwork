@@ -25,6 +25,7 @@ use Hash;
 use Cookie;
 use Segment;
 use DateTime;
+use App\ArtworkImage;
 class ArtistUserController extends Controller
 {
     private $artwork_files;
@@ -103,13 +104,13 @@ class ArtistUserController extends Controller
        return view('artist/edit_artwork',compact('artwork','categories','subjects','styles','subcategories'));
     }
     public function deleteImage(){
-        
-        // dd($this->request->all());
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Artwork Updated Succssfully',
-            'data'  => $this->request->all(),
-        ], 200);
+        $image = ArtworkImage::find($this->request->id);
+        $image->delete();
+         return response()->json(array(
+                //'redirect_url' => 'artist/edit_artwork',,
+                'message' => "image Succssfully deleted",   
+                'status' => 200,
+                ) , 200);
     }
     public function update_artist(){
         $validation = Validator::make($this->request->all(), [
