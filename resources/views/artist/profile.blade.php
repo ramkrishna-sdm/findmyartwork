@@ -6,6 +6,16 @@
 <section class="form-box" >
    <div class="container">
    <div class="message-alert-top">
+           @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+           @endif
+          @if (session('password_status'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('password_status') }}
+              </div>
+          @endif
                 @if(Session::has('validation'))
                     <div class="alert alert-danger">
                         <span class="glyphicon glyphicon-ok"></span>
@@ -128,16 +138,7 @@
            @csrf
            @method('PUT')
            <div class="card">
-           @if (session('status'))
-              <div class="alert alert-success" role="alert">
-                  {{ session('status') }}
-              </div>
-           @endif
-          @if (session('password_status'))
-              <div class="alert alert-success" role="alert">
-                  {{ session('password_status') }}
-              </div>
-          @endif
+          
            <div class="card-header">
                  <!-- <h5 class="title">{{ __('Change Password') }}</h5> -->
            </div>
