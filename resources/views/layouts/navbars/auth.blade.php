@@ -109,7 +109,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works'|| $elementActive == 'manage_cms/home_page' || $elementActive == 'faq'? 'active' : '' }}">
+            <li class="{{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/blog'|| $elementActive == 'manage_cms/home_page' || $elementActive == 'faq'? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'manage_cms' ? 'true' : 'false' }}" href="#cms_collapse" class="{{ $elementActive == 'manage_cms' ? 'collapsed' : '' }}">
                     <i class="nc-icon nc-image"></i>
                     <p>
@@ -117,7 +117,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/how_it_works'|| $elementActive == 'manage_cms/home_page' || $elementActive == 'faq'? 'show' : '' }}" id="cms_collapse">
+                <div class="collapse {{ $elementActive == 'manage_cms/about_us' || $elementActive == 'manage_cms/terms_n_conditions' || $elementActive == 'manage_cms/privacy_policy' || $elementActive == 'manage_cms/blog'|| $elementActive == 'manage_cms/home_page' || $elementActive == 'faq'? 'show' : '' }}" id="cms_collapse">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'manage_cms/about_us' ? 'active' : '' }}">
                             <a href="{{ url('/admin/manage_cms/about_us') }}">
@@ -137,10 +137,10 @@
                                 <span class="sidebar-normal">{{ __(' Privacy Policy ') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'manage_cms/how_it_works' ? 'active' : '' }}">
-                            <a href="{{ url('/admin/manage_cms/how_it_works') }}">
-                                <span class="sidebar-mini-icon">{{ __('HW') }}</span>
-                                <span class="sidebar-normal">{{ __(' How It Works ') }}</span>
+                        <li class="{{ $elementActive == 'manage_cms/blog' ? 'active' : '' }}">
+                            <a href="{{ url('/admin/manage_cms/blog') }}">
+                                <span class="sidebar-mini-icon">{{ __('B') }}</span>
+                                <span class="sidebar-normal">{{ __(' Blog ') }}</span>
                             </a>
                         </li>
                          <li class="{{ $elementActive == 'manage_cms/home_page' ? 'active' : '' }}">

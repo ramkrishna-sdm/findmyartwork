@@ -118,7 +118,7 @@
                            <td>{{$variants->variant_type}}</td>
                            <td>{{$variants->height}}*{{$variants->width}} cm</td>
                            <td>{{$variants->price}}</td>
-                         <td><a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                         <td><a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                          </tr>
                         @endforeach
                         

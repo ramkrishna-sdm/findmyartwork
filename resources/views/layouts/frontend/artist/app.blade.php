@@ -68,12 +68,36 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav">
+                <li class="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'active' : '' }}">
+                    <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'true' : 'false' }}" href="#artwork_collapse" class="{{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'collapsed' : '' }}">
+                        <i class="nc-icon nc-image"></i>
+                        <p>
+                                {{ __('Artworks') }}
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse {{ $elementActive == 'artworks' || $elementActive == 'new_artwork' ? 'show' : '' }}" id="artwork_collapse">
+                        <ul class="nav">
+                            <li class="{{ $elementActive == 'artworks' ? 'active' : '' }}">
+                                <a href="{{ url('/artist/artworks') }}">
+                                    <span class="sidebar-mini-icon">{{ __('AA') }}</span>
+                                    <span class="sidebar-normal">{{ __(' All Artwork ') }}</span>
+                                </a>
+                            </li>
+                            <li class="{{ $elementActive == 'new_artwork' ? 'active' : '' }}">
+                                <a href="{{ url('/artist/add_artwork') }}">
+                                    <span class="sidebar-mini-icon">{{ __('CNA') }}</span>
+                                    <span class="sidebar-normal">{{ __(' Create New Artwork ') }}</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
                 <li class="active ">
-                    <a href="{{url('/artist/add_artwork')}}">
+                    <a href="javascript:void()">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Add Artwork</p>
+                        <p>Orders</p>
                     </a>
                 </li>
             </ul>

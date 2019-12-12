@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('cms')->insert([
-            'slug' => 'how_it_works',
+            'slug' => 'blog',
             'created_at' => now(),
             'updated_at' => now()
         ]);
