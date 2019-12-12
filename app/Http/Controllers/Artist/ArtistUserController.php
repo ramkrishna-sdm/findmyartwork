@@ -119,7 +119,7 @@ class ArtistUserController extends Controller
 
     public function deleteImage(){
         
-        // dd($this->request->all());
+        dd($this->request->all());exit;
         return response()->json([
             'status' => 'success',
             'message' => 'Artwork Updated Succssfully',

@@ -38,7 +38,8 @@
                               <div class="addedImage">
                                  <div class="imageBox">
                                     <img src="{{$images->media_url}}" alt="">
-                                    <button><i class="fa fa-trash remove_artwork_image" aria-hidden="true" data-artwork-image-id="{{$images->id}}"></i></button>
+                                 <!--    <button><i class="fa fa-trash remove_artwork_image" aria-hidden="true" data-artwork-image-id="{{$images->id}}"></i></button> -->
+                                  <button><i class="fa fa-trash" aria-hidden="true" onClick="removeImage({{$images->id}})"></i></button>
                                  </div>
                               </div>
                               @endforeach
