@@ -4,9 +4,10 @@
     
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea5804', endColorstr='#ea5804',GradientType=0 ); /* IE6-9 */
 }
+.form-box  .mainRow{width: auto !important;}
 
 .form-wizard {
-    padding: 25px; 
+    padding: 10px; 
     background: #fff;
     -moz-border-radius: 4px; 
     -webkit-border-radius: 4px; 
@@ -19,7 +20,9 @@
     line-height: 30px;
     text-align: center;
 }
-    
+.noRowMargin{margin:0 !important;}
+    .mainRow fieldset .row:first-child{}
+}
 .form-wizard strong { font-weight: 500; }
 
 .form-wizard a, .form-wizard a:hover, .form-wizard a:focus {
@@ -197,14 +200,15 @@ background: #bbb;
     overflow: hidden; 
     position: relative; 
     margin-top: 20px;
+    display: flex;
 }
 .form-wizard-step{
     padding-top:10px !important;
     border:2px solid #fff;
     background:#b6b6bd;
-    -ms-transform: skewX(-30deg); /* IE 9 */
-    -webkit-transform: skewX(-30deg); /* Safari */
-    transform: skewX(-30deg); /* Standard syntax */
+/*    -ms-transform: skewX(-30deg); 
+    -webkit-transform: skewX(-30deg); 
+    transform: skewX(-30deg); */
 }
 .form-wizard-step.active{
     background:#2e3192;
@@ -241,6 +245,12 @@ background: #bbb;
     float: left; 
     width: 25%; 
     padding: 0 5px; 
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
 }
 .form-wizard-tolal-steps-5 .form-wizard-step { 
     position: relative;
@@ -261,9 +271,9 @@ background: #bbb;
     -moz-border-radius: 50%; 
     -webkit-border-radius: 50%; 
     border-radius: 50%;
-    -ms-transform: skewX(30deg); /* IE 9 */
-    -webkit-transform: skewX(30deg); /* Safari */
-    transform: skewX(30deg); /* Standard syntax */
+/*    -ms-transform: skewX(30deg); 
+    -webkit-transform: skewX(30deg); 
+    transform: skewX(30deg); */
 }
 .form-wizard-step.activated .form-wizard-step-icon {
     background: #2e3192; 
@@ -280,9 +290,10 @@ background: #bbb;
 
 .form-wizard-step p { 
     color: #fff;
-    -ms-transform: skewX(30deg); /* IE 9 */
-    -webkit-transform: skewX(30deg); /* Safari */
-    transform: skewX(30deg); /* Standard syntax */
+    line-height: 20px;
+   /* -ms-transform: skewX(30deg); 
+    -webkit-transform: skewX(30deg); 
+    transform: skewX(30deg); */
 }
 .form-wizard-step.activated p { color: #fff; }
 .form-wizard-step.active p { color: #fff; }
@@ -619,3 +630,25 @@ button.delCurrency {
     border-bottom: 1px solid #e6e6e6;
     line-height: normal
 }
+
+
+@media (max-width: 640px) {
+    .form-wizard-buttons .btn{
+        display: block;
+        width: 100%; margin-bottom: 6px;
+    }
+    .form-wizard-step p{font-size: 10px;  line-height: 15px;}
+    .form-wizard-tolal-steps-4 .form-wizard-step{min-height: 90px;}
+}
+
+
+@media (max-width: 420px) {
+    .inventoryPricing .checkboxes{flex-direction: column;}
+.inventoryPricing .checkboxes .form-group{
+    width: 100%;
+    margin-bottom: 0;
+}
+
+}
+
+

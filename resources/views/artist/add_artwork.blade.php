@@ -2,7 +2,7 @@
 @section('content')
 <section class="form-box" >
    <div class="container">
-      <div class="row">
+      <div class="row mainRow">
          <div class="col-md-12 form-wizard">
             <!-- Form Wizard -->
             <form role="form" id="upload_form" enctype="multipart/form-data" action="{{url('artist/upload_artwork')}}" autocomplete="off" method="post">
@@ -60,7 +60,7 @@
                </fieldset>
                <fieldset>
                   <h4>Please choose the category of the original, even if you’re not selling it on ArtViaYou: <span class="steps_number">Step 2 - 4</span></h4>
-                  <div class="row">
+                  <div class="row noRowMargin">
                      <div class="col-md-6">
                         <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
                      </div>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                            <label>Description: <span>*</span></label>
                            <textarea class="form-control textarea" maxlength="1000" name="description" onkeyup="countChar(this)" rows="9" cols="50"></textarea>
-                           <span class="descCharacterLeft">Characters left: 1000</span>
+                           <span class="descCharacterLeft characterLeft">Characters left: 1000</span>
                         </div>
                         <div class="form-group">
                            <label>Additional Images: </label>
@@ -117,7 +117,7 @@
                <!-- Form Step 3 -->
                <fieldset>
                   <h4>The better you describe your artwork using keywords, the higher you will get ranked by search engines: <span class="steps_number">Step 3 - 4</span></h4>
-                  <div class="row">
+                  <div class="row noRowMargin">
                      <div class="col-md-6">
                         <img class="img_preview" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="...">
                      </div>
@@ -333,7 +333,7 @@
                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo quam blanditiis optio ea, expedita voluptas?</p>
                                     </div>
                                     <div class="divider"></div>
-                                    <table class="table table-hover table-bordered tableShipping">
+                                    <table class="table table-hover table-bordered table-responsive tableShipping">
                                        <thead class="thead-light">
                                           <tr>
                                              <th></th>
