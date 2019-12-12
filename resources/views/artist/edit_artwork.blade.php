@@ -8,7 +8,7 @@
       <div class="row">
          <div class="col-md-12 form-wizard">
             <!-- Form Wizard -->
-            <form role="form" enctype="multipart/form-data" action="{{url('artist/upload_artwork')}}" autocomplete="off" method="post">
+            <form role="form" enctype="multipart/form-data" action="{{url('artist/upload_artwork')}}" autocomplete="off" method="post" id="edit-artwork">
                 @csrf
                 <?php //dd($artwork);?>
                 <input type="hidden" name="role" value="artist">
@@ -32,24 +32,20 @@
                         </div>
                         <div class="form-group">
                            <label>Additional Images: </label>
-                           <!-- <div class="imagesRow">
+                           
+                           <div class="imagesRow">
+                              @foreach($artwork->artwork_images as $images)
                               <div class="addedImage">
                                  <div class="imageBox">
-                                    @foreach($artwork->artwork_images as $artwork_images)
-                                    <img src="{{$artwork_images->media_url}}" alt="">
-                                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    @endforeach
+                                    <img src="{{$images->media_url}}" alt="">
+                                    <button><i class="fa fa-trash remove_artwork_image" aria-hidden="true" data-artwork-image-id="{{$images->id}}"></i></button>
                                  </div>
                               </div>
-                           </div> -->
-                           <div class="imagesRow">
-                              <div class="addedImage">
+                              @endforeach
+
+                              <div class="addedImage" style="display: none;">
                                  <div class="imageBox">
-                                     @foreach($artwork->artwork_images as $artwork_images)
-                                    <img src="{{$artwork_images->media_url}}" alt="">
-                                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    @endforeach
-                                   
+                                    <img src="{{$images->media_url}}" alt="">
                                     <button><i class="fa fa-trash" aria-hidden="true"></i></button>
                                  </div>
                               </div>

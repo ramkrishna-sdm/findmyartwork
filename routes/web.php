@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/view_artwork/{id}', 'ArtistUserController@view_artwork');
 	Route::get('/edit_artwork/{id}', 'ArtistUserController@edit_artwork');
 	Route::put('profile/password','ArtistUserController@password');
+	Route::post('/deleteImage','ArtistUserController@deleteImage');
 
 });
 

@@ -46,31 +46,35 @@ jQuery(document).ready(function() {
             toastr.error('Title is Required');
             return false;
         }
-        if ($.trim(description) == '') {
+      else if ($.trim(description) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Description is Required');
             return false;
         }
 
-        if ($.trim(category_id) == '') {
+      else  if ($.trim(category_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Category');
             return false;
         }
-        if ($.trim(sub_category) == '') {
+       else if ($.trim(sub_category) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Sub-Category');
             return false;
         }
-        if ($.trim(style_id) == '') {
+       else if ($.trim(style_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Style');
             return false;
         }
-        if ($.trim(subject_id) == '') {
+       else if ($.trim(subject_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Subject');
             return false;
+        }
+
+        else {
+            document.getElementById("edit-artwork").submit();
         }
     });
 
