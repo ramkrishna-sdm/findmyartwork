@@ -1,5 +1,7 @@
-@extends('layouts.frontend.artist.app')
-
+@extends('layouts.frontend.artist.app', [
+    'class' => '',
+    'elementActive' => 'dashboard',
+])
 @section('content')
  <div class="container">
     <div class="row">
