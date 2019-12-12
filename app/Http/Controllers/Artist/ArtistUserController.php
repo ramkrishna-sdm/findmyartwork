@@ -117,6 +117,16 @@ class ArtistUserController extends Controller
 
     }
 
+    public function deleteImage(){
+        
+        // dd($this->request->all());
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Artwork Updated Succssfully',
+            'data'  => $this->request->all(),
+        ], 200);
+    }
+
 
 
     public function update_artist(){
@@ -171,8 +181,7 @@ class ArtistUserController extends Controller
     }
     
     function upload_artwork(Request $request)
-    { 
-        
+    {
         $artwork_array = [];
         $artwork_array['title'] = $this->request->title;
         $artwork_array['description'] = $this->request->description;

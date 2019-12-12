@@ -359,6 +359,43 @@ function removeDiv(elem){
     $(elem).closest("div.addedImage").remove();
 }
 
+
+$(document).on('click', '#remove_artwork_image', function(){
+    var artwork_image_id = $(this).attr('data-artwork-image-id');
+    alert(artwork_image_id);
+    $.ajax({
+        type:"POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:"{{url('artist/deleteImage')}}",
+        data:{artwork_image_id:artwork_image_id},
+        success(res){
+            console.log(res);
+            return false;
+            // alert('Deleted');
+        }
+    });
+})
+
+// function removeImage(id){
+//     var status = confirm("Are you sure you want to delete ?");  
+//     if(status==true)
+//     {
+//         $.ajax({
+//           type:"POST",
+//           headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//            },
+//           url:"{{url('/artist/deleteImage')}}",
+//           data:{artimage_id:id},
+//           success(html){
+//            alert('Deleted');
+//           }
+//         });
+//     }
+// }
+
 </script>
 
 
