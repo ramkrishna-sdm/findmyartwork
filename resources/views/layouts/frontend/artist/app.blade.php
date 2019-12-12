@@ -416,7 +416,7 @@ function removeDiv(elem){
 
 </script>
 <script>
-    function removeImage(id){
+    function removeImage(id,artwork_id){
         var status = confirm("Are you sure you want to delete ?");  
         if(status==true)
         {
@@ -426,14 +426,24 @@ function removeDiv(elem){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                },
               url:"{{url('artist/deleteImage')}}", 
-              data:{'id':id},
+              data:{'id':id,'artwork_id':artwork_id},
               success: function(res){
-                if(res.status=="200"){
-                    
-                   console.log(res.message);
-                }else{
-                    
-                }
+
+                console.log('response====>',res);
+                document.getElementById('imagesRow').innerHTML = res;
+                // if(res.status=="200"){
+                //     console.log('success');
+                //     console.log('images====>>',res['images']);
+                //     //  window.location.href =res.redirect_url;
+                //     // setTimeout(function(){ 
+                //     //     toastr.options.timeOut = 2000; // 2s
+                //     //      toastr.success(res.message);
+
+                //     //  }, 1000);
+                   
+                // }else{
+                //     console.log('failed');
+                // }
                 },
                 error: function (errormessage) {
                     console.log(errormessage);
