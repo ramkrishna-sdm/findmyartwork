@@ -28,7 +28,7 @@ use Hash;
 use Cookie;
 use Segment;
 use DateTime;
-
+use App\ArtworkImage;
 class ArtistUserController extends Controller
 {
     private $artwork_files;
@@ -118,13 +118,12 @@ class ArtistUserController extends Controller
     }
 
     public function deleteImage(){
-        
-        dd($this->request->all());exit;
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Artwork Updated Succssfully',
-            'data'  => $this->request->all(),
-        ], 200);
+        $image = ArtworkImage::find($this->request->id);
+        $image->delete();
+         return response()->json(array(
+                'message' => "image Succssfully deleted",   
+                'status' => 200,
+                ) , 200);
     }
 
 
