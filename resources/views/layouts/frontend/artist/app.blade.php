@@ -59,7 +59,7 @@
                 <img src="{{ asset('paper') }}/img/logo-small.png">
               </div>
             </a>
-            <a href="{{url('/')}}" class="simple-text logo-normal">
+            <a href="{{url('/artist/dashboard')}}" class="simple-text logo-normal">
              ArtViaYou
             </a>
         </div>
@@ -428,7 +428,6 @@ function removeDiv(elem){
               url:"{{url('artist/deleteImage')}}", 
               data:{'id':id,'artwork_id':artwork_id},
               success: function(res){
-
                 console.log('response====>',res);
                 document.getElementById('imagesRow').innerHTML = res;
                 // if(res.status=="200"){
