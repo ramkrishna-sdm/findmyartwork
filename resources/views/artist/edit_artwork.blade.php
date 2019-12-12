@@ -99,7 +99,7 @@
 
                   </div>
 
-                  <!-- <h3>Variants</h3>
+                  <h3>Variants</h3>
                   <div class="">
 
                      <table class="table">
@@ -113,19 +113,18 @@
                          </tr>
                        </thead>
                        <tbody>
+                        @foreach($artwork->variants as $variants)
                          <tr>
-                           
-                           <td>Original</td>
-                           <td>10*10 cm</td>
-                           <td>100</td>
+                           <td>{{$variants->variant_type}}</td>
+                           <td>{{$variants->height}}*{{$variants->width}} cm</td>
+                           <td>{{$variants->price}}</td>
+                         <td><a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                          </tr>
-                         <td><a href=""><i class="fas fa-pencil-alt"></i></a></td>
-                         <tr>
-
-                         </tr>
+                        @endforeach
+                        
                        </tbody>
                      </table>
-                  </div> -->
+                  </div>
                   <div class="form-wizard-buttons">
                      <button type="submit" class="btn btn-submit formSubmit">Submit</button>
                   </div>
