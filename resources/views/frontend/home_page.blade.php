@@ -130,7 +130,7 @@
             @if(count($topartists) > 0)
             @foreach($topartists as $key => $topartist)
             <div class="col-12 col-md-6">
-                <div class="artPost">
+                <div class="artPost artPostNew">
                     <div class="artist-frame">
                         <div class="artist-detail">
                             <div class="profile_img">
@@ -141,13 +141,20 @@
                             <div class="profile-summary">
                                 <!-- <div class="name">{{$topartist->first_name}} {{$topartist->last_name}}</div> -->
                                 <h6>newt aka PARSLSEY!!</h6>
-                                <p class="account">@milktpapi</p>
-                                <p>Lorem Ipsum is simply dummy text <a href="#">instagram.com/milktpapi</a></p>
+                                 <p class="account">@milktpapi</p>
                             </div>
                         </div>
                         <div class="artist-follow">
-                            <a href="#" class="btn btn-default">Following</a>
+                            <a href="#" class="btn btn-default btn-sm">Following</a>
+
                         </div>
+                    </div>
+
+                    <div class="artistText">
+                        
+
+                        
+                                <p>Lorem Ipsum is simply dummy text <a href="#">instagram.com/milktpapi</a>
                     </div>
 
                     <!-- <div class="postHeader">

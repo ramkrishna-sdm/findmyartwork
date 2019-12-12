@@ -36,12 +36,13 @@
          <input type="hidden" name="id" value="{{$artist->id}}">
          <div class="row">
 
-            <div class="col-12 col-sm- 6 col-md-4 profile-pic">
+            <div class="col-12 col-sm-6 col-md-4 profile-pic">
                <div class="frame"><img src="{{$artist->media_url}}" alt="..."></div>
                <button class="browse-btn">
                   <span>Browser Me</span>
                   <input class="image-label" name="media_url" type="file" accept="image/*"> 
                </button>
+               <a class="actionLink" data-toggle="modal" data-target="#ChangePassword"><i class="fas fa-key"></i> Change Password</a>
             </div>
 
             <div class="col-12 col-sm-6 col-md-8 form-wizard profile-setting">
@@ -109,25 +110,34 @@
 </section>
 
 
-<section class="form-box">
-   <div class="container">
-      <form  action="{{ url('artist/profile/password') }}" method="POST">
-         @csrf
-         @method('PUT')
-         <div class="card">
-         @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-         @endif
-        @if (session('password_status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('password_status') }}
-            </div>
-        @endif
-         <div class="card-header">
-               <h5 class="title">{{ __('Change Password') }}</h5>
-         </div>
+
+ <div class="modal fade getStartedModals SignUpModal2" id="ChangePassword">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+         
+          <div class="loginForm">
+            <h3 class="text-center">Change Password</h3>
+            <div class="col-md-8 offset-md-2">
+           
+           <div class="change-password">
+                       <form  action="{{ url('artist/profile/password') }}" method="POST">
+           @csrf
+           @method('PUT')
+           <div class="card">
+           @if (session('status'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('status') }}
+              </div>
+           @endif
+          @if (session('password_status'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('password_status') }}
+              </div>
+          @endif
+           <div class="card-header">
+                 <!-- <h5 class="title">{{ __('Change Password') }}</h5> -->
+           </div>
             <div class="card-body">
                   <div class="row">
                      <label class="col-md-3 col-form-label">{{ __('Old Password') }}</label>
@@ -166,8 +176,16 @@
             </div>
          </div>
       </form>
-   </div>
-</section>
+                    </div>
+          
+          
+          
+                         </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 
