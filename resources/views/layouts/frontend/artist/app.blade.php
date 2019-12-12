@@ -65,10 +65,10 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active ">
-                    <a href="{{url('/artist/dashboard')}}">
+                <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
+                    <a href="{{ url('/artist/dashboard') }}">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Dashboard</p>
+                        <p>{{ __('Dashboard') }}</p>
                     </a>
                 </li>
                
