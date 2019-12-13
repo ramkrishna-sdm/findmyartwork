@@ -10,6 +10,7 @@ use App\Repository\SubCategoryRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\StyleRepository;
 use App\Repository\UserRepository;
+use App\Repository\SavedArtworkRepository;
 use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
@@ -35,7 +36,7 @@ class ArtistUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository,UserRepository $userRepository)
+    public function __construct(Request $request, SavedArtworkRepository $savedArtworkRepository,ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository,UserRepository $userRepository)
     {
         $this->middleware('auth');
         $this->request = $request;
@@ -47,10 +48,18 @@ class ArtistUserController extends Controller
         $this->subjectRepository = $subjectRepository;
         $this->styleRepository = $styleRepository;
         $this->userRepository = $userRepository;
+        $this->savedArtworkRepository = $savedArtworkRepository;
         $this->artwork_files = '/images/artwork_files/';
         $this->users_files = '/images/users_files/';
     }
     public function index(){
+        $user_info = $this->userRepository->getData(['id'=>Auth::user()->id],'first',['artworks', 'artworks.artwork_like'],0);
+        $like_count = 0;
+        if(count($user_info->artworks) > 0){
+           foreach($user_info->artworks as $artworks){
+              dd($artworks);
+           }
+        }
     	return view('artist.artist_dashboard');
     }
     public function add_artwork(){
