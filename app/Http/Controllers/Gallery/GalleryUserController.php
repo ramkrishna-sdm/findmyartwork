@@ -119,5 +119,6 @@ class GalleryUserController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
-    }
+    } 
+
 }
