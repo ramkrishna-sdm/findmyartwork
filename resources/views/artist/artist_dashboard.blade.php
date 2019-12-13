@@ -27,7 +27,7 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Likes</p>
-                  <p class="card-title">0
+                  <p class="card-title">{{$like_count}}
                     <p>
                 </div>
               </div>
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <!-- <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
