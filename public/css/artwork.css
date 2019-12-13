@@ -170,7 +170,8 @@
 .imagesRow .addImage
 {margin-left:15px;cursor:pointer;width:100px;height:100px;text-align:center;line-height:100px;font-size:24px;color:rgb(102, 102, 102);background:#f2f2f2;border:2px dashed rgb(102, 102, 102);position:relative;}
 .imagesRow .addedImage
-{margin-bottom:20px;}
+{margin-bottom:20px; margin-left: 10px !important;}
+.imagesRow .addedImage:first-child{margin-left: 0 !important;}
 .addedImage .imageBox
 {height:100px;width:100px;position:relative;border:1px solid #f2f2f2;}
 .addedImage .imageBox img
