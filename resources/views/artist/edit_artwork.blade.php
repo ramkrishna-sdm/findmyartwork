@@ -122,7 +122,7 @@
                            <td>{{$variants->price}}</td>
                          <td>
                        <div class="d-flex justify-content-around">
-                          <a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                        </div>
                          </td>
                          </tr>
@@ -132,7 +132,6 @@
                      </table>
                   </div>
                   </div>
-
               
                   <div class="form-wizard-buttons">
                      <button type="submit" class="btn btn-submit formSubmit">Submit</button>

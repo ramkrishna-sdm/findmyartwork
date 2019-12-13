@@ -40,6 +40,7 @@ jQuery(document).ready(function() {
         var sub_category = $("#sub_category").val();
         var style_id = $("#style_id").val();
         var subject_id = $("#subject_id").val();
+        var all_image = $( ".imagesRow" ).children( ".addedImage" ).length;
 
         if ($.trim(title) == '') {
             toastr.options.timeOut = 2500; // 2s
@@ -70,6 +71,11 @@ jQuery(document).ready(function() {
        else if ($.trim(subject_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Subject');
+            return false;
+        }
+        else if ($.trim(all_image) > 5) {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Only 4 Images can be uploaded. Please remove rest image');
             return false;
         }
 

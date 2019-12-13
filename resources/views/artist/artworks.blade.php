@@ -34,7 +34,7 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Image</th>
