@@ -47,7 +47,12 @@ class GalleryUserController extends Controller
     }
 
     public function index(){
-    	return view('gallery.gallery');
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+
+        $styles= Style::get();
+
+        $subjects= Subject::get();
+    	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
     public function profile($id){
