@@ -67,7 +67,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Session::flush();
         if(Session::has('random_id')) {
             
         }else{
@@ -137,17 +136,43 @@ class HomeController extends Controller
         return view('frontend/contact_us');
     }
 
+    public function user_profile($slug){
+        dd("asd");
+        $professional = [];
+        $profileDetails = $this->userRepository->getData(['user_name'=>$slug, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        if(!empty($profileDetails)){
+            $all_follower_count = $this->savedArtistRepository->getData(['artist_id'=>$profileDetails['id']],'count',[],0);    
+            $all_following_count = $this->savedArtistRepository->getData(['user_id'=>$profileDetails['id']],'count',[],0);    
+            $all_likes = 0;
+            if(!empty($profileDetails)){
+                foreach ($profileDetails->artworks as $key => $value) {
+                    $professional[] = $value['category_detail']['name'];
+                    $all_likes = $all_likes + count($value->artwork_like);
+                }
+            }
+            // dd($all_likes);
+            $professional = array_unique($professional);
+            return view('frontend/profile_details',compact('profileDetails', 'professional', 'all_follower_count', 'all_following_count', 'all_likes'));
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function profile_details($id){
         $professional = [];
         $profileDetails = $this->userRepository->getData(['id'=>$id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);    
-        
+        $all_follower_count = $this->savedArtistRepository->getData(['artist_id'=>$id],'count',[],0);    
+        $all_following_count = $this->savedArtistRepository->getData(['user_id'=>$id],'count',[],0);    
+        $all_likes = 0;
         if(!empty($profileDetails)){
             foreach ($profileDetails->artworks as $key => $value) {
                 $professional[] = $value['category_detail']['name'];
+                $all_likes = $all_likes + count($value->artwork_like);
             }
         }
+        // dd($all_likes);
         $professional = array_unique($professional);
-        return view('frontend/profile_details',compact('profileDetails', 'professional'));
+        return view('frontend/profile_details',compact('profileDetails', 'professional', 'all_follower_count', 'all_following_count', 'all_likes'));
     }
 
     public function like_artist(){
@@ -255,6 +280,7 @@ class HomeController extends Controller
 
     public function save_artwork(){
         // dd(Session::get('random_id'));
+        dd("MKL");
         if(Auth::user()){
             $saved_artwork = [];
             $saved_artwork['user_id'] = Auth::user()->id;
@@ -360,7 +386,6 @@ class HomeController extends Controller
     }
      
     public function filter_search(){
-        // dd(Input::get('filter_key'));
         if(!empty(Input::get('data_from'))){
             $filter_key = Input::get('filter_key');
             $data_from = Input::get('data_from');

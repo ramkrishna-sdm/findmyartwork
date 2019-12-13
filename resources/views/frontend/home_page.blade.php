@@ -140,21 +140,18 @@
                             </div>
                             <div class="profile-summary">
                                 <!-- <div class="name">{{$topartist->first_name}} {{$topartist->last_name}}</div> -->
-                                <h6>newt aka PARSLSEY!!</h6>
-                                 <p class="account">@milktpapi</p>
+                                <h6>{{$topartist->first_name}} {{$topartist->last_name}}</h6>
+                                 <p class="account">@ {{$topartist->user_name}}</p>
                             </div>
                         </div>
                         <div class="artist-follow">
-                            <a href="#" class="btn btn-default btn-sm">Following</a>
+                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
 
                         </div>
                     </div>
 
                     <div class="artistText">
-                        
-
-                        
-                                <p>Lorem Ipsum is simply dummy text <a href="#">instagram.com/milktpapi</a>
+                        <p>{{$topartist->biography}}<a href="javascript:void(0);">{{$topartist->user_name}}</a>
                     </div>
 
                     <!-- <div class="postHeader">

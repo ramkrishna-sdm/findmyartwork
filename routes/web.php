@@ -86,6 +86,7 @@ Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
 Route::post('/add_to_cart', 'Frontend\HomeController@add_to_cart');
 Route::get('/contact_us', 'Frontend\HomeController@contact_us');
 Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
+
 Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
 Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
@@ -194,3 +195,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+// Route::get('/{slug}', 'Frontend\HomeController@user_profile')->where('slug', '^[-@./#&+\w\s]*$');

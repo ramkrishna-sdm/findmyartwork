@@ -381,7 +381,7 @@ $(document).on('change mousemove', '.price_range', function(){
   $(this).parents('.filterBlock').find('.price_selected').html('Price ($'+$(this).val()+')')
 })
 
-$("#site_filter").focus(function() {
+$("#site_filter, .filter_result").focus(function() {
   $(document).on('keyup', '#site_filter', function(){
     var this_filter = $(this);
     var site_filter = $('#site_filter').val();
@@ -390,6 +390,9 @@ $("#site_filter").focus(function() {
       $(this_filter).parents('.searchbar').find('.filter_result').html('');
     }else{
       $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         url: "{{url('filter_search')}}?data_from="+data_from+'&filter_key='+site_filter,
         type: 'get',
         success: function(res){
@@ -407,10 +410,13 @@ $("#site_filter").focus(function() {
 
   })
 }).blur(function() {
-  $('#site_filter').val('')
-  $(document).find('.filter_result').html('');
+  setTimeout(clear_filter, 200);
 });
 
+function clear_filter(){
+  $('#site_filter').val('');
+  $(document).find('.filter_result').html('');;
+}
 $(document).ready(function(){
   $('#site_filter').typeahead({
     ajax: {

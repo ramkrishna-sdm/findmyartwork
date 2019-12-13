@@ -37,6 +37,10 @@ class VariantRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['artwork_id'])) {
+            $query->where('artwork_id', $conditions['artwork_id']);
+        }
+
         if (!empty($conditions['height'])) {
             $query->whereBetween('height', [0,$conditions['height']]);
         }
@@ -51,6 +55,10 @@ class VariantRepository implements RepositoryInterface
 
         if (!empty($conditions['variant_type'])) {
             $query->whereIn('variant_type', $conditions['variant_type']);
+        }
+
+        if (!empty($conditions['variant_id'])) {
+            $query->whereNotIn('id', $conditions['variant_id']);
         }
 
         if (!empty($withArr)) {

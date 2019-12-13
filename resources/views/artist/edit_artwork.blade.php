@@ -94,45 +94,422 @@
                               @endforeach  
                            </select>
                         </div>
-
-
                      </div>
-
                   </div>
-
-                  <div class="col-md-12">
-                        <h3 class="mt-3 variantNumber">Variants <strong><span ">4</span></strong></h3>
                   <div class="">
-
-                     <table class="table table-responsive-xs table-bordered table-hover table-striped">
-                       <thead>
-                         <tr>
-                           
-                           <th scope="col">Type</th>
-                           <th scope="col">Size</th>
-                           <th scope="col">Price</th>
-                           <th scope="col">Action</th>
-                         </tr>
-                       </thead>
-                       <tbody>
-                        @foreach($artwork->variants as $variants)
-                         <tr>
-                           <td>{{$variants->variant_type}}</td>
-                           <td>{{$variants->height}}*{{$variants->width}} cm</td>
-                           <td>{{$variants->price}}</td>
-                         <td>
-                       <div class="d-flex justify-content-around">
-                          <a href="javascript:void()"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="javascript:void()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                       </div>
-                         </td>
-                         </tr>
-                        @endforeach
-                        
-                       </tbody>
-                     </table>
+                     <div class="col-md-12 text-center">
+                        <h2>Inventory and pricing</h2>
+                     </div>
+                     <div class="col-md-8 offset-md-2">
+                        <div class="checkboxes d-flex justify-content-center ">
+                           <div class="form-group">
+                              <div ><label for="subject_animals"><input type="checkbox" id="originalCheck" name="variant_type" value="original" @if(count($variant_types) > 0 && in_array('original', $variant_types)) checked @endif >Orignal</label>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div ><label for="subject_animals"><input type="checkbox" id="limitedCheck" name="variant_type" value="limited_edition" @if(count($variant_types) > 0 && in_array('limited_edition', $variant_types)) checked @endif>Limited Edition</label>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div ><label for="subject_animals"><input type="checkbox" name="variant_type" id="printsCheck" value="art_paint" @if(count($variant_types) > 0 && in_array('art_paint', $variant_types)) checked @endif>Art Prints</label>
+                              </div>
+                           </div>
+                           <input type="hidden" name="checked_variant_type" value="" id="checked_variant_type">
+                        </div>
+                     </div>
                   </div>
+                  @if(count($variant_types) > 0)
+                  @foreach($artwork->variants as $key => $value)
+                     @if($value->variant_type == "original")
+                     <div class="sizeRow original another_original" id="original">
+                        <div class="col-md-12 d-flex justify-content-between">
+                           <h3>Original</h3>
+                        </div>
+                        <div id = "AddInventory" class="col-md-12 ">
+                           <div class="inputsRow d-flex justify-content-between flex-wrap">
+                              <input type="hidden" name="original_id" value="{{$value->id}}">
+                              <div class="col-md-6 form-group">
+                                 <label for="">Width <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->width}}" name="original_width">
+                                 <select name="width_unit" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Height <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->height}}" name="original_height">
+                                 <select name="" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Price <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->price}}" name="original_price">
+                                 <select name="price" class="form-control" id="">
+                                    <option value="">USD</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Shipping <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->worldwide_shipping_charge}}" name="original_shipping_charge">
+                                 <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                              </div>
+                              <div class="deleteOriginal deleteType">
+                                 <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
+                     @if($value->variant_type == "limited_edition")
+                     <div class="sizeRow limitedEdition another_limited_edition" >
+                        <div class="col-md-12 d-flex justify-content-between">
+                           <h3>Limited Edition</h3>
+                           <a href="javascript:void(0);" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
+                        </div>
+                        <div id = "AddInventory" class="col-md-12 ">
+                           <div class="inputsRow d-flex justify-content-between flex-wrap">
+                              <input type="hidden" name="limited_edition_id[]" class="hidden_limited_id" value="{{$value->id}}">
+                              <div class="col-md-6 form-group">
+                                 <label for="">Width <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->width}}" name="limited_width[]">
+                                 <select name="width" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Height <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->height}}" name="limited_height[]">
+                                 <select name="" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Price <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->price}}" name="limited_price[]">
+                                 <select name="price" class="form-control" id="">
+                                    <option value="">USD</option>
+                                 </select>
+                              </div>
+                             
+                              <div class="col-md-6 form-group">
+                                 <label for="">Editions <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->editions_count}}" name="limited_edition_count[]">
+                                 <select name="editions_count" class="form-control" id="">
+                                    <option value="">Ed.</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Shipping <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->worldwide_shipping_charge}}" name="limited_edition_shipping_charge[]">
+                                 <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                              </div>
+                              <div class="deleteLimtedEdition deleteType">
+                                 <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
+                     @if($value->variant_type == "art_paint")
+                     <div class="sizeRow artPrint another_art_print">
+                        <div class="col-md-12 d-flex justify-content-between">
+                           <h3>Art print</h3>
+                           <a href="javascript:void(0);" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
+                        </div>
+                        <div id = "AddInventory" class="col-md-12 ">
+                           <div class="inputsRow d-flex justify-content-between flex-wrap">
+                              <input type="hidden" name="art_print_id[]" class="hidden_art_id" value="{{$value->id}}">
+                              <div class="col-md-6 form-group">
+                                 <label for="">Width <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->width}}" name="art_width[]">
+                                 <select name="width" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Height <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->height}}" name="art_height[]">
+                                 <select name="" class="form-control" id="">
+                                    <option value="">cm</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Price <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->price}}" name="art_price[]">
+                                 <select name="price" class="form-control" id="">
+                                    <option value="">USD</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 form-group">
+                                 <label for="">Shipping <span>*</span></label>
+                                 <input class="form-control" type="text" value="{{$value->worldwide_shipping_charge}}" name="art_shipping_charge[]">
+                                 <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                              </div>
+                              <div class="deleteArtprint deleteType">
+                                 <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
+                  @endforeach
+                  @else
+                  <div class="sizeRow original another_original" id="original" style="display:none;">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Original</h3>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_width">
+                              <select name="width_unit" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_height">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_price">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_shipping_charge">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteOriginal deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-              
+                  <div class="sizeRow limitedEdition another_limited_edition" style="display:none;">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Limited Edition</h3>
+                        <a href="javascript:void(0);" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_width[]">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_height[]">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_price[]">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                          
+                           <div class="col-md-6 form-group">
+                              <label for="">Editions <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_edition_count[]">
+                              <select name="editions_count" class="form-control" id="">
+                                 <option value="">Ed.</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_edition_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteLimtedEdition deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sizeRow artPrint another_art_print" style="display:none;">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Art print</h3>
+                        <a href="javascript:void(0);" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_width[]">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_height[]">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_price[]">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteArtprint deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  @endif
+                  @if(!in_array('original', $variant_types)) 
+                  <div class="sizeRow original another_original" id="original" style="display:none;">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Original</h3>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_width">
+                              <select name="width_unit" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_height">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_price">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="original_shipping_charge">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteOriginal deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  @endif
+                  @if(!in_array('limited_edition', $variant_types)) 
+                  <div class="sizeRow limitedEdition another_limited_edition" style="display:none;" >
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Limited Edition</h3>
+                        <a href="javascript:void(0);" rel="another_limited_edition" class="addAnother" id="addlimtedEadi">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_width[]">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_height[]">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_price[]">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                          
+                           <div class="col-md-6 form-group">
+                              <label for="">Editions <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_edition_count[]">
+                              <select name="editions_count" class="form-control" id="">
+                                 <option value="">Ed.</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="limited_edition_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteLimtedEdition deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  @endif
+                  @if(!in_array('art_paint', $variant_types)) 
+                  <div class="sizeRow artPrint another_art_print" style="display:none;">
+                     <div class="col-md-12 d-flex justify-content-between">
+                        <h3>Art print</h3>
+                        <a href="javascript:void(0);" rel="another_art_print" class="addAnother" id="addArtprint">add another size</a>
+                     </div>
+                     <div id = "AddInventory" class="col-md-12 ">
+                        <div class="inputsRow d-flex justify-content-between flex-wrap">
+                           <div class="col-md-6 form-group">
+                              <label for="">Width <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_width[]">
+                              <select name="width" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Height <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_height[]">
+                              <select name="" class="form-control" id="">
+                                 <option value="">cm</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Price <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_price[]">
+                              <select name="price" class="form-control" id="">
+                                 <option value="">USD</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label for="">Shipping <span>*</span></label>
+                              <input class="form-control" type="text" value="" name="art_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
+                           </div>
+                           <div class="deleteArtprint deleteType">
+                              <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  @endif
                   <div class="form-wizard-buttons">
                      <button type="submit" class="btn btn-submit formSubmit">Submit</button>
                   </div>

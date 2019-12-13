@@ -232,7 +232,8 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <input class="form-control" type="text" value="" name="original_shipping_charge">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
                            </div>
                            <div class="deleteOriginal deleteType">
                               <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -278,7 +279,8 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <input class="form-control" type="text" value="" name="limited_edition_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
                            </div>
                            <div class="deleteLimtedEdition deleteType">
                               <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -317,7 +319,8 @@
                            </div>
                            <div class="col-md-6 form-group">
                               <label for="">Shipping <span>*</span></label>
-                              <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a>
+                              <input class="form-control" type="text" value="" name="art_shipping_charge[]">
+                              <!-- <a href="javascript:void(0);" class="form-control addShippingLink" data-toggle="modal" data-target="#addShipping" >Add Shipping Price  <span>+</span></a> -->
                            </div>
                            <div class="deleteArtprint deleteType">
                               <a href="javascript:void(0);">    <i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -493,4 +496,8 @@
       </div>
    </div>
 </section>
+
 @endsection
+<script type="text/javascript">
+$(".sizeRow").hide();
+</script>
