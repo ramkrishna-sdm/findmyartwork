@@ -69,6 +69,7 @@ class ArtistUserController extends Controller
                  $follow_count = $follow_count + count($artworks->artist);
             }
          }
+         
     	return view('artist.artist_dashboard',compact('like_count','follow_count'));
     }
     public function add_artwork(){
