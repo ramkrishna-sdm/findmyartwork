@@ -42,4 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Artwork','user_id','id');
     }
+    // Relations with ArtworkImage Model
+    public function blogs()
+    {
+        return $this->hasMany('App\Blog','user_id','id');
+    }
 }

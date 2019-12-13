@@ -50,6 +50,12 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::get('/profile/{id}', 'BuyerUserController@profile');
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
+	Route::get('/add_blog','BuyerUserController@add_blog');
+	Route::post('/update_blog','BuyerUserController@update_blog');
+	Route::get('/blog','BuyerUserController@blog');
+	Route::get('/edit_blog/{id}','BuyerUserController@edit_blog');
+	Route::get('/delete_blog/{id}','BuyerUserController@delete_blog');
+	Route::get('/change_blog_status/{id}/{status}','BuyerUserController@change_blog_status');
 
 });
 
