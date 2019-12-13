@@ -65,7 +65,7 @@ class ArtistUserController extends Controller
         return view('artist.profile',compact('artist'));
     } 
     public function artworks(){
-        $artworks = $this->artworkRepository->getData(['is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail'],0);
+        $artworks = $this->artworkRepository->getData(['is_deleted'=>'no', 'user_id'=>Auth::user()->id],'get',['category_detail', 'sub_category_detail'],0);
         return view('artist/artworks',compact('artworks'));
     } 
     public function change_artwork_status($id, $status, $page, $user_id)
