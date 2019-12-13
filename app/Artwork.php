@@ -54,5 +54,10 @@ class Artwork extends Model
     public function artwork_like()
     {
         return $this->hasMany('App\SavedArtwork','artwork_id','id')->where('status', 'like');
-    } 
+    }
+    
+    public function saved_artist()
+    {
+        return $this->belongsTo('App\SavedArtist','user_id','id');
+    }
 }

@@ -62,7 +62,14 @@ class ArtistUserController extends Controller
                 $like_count = $like_count + count($artworks->artwork_like);
            }
         }
-    	return view('artist.artist_dashboard',compact('like_count'));
+        $follow_count = 0;
+        $user = $this->userRepository->getData(['id'=>Auth::user()->id],'first',['artworks', 'artworks.artist'],0);
+        if(count($user->artworks) > 0){
+            foreach($user->artworks as $artworks){
+                 $follow_count = $follow_count + count($artworks->artist);
+            }
+         }
+    	return view('artist.artist_dashboard',compact('like_count','follow_count'));
     }
     public function add_artwork(){
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
