@@ -13,7 +13,7 @@
                 </div>
                 <div class="userStatsinfo">
                     <span class="name">{{$profileDetails->first_name}} {{$profileDetails->last_name}}</span>  
-                    <div class="stats"><span>56.6k Likes</span> <span>10k Followers</span> <span class="following">3k Following</span> <a href="#" class="btn btn-border btn-sm">Follow</a></div>
+                    <div class="stats"><span>{{$all_likes}} Likes</span> <span>{{$all_follower_count}} Followers</span> <span class="following">{{$all_following_count}} Following</span> <a href="#" class="btn btn-border btn-sm">Follow</a></div>
                     <p>{{$profileDetails->biography}}</p>
                 </div>
             </div>

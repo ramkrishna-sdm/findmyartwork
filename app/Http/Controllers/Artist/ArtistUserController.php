@@ -61,8 +61,14 @@ class ArtistUserController extends Controller
     }
     public function profile($id){
         // $userId = Auth::id();
-        $artist =  $this->userRepository->getData(['id'=>$id],'first',[],0);
-        return view('artist.profile',compact('artist'));
+        if(Auth::user()->id == $id){
+            $artist =  $this->userRepository->getData(['id'=>$id],'first',[],0);
+            return view('artist.profile',compact('artist'));
+        }else{
+            \Session::flash('error_message', 'You are not authorized to access this URL.');
+            return redirect('artist/dashboard');
+        }
+            
     } 
     public function artworks(){
         $artworks = $this->artworkRepository->getData(['is_deleted'=>'no', 'user_id'=>Auth::user()->id],'get',['category_detail', 'sub_category_detail'],0);
@@ -96,12 +102,18 @@ class ArtistUserController extends Controller
         return view('artist/view_artwork',compact('artwork_result', 'similar_artwork'));
     } 
     public function edit_artwork($id){
+        $variant_types = [];
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
-       $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
-       return view('artist/edit_artwork',compact('artwork','categories','subjects','styles','subcategories'));
+        $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
+        if(count($artwork->variants) > 0){
+            foreach ($artwork->variants as $key => $value) {
+                $variant_types[] = $value['variant_type'];
+            }
+        }
+        return view('artist/edit_artwork',compact('artwork','categories','subjects','styles','subcategories', 'variant_types'));
     }
     public function deleteImage(){
         $image = ArtworkImage::where(['id'=> $this->request->id, 'artwork_id'=>$this->request->artwork_id])->forcedelete();
@@ -167,6 +179,8 @@ class ArtistUserController extends Controller
     
     function upload_artwork(Request $request)
     {
+        // echo "<pre>";
+        // print_r($request->all()); die;
         $artwork_array = [];
         $artwork_array['title'] = $this->request->title;
         $artwork_array['description'] = $this->request->description;
@@ -179,29 +193,19 @@ class ArtistUserController extends Controller
         if($artwork){
             $upload_files = $this->request->file('upload_files');
             $main_image = $this->request->file('main_image_base64');
-            $image = $request->main_image_base64;  // your base64 encoded
-            $image = str_replace('data:image/jpeg;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $imageName = str_random(10).'.'.'jpeg';
-            $success = file_put_contents(public_path() . $this->artwork_files.$imageName, base64_decode($image));
-            $image_name = url($this->artwork_files . $imageName); 
-            $uploads['media_url'] = $image_name;
-            $uploads['artwork_id'] = $artwork['id'];
-            $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
-                    
+            if(!empty($main_image)){
+                $image = $request->main_image_base64;
+                $image = str_replace('data:image/jpeg;base64,', '', $image);
+                $image = str_replace(' ', '+', $image);
+                $imageName = str_random(10).'.'.'jpeg';
+                $success = file_put_contents(public_path() . $this->artwork_files.$imageName, base64_decode($image));
+                $image_name = url($this->artwork_files . $imageName); 
+                $uploads['media_url'] = $image_name;
+                $uploads['artwork_id'] = $artwork['id'];
+                $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
+            }
             if($this->request->hasFile('upload_files')){
                 foreach ($upload_files as $file) {
-                    
-                    // $resize_image = Image::make($file->getRealPath());
-                    // $parts = pathinfo($file->getClientOriginalName());
-                    // $extension = strtolower($parts['extension']);
-                    // $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-                    
-                    // $resize_image->resize(700, 350, function($constraint){
-                    // $constraint->aspectRatio();
-                    // })->save($destinationPath . '/' . $imageName);
-                    // $destinationPath = public_path() . $this->artwork_files;
-                    // $file->move($destinationPath, $imageName);
                     $parts = pathinfo($file->getClientOriginalName());
                     $extension = strtolower($parts['extension']);
                     $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
@@ -214,16 +218,18 @@ class ArtistUserController extends Controller
             }
             $checked_variant_type = $this->request->checked_variant_type;
             $variant_type = explode(',', $checked_variant_type);
+            $variant_id = [];
             foreach ($variant_type as $key => $value) {
                 if($value == "original"){
                     $variant = [];
                     $variant['artwork_id'] = $artwork['id'];
-                    $variant['variant_type'] = $this->request->variant_type;
+                    $variant['variant_type'] = 'original';
                     $variant['width'] = $this->request->original_width;
                     $variant['height'] = $this->request->original_height;
                     $variant['price'] = $this->request->original_price;
-                    $variant['worldwide_shipping_charge'] = 0;
-                    $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->id],$variant);
+                    $variant['worldwide_shipping_charge'] = $this->request->original_shipping_charge;
+                    $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->original_id],$variant);
+                    $variant_id[] = $variants['id'];
                 }
                 if($value == "limited_edition"){
                     foreach ($this->request->limited_width as $key => $limited_edition) {
@@ -234,9 +240,10 @@ class ArtistUserController extends Controller
                         $variant['width'] = $this->request->limited_width[$key];
                         $variant['height'] = $this->request->limited_height[$key];
                         $variant['price'] = $this->request->limited_price[$key];
-                        $variant['worldwide_shipping_charge'] = 0;
+                        $variant['worldwide_shipping_charge'] = $this->request->limited_edition_count[$key];
                         // $variant['not_for_sale'] = $this->request->not_for_sale;
-                        $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->id],$variant);
+                        $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->limited_edition_id[$key]],$variant);
+                        $variant_id[] = $variants['id'];
                     }
                 }
                 if($value == "art_paint"){
@@ -247,16 +254,17 @@ class ArtistUserController extends Controller
                         $variant['width'] = $this->request->art_width[$key];
                         $variant['height'] = $this->request->art_height[$key];
                         $variant['price'] = $this->request->art_price[$key];
-                        $variant['worldwide_shipping_charge'] = 0;
+                        $variant['worldwide_shipping_charge'] = $this->request->art_shipping_charge[$key];
                         // $variant['not_for_sale'] = $this->request->not_for_sale;
-                        $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->id],$variant);
+                        $variants = $this->variantRepository->createUpdateData(['id'=> $this->request->art_print_id[$key]],$variant);
+                        $variant_id[] = $variants['id'];
                     }
                 }
             }
-                    
+            $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
+            // $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
             \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
             return redirect('/artist/artworks');
-            $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
             
             // return response()->json([
             //     'status' => 'success',

@@ -37,6 +37,10 @@ class UserRepository implements RepositoryInterface
             $query->where('is_deleted', $conditions['is_deleted']);
         }
 
+        if (!empty($conditions['user_name'])) {
+            $query->where('user_name', $conditions['user_name']);
+        }
+
         if (!empty($conditions['role'])) {
             $query->where('role', $conditions['role']);
         }

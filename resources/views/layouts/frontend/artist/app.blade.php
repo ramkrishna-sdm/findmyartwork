@@ -196,12 +196,15 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-
     var PATH = $(location).attr('pathname');
     var arr = PATH.split('/');
     if(arr[2] == "artworks"){
         $('#datatable').DataTable();
     }
+    if(arr[2] == "add_artwork"){
+        $(".sizeRow").hide();
+    }
+
    
     $('.change_artwork_status').click(function(event) {
         event.preventDefault();
@@ -249,7 +252,7 @@ $(document).ready(function(){
     });
     $("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
     
-    $(".sizeRow").hide();
+    
     $(document).on('click', '#originalCheck', function(){
         if($(this).prop("checked") == true){
             $("#original").show();
@@ -290,6 +293,8 @@ $(document).ready(function(){
         var clone = $('.'+$(this).attr('rel')).last().clone();
         // clone.find('.addAnother').remove();
         clone.find('input[type=text]').val('');
+        clone.find('.hidden_limited_id').val('');
+        clone.find('.hidden_art_id').val('');
         clone.insertAfter($('.limitedEdition').last());
         
     });
