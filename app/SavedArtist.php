@@ -20,4 +20,9 @@ class SavedArtist extends Model
     {
         return $this->hasMany('App\User','user_id','id');
     }
+
+    public function artworks()
+    {
+        return $this->hasMany('App\Artwork','user_id','id');
+    }
 }

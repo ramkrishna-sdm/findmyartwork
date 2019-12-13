@@ -67,7 +67,7 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Followers</p>
-                  <p class="card-title">+0
+                  <p class="card-title">{{$follow_count}}
                     <p>
                 </div>
               </div>
