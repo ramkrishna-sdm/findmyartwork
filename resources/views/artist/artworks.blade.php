@@ -45,7 +45,7 @@
                                             <tbody>
                                                 @foreach($artworks as $key => $artwork)
                                                 <tr>
-                                                    <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="{{$artwork->artwork_images[0]->media_url}}" class="show_slider"  data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
+                                                    <td><a href="{{url('/artist/edit_artwork')}}/{{$artwork->id}}"><img src="@if(count($artwork->artwork_images) > 0){{$artwork->artwork_images[0]->media_url}} @endif" class="show_slider"  data-artwork-id="{{$artwork->id}}" data-toggle="modal" data-target="#myModal"></a></td>
                                                     <td>{{$artwork->title}}</td>
                                                     
                                                     <td class="text-right">
