@@ -7,7 +7,7 @@
     <div class="row">
 
     <div class="dashboardHome container-medium">
-      <h1 class="text-big text-bold">Good Evening sam<!-- -->!</h1>
+      <h1 class="text-big text-bold">Good Evening {{Auth::user()->first_name}}!</h1>
       <p class="text-medium text-thin">Here is what is happening with your ArtViaYou profile lately.</p>
     </div>
   </div>
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    @if('{{$like_count}}'=='0')
+    @if($artwork_count == 0)
       <div class="row">
           <div class="col-md-6">
             <div class="card ">
