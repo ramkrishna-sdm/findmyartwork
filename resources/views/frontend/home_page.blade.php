@@ -54,7 +54,7 @@
 @if(!empty($featuredArtworks))
 <section class="featuredArt">
     <div class="featuredImage">
-        <img src="{{$featuredArtworks->artwork_images[1]->media_url}}" alt="">
+        <img src="{{$featuredArtworks->artwork_images[0]->media_url}}" alt="">
     </div>
     <div class="featuredDetail">
         <h4>Featured Art</h4>
