@@ -96,9 +96,10 @@ Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_det
 
 Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
-Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
+Route::get('/cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
 Route::get('/artworks/{id?}', 'Frontend\ArtworkController@artworks');
+Route::get('/remove_from_cart/{id}', 'Frontend\HomeController@remove_from_cart');
 
 // Route::get('/', function () {
 //     return view('welcome');

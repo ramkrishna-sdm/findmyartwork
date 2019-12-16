@@ -49,12 +49,24 @@ class ArtworkController extends Controller
 
     public function items_cart(){
         $items_cart = [];
+        $item_id = [];
+        $total_price = 0;
+        $total_shipping = 0;
         if(Auth::user()){
             $items_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
         }else{
             $items_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
         }
-        return view('frontend/items_cart', compact('items_cart'));
+        if(count($items_cart)>0){
+            foreach ($items_cart as $key => $value) {
+                $item_id[] = $value->saved_artwork->id;
+                $total_price = $total_price + $value->saved_artwork->variants[0]->price;
+                $total_shipping = $total_shipping + $value->saved_artwork->variants[0]->worldwide_shipping_charge;
+            }
+        }
+        // echo "<pre>";
+        // print_r($item_id); die;
+        return view('frontend/checkout', compact('items_cart' ,'total_price', 'total_shipping', 'item_id'));
     }
 
     public function saved_artwork(){
@@ -89,7 +101,7 @@ class ArtworkController extends Controller
         if(Auth::user()){
             $all_cart_artwork = SavedArtwork::select('artwork_id')->where(['user_id' => Auth::user()->id, 'status' => 'cart'])->get('artwork_id')->toArray();;
         }else{
-            $all_cart_artwork = SavedArtwork::select('artwork_id')->where(['user_id' => Session::get('random_id'), 'status' => 'cart'])->get();
+            $all_cart_artwork = SavedArtwork::where(['guest_id' => Session::get('random_id'), 'status' => 'cart'])->get('artwork_id')->toArray();
         }
         if(count($all_cart_artwork) > 0){
             foreach ($all_cart_artwork as $key => $value) {
@@ -97,7 +109,7 @@ class ArtworkController extends Controller
             }
         }
         //     echo "<pre>";
-        // print_r($cart_artwork); die;
+        // print_r(Session::get('random_id')); die;
 
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
         return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork', 'cart_artwork'));
