@@ -50,11 +50,12 @@ class GalleryUserController extends Controller
         $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
 
         $styles= Style::get();
-
+    
         $subjects= Subject::get();
     	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
+    //Profile
     public function profile($id){
         
         $gallery = $this->userRepository->getData(['id'=>$id],'first',[],0);
