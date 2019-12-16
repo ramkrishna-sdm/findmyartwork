@@ -280,7 +280,6 @@ class HomeController extends Controller
 
     public function save_artwork(){
         // dd(Session::get('random_id'));
-        dd("MKL");
         if(Auth::user()){
             $saved_artwork = [];
             $saved_artwork['user_id'] = Auth::user()->id;
@@ -328,9 +327,11 @@ class HomeController extends Controller
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
                 $message = "Item Added to Cart!";
+                $btn_text = "REMOVE FROM CART";
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
                 $message = "Item Removed from Cart!";
+                $btn_text = "ADD TO CART";
             }
             $artwork_in_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'count',[],0);
         }else{
@@ -343,9 +344,11 @@ class HomeController extends Controller
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
                 $message = "Item Added to Cart!";
+                $btn_text = "ADD TO CART";
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
                 $message = "Item Removed from Cart!";
+                $btn_text = "REMOVE FROM CART";
             }
             $artwork_in_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'count',[],0);
         }
@@ -353,6 +356,7 @@ class HomeController extends Controller
         return response()->json(array(
             'saved_count' => $artwork_in_cart,
             'msg' => $message,
+            'btn_text' => $btn_text,
             'status' => 200,
         ), 200);
     }

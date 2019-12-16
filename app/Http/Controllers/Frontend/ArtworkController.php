@@ -21,6 +21,7 @@ use Hash;
 use Cookie;
 use Segment;
 use DateTime;
+use App\SavedArtwork;
 
 class ArtworkController extends Controller
 {
@@ -83,10 +84,23 @@ class ArtworkController extends Controller
 
     public function artwork_details($id){
         $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
-        // echo "<pre>";
-        // print_r($artwork_result->variants[0]); die;
+        $all_cart_artwork = [];
+        $cart_artwork = [];
+        if(Auth::user()){
+            $all_cart_artwork = SavedArtwork::select('artwork_id')->where(['user_id' => Auth::user()->id, 'status' => 'cart'])->get('artwork_id')->toArray();;
+        }else{
+            $all_cart_artwork = SavedArtwork::select('artwork_id')->where(['user_id' => Session::get('random_id'), 'status' => 'cart'])->get();
+        }
+        if(count($all_cart_artwork) > 0){
+            foreach ($all_cart_artwork as $key => $value) {
+                $cart_artwork[] = $value['artwork_id'];
+            }
+        }
+        //     echo "<pre>";
+        // print_r($cart_artwork); die;
+
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
-        return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork'));
+        return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork', 'cart_artwork'));
     }
 
     /**

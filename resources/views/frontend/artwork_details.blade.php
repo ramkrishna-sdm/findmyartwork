@@ -42,9 +42,13 @@
                         </ul>
                     </div>
                     <div class="button d-flex align-items-center">
+                        @if(in_array($artwork_result->id , $cart_artwork))
+                        <a href="javascript:void(0)" data-artwork-id="{{$artwork_result->id}}" class="add_to_cart btn btn-default btn-block mr-2 mb-2">REMOVE FROM CART</a>
+                        @else
                         <a href="javascript:void(0)" data-artwork-id="{{$artwork_result->id}}" class="add_to_cart btn btn-default btn-block mr-2 mb-2">ADD TO CART</a>
+                        @endif
                         @if(Auth::user())
-                            <a href="#" class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
+                            <a @if(Auth::user()) href="javascript:void(0);" @else href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" @endif class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
                         @else
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
                         @endif
