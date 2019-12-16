@@ -39,6 +39,9 @@
     #offerCard{
         display: none !important;
     }
+    #ofBar{
+        display: none !important;
+    }
     </style>
 </head>
 
@@ -96,20 +99,6 @@
                 CKEDITOR.replace(des_second,{
                     language:'en-gb'
                 });
-            }
-            if(arr[2] == "add_faq"){
-                var ckview = document.getElementById("ans");
-                    CKEDITOR.replace(ans,{
-                        language:'en-gb'
-                    });
-               
-            }
-             if(arr[2] == "edit_faq"){
-                var ckview = document.getElementById("ans");
-                    CKEDITOR.replace(ans,{
-                        language:'en-gb'
-                    });
-               
             }
             if(arr[2] == "manage_artworks" || arr[2] == "top_artwork" || arr[2] == "trending_artwork"){
                 $(document).ready(function() {

@@ -40,7 +40,7 @@
             <!-- Category Item -->
             @foreach($categories as $key => $category)
             <div class="categoryItem">
-                <a href="#">
+                <a href="{{url('artworks')}}/{{$category->id}}">
                     <div class="image"><img src="{{$category->media_url}}" alt=""></div>
                     <h3>{{$category->name}}</h3>
                 </a>

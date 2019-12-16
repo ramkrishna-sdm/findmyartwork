@@ -32,7 +32,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::post('/getSubcategory','ArtistUserController@getSubcategory');
 	Route::get('/profile/{id}','ArtistUserController@profile');
 	Route::post('/update_artist','ArtistUserController@update_artist');
-	Route::get('/artworks','ArtistUserController@artworks');
+	Route::get('/artworks/{id?}','ArtistUserController@artworks');
 	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'ArtistUserController@change_artwork_status');
 	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
 	Route::get('/view_artwork/{id}', 'ArtistUserController@view_artwork');
@@ -50,12 +50,6 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::get('/profile/{id}', 'BuyerUserController@profile');
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
-	Route::get('/add_blog','BuyerUserController@add_blog');
-	Route::post('/update_blog','BuyerUserController@update_blog');
-	Route::get('/blog','BuyerUserController@blog');
-	Route::get('/edit_blog/{id}','BuyerUserController@edit_blog');
-	Route::get('/delete_blog/{id}','BuyerUserController@delete_blog');
-	Route::get('/change_blog_status/{id}/{status}','BuyerUserController@change_blog_status');
 
 });
 
@@ -97,7 +91,7 @@ Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_sear
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
 Route::get('/items_cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
-Route::get('/artworks', 'Frontend\ArtworkController@artworks');
+Route::get('/artworks/{id?}', 'Frontend\ArtworkController@artworks');
 
 // Route::get('/', function () {
 //     return view('welcome');

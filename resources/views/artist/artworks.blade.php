@@ -13,7 +13,7 @@
                                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                                     <h3 class="mb-0">{{ __('Your Artworks') }}</h3>
 
-                                       <a href="{{ url('/artist/add_artwork') }}" class="btn btn-sm btn-primary">{{ __('Add Artwork') }}</a>
+                                       <a href="{{ url('/artist/add_artwork') }}" class="btn btn-sm btn-primary">{{ __('Add Artist') }}</a>
                                 </div>
                               
                             </div>

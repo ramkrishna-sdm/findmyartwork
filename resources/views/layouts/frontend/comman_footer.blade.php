@@ -253,10 +253,6 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="{{url('ckeditor/ckeditor.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
 <script>
    var category_id = '';
    var sub_category_id = '';
@@ -271,6 +267,8 @@
    }
 
    function getSubCategory(id) {
+      console.log($(this));
+      $(this).parent('ul').find('li').removeClass('active');
       category_id = id;
       sub_category_id = "";
       var favorite = [];
@@ -306,6 +304,13 @@
    }
 </script>
 
+<script>
+  $(document).on('click', '.category_li', function () { 
+    $('.category_li').removeClass('active');
+    $(this).addClass('active');
+
+  });
+</script> 
 <script>
   $(document).on('click', '.categoryItem', function () { 
     var favorite = [];
@@ -790,97 +795,6 @@ $(document).on('click', '.add_to_cart', function(){
     }, 600); 
    
   });
-</script>
-<script type="text/javascript">
-  $('document').ready(function() {
-      var PATH = $(location).attr('pathname');
-      var arr = PATH.split('/');
-     
-      if(arr[2] == "add_blog"){
-        var ckview = document.getElementById("des_first");
-          CKEDITOR.replace(des_first,{
-              language:'en-gb'
-          });
-       
-      }
-      if(arr[2] == "edit_blog"){
-        var ckview = document.getElementById("des_first");
-          CKEDITOR.replace(des_first,{
-              language:'en-gb'
-          });
-       
-      }
-
-      $('.delete_blog').click(function(event) {
-          event.preventDefault();
-          var link = $(this).attr('href');
-          swal({
-              title: "Please confirm this action",
-              text: "By this action you are confirming that the selected Blog will be deleted permanently.",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
-              closeOnConfirm: false,
-              closeOnCancel: false
-          },
-          function(isConfirm) {
-              if (isConfirm) {
-                  window.location = link;
-              } else {
-                 swal("Cancelled", "You cancelled this action", "error");
-              }
-          });
-      });
-      $('.change_blog_status').click(function(event) {
-          event.preventDefault();
-          var link = $(this).attr('href');
-          swal({
-              title: "Please confirm this action",
-              text: "By this action you are confirming that the selected Blog's status will be changed.",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
-              closeOnConfirm: false,
-              closeOnCancel: false
-          },
-          function(isConfirm) {
-              if (isConfirm) {
-                  window.location = link;
-              } else {
-                 swal("Cancelled", "You cancelled this action", "error");
-              }
-          });
-      }); 
-      
-  });
-
-  $('#update-blog').on('click', function(e) {
-        e.preventDefault();
-        var title = $('#title_id').val();
-        var description = $("textarea#des_first").val();
-        alert(title); return false;
-        if ($.trim(title) == '') {
-            toastr.options.timeOut = 2500; // 2s
-            toastr.error('Title is Required');
-            return false;
-        }
-      else if ($.trim(description) == '') {
-            toastr.options.timeOut = 2500; // 2s
-            toastr.error('Description is Required');
-            return false;
-        }
-
-        else {
-            document.getElementById("add_blog").submit();
-        }
-    });
-
-  
-        
 </script>
 
 

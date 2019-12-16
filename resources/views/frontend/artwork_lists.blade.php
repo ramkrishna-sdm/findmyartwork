@@ -10,15 +10,17 @@
                   <div class="filterBlock">
                      <h5>Artworks <i class="fas fa-caret-right"></i></h5>
                      <ul>
-                        @foreach($categories as $category)
-                        <li onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a>
-                           <span class="float-right">({{count($category->artwork)}})</span> </li>
+                        @foreach($categories as $key=> $category)
+                        @if(!empty($cat_id)) 
+                          @if($category->id == $cat_id)
+                            <li class="active category_li" onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a><span class="float-right">({{count($category->artwork)}})</span> </li>
+                          @else
+                            <li class="category_li" onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a><span class="float-right">({{count($category->artwork)}})</span> </li>
+                          @endif
+                          @else
+                            <li @if($key ==0) class="active category_li" @endif onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a><span class="float-right">({{count($category->artwork)}})</span> </li>
+                          @endif 
                         @endforeach
-                        <!-- <li class="active"><a href="javascript:;">Paintings</a> <span class="float-right">(4635)</span></li>
-                      <li><a href="javascript:;">Drawings</a> <span class="float-right">(1635)</span> </li>
-                      <li><a href="javascript:;">Digital art</a> <span class="float-right">(2635)</span></li>
-                      <li><a href="javascript:;">Photography</a> <span class="float-right">(4635)</span></li>
-                      <li><a href="javascript:;">Sculptures</a> <span class="float-right">(6645)</span></li> -->
                      </ul>
                   </div>
                </div>
@@ -108,6 +110,20 @@
               <div class="container">
                   <div class="categoryList">
                       <!-- Category Item -->
+                      @if(!empty($cat_id))
+                        @foreach($categories as $key => $cat)
+                          @if($cat->id == $cat_id)
+                            @foreach($categories[$key]->subcategories as $subcategory)
+                            <div class="categoryItem">
+                                <a href="javascript:void(0);" onclick="subCategoryInfo('{{$subcategory->id}}')">
+                                    <div class="image"><img src="{{$subcategory->media_url}}" alt=""></div>
+                                    <h3>{{$subcategory->name}}</h3>
+                                </a>
+                            </div>
+                            @endforeach
+                          @endif
+                        @endforeach
+                      @else
                       @foreach($categories[0]->subcategories as $subcategory)
                       <div class="categoryItem">
                           <a href="javascript:void(0);" onclick="subCategoryInfo('{{$subcategory->id}}')">
@@ -116,6 +132,7 @@
                           </a>
                       </div>
                       @endforeach
+                      @endif
                   </div>
               </div>
           </section>
