@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 
 	Route::get('/dashboard','GalleryUserController@index');
 	Route::get('/profile/{id}', 'GalleryUserController@profile');
-	Route::post('/update_buyer', 'GalleryUserController@update_buyer');
+	Route::post('/update_gallery', 'GalleryUserController@update_gallery');
 	Route::put('profile/password','GalleryUserController@password');
 	Route::get('/add_blog','GalleryUserController@add_blog');
 	Route::post('/update_blog','GalleryUserController@update_blog');

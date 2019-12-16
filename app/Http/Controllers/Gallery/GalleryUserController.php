@@ -28,6 +28,7 @@ use DateTime;
 class GalleryUserController extends Controller
 {
     private $blog_files;
+    private $users_files;
     /**
      * Create a new controller instance.
      *
@@ -40,6 +41,7 @@ class GalleryUserController extends Controller
         $this->request = $request;
 
         $this->blog_files = '/images/blog_files/';
+        $this->users_files = '/images/users_files/';
 
         $this->userRepository = $userRepository;
 
@@ -79,7 +81,7 @@ class GalleryUserController extends Controller
         return view('gallery.profile', compact('gallery'));
     }
 
-    public function update_buyer()
+    public function update_gallery()
     {
         $validation = Validator::make($this->request->all(), [
             // $validate = $this->validate($this->request, [
