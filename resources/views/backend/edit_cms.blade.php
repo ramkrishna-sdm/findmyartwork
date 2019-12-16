@@ -167,7 +167,7 @@
                                    	
                                    	<div class="form-group{{ $errors->has('des_first') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Description') }}</label>
-										<textarea name="des_first" id="des_first" cols="30" rows="10">@if(!empty($cms_info)){{$cms_info->des_first}}@endif"</textarea>
+										<textarea name="des_first" id="des_first" cols="30" rows="10">@if(!empty($cms_info)){{$cms_info->des_first}}@endif</textarea>
 
                                         @if ($errors->has('des_first'))
                                             <span class="invalid-feedback" role="alert">

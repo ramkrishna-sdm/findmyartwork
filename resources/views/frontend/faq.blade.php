@@ -100,7 +100,7 @@
     <div class="accordion-item">
       <a>{{$fa->qus}}</a>
       <div class="content">
-        <p>{{$fa->ans}}</p>
+        <p><?=htmlspecialchars_decode($fa->ans)?></p>
       </div>
     </div>
     @endforeach
