@@ -58,6 +58,8 @@ class GalleryUserController extends Controller
     	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
+    
+
     //Profile
     public function profile($id){
         
@@ -159,7 +161,7 @@ class GalleryUserController extends Controller
             $blog = $this->BlogRepository->createUpdateData(['id'=> $request->id],$request->all());
             \Session::flash('success_message', "Blog Post Successfully!");
             return redirect('/gallery/blog');
-        }catch (\Exception $ex){dd('out');
+        }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
         }
