@@ -14,7 +14,11 @@
                         <li onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a>
                            <span class="float-right">({{count($category->artwork)}})</span> </li>
                         @endforeach
-                       
+                        <!-- <li class="active"><a href="javascript:;">Paintings</a> <span class="float-right">(4635)</span></li>
+                      <li><a href="javascript:;">Drawings</a> <span class="float-right">(1635)</span> </li>
+                      <li><a href="javascript:;">Digital art</a> <span class="float-right">(2635)</span></li>
+                      <li><a href="javascript:;">Photography</a> <span class="float-right">(4635)</span></li>
+                      <li><a href="javascript:;">Sculptures</a> <span class="float-right">(6645)</span></li> -->
                      </ul>
                   </div>
                </div>
@@ -102,28 +106,39 @@
             </div>
          </div>
         <div class="col-12 col-md-8 col-lg-9">
-            <form method="post" id="edit_blog"  action="{{ url('/buyer/update_blog') }}" enctype="multipart/form-data" id="buyer-profile-form">
-            @csrf
-                <input type="hidden" name="id" value="{{$blog->id}}">
-                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="first_name">Title</label>
-                        <input type="text" class=" form-control"  placeholder="Enter titile" value="{{$blog->title}}" name="title" id="titile_id">
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="last_name">Description</label>
-                       <textarea name="des_first" id="des_first" cols="30" rows="10"><?=htmlspecialchars_decode($blog->des_first)?></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center" >
-                        <button type="submit" class="btn btn-default editblog" id="update-blog">Update</button>
-                    </div>
-                </div>
-            </form>
-         </div>
+          <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                    <h3 class="mb-0">{{ __('Blog') }}</h3>
+
+                 <a href="{{ url('/gallery/add_blog') }}" class="btn btn-sm btn-primary">{{ __('Add Blog') }}</a>
+          </div>
+         <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Creation Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach($blogs as $blog)
+              <tr>
+                <td>{{$blog->title}}</td>
+                <td><?=htmlspecialchars_decode($blog->des_first)?></td>
+                <td>{{$blog->created_at->format('d/m/Y H:i')}}</td>
+                <td class="text-right">
+                <a href="{{url('/gallery/edit_blog')}}/{{$blog->id}}" class="btn  btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>
+                <a href="{{url('/gallery/delete_blog')}}/{{$blog->id}}" class="btn  btn-link btn-sm remove delete_blog" title="Delete"><i class="fa fa-times"></i></a>
+                <a href="{{url('/gallery/change_blog_status')}}/{{$blog->id}}/{{$blog->is_active}}" class="btn  btn-link btn-sm change_blog_status" title="@if($blog->is_active == 'yes') Deactivate @else Activate @endif"><i class="fa fa-power-off"></i></a>
+            </td>
+              </tr>
+            @endforeach
+           
+           
+        </tbody>
+    </table>
+           
+        </div>
 
       </div>
    </div>
@@ -134,5 +149,8 @@
   $( window ).on( "load", function() {
     getSubCategory(1);
 });
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
 </script>
 

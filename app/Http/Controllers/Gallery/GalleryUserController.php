@@ -11,6 +11,8 @@ use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Repository\BlogRepository;
+use Illuminate\Support\Facades\Auth;
 use App\Style;
 use App\Subject;
 use Exception;
@@ -31,7 +33,7 @@ class GalleryUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request,UserRepository $userRepository,CategoryRepository $categoryRepository,VariantRepository $variantRepository)
+    public function __construct(Request $request,UserRepository $userRepository,CategoryRepository $categoryRepository,VariantRepository $variantRepository,BlogRepository $BlogRepository)
     {
         $this->middleware('auth');
 
@@ -44,6 +46,7 @@ class GalleryUserController extends Controller
         $this->categoryRepository = $categoryRepository;
 
         $this->variantRepository = $variantRepository;
+        $this->BlogRepository = $BlogRepository;
     }
 
     public function index(){
@@ -126,5 +129,93 @@ class GalleryUserController extends Controller
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
     } 
+
+     public function add_blog(){
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+
+        $styles= Style::get();
+
+        $subjects= Subject::get();
+        return view('gallery/add_blog',compact('categories','styles','subjects'));
+    }
+
+    /**
+    * Function to Create/Update About Us
+    * @param
+    * @return 
+    *
+    * Created By: Shambhu Thakur
+    * Created At: 21Nov2019 
+    */
+    public function update_blog(Request $request) {
+        $validator = $this->validate($request,[
+            'title' => 'required',
+            'des_first' => 'required'
+        ]);
+        $user_id = Auth::user()->id;
+        $request['user_id'] =$user_id;
+        try{
+
+            $blog = $this->BlogRepository->createUpdateData(['id'=> $request->id],$request->all());
+            \Session::flash('success_message', "Blog Post Successfully!");
+            return redirect('/gallery/blog');
+        }catch (\Exception $ex){dd('out');
+            \Session::flash('error_message', $ex->getMessage());
+            return back()->withInput();
+        }
+    }
+
+    public function blog(){
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $styles= Style::get();
+        $subjects= Subject::get();
+        $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+        return view('gallery/blog',compact('categories','styles','subjects','blogs'));
+    }
+
+    public function edit_blog($id)
+    {
+        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $styles= Style::get();
+        $subjects= Subject::get();
+        $blog = $this->BlogRepository->getData(['id'=>$id],'first',['user'],0);
+        return view('gallery/edit_blog', compact('categories','styles','subjects','blog'));
+    }
+
+
+     /**
+    * Function to delete blog
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: shambhu thakur
+    * Created At: 13 Dec 2019
+    */
+    public function delete_blog($id)
+    {
+        $blog = $this->BlogRepository->getData(['id'=>$id],'delete',[],0);
+        \Session::flash('success_message', 'Blog Deleted Succssfully!.'); 
+            return redirect('/gallery/blog');
+    }
+
+    /**
+    * Function to change blog status
+    * @param $request(Array)
+    * @return 
+    *
+    * Created By: Shambhu thakur
+    * Created At:13 Dec 2019 
+    */
+    public function change_blog_status($id, $status)
+    {
+        if($status == 'yes'){
+            $data['is_active'] = 'no';
+        }else{
+            $data['is_active'] = 'yes';
+        }
+        $blog = $this->BlogRepository->createUpdateData(['id'=> $id],$data);
+        \Session::flash('success_message', 'Blog Status Changed Succssfully!.'); 
+        return redirect('/gallery/blog');
+    }
 
 }

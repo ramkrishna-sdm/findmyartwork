@@ -50,12 +50,7 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::get('/profile/{id}', 'BuyerUserController@profile');
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
-	Route::get('/add_blog','BuyerUserController@add_blog');
-	Route::post('/update_blog','BuyerUserController@update_blog');
-	Route::get('/blog','BuyerUserController@blog');
-	Route::get('/edit_blog/{id}','BuyerUserController@edit_blog');
-	Route::get('/delete_blog/{id}','BuyerUserController@delete_blog');
-	Route::get('/change_blog_status/{id}/{status}','BuyerUserController@change_blog_status');
+	
 
 });
 
@@ -65,6 +60,12 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/profile/{id}', 'GalleryUserController@profile');
 	Route::post('/update_buyer', 'GalleryUserController@update_buyer');
 	Route::put('profile/password','GalleryUserController@password');
+	Route::get('/add_blog','GalleryUserController@add_blog');
+	Route::post('/update_blog','GalleryUserController@update_blog');
+	Route::get('/blog','GalleryUserController@blog');
+	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
+	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
+	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
 	
 
 });

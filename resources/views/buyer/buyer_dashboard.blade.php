@@ -102,12 +102,7 @@
                      </div>
                   </div>
                </div>
-               <div class="filterBlock no-border">
-                  <div class="form-group">
-                    <a href="{{url('buyer/blog')}}">Blog</a>
-                  </div>
-               </div>
-
+               
                <div class="btn btn-default btn-block mt-3">reset filters</div>
             </div>
          </div>

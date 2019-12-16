@@ -106,7 +106,7 @@
             </div>
          </div>
         <div class="col-12 col-md-8 col-lg-9">
-            <form method="post" id="add_blog" action="{{ url('/buyer/update_blog') }}" enctype="multipart/form-data" id="buyer-profile-form">
+            <form method="post" id="add_blog" action="{{ url('/gallery/update_blog') }}" enctype="multipart/form-data" id="buyer-profile-form">
             @csrf
                  <div class="col-sm-12">
                     <div class="form-group">
