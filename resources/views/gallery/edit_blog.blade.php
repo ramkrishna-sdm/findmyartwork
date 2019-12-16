@@ -19,6 +19,13 @@
                        <textarea name="des_first" id="des_first" cols="30" rows="10"><?=htmlspecialchars_decode($blog->des_first)?></textarea>
                     </div>
                 </div>
+                 <div class="col-sm-12">
+                  <img src="@if(!empty($blog->media_url)){{$blog->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
+                    <div class="form-group">
+                      <label for="last_name">Upload Image</label>
+                       <input type="file" class=" form-control" value="" name="media_url">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 text-center" >
                         <button type="submit" class="btn btn-default editblog" id="update-blog">Update</button>

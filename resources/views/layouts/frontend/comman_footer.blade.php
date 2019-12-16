@@ -865,26 +865,25 @@ $(document).on('click', '.add_to_cart', function(){
       
   });
 
-  // $('#update-blog').on('click', function(e) {
-  //       e.preventDefault();
-  //       var title = $('#title_id').val();
-  //       var description = $("textarea#des_first").val();
-  //       alert(title); return false;
-  //       if ($.trim(title) == '') {
-  //           toastr.options.timeOut = 2500; // 2s
-  //           toastr.error('Title is Required');
-  //           return false;
-  //       }
-  //     else if ($.trim(description) == '') {
-  //           toastr.options.timeOut = 2500; // 2s
-  //           toastr.error('Description is Required');
-  //           return false;
-  //       }
+  $('#update-blog').on('click', function(e) {
+        e.preventDefault();
+        var title = $("input[name=title]").val();
+        //var description = $('textarea[name=description]').val();
+        if ($.trim(title) == '') {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Title is Required');
+            return false;
+        }
+      // else if ($.trim(description) == '') {
+      //       toastr.options.timeOut = 2500; // 2s
+      //       toastr.error('Description is Required');
+      //       return false;
+      //   }
 
-  //       else {
-  //           document.getElementById("add_blog").submit();
-  //       }
-  //   });
+        else {
+            document.getElementById("add_blog").submit();
+        }
+    });
 
   
         

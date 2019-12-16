@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     protected $fillable = [
-        'title','des_first','user_id', 'is_deleted', 'is_active'
+        'title','des_first','user_id', 'media_url','is_deleted', 'is_active'
     ];
 
     // Relations with ArtworkImage Model
