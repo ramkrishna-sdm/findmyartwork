@@ -46,7 +46,7 @@
                     </div>
                 @endif
             </div>
-        <form method="post"  action="{{ url('/gallery/update_buyer') }}" enctype="multipart/form-data" id="buyer-profile-form">
+        <form method="post"  action="{{ url('/gallery/update_gallery') }}" enctype="multipart/form-data" id="buyer-profile-form">
             @csrf
             <div class="row">
                 <div class="col-sm-4">
