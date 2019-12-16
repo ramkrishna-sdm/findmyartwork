@@ -740,6 +740,12 @@ $(document).on('click', '.like_artwork', function(){
 $(document).on('click', '.save_artwork', function(){
     var artwork_id = $(this).attr('data-artwork-id');
     var this_like = $(this);
+
+    var PATH = $(location).attr('pathname');
+    var arr = PATH.split('/');
+    if(arr[1] == "saved_artwork"){
+        $(this).parents('.col-lg-4').remove();
+    }
     $.ajax({
         url: "{{url('save_artwork')}}",
         type: 'POST',
@@ -775,6 +781,7 @@ $(document).on('click', '.add_to_cart', function(){
 
         success: function(res){
             if(res.status=="200"){
+                this_like.html(res.btn_text)
                 toastr.options.timeOut = 2000; // 2s
                 toastr.success(res.msg);
                 $(document).find('.cart_count').html(res.saved_count);
