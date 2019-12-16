@@ -48,7 +48,7 @@ div#loader_gif  img{position: absolute; left:50%; top:50%; transform:translate(-
 .navbar .navbar-nav > li > a.nav-link{padding-left:0;padding-right:0}
 .navbar .navbar-nav > li:hover > a:not(.btn),.navbar .navbar-nav > li.active > a:not(.btn){color:#2e3192}
 .navbar-nav .dropdown-menu{position:absolute}
-.header{width:100%;padding:9px 0;-webkit-box-shadow:0 10px 6px 0 rgba(0,0,0,0.02);box-shadow:0 10px 6px 0 rgba(0,0,0,0.02);}
+.header{width:100%;padding:9px 0;-webkit-box-shadow:0 10px 6px 0 rgba(0,0,0,0.02);box-shadow:0 10px 6px 0 rgba(0,0,0,0.02)}
 .searchbar{margin:auto;position:relative}
 .searchbar form{position: relative;}
 .searchbar .btn-search{background:transparent;border:0;position:absolute;right:0;top:11px;width:46px;text-align:center}
@@ -523,34 +523,6 @@ transition: all .3s;
 
 .actionLink{font-size: 12px; text-decoration: none; font-weight: 600; color: #222222; cursor: pointer; text-align: center; width: 100%;     display: block;
     padding: 15px 0;}
-
-
-/* BlogDetails Css */
-
-.blogSnippet{display:flex; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f2f2f2; padding-bottom: 10px;}
-.blogSnippet .image{width: 130px; height: 60px; margin-right: 10px; border-radius: 5px;}
-.blogSnippet .image img{width: 100%; height: 100%; object-fit: cover;}
-.blogSnippet p{font-size: 13px; margin-bottom: 8px;}
-.blogSnippet span.comments{font-size: 14px; font-weight: 700; color: #2e3192;}
-.blogDetails .card-header{font-weight: 700; font-size:15px; border-color: #f2f2f2;}
-.blogDetails .card-text:last-child{font-size:14px; line-height: 24px;}
-.blogDetails .card-footer:last-child{font-size:13px;}
-.blogDetails .card-footer a{font-weight: 600;}
-.card{border:1px solid #f2f2f2; -webkit-box-shadow:0 10px 6px 0 rgba(0,0,0,0.02) !important;box-shadow:0 10px 6px 0 rgba(0,0,0,0.02) !important;}
-.card-footer{border-color: #f2f2f2;}
-.blogDetails .blog-title{font-size:24px; font-weight: 600; border:1px solid #f2f2f2; padding: 15px; margin-bottom:0;}
-.postBlock{border:1px solid #e6e6e6;margin-bottom: 20px;}
-.postBlock .image{flex-basis: 50%; align-self: stretch; min-height: 300px;}
-.postBlock .image img{width: 100%; height: 100%; object-fit: cover;}
-.postBlock .postText{flex-basis: 50%; padding: 20px;}
-.postBlock .postText span{display: block;}
-.postBlock .postText span.heading{font-size:14px; color:#2e3192; text-transform: capitalize; font-weight: 600;}
-.postBlock .postText span.title{font-size:18px; font-weight:700; text-transform: capitalize; margin: 15px 0;}
-.postBlock .postText span.date{font-size:16px; color: #6a6a6a; text-transform: capitalize;}
-.postBlock .postText p{font-size:15px; line-height:22px; margin: 15px 0 20px 0;}
-.postBlock .btn{padding: .4rem 1rem; font-size:14px;}
-
-.orderChange .image{order:2 !important;}
 /* Responsive Css */
 @media (max-width: 1100px) {
   .navbar .navbar-nav > li{margin:0 10px}
@@ -561,7 +533,7 @@ transition: all .3s;
   .navbar-header.navbar{padding:1.3rem 10px 1.3rem 15px}
   .navbar .navbar-nav > li > a{margin:0 10px}
   .navbar-header .topbar{border:0;}
-  .mainNavbar{position:absolute;width:100%;z-index:99;margin:0!important;left:0;top:156px;}
+  .mainNavbar{position:absolute;width:100%;z-index:99;margin:0!important;left:0;top:156px}
   .navbar-header.navbar .nav-language{position:absolute;right:65px;top:21px;margin:0}
   .navbar-header.navbar .navbar-collapse ul.navbar-nav li a{padding-left:15px}
   .topBarOptions{flex-direction:row}
@@ -637,9 +609,6 @@ transition: all .3s;
  .productDetails .detail .head{margin-top: 20px;}
  .productDetails .detail .button{flex-direction: column;}
  .productDetails .detail .button .btn{width: 100%; margin:0 !important; margin-bottom: 10px !important;}
- .postBlock{flex-direction: column;}
- .orderChange .image{order:1 !important;}
- .orderChange  .postText{order:2 !important;} 
 }
 @media (max-width: 640px) {
   .footerLink .col-md-7.d-flex{display:block!important}
@@ -709,51 +678,51 @@ transition: all .3s;
     border: 1px solid #f2f2f2;
     padding: 10px;
     -webkit-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
-    -moz-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
-    box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
+	-moz-box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
+	box-shadow: 0px 19px 39px -6px rgba(0,0,0,0.16);
 }
 .artist-frame {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
+	display: flex;
+	justify-content: space-between;
+	padding: 12px;
 }
 .artist-frame .artist-detail{
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 .artist-detail .profile_img,.artist-detail .profile_img a,.artist-detail .profile_img img{
-    width:44px;
-    height:44px;
-    border-radius: 100%
+	width:44px;
+	height:44px;
+	border-radius: 100%
 }
 .artist-detail .profile_img{
-    margin-right: 15px;
+	margin-right: 15px;
 }
 .artist-detail .profile_img a,.artist-detail .profile_img img{
-    display: block
+	display: block
 }
 .profile-summary{
-    font-size: 14px;
-    line-height: 24px
+	font-size: 14px;
+	line-height: 24px
 }
 .profile-summary h6{
-    font-weight: 700;
+	font-weight: 700;
 }
 .profile-summary .account{
-    color: #9e9e9e
+	color: #9e9e9e
 }
 .profile-summary p a{
-    color: #9e9e9e
+	color: #9e9e9e
 }
 .profile-summary p a:hover{
-    color: #2e3192
+	color: #2e3192
 }
 .artist-frame .btn{
-    padding: 8px 15px;
-    border-radius: 20px
+	padding: 8px 15px;
+	border-radius: 20px
 }
 .change-password{
-    margin-top: 50px;
+	margin-top: 50px;
 }
 
 .basket{padding-top:60px;padding-bottom:60px}
@@ -790,22 +759,22 @@ transition: all .3s;
 
 
 @media (min-width: 1280px) {
-    .text-huge{font-size:48px}
+	.text-huge{font-size:48px}
 }
 @media (min-width: 768px) {
-    .select select{padding:5px 15px}
+	.select select{padding:5px 15px}
 }
 @media (max-width: 768px){
-    .basket{
-        padding-top:150px;
-    }
-    .basketContent {
-        grid-template-columns: 1fr;
-        margin: 0 -15px;
-    }
-    .basketHeaderSelectors {
-        grid-gap: 15px;
-        max-width: 100%;
-    }
+	.basket{
+		padding-top:150px;
+	}
+	.basketContent {
+	    grid-template-columns: 1fr;
+	    margin: 0 -15px;
+	}
+	.basketHeaderSelectors {
+	    grid-gap: 15px;
+	    max-width: 100%;
+	}
 }
 

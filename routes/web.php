@@ -66,6 +66,8 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
 	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
 	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
+	Route::get('/exhibitions','GalleryUserController@exhibitions');
+	Route::get('/exhibition_details/{id}','GalleryUserController@exhibition_details');
 	
 
 });

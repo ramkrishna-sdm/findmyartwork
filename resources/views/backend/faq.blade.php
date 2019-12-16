@@ -50,7 +50,7 @@
                                                 @foreach($faq as $key => $fa)
                                                 <tr>
                                                     <td>{{$fa->qus}}</td>
-                                                    <td>{{$fa->ans}}</td>
+                                                    <td><?=htmlspecialchars_decode($fa->ans)?></td>
                                                     <td>{{$fa->created_at->format('d/m/Y H:i')}}</td>
                                                     <td class="text-right">
                                                         <a href="{{url('/admin/edit_faq')}}/{{$fa->id}}" class="btn btn-warning btn-link btn-sm edit" title="Edit"><i class="fa fa-edit"></i></a>

@@ -19,6 +19,12 @@
                        <textarea name="des_first" id="des_first" cols="30" rows="10"></textarea>
                     </div>
                 </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="last_name">Upload Image</label>
+                       <input type="file" class=" form-control" value="" name="media_url">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 text-center" >
                         <button type="submit" class="btn btn-default addblog" id="update-blog">Submit</button>

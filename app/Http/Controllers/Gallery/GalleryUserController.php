@@ -27,7 +27,7 @@ use DateTime;
 
 class GalleryUserController extends Controller
 {
-    private $users_files;
+    private $blog_files;
     /**
      * Create a new controller instance.
      *
@@ -39,7 +39,7 @@ class GalleryUserController extends Controller
 
         $this->request = $request;
 
-        $this->users_files = '/images/users_files/';
+        $this->blog_files = '/images/blog_files/';
 
         $this->userRepository = $userRepository;
 
@@ -58,7 +58,18 @@ class GalleryUserController extends Controller
     	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
-    
+    public function exhibitions(){
+       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+       return view('gallery.exhibitions',compact('blogs'));
+    }
+
+    public function exhibition_details($id){
+        $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
+        $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+       return view('gallery.exhibition_details',compact('blog_detail','leatests'));
+    }
+
+
 
     //Profile
     public function profile($id){
@@ -154,17 +165,39 @@ class GalleryUserController extends Controller
             'title' => 'required',
             'des_first' => 'required'
         ]);
-        $user_id = Auth::user()->id;
-        $request['user_id'] =$user_id;
-        try{
+        $blog_array = [];
+        $blog_array['title'] = $this->request->title;
+        $blog_array['des_first'] = $this->request->des_first;
+        $blog_array['user_id'] = Auth::user()->id;
+        if($this->request->hasFile('media_url')){
+            $media_url = $this->request->file('media_url');
+            $parts = pathinfo($media_url->getClientOriginalName());
+            $extension = strtolower($parts['extension']);
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+            $media_url->move(public_path() . $this->blog_files, $imageName);  
+            $image_name = url($this->blog_files . $imageName);
+            $blog_array['media_url'] = $image_name;
 
-            $blog = $this->BlogRepository->createUpdateData(['id'=> $request->id],$request->all());
-            \Session::flash('success_message', "Blog Post Successfully!");
+        }
+        $blog = $this->BlogRepository->createUpdateData(['id'=> $request->id],$blog_array);
+
+        if($blog){
+            \Session::flash('success_message', 'Blog Post Successfully!'); 
             return redirect('/gallery/blog');
-        }catch (\Exception $ex){
-            \Session::flash('error_message', $ex->getMessage());
+        }else{
+            \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();
         }
+        // try{
+
+        //     $blog = $this->BlogRepository->createUpdateData(['id'=> $request->id],$request->all());
+        //     \Session::flash('success_message', "Blog Post Successfully!");
+        //     return redirect('/gallery/blog');
+        // }catch (\Exception $ex){
+        //     \Session::flash('error_message', $ex->getMessage());
+        //     return back()->withInput();
+        // }
     }
 
     public function blog(){
