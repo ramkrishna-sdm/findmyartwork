@@ -34,14 +34,13 @@
                                             </span>
                                         @endif
                                     </div>
-                                  
-                                     <div class="form-group{{ $errors->has('ans') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="input-name">{{ __('Description') }}</label>
-                                        <textarea name="ans" id="ans" cols="30" rows="10">{{old('des_first')}}</textarea>
+                                    <div class="form-group{{ $errors->has('ans') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Answer') }}</label>
+                                        <input type="text" name="ans" id="input-name" class="form-control form-control-alternative{{ $errors->has('ans') ? ' is-invalid' : '' }}" placeholder="{{ __('Answer') }}" value="{{ old('ans') }}" required autofocus>
 
                                         @if ($errors->has('ans'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('des_first') }}</strong>
+                                                <strong>{{ $errors->first('ans') }}</strong>
                                             </span>
                                         @endif
                                     </div>
