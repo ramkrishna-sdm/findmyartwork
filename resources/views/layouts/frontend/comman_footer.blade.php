@@ -253,10 +253,6 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="{{url('ckeditor/ckeditor.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
 <script>
    var category_id = '';
    var sub_category_id = '';
@@ -271,6 +267,8 @@
    }
 
    function getSubCategory(id) {
+      console.log($(this));
+      $(this).parent('ul').find('li').removeClass('active');
       category_id = id;
       sub_category_id = "";
       var favorite = [];
@@ -306,6 +304,13 @@
    }
 </script>
 
+<script>
+  $(document).on('click', '.category_li', function () { 
+    $('.category_li').removeClass('active');
+    $(this).addClass('active');
+
+  });
+</script> 
 <script>
   $(document).on('click', '.categoryItem', function () { 
     var favorite = [];

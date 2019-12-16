@@ -217,5 +217,4 @@ class GalleryUserController extends Controller
         \Session::flash('success_message', 'Blog Status Changed Succssfully!.'); 
         return redirect('/gallery/blog');
     }
-
 }

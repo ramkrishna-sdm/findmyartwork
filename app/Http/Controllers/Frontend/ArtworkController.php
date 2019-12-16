@@ -68,12 +68,17 @@ class ArtworkController extends Controller
         return view('frontend/saved_artwork', compact('saved_artwork'));
     }
 
-    public function artworks(){
-        $all_artwork = $this->artworkRepository->getData(['is_deleted'=> 'no', 'is_publised' => 'yes'],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+    public function artworks($cat_id = null){
+        if(!empty($cat_id)){
+            $all_artwork = $this->artworkRepository->getData(['is_deleted'=> 'no', 'is_publised' => 'yes', 'category'=> $cat_id],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+        }else{
+            $all_artwork = $this->artworkRepository->getData(['is_deleted'=> 'no', 'is_publised' => 'yes'],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+        }
+            
         $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
         $styles= $this->styleRepository->getData([], 'get', [], 0);
         $subjects= $this->subjectRepository->getData([], 'get', [], 0);
-        return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects'));
+        return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects', 'cat_id'));
     }
 
     public function artwork_details($id){

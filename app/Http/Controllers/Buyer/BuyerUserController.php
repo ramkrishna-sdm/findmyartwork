@@ -45,7 +45,6 @@ class BuyerUserController extends Controller
         $this->variantRepository = $variantRepository;
 
         $this->userRepository = $userRepository;
-        
     }
 
     public function index(){
@@ -153,7 +152,4 @@ class BuyerUserController extends Controller
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
-    
-
-
 }
