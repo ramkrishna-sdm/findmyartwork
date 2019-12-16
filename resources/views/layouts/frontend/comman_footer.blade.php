@@ -889,6 +889,11 @@ $(document).on('click', '.add_to_cart', function(){
         
 </script>
 
+<script type="text/javascript">
+$(document).on('click', '.checkout_btn', function(){
+  $("#checkout_form").submit();
+})
+</script>
 
 
 </body>

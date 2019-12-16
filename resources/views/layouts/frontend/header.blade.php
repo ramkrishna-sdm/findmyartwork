@@ -90,7 +90,7 @@ HomeController::header_counter();
               </div>
             <div class="ml-auto d-flex align-items-center">
               <ul class="navbar-nav nav navbar-icon navbar-icons-only align-items-center">
-                <li class="nav-item" ><a class="nav-link" href="{{url('items_cart')}}"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count cart_count">{{session('cart_count')}}</span></a></li>
+                <li class="nav-item" ><a class="nav-link" href="{{url('cart')}}"><img src="{{asset('assets/images/shopping-cart.svg')}}" alt="" /><span class="count cart_count">{{session('cart_count')}}</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('saved_artwork')}}"><img src="{{asset('assets/images/saved.svg')}}" alt="" /><span class="count saved_count">{{session('saved_count')}}</span></a></li>
 
                 @if (Auth::user())

@@ -344,11 +344,11 @@ class HomeController extends Controller
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
                 $message = "Item Added to Cart!";
-                $btn_text = "ADD TO CART";
+                $btn_text = "REMOVE FROM CART";
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'cart'],'delete',[],0);
                 $message = "Item Removed from Cart!";
-                $btn_text = "REMOVE FROM CART";
+                $btn_text = "ADD TO CART";
             }
             $artwork_in_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'count',[],0);
         }
@@ -453,5 +453,17 @@ class HomeController extends Controller
             return redirect('/');
         }
             
+    }
+
+
+
+    public function remove_from_cart($artwork_id){
+        $message = "";
+        if(Auth::user()){
+            $remove_item = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $artwork_id, 'status' => 'cart'],'delete',[],0);    
+        }else{
+            return redirect('/');
+        }
+        return redirect('/items_cart');
     }
 }

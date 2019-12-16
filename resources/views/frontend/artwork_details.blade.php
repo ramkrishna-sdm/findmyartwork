@@ -48,9 +48,9 @@
                         <a href="javascript:void(0)" data-artwork-id="{{$artwork_result->id}}" class="add_to_cart btn btn-default btn-block mr-2 mb-2">ADD TO CART</a>
                         @endif
                         @if(Auth::user())
-                            <a @if(Auth::user()) href="javascript:void(0);" @else href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" @endif class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
+                            <a href="{{url('cart')}}" class="btn btn-border btn-block ml-2 mt-0 mb-2">CHECKOUT</a>
                         @else
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" class="btn btn-border btn-block ml-2 mt-0 mb-2">BUY NOW</a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#LoginModal" class="btn btn-border btn-block ml-2 mt-0 mb-2">CHECKOUT</a>
                         @endif
                             
                     </div>

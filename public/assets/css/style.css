@@ -774,7 +774,7 @@ transition: all .3s;
 .basketSaleGroupHeader,.basketSaleGroupSale{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #edeeee;width:100%;padding:15px 22px;grid-gap:5px}
 .basketSaleGroupHeader{font-weight:700;padding:15px 22px;background:#f8f8f8}
 .basketPanel{border:1px solid #edeeee;padding:22px 30px;align-self:flex-start}
-.basketSaleGroupSale .details{overflow:hidden;text-align:left;flex-grow:1;font-size:15px}
+.basketSaleGroupSale .details{overflow:hidden;text-align:left;flex-grow:1;font-size:15px;display: flex;align-items: center;}
 .basketSaleGroupSale .details img{max-width:100px;max-height:200px;display:inline-block;vertical-align:middle;margin-right:22px}
 .basketSaleGroupSale .details .title{display:inline-block;vertical-align:middle;width:calc(100% - 110px)}
 .text-bold,label.label{font-weight:600}
