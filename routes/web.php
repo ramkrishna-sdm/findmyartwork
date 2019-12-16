@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
 
+
 });
 
 Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['verified','GalleryCheck']],function(){ 
@@ -59,6 +60,12 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/profile/{id}', 'GalleryUserController@profile');
 	Route::post('/update_buyer', 'GalleryUserController@update_buyer');
 	Route::put('profile/password','GalleryUserController@password');
+	Route::get('/add_blog','GalleryUserController@add_blog');
+	Route::post('/update_blog','GalleryUserController@update_blog');
+	Route::get('/blog','GalleryUserController@blog');
+	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
+	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
+	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
 	
 
 });

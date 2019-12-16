@@ -796,6 +796,96 @@ $(document).on('click', '.add_to_cart', function(){
    
   });
 </script>
+<script type="text/javascript">
+  $('document').ready(function() {
+      var PATH = $(location).attr('pathname');
+      var arr = PATH.split('/');
+     
+      if(arr[2] == "add_blog"){
+        var ckview = document.getElementById("des_first");
+          CKEDITOR.replace(des_first,{
+              language:'en-gb'
+          });
+       
+      }
+      if(arr[2] == "edit_blog"){
+        var ckview = document.getElementById("des_first");
+          CKEDITOR.replace(des_first,{
+              language:'en-gb'
+          });
+       
+      }
+
+      $('.delete_blog').click(function(event) {
+          event.preventDefault();
+          var link = $(this).attr('href');
+          swal({
+              title: "Please confirm this action",
+              text: "By this action you are confirming that the selected Blog will be deleted permanently.",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: '#DD6B55',
+              confirmButtonText: 'Yes, I am sure!',
+              cancelButtonText: "No, cancel it!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+          function(isConfirm) {
+              if (isConfirm) {
+                  window.location = link;
+              } else {
+                 swal("Cancelled", "You cancelled this action", "error");
+              }
+          });
+      });
+      $('.change_blog_status').click(function(event) {
+          event.preventDefault();
+          var link = $(this).attr('href');
+          swal({
+              title: "Please confirm this action",
+              text: "By this action you are confirming that the selected Blog's status will be changed.",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: '#DD6B55',
+              confirmButtonText: 'Yes, I am sure!',
+              cancelButtonText: "No, cancel it!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+          function(isConfirm) {
+              if (isConfirm) {
+                  window.location = link;
+              } else {
+                 swal("Cancelled", "You cancelled this action", "error");
+              }
+          });
+      }); 
+      
+  });
+
+  // $('#update-blog').on('click', function(e) {
+  //       e.preventDefault();
+  //       var title = $('#title_id').val();
+  //       var description = $("#des_first").val();
+  //       if ($.trim(title) == '') {
+  //           toastr.options.timeOut = 2500; // 2s
+  //           toastr.error('Title is Required');
+  //           return false;
+  //       }
+  //     else if ($.trim(description) == '') {
+  //           toastr.options.timeOut = 2500; // 2s
+  //           toastr.error('Description is Required');
+  //           return false;
+  //       }
+
+  //       else {
+  //           document.getElementById("add_blog").submit();
+  //       }
+  //   });
+
+  
+        
+</script>
 
 
 

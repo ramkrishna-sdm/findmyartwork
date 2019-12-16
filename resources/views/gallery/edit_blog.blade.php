@@ -14,11 +14,7 @@
                         <li onclick="getSubCategory('{{$category->id}}')"><a href="javascript:;">{{$category->name}}</a>
                            <span class="float-right">({{count($category->artwork)}})</span> </li>
                         @endforeach
-                        <!-- <li class="active"><a href="javascript:;">Paintings</a> <span class="float-right">(4635)</span></li>
-                      <li><a href="javascript:;">Drawings</a> <span class="float-right">(1635)</span> </li>
-                      <li><a href="javascript:;">Digital art</a> <span class="float-right">(2635)</span></li>
-                      <li><a href="javascript:;">Photography</a> <span class="float-right">(4635)</span></li>
-                      <li><a href="javascript:;">Sculptures</a> <span class="float-right">(6645)</span></li> -->
+                       
                      </ul>
                   </div>
                </div>
@@ -102,26 +98,41 @@
                      </div>
                   </div>
                </div>
-               <div class="filterBlock no-border">
-                  <div class="form-group">
-                    <a href="{{url('gallery/blog')}}">Blog</a>
-                  </div>
-               </div>
-
                <div class="btn btn-default btn-block mt-3">reset filters</div>
             </div>
          </div>
-         <div id="sub-category" class="col-12 col-md-8 col-lg-9">
-           
+        <div class="col-12 col-md-8 col-lg-9">
+            <form method="post" id="add_blog"  action="{{ url('/gallery/update_blog') }}" enctype="multipart/form-data" id="buyer-profile-form">
+            @csrf
+                <input type="hidden" name="id" value="{{$blog->id}}">
+                 <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="first_name">Title</label>
+                        <input type="text" class=" form-control"  placeholder="Enter titile" value="{{$blog->title}}" name="title" id="titile_id">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="last_name">Description</label>
+                       <textarea name="des_first" id="des_first" cols="30" rows="10"><?=htmlspecialchars_decode($blog->des_first)?></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center" >
+                        <button type="submit" class="btn btn-default editblog" id="update-blog">Update</button>
+                    </div>
+                </div>
+            </form>
          </div>
 
       </div>
    </div>
 </section>
-<!-- End Artworks Section -->
+
 @include('layouts.frontend.comman_footer')
 <script>
   $( window ).on( "load", function() {
     getSubCategory(1);
 });
 </script>
+

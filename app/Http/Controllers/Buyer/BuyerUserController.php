@@ -11,6 +11,7 @@ use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Style;
 use App\Subject;
 use Exception;
@@ -151,6 +152,4 @@ class BuyerUserController extends Controller
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
-
-
 }

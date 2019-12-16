@@ -102,26 +102,40 @@
                      </div>
                   </div>
                </div>
-               <div class="filterBlock no-border">
-                  <div class="form-group">
-                    <a href="{{url('gallery/blog')}}">Blog</a>
-                  </div>
-               </div>
-
                <div class="btn btn-default btn-block mt-3">reset filters</div>
             </div>
          </div>
-         <div id="sub-category" class="col-12 col-md-8 col-lg-9">
-           
+        <div class="col-12 col-md-8 col-lg-9">
+            <form method="post" id="add_blog" action="{{ url('/gallery/update_blog') }}" enctype="multipart/form-data" id="buyer-profile-form">
+            @csrf
+                 <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="first_name">Title</label>
+                        <input type="text" class=" form-control"  placeholder="Enter titile" value="" name="title" id="title_id">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="last_name">Description</label>
+                       <textarea name="des_first" id="des_first" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center" >
+                        <button type="submit" class="btn btn-default addblog" id="update-blog">Submit</button>
+                    </div>
+                </div>
+            </form>
          </div>
 
       </div>
    </div>
 </section>
-<!-- End Artworks Section -->
+
 @include('layouts.frontend.comman_footer')
 <script>
   $( window ).on( "load", function() {
     getSubCategory(1);
 });
 </script>
+
