@@ -17,6 +17,7 @@ use App\Repository\SubCategoryRepository;
 use App\Repository\StyleRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\VariantRepository;
+use App\Repository\BlogRepository;
 use App\SavedArtwork;
 use App\SavedArtist;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class HomeController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 
     */
-    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository, SubCategoryRepository $subCategoryRepository, StyleRepository $styleRepository, VariantRepository $variantRepository, SubjectRepository $subjectRepository)
+    public function __construct(Request $request, CategoryRepository $categoryRepository,UserRepository $userRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, CmsRepository $CmsRepository,FaqRepository $faqRepository,SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ContactFormRepository $contactFormRepository, SubCategoryRepository $subCategoryRepository, StyleRepository $styleRepository, VariantRepository $variantRepository, SubjectRepository $subjectRepository,BlogRepository $BlogRepository)
     {
         // dd(Session::has('random_id'));
         $this->request = $request;
@@ -51,6 +52,7 @@ class HomeController extends Controller
         $this->styleRepository = $styleRepository;
         $this->variantRepository = $variantRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->BlogRepository = $BlogRepository;
     }
 
     public function __destruct(){
@@ -455,8 +457,6 @@ class HomeController extends Controller
             
     }
 
-
-
     public function remove_from_cart($artwork_id){
         $message = "";
         if(Auth::user()){
@@ -465,5 +465,16 @@ class HomeController extends Controller
             return redirect('/');
         }
         return redirect('/items_cart');
+    }
+
+    public function exhibitions(){
+       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+       return view('gallery.exhibitions',compact('blogs'));
+    }
+
+    public function exhibition_details($id){
+        $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
+        $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+       return view('gallery.exhibition_details',compact('blog_detail','leatests'));
     }
 }

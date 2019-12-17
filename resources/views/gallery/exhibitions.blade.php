@@ -23,9 +23,9 @@
                         <div class="postText text-center">
                           <!--  <span class="heading">uncategorised</span> -->
                            <span class="title">{{$blog->title}}</span>
-                           <span class="date">{{$blog->created_at}}</span>
-                           <p><?=htmlspecialchars_decode($blog->des_first)?></p>
-                           <a href="{{url('gallery/exhibition_details')}}/{{$blog->id}}" class="btn btn-default btn-sm">Read More</a>
+                           <span class="date">{{date('M d, Y', strtotime($blog->created_at))}}</span>
+                           <?php echo substr(htmlspecialchars_decode($blog->des_first), 0, 250) . '...' ?>
+                           <a href="{{url('exhibition_details')}}/{{$blog->id}}" class="btn btn-default btn-sm">Read More</a>
                         </div>
                      </div>
                      @endforeach

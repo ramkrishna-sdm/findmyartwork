@@ -12,19 +12,19 @@
                 <p class="card-text"><?=htmlspecialchars_decode($blog_detail->des_first)?></p>
          
               </div>
-              <!-- <div class="card-footer text-muted">
-                Posted on January 1, 2020 by&nbsp;
-                <a href="#">Will Smith</a>
-              </div> -->
+              <div class="card-footer text-muted">
+                Posted on {{date('M d, Y', strtotime($blog_detail->created_at))}} by&nbsp;
+                <a href="{{url('profile_details')}}/{{$blog_detail->user->id}}">{{$blog_detail->user->first_name}}</a>
+              </div>
             </div>
-            <ul class="pagination justify-content-center mb-4">
+            <!-- <ul class="pagination justify-content-center mb-4">
               <li class="page-item">
                 <a class="page-link" href="#">← Older</a>
               </li>
               <li class="page-item disabled">
                 <a class="page-link" href="#">Newer →</a>
               </li>
-            </ul>
+            </ul> -->
   
           </div>
           @endif
@@ -35,16 +35,17 @@
                 <div class="row">
                   <div class="col-lg-12">
                   @foreach($leatests as $key=>$leatest)
+                  <a href="{{url('/exhibition_details')}}/{{$leatest->id}}">
                    <div class="blogSnippet">
                        <div class="image">
-                       <img src="{{$leatest->media_url}}" style="width: 40px; height: 40px;"  alt="">
+                       <img src="{{$leatest->media_url}}" alt="">
                        </div>
 
                        <div class="blogText">
-                        <p><?=htmlspecialchars_decode($leatest->des_first)?></p>
-                       <!--  <span class="comments">287 Comments</span> -->
+                        <p><?php echo substr(htmlspecialchars_decode($leatest->des_first), 0, 50) . '...' ?></p>
                        </div>
                    </div>
+                   </a>
                   @endforeach
 
                  
@@ -54,21 +55,8 @@
                 </div>
               </div>
             </div>
-  
-          
-   <!-- Side Widget -->
-           <!--  <div class="card my-4">
-              <h5 class="card-header">Trending</h5>
-              <div class="card-body">
-                <img class="card-img-top" src="{{asset('assets/images/featured.png')}}" alt="Card image cap">
-              </div>
-            </div> -->
-        
-        
           </div>
-            
         </div>
-        
       </div>
  </section>
  @include('layouts.frontend.comman_footer')

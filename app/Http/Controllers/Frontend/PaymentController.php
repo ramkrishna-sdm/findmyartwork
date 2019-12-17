@@ -169,4 +169,36 @@ class PaymentController extends Controller
         \Session::put('error', 'Payment failed');
         return Redirect::to('cart');
     }
+
+    public function payout(){
+        $payouts = new \PayPal\Api\Payout();
+        $senderBatchHeader = new \PayPal\Api\PayoutSenderBatchHeader();
+        $senderBatchHeader->setSenderBatchId(uniqid())
+        ->setEmailSubject("You have a Payout!");
+        $senderItem = new \PayPal\Api\PayoutItem();
+        $senderItem->setRecipientType('Email')
+        ->setNote('Thanks for your patronage!')
+        ->setReceiver('sb-fc6ye618472@personal.example.com')
+        ->setSenderItemId("2014031400023")
+        ->setAmount(new \PayPal\Api\Currency('{
+                            "value":"1.0",
+                            "currency":"USD"
+                        }'));
+        $payouts->setSenderBatchHeader($senderBatchHeader)
+        ->addItem($senderItem);
+        $request = clone $payouts;
+
+        try {
+            $output = $payouts->createSynchronous($apiContext);
+        } catch (Exception $ex) {
+
+            ResultPrinter::printError("Created Single Synchronous Payout", "Payout", null, $request, $ex);
+            exit(1);
+        }
+
+        ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
+
+        return $output;
+    }
+
 }

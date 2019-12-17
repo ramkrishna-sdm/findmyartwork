@@ -60,16 +60,16 @@ class GalleryUserController extends Controller
     	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
-    public function exhibitions(){
-       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
-       return view('gallery.exhibitions',compact('blogs'));
-    }
+    // public function exhibitions(){
+    //    $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+    //    return view('gallery.exhibitions',compact('blogs'));
+    // }
 
-    public function exhibition_details($id){
-        $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
-        $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
-       return view('gallery.exhibition_details',compact('blog_detail','leatests'));
-    }
+    // public function exhibition_details($id){
+    //     $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
+    //     $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+    //    return view('gallery.exhibition_details',compact('blog_detail','leatests'));
+    // }
 
 
 
