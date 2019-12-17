@@ -66,7 +66,7 @@ HomeController::header_counter();
               <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('artworks')}}">Artwork</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url('gallery/exhibitions')}}">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('exhibitions')}}">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('about_us')}}">About</a></li>
                 <li class="nav-item"><a href="{{url('contact_us')}}" class="nav-link">Contact</a></li>
               </ul>
@@ -100,7 +100,7 @@ HomeController::header_counter();
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/{{Auth::user()->role}}/dashboard">Dashboard</a>
-                  <a class="dropdown-item" href="{{url('gallery/blog')}}">Blog</a>
+                  <a class="dropdown-item" href="{{url('gallery/blog')}}">Exhibition</a>
                   <a class="dropdown-item" href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}">My Profile</a>
                     <a class="dropdown-item" href="{{ url('logout') }}"> {{ __('Logout') }} </a>
                   </div>

@@ -66,8 +66,7 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
 	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
 	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
-	Route::get('/exhibitions','GalleryUserController@exhibitions');
-	Route::get('/exhibition_details/{id}','GalleryUserController@exhibition_details');
+	
 	
 
 });
@@ -79,6 +78,7 @@ Route::get('/callback/{provider}', 'CommonLoginController@callback');
 Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
+Route::get('payout', 'Frontend\PaymentController@payout');
 
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
@@ -102,6 +102,10 @@ Route::get('/cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
 Route::get('/artworks/{id?}', 'Frontend\ArtworkController@artworks');
 Route::get('/remove_from_cart/{id}', 'Frontend\HomeController@remove_from_cart');
+
+
+Route::get('/exhibitions','Frontend\HomeController@exhibitions');
+Route::get('/exhibition_details/{id}','Frontend\HomeController@exhibition_details');
 
 // Route::get('/', function () {
 //     return view('welcome');
