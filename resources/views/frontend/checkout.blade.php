@@ -39,7 +39,7 @@
                         <span>Artworks total</span><span>${{$total_price}}</span>
                     </div>
                     <div class="text-thin">
-                        <span>Shipping to India</span><span>${{$total_shipping}}</span>
+                        <span>Shipping Charge</span><span>${{$total_shipping}}</span>
                     </div>
                     <hr>
                     <div class="total">
