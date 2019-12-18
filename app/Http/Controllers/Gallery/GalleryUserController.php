@@ -258,6 +258,10 @@ class GalleryUserController extends Controller
     }
 
      public function getChat(){
-        return view('home');
+        $html = view('chat.chat')->render();
+        return response()->json(array(
+            'result' => $html,
+            'status' => 200,
+        ), 200);
     }
 }

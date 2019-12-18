@@ -15,10 +15,10 @@
                                     <h3 class="mb-0">{{ __('Artwork Details') }}</h3>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <a href="{{url('change_artwork_status')}}/{{$artworks->id}}/{{$artworks->is_publised}}/detail/0" class="btn btn-sm btn-primary change_artwork_status"> @if($artworks->is_publised == 'publish') {{ __('Un-Publish') }} @else {{ __('Publish')}} @endif</a>
+                                    <a href="{{url('admin/change_artwork_status')}}/{{$artworks->id}}/{{$artworks->is_publised}}/detail/0" class="btn btn-sm btn-primary change_artwork_status"> @if($artworks->is_publised == 'publish') {{ __('Un-Publish') }} @else {{ __('Publish')}} @endif</a>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <a href="{{ url('artwork') }}/{{$artist_id}}" class="btn btn-sm btn-primary">{{ __('Back to Artwork') }}</a>
+                                    <a href="{{ url('admin/artwork') }}/{{$artist_id}}" class="btn btn-sm btn-primary">{{ __('Back to Artwork') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -32,6 +32,7 @@
                         </div>
                         <div class="card-body">
                             <h6 class="heading-small text-muted mb-4">{{ __('Artwork information') }}</h6>
+                            <?php //dd($artworks);?>
                             <div class="pl-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-name">{{ __('Title :') }}</label>{{$artworks->title}}
@@ -56,11 +57,9 @@
 
                         <div class="col-12">
                             <div class="responsive">
-                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
-                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
-                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
-                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
-                                <div> <img class="img_preview" style="width:100%" src="{{asset('assets/images/image_placeholder.jpg')}}" alt="..."></div>
+                                @foreach($artworks->artwork_images as $images)
+                                <div> <img class="img_preview" style="width:100%" src="{{$images->media_url}}" alt="..."></div>
+                                @endforeach
                               
 
                             </div>

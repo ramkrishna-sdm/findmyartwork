@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('media_url')->nullable();
             $table->string('socket_id')->nullable();
-              $table->string('online', 1)->default('N');
+            $table->string('online', 1)->default('N');
             $table->enum('is_featured',['yes','no'])->default('no');
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_active',['yes','no'])->default('yes');

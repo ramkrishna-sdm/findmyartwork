@@ -33,7 +33,7 @@
                     </button> -->
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
                        <div class="page-title">
                             <div class="page-title-inner">
                                <span class="pagetitleText">Chat Application</span> 
@@ -41,7 +41,7 @@
                                
                             </div>
                         </div>
-                    </a>
+                    </a> -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -351,6 +351,11 @@ class ArtistUserController extends Controller
     }
 
     public function getChat(){
-        return view('chat.chat');
+        $html = view('chat.chat')->render();
+        return response()->json(array(
+            'result' => $html,
+            'status' => 200,
+        ), 200);
+        // return view('chat.chat');
     }
 }
