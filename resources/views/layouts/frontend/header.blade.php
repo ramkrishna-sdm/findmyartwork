@@ -69,6 +69,9 @@ HomeController::header_counter();
                 <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('about_us')}}">About</a></li>
                 <li class="nav-item"><a href="{{url('contact_us')}}" class="nav-link">Contact</a></li>
+                 @if (Auth::user())
+                    <li class="nav-item"><a href="/{{Auth::user()->role}}/chat" class="nav-link">Chat</a></li>
+                 @endif
               </ul>
             </div>
           </div>

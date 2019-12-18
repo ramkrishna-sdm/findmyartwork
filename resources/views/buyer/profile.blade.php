@@ -2,7 +2,7 @@
 <div class="page-title">
 <div class="page-title-inner">
    <span class="pagetitleText">Profile Management</span> 
-   <img src="http://localhost:8000/assets/images/about-graphic.svg" class="title-img" alt="">
+   <img src="{{asset('assets/images/about-graphic.svg')}}" class="title-img" alt="">
 </div>
 </div>
 <section class="artworksSection">  
