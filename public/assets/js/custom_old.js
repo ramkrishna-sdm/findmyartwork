@@ -16,7 +16,7 @@ $(document).ready(function(){
 });
 
 $('.artistCarousel').owlCarousel({
-  loop:true, 
+  loop:false, 
   dots: false,
   margin: 20,
   nav:true,

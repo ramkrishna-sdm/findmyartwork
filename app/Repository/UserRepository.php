@@ -54,7 +54,11 @@ class UserRepository implements RepositoryInterface
             $query->with($withArr);
         }
 
-        $resultSet = $query->orderBy('created_at', 'desc')->$method();
+        if(!empty($conditions['page'])){
+            $resultSet = $query->orderBy('created_at', 'desc')->$method($conditions['page']);
+        }else{
+            $resultSet = $query->orderBy('created_at', 'desc')->$method();
+        }
 
         if (!empty($resultSet) && $toArray) {
             $resultSet = $resultSet->toArray();

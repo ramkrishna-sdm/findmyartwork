@@ -135,7 +135,8 @@ class HomeController extends Controller
     
 
     public function artist(){
-        return view('frontend/artist');
+        $artists = $this->userRepository->getData(['role'=>'artist','is_deleted'=>'no', 'limit'=>2, 'page'=>2],'paginate',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        return view('frontend/artist',compact('artists'));
     }
 
     public function saved_artist(){
@@ -147,7 +148,6 @@ class HomeController extends Controller
     }
 
     public function user_profile($slug){
-        dd("asd");
         $professional = [];
         $profileDetails = $this->userRepository->getData(['user_name'=>$slug, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
         if(!empty($profileDetails)){
