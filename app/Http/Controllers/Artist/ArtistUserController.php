@@ -150,6 +150,8 @@ class ArtistUserController extends Controller
         $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
         $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
         $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
+        // echo "<pre>";
+        // print_r(count($artwork->artwork_images)); die;
         if(count($artwork->variants) > 0){
             foreach ($artwork->variants as $key => $value) {
                 $variant_types[] = $value['variant_type'];
@@ -160,16 +162,14 @@ class ArtistUserController extends Controller
     public function deleteImage(){
         $image = ArtworkImage::where(['id'=> $this->request->id, 'artwork_id'=>$this->request->artwork_id])->forcedelete();
 
-        $artwork_images = ArtworkImage::where('artwork_id',$this->request->artwork_id)->get();
+        // $artwork_images = ArtworkImage::where('artwork_id',$this->request->artwork_id)->get();
 
-        return view('artist.artwork_images',compact('artwork_images'));
+        // return view('artist.artwork_images',compact('artwork_images'));
 
-         // return response()->json(array(
-         //        // 'redirect_url' => '/artist/edit_artwork/'.$this->request->artwork_id,
-         //        'message' => "image Succssfully deleted",   
-         //        'status' => 200,
-         //        'images' => view('artist.artwork_images',compact('artwork_images'))
-         //        ) , 200);
+         return response()->json(array(
+                'message' => "image Succssfully deleted",   
+                'status' => 200,
+                ) , 200);
     }
     public function update_artist(){
         $validation = Validator::make($this->request->all(), [
@@ -234,7 +234,7 @@ class ArtistUserController extends Controller
         $artwork = $this->artworkRepository->createUpdateData(['id'=> $this->request->id],$artwork_array);
         if($artwork){
             $upload_files = $this->request->file('upload_files');
-            $main_image = $this->request->file('main_image_base64');
+            $main_image = $this->request->main_image_base64;
             if(!empty($main_image)){
                 $image = $request->main_image_base64;
                 $image = str_replace('data:image/jpeg;base64,', '', $image);
@@ -246,16 +246,26 @@ class ArtistUserController extends Controller
                 $uploads['artwork_id'] = $artwork['id'];
                 $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
             }
-            if($this->request->hasFile('upload_files')){
-                foreach ($upload_files as $file) {
-                    $parts = pathinfo($file->getClientOriginalName());
-                    $extension = strtolower($parts['extension']);
-                    $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
-                    $file->move(public_path() . $this->artwork_files, $imageName);  
-                    $image_name = url($this->artwork_files . $imageName); 
-                    $uploads['media_url'] = $image_name;
-                    $uploads['artwork_id'] = $artwork['id'];
-                    $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
+            if(count($this->request->hidden_image) > 0){
+                foreach ($this->request->hidden_image as $file) {
+                    if(!empty($file)){
+                        $image = str_replace('data:image/jpeg;base64,', '', $file);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName = str_random(10).'.'.'jpeg';
+                        $success = file_put_contents(public_path() . $this->artwork_files.$imageName, base64_decode($image));
+                        $image_name = url($this->artwork_files . $imageName); 
+                        $uploads['media_url'] = $image_name;
+                        $uploads['artwork_id'] = $artwork['id'];
+                        $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
+                    }
+                    // $parts = pathinfo($file->getClientOriginalName());
+                    // $extension = strtolower($parts['extension']);
+                    // $imageName = uniqid() . mt_rand(999, 9999) . '.' . $extension;
+                    // $file->move(public_path() . $this->artwork_files, $imageName);  
+                    // $image_name = url($this->artwork_files . $imageName); 
+                    // $uploads['media_url'] = $image_name;
+                    // $uploads['artwork_id'] = $artwork['id'];
+                    // $upload_file = $this->artworkImageRepository->createUpdateData(['id'=> $this->request->doc_id],$uploads);
                 }
             }
             $checked_variant_type = $this->request->checked_variant_type;
@@ -303,17 +313,11 @@ class ArtistUserController extends Controller
                     }
                 }
             }
-            // dd($variant_id);
-            $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
-            // $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
+            if(!empty($this->request->id)){
+                $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
+            }
             \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
             return redirect('/artist/artworks');
-            
-            // return response()->json([
-            //     'status' => 'success',
-            //     'message' => 'Artwork Updated Succssfully',
-            //     'data'  => $artwork_details,
-            // ], 200);
         }else{
             \Session::flash('error_message', 'Something went wrong.');
             return back()->withInput();

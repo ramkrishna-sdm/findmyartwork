@@ -34,24 +34,27 @@
                            <label>Additional Images: </label>
                            
                            <div class="imagesRow" id="imagesRow">
+                              @if(count($artwork->artwork_images) > 0)
                               @foreach($artwork->artwork_images as $images)
-                              <div class="addedImage">
+                              <div class="addedImage" style="margin-left: 15px;">
                                  <div class="imageBox">
                                     <img src="{{$images->media_url}}" alt="">
                                  <!--    <button><i class="fa fa-trash remove_artwork_image" aria-hidden="true" data-artwork-image-id="{{$images->id}}"></i></button> -->
-                                  <button type="button" onClick="removeImage({{$images->id}},{{$artwork->id}})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                  <button type="button" class="remove_image" data-img-id="{{$images->id}}" data-artwork-id="{{$artwork->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                  </div>
                               </div>
                               @endforeach
+                              @endif
 
                               <div class="addedImage" style="display: none;">
                                  <div class="imageBox">
-                                    <img src="{{$images->media_url}}" alt="">
+                                    <img src="{{asset('assets/images/image_placeholder.jpg')}}" alt="">
                                     <button><i class="fa fa-trash" aria-hidden="true"></i></button>
                                  </div>
                               </div>
                            <button class="addImage">+<input type="file" multiple id="gallery-photo-add" name="upload_files[]"></button>
                            </div>
+                           <input type="hidden" name="hidden_image[]" >
                         </div>
                      </div>
                      <div class="col-md-4">
