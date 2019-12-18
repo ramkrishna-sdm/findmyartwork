@@ -178,9 +178,9 @@
             @endif
         </div>
     </div>
-    <!-- <div class="container text-center mt-5">
+    <div class="container text-center mt-5">
         <a href="{{url('artist')}}" class="btn btn-default">VIEW ALL</a>
-    </div> -->
+    </div>
 </section>
 <!-- End Top Artists Section -->
 @include('layouts.frontend.comman_footer')
