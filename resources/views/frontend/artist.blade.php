@@ -10,14 +10,14 @@
 <div class="sorter">
 <div class="container d-flex align-items-center justify-content-between">
    <h3>Artists</h3>
-   <div class="form-group">
+   <!-- <div class="form-group">
       <span class="input-icon"><img src="{{asset('assets/images/dropdown.svg')}}" alt=""></span>
       <select  id="" class="form-control">
          <option value="">Trending</option>
          <option value="">Latest</option>
          <option value="">Popular</option>
       </select>
-   </div>
+   </div> -->
 </div>
 </div>
 <!-- Trending Artists Page  -->
