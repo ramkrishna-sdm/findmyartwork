@@ -100,7 +100,9 @@ HomeController::header_counter();
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/{{Auth::user()->role}}/dashboard">Dashboard</a>
+                  @if(Auth::user()->role == "gallery")
                   <a class="dropdown-item" href="{{url('gallery/blog')}}">Exhibition</a>
+                  @endif
                   <a class="dropdown-item" href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}">My Profile</a>
                     <a class="dropdown-item" href="{{ url('logout') }}"> {{ __('Logout') }} </a>
                   </div>

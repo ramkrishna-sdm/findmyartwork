@@ -103,10 +103,24 @@
                             <h6>${{$artwork->variants[0]->price}}</h6>
                         </div>
                         <div class="rightBlock">
-                            <span class="likes">{{$artwork->like_count}} Likes</span> 
+                            <span class="likes">{{count($artwork->like_count)}} Likes</span> 
                             <div class="actionIcons">
-                                <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                @if(Auth::user() && in_array(Auth::user()->id, $artwork->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @elseif(in_array(Session::get('random_id'), $artwork->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @else
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                @endif
+
+                                @if(Auth::user() && in_array(Auth::user()->id, $artwork->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @elseif(in_array(Session::get('random_id'), $artwork->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @else
                                 <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -129,7 +143,7 @@
         <div class="row">
             @if(count($topartists) > 0)
             @foreach($topartists as $key => $topartist)
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-3">
                 <div class="artPost artPostNew">
                     <div class="artist-frame">
                         <div class="artist-detail">
@@ -145,47 +159,28 @@
                             </div>
                         </div>
                         <div class="artist-follow">
+                            @if(Auth::user() && in_array(Auth::user()->id, $topartist->like_count))
                             <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
-
+                            @elseif(in_array(Session::get('random_id'), $topartist->like_count))
+                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
+                            @else
+                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Follow</a>
+                            @endif
                         </div>
                     </div>
 
                     <div class="artistText">
                         <p>{{$topartist->biography}}<a href="javascript:void(0);">{{$topartist->user_name}}</a>
                     </div>
-
-                    <!-- <div class="postHeader">
-                        <div class="username">
-                            <div class="image">
-                                
-                            </div>
-                            
-                        </div>
-                        <span class="Posted">2 hours ago</span>
-                    </div> -->
-                    <!-- <div class="postImage">
-                        <a href="{{url('profile_details')}}/{{$topartist->id}}"> <img src="{{$topartist->media_url}}" alt=""></a>
-                    </div> -->
-                    <!-- <div class="postFooter">
-                        <div class="leftBlock">
-                        </div>
-                        <div class="rightBlock">
-                            <span class="likes">{{$topartist->like_count}} Likes</span> 
-                            <div class="actionIcons">
-                                <a class="like_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><i class="far fa-heart"></i> <i class="fas fa-heart"></i></a>
-                                <a class="save_artist" data-artist-id="{{$topartist->id}}" href="javascript:void(0);"><i class="far fa-bookmark"></i> <i class="fas fa-bookmark"></i></a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             @endforeach
             @endif
         </div>
     </div>
-    <div class="container text-center mt-5">
+    <!-- <div class="container text-center mt-5">
         <a href="{{url('artist')}}" class="btn btn-default">VIEW ALL</a>
-    </div>
+    </div> -->
 </section>
 <!-- End Top Artists Section -->
 @include('layouts.frontend.comman_footer')

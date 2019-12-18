@@ -80,8 +80,13 @@ class HomeController extends Controller
         $topartworks = $this->artworkRepository->getData(['top'=>'yes', 'is_deleted'=>'no'],'get',['category_detail', 'sub_category_detail', 'artist', 'artwork_images', 'variants','style_detail', 'subject_detail'],0);
         if(count($topartworks)>0){
             foreach ($topartworks as $key => $artwork) {
-                $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->count();
-                $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->count();
+                if(Auth::user()){
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('user_id')->toArray();
+                }else{
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('guest_id')->toArray();
+                }
             }
         }
         // dd($topartworks);die;
@@ -91,8 +96,11 @@ class HomeController extends Controller
         $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
         if(count($topartists)>0){
             foreach ($topartists as $key => $artist) {
-                $artist['like_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'like'])->count();
-                $artist['save_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'saved'])->count();
+                if(Auth::user()){
+                    $artist['like_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                }else{
+                    $artist['like_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                }
             }
         }
         $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
@@ -188,8 +196,10 @@ class HomeController extends Controller
             $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artist = $this->savedArtistRepository->createUpdateData(['id'=> $this->request->id],$saved_artist);
+                $text = "Following";
             }else{
                 $count_saved = $this->savedArtistRepository->getData(['user_id'=> Auth::user()->id, 'artist_id' => $this->request->artist_id, 'status' => 'like'],'delete',[],0);
+                $text = "Follow";
             }
         }else{
             $saved_artist = [];
@@ -200,13 +210,16 @@ class HomeController extends Controller
             $count_saved = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id'), 'artist_id' => $this->request->artist_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artist = $this->savedArtistRepository->createUpdateData(['id'=> $this->request->id],$saved_artist);
+                $text = "Following";
             }else{
                 $count_saved = $this->savedArtistRepository->getData(['guest_id'=> Session::get('random_id'), 'artist_id' => $this->request->artist_id, 'status' => 'like'],'delete',[],0);
+                $text = "Follow";
             }
         }
         $artist_liked = $this->savedArtistRepository->getData(['artist_id'=> $this->request->artist_id, 'status' => 'like'],'count',[],0);    
         return response()->json(array(
-            'like_count' => $artist_liked.' Likes',
+            'like_count' => $text,
+            // 'like_count' => $artist_liked.' Likes',
             'status' => 200,
         ), 200);
     }
@@ -257,8 +270,10 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $img_source = url('/assets/images/red_heart.jpeg');
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'delete',[],0);
+                $img_source = url('/assets/images/like.png');
             }
         }else{
             $saved_artwork = [];
@@ -269,13 +284,16 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $img_source = url('/assets/images/red_heart.jpeg');
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'like'],'delete',[],0);
+                $img_source = url('/assets/images/like.png');
             }
         }
         $artwork_liked = $this->savedArtworkRepository->getData(['artwork_id'=> $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
         return response()->json(array(
             'like_count' => $artwork_liked.' Likes',
+            'img_source' => $img_source,
             'status' => 200,
         ), 200);
     }
@@ -291,8 +309,10 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $img_source = url('/assets/images/save_filled.png');
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'delete',[],0);
+                $img_source = url('/assets/images/saved.png');
             }
             $artwork_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'saved'],'count',[],0);
         }else{
@@ -304,14 +324,17 @@ class HomeController extends Controller
             $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'count',[],0);    
             if(empty($count_saved)){
                 $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+                $img_source = url('/assets/images/save_filled.png');
             }else{
                 $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $this->request->artwork_id, 'status' => 'saved'],'delete',[],0);
+                $img_source = url('/assets/images/saved.png');
             }
             $artwork_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'saved'],'count',[],0);
         }
         
         return response()->json(array(
             'saved_count' => $artwork_saved,
+            'img_source' => $img_source,
             'status' => 200,
         ), 200);
     }
@@ -425,9 +448,17 @@ class HomeController extends Controller
             // print_r($all_artwork); die;
             if($data_from == "form"){
                 $all_artwork = array_map("unserialize", array_unique(array_map("serialize", $all_artwork)));
-                // echo "<pre>";
-                // print_r($all_artwork); die;
-                // $type = "buyer_dashboard";
+                if(count($all_artwork) > 0){
+                    foreach ($all_artwork as $key => $artwork_result) {
+                        if(Auth::user()){
+                            $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'like'])->pluck('user_id')->toArray();
+                            $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'saved'])->pluck('user_id')->toArray();
+                        }else{
+                            $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'like'])->pluck('guest_id')->toArray();
+                            $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'saved'])->pluck('guest_id')->toArray();
+                        }    
+                    }
+                }
                 $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
                 $styles= $this->styleRepository->getData([], 'get', [], 0);
                 $subjects= $this->subjectRepository->getData([], 'get', [], 0);

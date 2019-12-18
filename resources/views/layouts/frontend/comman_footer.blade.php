@@ -675,7 +675,8 @@ $(document).on('click', '.like_artist', function(){
 
         success: function(res){
             if(res.status=="200"){
-                $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+                // $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+                $(this_like).html(res.like_count);
             }else{
                 
             }
@@ -721,6 +722,7 @@ $(document).on('click', '.like_artwork', function(){
 
         success: function(res){
             if(res.status=="200"){
+                $(this_like).find('.like_image').attr('src', res.img_source);
                 $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
                 $(this_like).parents('.actionBlock').find('.likes').html(res.like_count);
             }else{
@@ -753,6 +755,7 @@ $(document).on('click', '.save_artwork', function(){
             if(res.status=="200"){
                 // toastr.options.timeOut = 2000;
                 // toastr.success(res.msg);
+                $(this_like).find('.save_image').attr('src', res.img_source);
                 $(document).find('.saved_count').html(res.saved_count);
             }else{
                 
@@ -888,7 +891,12 @@ $(document).on('click', '.add_to_cart', function(){
   
         
 </script>
-
+<script type="text/javascript">
+$(document).on('click', '.category_li', function(){
+  $(this).parents('ul').find('.category_li').removeClass('active');
+  $(this).addClass('active');
+})
+</script>
 <script type="text/javascript">
 $(document).on('click', '.checkout_btn', function(){
   $("#checkout_form").submit();
