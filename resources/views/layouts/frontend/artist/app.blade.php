@@ -41,7 +41,7 @@
     <!-- End Google Tag Manager -->
     <style>
         .container {  text-align: center; }
-        
+        #ofBar { display: none !important; }
     </style>
 </head>
 
