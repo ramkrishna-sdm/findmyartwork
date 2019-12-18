@@ -77,7 +77,12 @@ jQuery(document).ready(function() {
         }
         if ($.trim(all_image) > 6) {
             toastr.options.timeOut = 2500; // 2s
-            toastr.error('Only 4 Images can be uploaded. Please remove rest image');
+            toastr.error('Only 5 Images can be uploaded. Please remove rest image');
+            return false;
+        }
+        if ($.trim(all_image) == 1) {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Please Upload image for the artwork');
             return false;
         }
 

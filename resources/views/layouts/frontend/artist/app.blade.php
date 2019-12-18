@@ -387,6 +387,11 @@ $(function() {
     $('#gallery-photo-add').on('change', function() {
         imagesPreview(this, 'div.imagesRow');
     });
+    // $(document).on('click', '#gallery-photo-add', function(){
+    //     alert("heree");
+    //     console.log(this);
+    //     imagesPreview(this, 'div.imagesRow');
+    // });
 });
 
 function removeDiv(elem){
@@ -416,40 +421,53 @@ function removeDiv(elem){
 
 </script>
 <script>
-    function removeImage(id,artwork_id){
-        var status = confirm("Are you sure you want to delete ?");  
-        if(status==true)
-        {
-            $.ajax({
-              type:"POST",
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               },
-              url:"{{url('artist/deleteImage')}}", 
-              data:{'id':id,'artwork_id':artwork_id},
-              success: function(res){
-                console.log('response====>',res);
-                document.getElementById('imagesRow').innerHTML = res;
-                // if(res.status=="200"){
-                //     console.log('success');
-                //     console.log('images====>>',res['images']);
-                //     //  window.location.href =res.redirect_url;
-                //     // setTimeout(function(){ 
-                //     //     toastr.options.timeOut = 2000; // 2s
-                //     //      toastr.success(res.message);
 
-                //     //  }, 1000);
-                   
-                // }else{
-                //     console.log('failed');
-                // }
-                },
-                error: function (errormessage) {
-                    console.log(errormessage);
-                }
-            });
+$(document).on('click', '.remove_image', function(){
+    var img_id = $(this).attr('data-img-id');
+    var artwork_id = $(this).attr('data-artwork-id');
+    var this_elem = $(this);
+    $.ajax({
+        type:"POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:"{{url('artist/deleteImage')}}", 
+        data:{'id':img_id,'artwork_id':artwork_id},
+        success: function(res){
+            // console.log('response====>',res);
+            // document.getElementById('imagesRow').innerHTML = res;
+            this_elem.closest("div.addedImage").remove();
+            toastr.options.timeOut = 2000; // 2s
+            toastr.success('Image Removed Successfully!');
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+            toastr.options.timeOut = 2000; // 2s
+            toastr.error('Something Went Wrong!');
         }
-    }
+    });
+})
+    // function removeImage(id,artwork_id){
+    //     var status = confirm("Are you sure you want to delete ?");  
+    //     if(status==true)
+    //     {
+    //         $.ajax({
+    //           type:"POST",
+    //           headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //            },
+    //           url:"{{url('artist/deleteImage')}}", 
+    //           data:{'id':id,'artwork_id':artwork_id},
+    //           success: function(res){
+    //             console.log('response====>',res);
+    //             document.getElementById('imagesRow').innerHTML = res;
+    //             },
+    //             error: function (errormessage) {
+    //                 console.log(errormessage);
+    //             }
+    //         });
+    //     }
+    // }
 
 </script>
 
