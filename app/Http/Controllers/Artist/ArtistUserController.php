@@ -28,6 +28,9 @@ use Cookie;
 use Segment;
 use DateTime;
 use App\ArtworkImage;
+use App\SavedArtwork;
+use App\SavedArtist;
+
 class ArtistUserController extends Controller
 {
     private $artwork_files;
@@ -113,8 +116,31 @@ class ArtistUserController extends Controller
     public function view_artwork($id){
         $artwork_result = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
         // echo "<pre>";
-        // print_r($artwork_result->variants[0]->price); die;
+        // print_r($artwork_result); die;
+        if(count($artwork_result->artwork_like) > 0){
+            if(Auth::user()){
+                $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $id, 'status' => 'like'])->pluck('user_id')->toArray();
+                $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $id, 'status' => 'saved'])->pluck('user_id')->toArray();
+            }else{
+                $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $id, 'status' => 'like'])->pluck('guest_id')->toArray();
+                $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $id, 'status' => 'saved'])->pluck('guest_id')->toArray();
+            }
+        }else{
+            $artwork_result['like_count'] = [];
+            $artwork_result['save_count'] = [];
+        }
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
+        if(count($similar_artwork)>0){
+            foreach ($similar_artwork as $key => $artwork) {
+                if(Auth::user()){
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('user_id')->toArray();
+                }else{
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('guest_id')->toArray();
+                }
+            }
+        }
         return view('artist/view_artwork',compact('artwork_result', 'similar_artwork'));
     } 
     public function edit_artwork($id){
@@ -277,6 +303,7 @@ class ArtistUserController extends Controller
                     }
                 }
             }
+            // dd($variant_id);
             $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
             // $artwork_details = $this->artworkRepository->getData(['id'=>$artwork['id']],'get',['artist', 'artwork_images', 'variants', 'artwork_images'],0);
             \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 

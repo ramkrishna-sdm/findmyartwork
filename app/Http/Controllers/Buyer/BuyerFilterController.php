@@ -10,6 +10,9 @@ use App\Repository\ArtworkRepository;
 use App\Style;
 use App\Subject;
 use App\Artwork;
+use App\SavedArtwork;
+use App\SavedArtist;
+use Illuminate\Support\Facades\Auth;
 
 class BuyerFilterController extends Controller
 {
@@ -34,8 +37,9 @@ class BuyerFilterController extends Controller
     public function getSubCategories(Request $request, Artwork $filter_artwork){
         $filter_artwork = $filter_artwork->newQuery();
         $artwork_array = [];
-        
+        $cat_id = "";
         if (!empty($request->id)) {
+            $cat_id = $request->id;
             $categories = $this->categoryRepository->getData(['id'=>$request->id],'first',['subcategories'],0);
             $filter_artwork->where('category', $request->id)->get();
         }else{
@@ -85,20 +89,27 @@ class BuyerFilterController extends Controller
 
         $all_artwork = $filter_artwork->get();
         // echo "<pre>";
-        // print_r($all_artwork); die;
+        // print_r($filter_artwork); die;
         if(count($all_artwork) > 0){
             foreach ($all_artwork as $key => $value) {
                 $artwork_array[] = $this->artworkRepository->getData(['id'=>$value->id],'first',['artist', 'artwork_images', 'variants', 'artwork_like'],0);
             }
         }
         $categories['artwork'] = $artwork_array;
-        // echo "<pre>";
-        // print_r($categories['artwork']); die;
-        // foreach($categories['artwork'] as $artworks){
-        //     print_r($artworks);die;
-        // }dd("mkl");
+        if(count($categories['artwork']) > 0){
+            foreach ($categories['artwork'] as $key => $artwork) {
+                if(Auth::user()){
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('user_id')->toArray();
+                }else{
+                    $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                    $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('guest_id')->toArray();
+                }
+            }
+        }
+                
         
-        $returnHTML = view('buyer.sub_categories',compact('categories'))->render();
+        $returnHTML = view('buyer.sub_categories',compact('categories', 'cat_id'))->render();
         return response()->json(array('status' => '200', 'html'=>$returnHTML));
     }
 

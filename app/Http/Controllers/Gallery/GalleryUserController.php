@@ -24,6 +24,8 @@ use Cookie;
 use Segment;
 use Validator;
 use DateTime;
+use App\SavedArtwork;
+use App\SavedArtist;
 
 class GalleryUserController extends Controller
 {

@@ -50,8 +50,24 @@
                     <div class="actionBlock">
                         <span class="likes">{{count($artwork_result->artwork_like)}} Likes</span> 
                         <div class="actionIcons">
-                            <a  class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
-                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                            @if(Auth::user() && in_array(Auth::user()->id, $artwork_result->like_count))
+                            <a class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                            @elseif(in_array(Session::get('random_id'), $artwork_result->like_count))
+                            <a class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                            @else
+                            <a class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                            @endif
+
+                            @if(Auth::user() && in_array(Auth::user()->id, $artwork_result->save_count))
+                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                            @elseif(in_array(Session::get('random_id'), $artwork_result->save_count))
+                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                            @else
+                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                            @endif
+
+                            <!-- <a  class="like_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                            <a class="save_artwork" data-artwork-id="{{$artwork_result->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a> -->
                         </div>
                     </div>
                 </div>
@@ -86,15 +102,32 @@
                     <div class="postFooter">
                         <div class="leftBlock">
                             <h5>{{$artworks->title}}</h5>
-                            @if($artworks->variants)
+                            @if(count($artworks->variants) > 0)
                             <h6>$ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>
                         <div class="rightBlock">
                             <span class="likes">{{count($artworks->artwork_like)}} Likes</span> 
                             <div class="actionIcons">
-                                <a  class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
-                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+
+                                @if(Auth::user() && in_array(Auth::user()->id, $artworks->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @elseif(in_array(Session::get('random_id'), $artworks->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @else
+                                <a class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                @endif
+
+                                @if(Auth::user() && in_array(Auth::user()->id, $artworks->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @elseif(in_array(Session::get('random_id'), $artworks->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @else
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                @endif
+                                
+                                <!-- <a  class="like_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                <a class="save_artwork" data-artwork-id="{{$artworks->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a> -->
                             </div>
                         </div>
                     </div>

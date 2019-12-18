@@ -40,42 +40,166 @@ jQuery(document).ready(function() {
         var sub_category = $("#sub_category").val();
         var style_id = $("#style_id").val();
         var subject_id = $("#subject_id").val();
+        var all_image = $( ".imagesRow" ).children( ".addedImage" ).length;
+        var album_text = [];
+        var error_count =0;
 
         if ($.trim(title) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Title is Required');
             return false;
         }
-      else if ($.trim(description) == '') {
+        if ($.trim(description) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Description is Required');
             return false;
         }
 
-      else  if ($.trim(category_id) == '') {
+         if ($.trim(category_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Category');
             return false;
         }
-       else if ($.trim(sub_category) == '') {
+        if ($.trim(sub_category) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Sub-Category');
             return false;
         }
-       else if ($.trim(style_id) == '') {
+        if ($.trim(style_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Style');
             return false;
         }
-       else if ($.trim(subject_id) == '') {
+        if ($.trim(subject_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Subject');
             return false;
         }
-
-        else {
-            document.getElementById("edit-artwork").submit();
+        if ($.trim(all_image) > 6) {
+            toastr.options.timeOut = 2500; // 2s
+            toastr.error('Only 4 Images can be uploaded. Please remove rest image');
+            return false;
         }
+
+        $("input[name='variant_type']:checked").each(function() {
+            var value = $(this).val();
+            if (value) {
+                album_text.push(value);
+            }
+        });
+        if (album_text.length === 0) {
+            toastr.options.timeOut = 2500;
+            toastr.error('Please Select Variant Type');
+            return false;
+        }else{
+            $('#checked_variant_type').val(album_text);
+            $("input[name='variant_type']:checked").each(function() {
+                var value = $(this).val();
+                if (value) {
+                    if (value == "original") {
+                        var width_original = $("input[name=original_width]").val();
+                        var height_original = $("input[name=original_height]").val();
+                        var price_original = $("input[name=original_price]").val();
+                        if ($.trim(width_original) == "" || $.trim(width_original) == '0' || $.trim(width_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Width is Required');
+                            error_count++;
+                            return false;
+                        }
+                        if ($.trim(height_original) == "" || $.trim(height_original) == '0' || $.trim(height_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Height is Required');
+                            error_count++;
+                            return false;
+                        }
+                        if ($.trim(price_original) == "" || $.trim(price_original) == '0' || $.trim(price_original) == "undefined") {
+                            toastr.options.timeOut = 2500; // 2s
+                            toastr.error('Price is Required');
+                            error_count++;
+                            return false;
+                        }
+                    }
+                    if (value == "limited_edition") {
+                        $("input[name='limited_width[]']").each(function() {
+                            var limited_width = $(this).val();
+                            if ($.trim(limited_width) == "" || $.trim(limited_width) == '0' || $.trim(limited_width) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Width Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_height[]']").each(function() {
+                            var limited_height = $(this).val();
+                            if ($.trim(limited_height) == "" || $.trim(limited_height) == '0' || $.trim(limited_height) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Height Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_price[]']").each(function() {
+                            var limited_price = $(this).val();
+                            if ($.trim(limited_price) == "" || $.trim(limited_price) == '0' || $.trim(limited_price) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Price Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='limited_edition_count[]']").each(function() {
+                            var limited_edition_count = $(this).val();
+                            if ($.trim(limited_edition_count) == "" || $.trim(limited_edition_count) == '0' || $.trim(limited_edition_count) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Count Field is Required in Limited Edition');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                    }
+                    if (value == "art_paint") {
+                        $("input[name='art_width[]']").each(function() {
+                            var art_width = $(this).val();
+                            if ($.trim(art_width) == "" || $.trim(art_width) == '0' || $.trim(art_width) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Width Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='art_height[]']").each(function() {
+                            var art_height = $(this).val();
+                            if ($.trim(art_height) == "" || $.trim(art_height) == '0' || $.trim(art_height) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Height Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                        $("input[name='art_price[]']").each(function() {
+                            var art_price = $(this).val();
+                            if ($.trim(art_price) == "" || $.trim(art_price) == '0' || $.trim(art_price) == "undefined") {
+                                toastr.options.timeOut = 2500; // 2s
+                                toastr.error('Price Field is Required in Art Paints');
+                                error_count++;
+                                return false;
+                            }
+                        })
+                    }
+                }
+            });
+        }
+        
+        if(error_count == 0){
+            // alert("execute code");
+            $('#edit-artwork').submit();
+        }else{
+            // alert(error_count);
+        }
+
+        // else {
+        //     document.getElementById("edit-artwork").submit();
+        // }
     });
 
     // First step
