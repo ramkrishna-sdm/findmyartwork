@@ -221,23 +221,16 @@
                         
                     </div>
                 </form>
-                    </div>
-          
-          
-          
-                         </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-                  
-                </div>
-            </div>
-        
-    </div>
+</div>
+</div>
+</div>
 </section>
 
 @include('layouts.frontend.comman_footer')

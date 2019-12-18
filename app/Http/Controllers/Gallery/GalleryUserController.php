@@ -145,7 +145,7 @@ class GalleryUserController extends Controller
         return back()->withPasswordStatus(__('Password successfully updated.'));
     } 
 
-     public function add_blog(){
+    public function add_blog(){
         $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
 
         $styles= Style::get();
