@@ -68,6 +68,12 @@
   </div>
   <!-- //Copyright -->
 </footer>
+
+<!-- Chat Model -->
+<div class="modal fade getStartedModals chatModal" id="chatModal">
+    
+</div>
+<!-- End Chat Model -->
 <!-- //Footer Section -->
 <form class="form" method="POST" action="{{url('/submit_login')}}" id="login_form">
   @csrf
@@ -254,6 +260,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
 <script src="{{url('ckeditor/ckeditor.js')}}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
@@ -804,6 +811,64 @@ $(document).on('click', '.add_to_cart', function(){
 </script>
 <script type="text/javascript">
   $('document').ready(function() {
+    $('#chatId').click(function(){
+      $.ajax({
+        url: "{{ url('/artist/chat') }}",
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(res){
+            if(res.status=="200"){
+                $("#chatModal").html(res.result);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+    });
+    $('#chatId').click(function(){
+      $.ajax({
+        url: "{{ url('/buyer/chat') }}",
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(res){
+            if(res.status=="200"){
+                $("#chatModal").html(res.result);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+    });
+
+    $('#chatId').click(function(){
+      $.ajax({
+        url: "{{ url('/gallery/chat') }}",
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(res){
+            if(res.status=="200"){
+                $("#chatModal").html(res.result);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
+    });
       var PATH = $(location).attr('pathname');
       var arr = PATH.split('/');
      
