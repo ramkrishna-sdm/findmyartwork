@@ -349,4 +349,8 @@ class ArtistUserController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
+
+    public function getChat(){
+        return view('chat.chat');
+    }
 }

@@ -152,4 +152,8 @@ class BuyerUserController extends Controller
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
+
+     public function getChat(){
+        return view('chat.chat');
+    }
 }

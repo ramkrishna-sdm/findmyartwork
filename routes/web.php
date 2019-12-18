@@ -39,6 +39,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::get('/edit_artwork/{id}', 'ArtistUserController@edit_artwork');
 	Route::put('profile/password','ArtistUserController@password');
 	Route::post('/deleteImage','ArtistUserController@deleteImage');
+	Route::get('/chat', 'ArtistUserController@getChat')->name('chat');
 
 });
 
@@ -50,6 +51,7 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::get('/profile/{id}', 'BuyerUserController@profile');
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
+	Route::get('/chat', 'BuyerUserController@getChat')->name('chat');
 
 
 });
@@ -66,6 +68,7 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
 	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
 	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
+	Route::get('/chat', 'GalleryUserController@getChat')->name('chat');
 	
 	
 

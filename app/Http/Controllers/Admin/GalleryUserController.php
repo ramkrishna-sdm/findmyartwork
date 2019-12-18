@@ -161,5 +161,9 @@ class GalleryUserController extends Controller
         }
     }
 
+    public function getChat(){
+        return view('chat.chat');
+    }
+
 
 }

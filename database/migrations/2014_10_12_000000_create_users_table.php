@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
@@ -28,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('media_url')->nullable();
+            $table->string('socket_id')->nullable();
+              $table->string('online', 1)->default('N');
             $table->enum('is_featured',['yes','no'])->default('no');
             $table->enum('is_deleted',['yes','no'])->default('no');
             $table->enum('is_active',['yes','no'])->default('yes');

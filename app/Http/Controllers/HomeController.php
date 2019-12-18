@@ -26,4 +26,6 @@ class HomeController extends Controller
         session_start();
         return view('pages.dashboard');
     }
+
+   
 }
