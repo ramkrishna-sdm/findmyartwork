@@ -136,21 +136,21 @@ class ArtworkController extends Controller
                 $cart_artwork[] = $value['artwork_id'];
             }
         }
-        //     echo "<pre>";
-        // print_r(Session::get('random_id')); die;
 
         $similar_artwork = $this->artworkRepository->getData(['category'=> $artwork_result['category']],'get',['artwork_images', 'variants', 'artist', 'artwork_like'],0);
         if(count($similar_artwork) > 0){
-            foreach ($similar_artwork as $key => $artwork_result) {
+            foreach ($similar_artwork as $key => $similar_result) {
                 if(Auth::user()){
-                    $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'like'])->pluck('user_id')->toArray();
-                    $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'saved'])->pluck('user_id')->toArray();
+                    $similar_result['like_count'] = SavedArtwork::where(['artwork_id' => $similar_result->id, 'status' => 'like'])->pluck('user_id')->toArray();
+                    $similar_result['save_count'] = SavedArtwork::where(['artwork_id' => $similar_result->id, 'status' => 'saved'])->pluck('user_id')->toArray();
                 }else{
-                    $artwork_result['like_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'like'])->pluck('guest_id')->toArray();
-                    $artwork_result['save_count'] = SavedArtwork::where(['artwork_id' => $artwork_result->id, 'status' => 'saved'])->pluck('guest_id')->toArray();
+                    $similar_result['like_count'] = SavedArtwork::where(['artwork_id' => $similar_result->id, 'status' => 'like'])->pluck('guest_id')->toArray();
+                    $similar_result['save_count'] = SavedArtwork::where(['artwork_id' => $similar_result->id, 'status' => 'saved'])->pluck('guest_id')->toArray();
                 }    
             }
         }
+        //     echo "<pre>";
+        // print_r($artwork_result); die;
         return view('frontend/artwork_details',compact('artwork_result', 'similar_artwork', 'cart_artwork'));
     }
 

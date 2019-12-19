@@ -26,6 +26,11 @@ use App\Repository\ArtworkRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use App\Repository\SiteSettingRepository;
+use Mail;
+use App\Mail\AdminSaleNotification;
+use App\Mail\SaleNotification;
+use App\Mail\SellerNotification;
+
 
 class PaymentController extends Controller
 {
@@ -155,9 +160,9 @@ class PaymentController extends Controller
                     $artwork_result = $this->artworkRepository->getData(['id'=> $artwork],'first',['artwork_images', 'variants', 'artist', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
                     $url = url('artwork_details').'/'.$artwork_result->id;
                     if($artwork_name == ""){
-                        $artwork_name .= '<a herf="$ur">'.$artwork_result->title.'</a>';
+                        $artwork_name .= '<a href="'.$url.'">'.$artwork_result->title.'</a>';
                     }else{
-                        $artwork_name .= ', <a herf="$ur">'.$artwork_result->title.'</a>';
+                        $artwork_name .= ', <a href="'.$url.'">'.$artwork_result->title.'</a>';
                     }
 
                     $order['artwork_info'] = json_encode($artwork_result);
@@ -174,9 +179,9 @@ class PaymentController extends Controller
                     $seller_mail = [];
                     $seller_mail['user_name'] = $buyer_info->first_name.' '.$buyer_info->last_name;
                     $seller_mail['patment_id'] = $result->getId();
-                    $seller_mail['artwork_name'] = '<a href="$url">'.$artwork_result->title.'</a>';
+                    $seller_mail['artwork_name'] = '<a href="'.$url.'">'.$artwork_result->title.'</a>';
                     // Mail to seller
-                    $seller_email = $this->userRepository->getData(['id'=>$artwork_result->artist_id],'first',[],0);
+                    $seller_email = $this->userRepository->getData(['id'=>$artwork_result->user_id],'first',[],0);
                     if($seller_email){
                         Mail::to($seller_email)->send(new SellerNotification($seller_mail));
                     }
@@ -189,11 +194,11 @@ class PaymentController extends Controller
                 // Mail to admin
                 $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
                 if($toEmail){
-                    Mail::to($toEmail)->send(new Notification($user_data));
+                    Mail::to($toEmail)->send(new AdminSaleNotification($admin_mail));
                 }else{
                     $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);
                     if($toEmail){
-                        Mail::to($toEmail)->send(new AdminSaleNotification($user_data));
+                        Mail::to($toEmail)->send(new AdminSaleNotification($admin_mail));
                     }
                 }
 
@@ -201,9 +206,9 @@ class PaymentController extends Controller
                 $buyer_mail = [];
                 $buyer_mail['patment_id'] = $result->getId();
                 $buyer_mail['artwork_detail'] = $artwork_name;
-                $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
-                if($toEmail){
-                    Mail::to($toEmail)->send(new SaleNotification($order_info));
+                $buyer_email = $this->userRepository->getData(['id'=>Auth::user()->id],'first',[],0);
+                if($buyer_email){
+                    Mail::to($buyer_email)->send(new SaleNotification($buyer_mail));
                 }
             }
 
