@@ -2,7 +2,7 @@
     <!-- Summary Modal -->
     <div class="modal-content" id="summary_info">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sumamry</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Sumamry #{{str_pad($order_info->id, 5, '0', STR_PAD_LEFT)}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -48,6 +48,7 @@
         <table class="table table-dark table-responsive">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Recipient</th>
               <th scope="col">Tracking Number</th>
               <th scope="col">Carrier</th>
@@ -55,6 +56,7 @@
           </thead>
           <tbody>
             <tr>
+              <td>#{{str_pad($order_info->id, 5, '0', STR_PAD_LEFT)}}</td>
               <td>{{$user_name}}</td>
               <td> <input type="text" name="tracking_number" value="{{$order_info->tracking_number}}"> </td>
               <td> <input type="text" name="carrier" value="{{$order_info->carrier}}"> </td>

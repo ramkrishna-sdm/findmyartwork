@@ -41,6 +41,10 @@ class OrderRepository implements RepositoryInterface
             $query->where('artwork_id', $conditions['artwork_id']);
         }
 
+        if (!empty($conditions['artist_id'])) {
+            $query->where('artist_id', $conditions['artist_id']);
+        }
+
         if (!empty($conditions['status'])) {
             $query->where('status', [0,$conditions['status']]);
         }

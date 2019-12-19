@@ -99,7 +99,7 @@
                     </div>
                 </li>
                 <li class="active ">
-                    <a href="javascript:void()">
+                    <a href="{{url(Auth::user()->role)}}/order_list">
                         <i class="nc-icon nc-minimal-down"></i>
                         <p>Orders</p>
                     </a>

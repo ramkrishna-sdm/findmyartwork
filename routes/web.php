@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['
 	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
 	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
 	Route::get('/chat', 'GalleryUserController@getChat')->name('chat');
-	
+	Route::get('/order_list', 'GalleryUserController@order_list');
 	
 
 });

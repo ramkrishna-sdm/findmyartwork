@@ -106,7 +106,8 @@ HomeController::header_counter();
                   @if(Auth::user()->role == "gallery")
                   <a class="dropdown-item" href="{{url('gallery/blog')}}">Exhibition</a>
                   @endif
-                  <a class="dropdown-item" href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}">My Profile</a>
+                  <a class="dropdown-item" href="{{url(Auth::user()->role)}}/profile/{{Auth::user()->id}}">My Profile</a>
+                  <a class="dropdown-item" href="{{url(Auth::user()->role)}}/order_list">Order</a>
                     <a class="dropdown-item" href="{{ url('logout') }}"> {{ __('Logout') }} </a>
                   </div>
                 </li>

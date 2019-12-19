@@ -2,7 +2,7 @@
 <section class="checkout">
     <div class="basket container">
         <div class="basketHeader">
-            <h1 class="text-huge">Basket ({{count($orders)}})</h1>
+            <h1 class="text-huge">Orders ({{count($orders)}})</h1>
         </div>
         @if(count($orders) > 0)
             <div class="basketContent">

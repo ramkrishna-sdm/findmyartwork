@@ -164,8 +164,9 @@ class BuyerUserController extends Controller
     } 
 
     public function order_list(){
+        $user_type = "buyer";
         $orders = $this->orderRepository->getData(['user_id'=>Auth::user()->id],'get',[],0);        
-        return view('frontend/order_list', compact('orders'));
+        return view('frontend/order_list', compact('orders', 'user_type'));
     }
 
 
