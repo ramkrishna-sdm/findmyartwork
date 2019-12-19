@@ -168,6 +168,7 @@ class PaymentController extends Controller
                     $order['artwork_info'] = json_encode($artwork_result);
                     $order['user_id'] = Auth::user()->id;
                     $order['artwork_id'] = $artwork;
+                    $order['artist_id'] = $artwork_result->user_id;
                     $order['payment_id'] = $result->getId();
                     $order['status'] = $result->getState();
                     $order['paypal_response'] = $result;

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repository\CategoryRepository;
 use App\Repository\VariantRepository;
 use App\Repository\UserRepository;
+use App\Repository\OrderRepository;
 use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
@@ -32,7 +33,7 @@ class BuyerUserController extends Controller
      *
      * @return void
      */
-    public function __construct(UserRepository $userRepository,Request $request,CategoryRepository $categoryRepository,VariantRepository $variantRepository)
+    public function __construct(UserRepository $userRepository,Request $request,CategoryRepository $categoryRepository,VariantRepository $variantRepository,OrderRepository $orderRepository)
     {
         $this->middleware('auth');
 
@@ -45,6 +46,7 @@ class BuyerUserController extends Controller
         $this->variantRepository = $variantRepository;
 
         $this->userRepository = $userRepository;
+        $this->OrderRepository = $orderRepository;
     }
 
     public function index(){
@@ -153,11 +155,19 @@ class BuyerUserController extends Controller
         return back()->withPasswordStatus(__('Password successfully updated.'));
     }
 
-     public function getChat(){
+    public function getChat(){
        $html = view('chat.chat')->render();
         return response()->json(array(
             'result' => $html,
             'status' => 200,
         ), 200);
+    } 
+
+    public function order_list(){
+        $user_type = "buyer";
+        $orders = $this->orderRepository->getData(['user_id'=>Auth::user()->id],'get',[],0);        
+        return view('frontend/order_list', compact('orders', 'user_type'));
     }
+
+
 }

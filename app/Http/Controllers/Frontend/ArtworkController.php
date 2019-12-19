@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\ArtworkRepository;
+use App\Repository\UserRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
 use App\Repository\StyleRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\SavedArtworkRepository;
+use App\Repository\OrderRepository;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
@@ -35,7 +37,7 @@ class ArtworkController extends Controller
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,SavedArtworkRepository $savedArtworkRepository,CategoryRepository $categoryRepository,StyleRepository $styleRepository,SubjectRepository $subjectRepository)
+    public function __construct(Request $request, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,SavedArtworkRepository $savedArtworkRepository,CategoryRepository $categoryRepository,StyleRepository $styleRepository,SubjectRepository $subjectRepository,OrderRepository $orderRepository,UserRepository $userRepository)
     {
         $this->request = $request;
         $this->artworkRepository = $artworkRepository;
@@ -45,6 +47,8 @@ class ArtworkController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->styleRepository = $styleRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->orderRepository = $orderRepository;
+        $this->userRepository = $userRepository;
         $this->artwork_files = '/images/artwork_files/';
     }
 
@@ -245,6 +249,24 @@ class ArtworkController extends Controller
             return back()->withInput();
         }
     }
+
+    public function get_shipping_status(){
+        $order_info = $this->orderRepository->getData(['id'=>$this->request->order_id],'first',[],0);
+        $user_info = $this->userRepository->getData(['id'=>$order_info->user_id],'first',[],0);
+        $user_name = $user_info->first_name.' '.$user_info->last_name;
+        $html = view('frontend/shipping_status', compact('order_info', 'user_name'))->render();
+
+        return response()->json([
+            'status' => 200,
+            'data'  => $html,
+        ], 200);
+    }
+
+    public function update_shipping_status(){
+        $order_info = $this->orderRepository->createUpdateData(['id'=> $this->request->order_id],$this->request->all());
+        return redirect('artist/order_list');
+    }
+
 }
 
 

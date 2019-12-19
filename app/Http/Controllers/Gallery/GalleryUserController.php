@@ -11,6 +11,7 @@ use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Repository\OrderRepository;
 use App\Repository\BlogRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Style;
@@ -36,7 +37,7 @@ class GalleryUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request,UserRepository $userRepository,CategoryRepository $categoryRepository,VariantRepository $variantRepository,BlogRepository $BlogRepository)
+    public function __construct(Request $request,UserRepository $userRepository,CategoryRepository $categoryRepository,VariantRepository $variantRepository,BlogRepository $BlogRepository,OrderRepository $orderRepository)
     {
         $this->middleware('auth');
 
@@ -51,6 +52,7 @@ class GalleryUserController extends Controller
 
         $this->variantRepository = $variantRepository;
         $this->BlogRepository = $BlogRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     public function index(){
@@ -263,5 +265,11 @@ class GalleryUserController extends Controller
             'result' => $html,
             'status' => 200,
         ), 200);
+    }
+
+    public function order_list(){
+        $user_type = "gallery";
+        $orders = $this->orderRepository->getData(['user_id'=>Auth::user()->id],'get',[],0);        
+        return view('frontend/order_list', compact('orders', 'user_type'));
     }
 }
