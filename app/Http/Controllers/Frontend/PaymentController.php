@@ -207,7 +207,6 @@ class PaymentController extends Controller
                 }
             }
 
-                
             /* Save order in database */
             \Session::put('success', 'Payment success');
             return Redirect::to('cart');
