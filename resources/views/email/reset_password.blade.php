@@ -10,6 +10,6 @@
 		</p>
 		<p></p>
 		<p></p>
-		<p>This email was sent from Workado</p>
+		<p>This email was sent from ArtViaYou</p>
 	</body>
 </html>

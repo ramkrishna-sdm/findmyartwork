@@ -25,6 +25,7 @@ use Exception;
 use App\Repository\ArtworkRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
+use App\Repository\SiteSettingRepository;
 
 class PaymentController extends Controller
 {
@@ -34,7 +35,7 @@ class PaymentController extends Controller
      *
      * @return void
      */
-    public function __construct(ArtworkRepository $artworkRepository, OrderRepository $orderRepository, UserRepository $userRepository)
+    public function __construct(ArtworkRepository $artworkRepository, OrderRepository $orderRepository, SiteSettingRepository $siteSettingRepository, UserRepository $userRepository)
     {
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
@@ -46,6 +47,7 @@ class PaymentController extends Controller
         $this->artworkRepository = $artworkRepository;
         $this->orderRepository = $orderRepository;
         $this->userRepository = $userRepository;
+        $this->siteSettingRepository = $siteSettingRepository;
     }
     public function index()
     {
@@ -140,17 +142,25 @@ class PaymentController extends Controller
         $execution = new PaymentExecution();
         $execution->setPayerId(Input::get('PayerID'));
         /**Execute the payment **/
+        $order_info = [];
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
             $artwork_id = Session::get('artwork_id');
             $artwork_info = "";
+            $buyer_info = $this->userRepository->getData(['id'=> Auth::user()->id],'first',[],0);
+            $artwork_name = "";
             if(count($artwork_id) > 0){
                 foreach ($artwork_id as $key => $artwork) {
                     $order = [];
                     $artwork_result = $this->artworkRepository->getData(['id'=> $artwork],'first',['artwork_images', 'variants', 'artist', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
-                    $order['artwork_info'] = json_encode($artwork_result);
-                    
+                    $url = url('artwork_details').'/'.$artwork_result->id;
+                    if($artwork_name == ""){
+                        $artwork_name .= '<a herf="$ur">'.$artwork_result->title.'</a>';
+                    }else{
+                        $artwork_name .= ', <a herf="$ur">'.$artwork_result->title.'</a>';
+                    }
 
+                    $order['artwork_info'] = json_encode($artwork_result);
                     $order['user_id'] = Auth::user()->id;
                     $order['artwork_id'] = $artwork;
                     $order['payment_id'] = $result->getId();
@@ -159,9 +169,45 @@ class PaymentController extends Controller
                     $user_info = $this->userRepository->getData(['id'=> Auth::user()->id],'first',[],0);
                     $order['delivery_address'] = $user_info->address.', '.$user_info->city.', '.$user_info->state.', '.$user_info->country.', '.$user_info->postal_code;
                     $order_info = $this->orderRepository->createUpdateData(['id'=> 0],$order);
+
+
+                    $seller_mail = [];
+                    $seller_mail['user_name'] = $buyer_info->first_name.' '.$buyer_info->last_name;
+                    $seller_mail['patment_id'] = $result->getId();
+                    $seller_mail['artwork_name'] = '<a href="$url">'.$artwork_result->title.'</a>';
+                    // Mail to seller
+                    $seller_email = $this->userRepository->getData(['id'=>$artwork_result->artist_id],'first',[],0);
+                    if($seller_email){
+                        Mail::to($seller_email)->send(new SellerNotification($seller_mail));
+                    }
+                }
+
+
+                $admin_mail = [];
+                $admin_mail['user_name'] = $buyer_info->first_name.' '.$buyer_info->last_name;
+                $admin_mail['patment_id'] = $result->getId();
+                // Mail to admin
+                $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
+                if($toEmail){
+                    Mail::to($toEmail)->send(new Notification($user_data));
+                }else{
+                    $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);
+                    if($toEmail){
+                        Mail::to($toEmail)->send(new AdminSaleNotification($user_data));
+                    }
+                }
+
+                // Mail to buyer
+                $buyer_mail = [];
+                $buyer_mail['patment_id'] = $result->getId();
+                $buyer_mail['artwork_detail'] = $artwork_name;
+                $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
+                if($toEmail){
+                    Mail::to($toEmail)->send(new SaleNotification($order_info));
                 }
             }
 
+                
             /* Save order in database */
             \Session::put('success', 'Payment success');
             return Redirect::to('cart');

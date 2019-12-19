@@ -201,6 +201,10 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'AdminCheck']], functio
 	Route::get('/delete_faq/{id}', 'Admin\FaqController@delete_faq');
 	Route::get('/change_faq_status/{id}/{stauts}', 'Admin\FaqController@change_faq_status');
 
+   Route:: get('/site_setting', 'Admin\CmsController@site_setting');
+   Route:: post('/update_site_setting', 'Admin\CmsController@update_site_setting');
+
+
 
 });
 
