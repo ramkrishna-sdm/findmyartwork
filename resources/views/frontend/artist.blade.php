@@ -31,9 +31,18 @@
             <div class="image"><img src="{{$artist->media_url}}"  alt=""></div>
             <div class="nameFollowers">
                <span class="name">{{$artist->first_name}} {{$artist->last_name}}</span>
-               <span class="followersNum">(50k followers)</span>
+               <span class="followersNum">({{count($artist->like_count)}} Followers)</span>
             </div>
-            <a href="#" class="btn btn-border btn-sm">Follow</a>
+
+                @if(Auth::user() && in_array(Auth::user()->id, $artist->like_count))
+                <a href="javascript:void(0);" class="btn btn-border btn-sm like_artist" data-artist-id="{{$artist->id}}">Following</a>
+                @elseif(in_array(Session::get('random_id'), $artist->like_count))
+                <a href="javascript:void(0);" class="btn btn-border btn-sm like_artist" data-artist-id="{{$artist->id}}">Following</a>
+                @else
+                <a href="javascript:void(0);" class="btn btn-border btn-sm like_artist" data-artist-id="{{$artist->id}}">Follow</a>
+                @endif
+            
+            <!-- <a href="#" class="btn btn-border btn-sm">Follow</a> -->
          </div>
          <div class="artistHeaderRight d-flex justify-content-between align-items-center">
             <span class="artworkNumber"><img src="{{asset('assets/images/artworkIcon.svg')}}" alt=""> {{count($artist->artworks)}} artworks</span>
@@ -45,20 +54,34 @@
             <div class="artPost">
                <div class="postImage">
 
-                  <a href="#"> <img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a>
+                  <a href="{{url('artwork_details')}}/{{$artwork->id}}"> <img src="{{$artwork->artwork_images[0]->media_url}}" alt=""></a>
                </div>
                <div class="postFooter">
                   <div class="leftBlock">
                      <h5>{{$artwork->title}}</h5>
-                     <h6>$2076</h6>
+                     <h6>${{$artwork->variants[0]->price}}</h6>
                   </div>
-                  <div class="rightBlock">
-                     <span class="likes">456 Likes</span> 
-                     <div class="actionIcons">
-                        <a href="#"><img src="{{asset('assets/images/like.png')}}" alt=""></a>
-                        <a href="#"><img src="{{asset('assets/images/saved.png')}}" alt=""></a>
-                     </div>
-                  </div>
+                   <div class="rightBlock">
+                            <span class="likes">{{count($artwork->like_count)}} Likes</span> 
+                            <div class="actionIcons">
+                                @if(Auth::user() && in_array(Auth::user()->id, $artwork->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @elseif(in_array(Session::get('random_id'), $artwork->like_count))
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/red_heart.jpeg')}}" title="Like Artwork"></a>
+                                @else
+                                <a class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                @endif
+
+                                @if(Auth::user() && in_array(Auth::user()->id, $artwork->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @elseif(in_array(Session::get('random_id'), $artwork->save_count))
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/save_filled.png')}}"  title="Save for later"></a>
+                                @else
+                                <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                @endif
+                                
+                            </div>
+                        </div>
                </div>
             </div>
             @endforeach
@@ -72,25 +95,12 @@
 </div>
 
 <div class="container">
-  
-    <div class="col-lg-12  py-4 border d-flex paginationContainer">
-        <ul class="pagination mx-auto">
-            <!-- <li class="page-item disabled">
-                <a class="page-link" href="http://127.0.0.1:8000/artist?page=1" aria-label="Previous">
-                    <span aria-hidden="true"> <img src="{{asset('assets/images/left-arrow.svg')}}" alt=""> Previous</span>
-                </a>
-            </li> -->
-              {{ $artists->onEachSide(1)->links() }}
-           <!--  <li class="page-item">
-                <a class="page-link" href="http://127.0.0.1:8000/artist?page=2" aria-label="Next">
-                    <span aria-hidden="true">Next <img src="{{asset('assets/images/right-arrow.svg')}}" alt=""></span>
-                    
-                </a>
-            </li> -->
-        </ul>
-    </div>
-     
+  <div class="col-lg-12  py-4 border d-flex paginationContainer">
+      <ul class="pagination mx-auto">
+            {{ $artists->onEachSide(1)->links() }}
+      </ul>
   </div>
+</div>
 </section>
 <!--End Trending Artists Page  -->
 @include('layouts.frontend.comman_footer')

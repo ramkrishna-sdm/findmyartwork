@@ -683,7 +683,7 @@ $(document).on('click', '.like_artist', function(){
 
         success: function(res){
             if(res.status=="200"){
-                // $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
+                $(this_like).parents('.artistHeaderLeft').find('.followersNum').html(res.all_count);
                 $(this_like).html(res.like_count);
             }else{
                 

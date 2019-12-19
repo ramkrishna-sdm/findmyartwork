@@ -54,7 +54,7 @@
 <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
-            <a href="{{url('/artist/dashboard')}}" class="simple-text logo-mini">
+            <a href="{{url('/')}}" class="simple-text logo-mini">
               <div class="logo-image-small">
                 <img src="{{ asset('paper') }}/img/logo-small.png">
               </div>
@@ -105,7 +105,7 @@
                     </a>
                 </li>
                 <li class="active ">
-                    <a href="javascript:void()">
+                    <a href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}">
                         <i class="nc-icon nc-settings-gear-65"></i>
                         <p>Settings</p>
                     </a>
