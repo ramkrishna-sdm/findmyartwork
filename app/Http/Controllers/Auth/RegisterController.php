@@ -7,11 +7,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Session; 
 use App\Repository\SavedArtistRepository;
 use App\Repository\SavedArtworkRepository;
+use App\Repository\SiteSettingRepository;
+use App\Repository\UserRepository;
+use Mail;
+use App\Mail\Notification;
+
 
 class RegisterController extends Controller
 {
@@ -40,12 +46,14 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request, SavedArtistRepository $savedArtistRepository, SavedArtworkRepository $savedArtworkRepository)
+    public function __construct(Request $request, SavedArtistRepository $savedArtistRepository, SavedArtworkRepository $savedArtworkRepository, SiteSettingRepository $siteSettingRepository,UserRepository $userRepository)
     {
         $this->middleware('guest');
         $this->request = $request;
+        $this->siteSettingRepository = $siteSettingRepository;
         $this->savedArtistRepository = $savedArtistRepository;
         $this->savedArtworkRepository = $savedArtworkRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -84,6 +92,16 @@ class RegisterController extends Controller
             'user_name' => $data['user_name'],
             'password' => Hash::make($data['password']),
         ]);
+        $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
+        if($toEmail){
+            Mail::to($toEmail)->send(new Notification($user_data));
+        }else{
+            $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);
+        
+            if($toEmail){
+                Mail::to($toEmail)->send(new Notification($user_data));
+            }
+        }
 
         if ($data['role'] == "buyer" || $data['role'] == "artist" || $data['role'] == "gallery")
         {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\CmsRepository;
+use App\Repository\SiteSettingRepository;
 use Validator;
 use Exception;
 use Session;
@@ -26,10 +27,11 @@ class CmsController extends Controller
     * Created By: Shambhu Thakur
     * Created At: 21Nov2019 
     */
-    public function __construct(Request $request, CmsRepository $CmsRepository)
+    public function __construct(Request $request, CmsRepository $CmsRepository,SiteSettingRepository $SiteSettingRepository)
     {
         $this->request = $request;
         $this->CmsRepository = $CmsRepository;
+        $this->SiteSettingRepository = $SiteSettingRepository;
         $this->aboutus_files = '/images/aboutus_files/';
         $this->home_files = '/images/home_files/';
     }
@@ -182,9 +184,36 @@ class CmsController extends Controller
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
         }
+    }
+
+    public function site_setting(){
+        $setting = $this->SiteSettingRepository->getData([],'first',[],0);
+        return view('backend/site_setting', compact('setting'));
     } 
 
 
-
+    /**
+    * Function to Create/Update cms
+    * @param
+    * @return 
+    *
+    * Created By: Shambhu Thakur
+    * Created At: 26Nov2019 
+    */
+    public function update_site_setting(Request $request) {
+        $validator = $this->validate($request,[
+            'mail_id' => 'required|email',
+            'commission_persentage' => 'required'
+        ]);
+        try{
+                
+            $upload_file = $this->SiteSettingRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
+             \Session::flash('success_message', "Setiings Updated Successfully!");
+            return redirect('/admin');
+        }catch (\Exception $ex){
+            \Session::flash('error_message', $ex->getMessage());
+            return back()->withInput();
+        }
+    }
 
 }
