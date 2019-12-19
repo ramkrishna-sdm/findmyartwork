@@ -161,7 +161,7 @@ class PaymentController extends Controller
                     $order_info = $this->orderRepository->createUpdateData(['id'=> 0],$order);
                 }
             }
-
+            $payment_id = $result->getId();
             /* Save order in database */
             \Session::put('success', 'Payment success');
             return Redirect::to('cart');
