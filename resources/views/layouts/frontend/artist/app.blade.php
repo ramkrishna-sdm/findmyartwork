@@ -379,49 +379,19 @@ $(function() {
                 }
                 reader.readAsDataURL(input.files[i]);
             }
-
         }
-
     };
-
     $('#gallery-photo-add').on('change', function() {
         imagesPreview(this, 'div.imagesRow');
     });
-    // $(document).on('click', '#gallery-photo-add', function(){
-    //     alert("heree");
-    //     console.log(this);
-    //     imagesPreview(this, 'div.imagesRow');
-    // });
 });
 
 function removeDiv(elem){
     $(elem).closest("div.addedImage").remove();
 }
 
-
-// $(document).on('click', '.remove_artwork_image', function(){
-//     alert('ok'); return fasle;
-//     var artwork_image_id = $(this).attr('data-artwork-image-id');
-//     alert(artwork_image_id); return false;
-//     $.ajax({
-//         type:"POST",
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         },
-//         url:"{{url('artist/deleteImage')}}",
-//         data:{artwork_image_id:artwork_image_id},
-//         success(res){
-//             console.log(res);
-//             return false;
-//             // alert('Deleted');
-//         }
-//     });
-// })
-
-
 </script>
 <script>
-
 $(document).on('click', '.remove_image', function(){
     var img_id = $(this).attr('data-img-id');
     var artwork_id = $(this).attr('data-artwork-id');
@@ -447,32 +417,7 @@ $(document).on('click', '.remove_image', function(){
         }
     });
 })
-    // function removeImage(id,artwork_id){
-    //     var status = confirm("Are you sure you want to delete ?");  
-    //     if(status==true)
-    //     {
-    //         $.ajax({
-    //           type:"POST",
-    //           headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //            },
-    //           url:"{{url('artist/deleteImage')}}", 
-    //           data:{'id':id,'artwork_id':artwork_id},
-    //           success: function(res){
-    //             console.log('response====>',res);
-    //             document.getElementById('imagesRow').innerHTML = res;
-    //             },
-    //             error: function (errormessage) {
-    //                 console.log(errormessage);
-    //             }
-    //         });
-    //     }
-    // }
-
 </script>
-
-
-
 </body>
 
 </html>

@@ -196,15 +196,10 @@ jQuery(document).ready(function() {
         }
         
         if(error_count == 0){
-            // alert("execute code");
             $('#edit-artwork').submit();
         }else{
-            // alert(error_count);
+            
         }
-
-        // else {
-        //     document.getElementById("edit-artwork").submit();
-        // }
     });
 
     // First step
@@ -465,10 +460,9 @@ jQuery(document).ready(function() {
             });
         }
         if(error_count == 0){
-            // alert("execute code");
             $('#upload_form').submit();
         }else{
-            // alert(error_count);
+            
         }
             
            
