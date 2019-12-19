@@ -136,6 +136,26 @@ class HomeController extends Controller
 
     public function artist(){
         $artists = $this->userRepository->getData(['role'=>'artist','is_deleted'=>'no', 'limit'=>2, 'page'=>2],'paginate',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        if(count($artists)>0){
+            foreach ($artists as $key => $artist) {
+                if(count($artist->artworks) > 0){
+                    foreach ($artist->artworks as $key => $artwork) {
+                        if(Auth::user()){
+                            $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                            $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('user_id')->toArray();
+                        }else{
+                            $artwork['like_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                            $artwork['save_count'] = SavedArtwork::where(['artwork_id' => $artwork['id'], 'status' => 'saved'])->pluck('guest_id')->toArray();
+                        }
+                    }
+                }
+                if(Auth::user()){
+                    $artist['like_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'like'])->pluck('user_id')->toArray();
+                }else{
+                    $artist['like_count'] = SavedArtist::where(['artist_id' => $artist['id'], 'status' => 'like'])->pluck('guest_id')->toArray();
+                }
+            }
+        }
         return view('frontend/artist',compact('artists'));
     }
 
@@ -219,7 +239,7 @@ class HomeController extends Controller
         $artist_liked = $this->savedArtistRepository->getData(['artist_id'=> $this->request->artist_id, 'status' => 'like'],'count',[],0);    
         return response()->json(array(
             'like_count' => $text,
-            // 'like_count' => $artist_liked.' Likes',
+            'all_count' => '('.$artist_liked.' Followers)',
             'status' => 200,
         ), 200);
     }
@@ -499,7 +519,8 @@ class HomeController extends Controller
     }
 
     public function exhibitions(){
-       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no','limit'=>1, 'page'=>2],'paginate',['user'],0);
+       //dd($blogs);
        return view('gallery.exhibitions',compact('blogs'));
     }
 
