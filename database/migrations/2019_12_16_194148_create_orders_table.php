@@ -17,10 +17,13 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
             $table->integer('artwork_id')->nullable();
+            $table->integer('artist_id')->nullable();
             $table->string('payment_id')->nullable();
             $table->text('delivery_address')->nullable();
             $table->string('status')->nullable();
-            $table->enum('shipping_status',['delivered','pending'])->default('pending');
+            $table->enum('shipping_status',['Pending','Shipped','Delivered'])->default('Pending');
+            $table->string('tracking_number')->nullable();
+            $table->string('carrier')->nullable();
             $table->longtext('paypal_response')->nullable();
             $table->longtext('artwork_info')->nullable();
             $table->timestamps();

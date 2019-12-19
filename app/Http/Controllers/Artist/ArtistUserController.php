@@ -12,6 +12,7 @@ use App\Repository\StyleRepository;
 use App\Repository\UserRepository;
 use App\Repository\SavedArtworkRepository;
 use App\Repository\SavedArtistRepository;
+use App\Repository\OrderRepository;
 use Exeception;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\ProfileRequest;
@@ -40,7 +41,7 @@ class ArtistUserController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request, SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository,UserRepository $userRepository)
+    public function __construct(Request $request, SavedArtistRepository $savedArtistRepository,SavedArtworkRepository $savedArtworkRepository,ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,CategoryRepository $categoryRepository,SubCategoryRepository $SubCategoryRepository,SubjectRepository $subjectRepository,StyleRepository $styleRepository,UserRepository $userRepository,OrderRepository $orderRepository)
     {
         $this->middleware('auth');
         $this->request = $request;
@@ -54,6 +55,7 @@ class ArtistUserController extends Controller
         $this->userRepository = $userRepository;
         $this->savedArtistRepository = $savedArtistRepository;
         $this->savedArtworkRepository = $savedArtworkRepository;
+        $this->orderRepository = $orderRepository;
         $this->artwork_files = '/images/artwork_files/';
         $this->users_files = '/images/users_files/';
     }
@@ -361,5 +363,11 @@ class ArtistUserController extends Controller
             'status' => 200,
         ), 200);
         // return view('chat.chat');
+    } 
+
+    public function order_list(){
+        $user_type = "artist";
+        $orders = $this->orderRepository->getData(['artist_id'=>Auth::user()->id],'get',[],0);        
+        return view('frontend/order_list', compact('orders', 'user_type'));
     }
 }

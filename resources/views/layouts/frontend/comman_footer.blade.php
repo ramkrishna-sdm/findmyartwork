@@ -74,6 +74,15 @@
     
 </div>
 <!-- End Chat Model -->
+<!-- Change Order Status Model -->
+<div class="modal fade" id="">
+    
+</div>
+
+<div class="modal fade" id="changeShippingStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+</div>
+<!-- End Change Order Status Model -->
 <!-- //Footer Section -->
 <form class="form" method="POST" action="{{url('/submit_login')}}" id="login_form">
   @csrf
@@ -968,7 +977,37 @@ $(document).on('click', '.checkout_btn', function(){
   $("#checkout_form").submit();
 })
 </script>
+<script type="text/javascript">
+$(document).on('click', '.shipping_status', function(){
+  var order_id = $(this).attr('data-order-id');
+  $.ajax({
+      url: "{{ url('/get_shipping_status') }}",
+      type: "post",
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {order_id:order_id},
+      success: function(res){
+          if(res.status=="200"){
+              $("#changeShippingStatus").html(res.data);
+          }else{
+              
+          }
+      },
+      error: function (errormessage) {
+          console.log(errormessage);
+      }
+  });
 
+})
+</script>
+
+<script type="text/javascript">
+$(document).on('click', '#change_shipping_status', function(){
+  $('#summary_info').hide();
+  $('#shipping_status').show();
+});
+</script>
 
 </body>
 </html>

@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::put('profile/password','ArtistUserController@password');
 	Route::post('/deleteImage','ArtistUserController@deleteImage');
 	Route::get('/chat', 'ArtistUserController@getChat')->name('chat');
+	Route::get('/order_list', 'ArtistUserController@order_list');
 
 });
 
@@ -52,6 +53,7 @@ Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['veri
 	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 	Route::put('profile/password','BuyerUserController@password');
 	Route::get('/chat', 'BuyerUserController@getChat')->name('chat');
+	Route::get('/order_list', 'BuyerUserController@order_list');
 
 
 });
@@ -98,6 +100,8 @@ Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
 Route::post('/add_to_cart', 'Frontend\HomeController@add_to_cart');
 Route::get('/contact_us', 'Frontend\HomeController@contact_us');
 Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
+Route::post('/get_shipping_status', 'Frontend\ArtworkController@get_shipping_status');
+Route::post('/update_shipping_status', 'Frontend\ArtworkController@update_shipping_status');
 
 Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
 Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
