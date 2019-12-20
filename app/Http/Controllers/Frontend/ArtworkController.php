@@ -25,6 +25,7 @@ use Segment;
 use DateTime;
 use App\SavedArtwork;
 use App\SavedArtist;
+use App\Mail\ShippingNotification;
 
 class ArtworkController extends Controller
 {
@@ -264,6 +265,18 @@ class ArtworkController extends Controller
 
     public function update_shipping_status(){
         $order_info = $this->orderRepository->createUpdateData(['id'=> $this->request->order_id],$this->request->all());
+        $product_info = $this->orderRepository->getData(['id'=>$this->request->order_id],'first',[],0);
+        $product_details = [];
+        $artwork_result = json_decode($product_info->artwork_info);
+        $url = url('artwork_details').'/'.$artwork_result->id;
+        $artwork_name = '<a href="'.$url.'">'.$artwork_result->title.'</a>';
+        $product_details['artwork_name'] = $artwork_name;
+        $product_details['tracking_number'] = $product_info->tracking_number;
+        $product_details['carrier'] = $product_info->carrier;
+        $user_info = $this->userRepository->getData(['id'=> $product_info->user_id],'first',[],0);
+        if($user_info){
+            Mail::to($user_info)->send(new ShippingNotification($product_details));
+        }
         return redirect('artist/order_list');
     }
 

@@ -103,7 +103,7 @@
                      <div class="col-md-12 text-center">
                         <h2>Inventory and pricing</h2>
                      </div>
-                     <div class="col-md-8 offset-md-2">
+                     <div class="col-md-8 offset-md-2 inventoryPricing">
                         <div class="checkboxes d-flex justify-content-center ">
                            <div class="form-group">
                               <div ><label for="subject_animals"><input type="checkbox" id="originalCheck" name="variant_type" value="original" @if(count($variant_types) > 0 && in_array('original', $variant_types)) checked @endif >Orignal</label>

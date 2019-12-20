@@ -11,10 +11,10 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <div class="col-8">
+                            <div class="col-md-8">
                                 <h3 class="mb-0">{{ __('Gallery User Management') }}</h3>
                             </div>
-                            <div class="col-4 text-right">
+                            <div class="col-md-4 text-right">
                                 <a href="{{ url('/admin/gallery') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                     <label class="form-control-label" for="input-postal_code">{{ __('Biography') }}</label>
                                     <textarea class="form-control" rows="3" name="biography">{{$gallery->biography}}</textarea>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 p-0">
                                     <div class="picture-container">
                                         <div class="picture">
                                             <img src="@if(!empty($gallery->media_url)){{$gallery->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">

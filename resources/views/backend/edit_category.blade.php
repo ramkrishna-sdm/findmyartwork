@@ -11,10 +11,10 @@
                     <div class="card bg-secondary shadow">
                         <div class="card-header bg-white border-0">
                             <div class="row align-items-center">
-                                <div class="col-8">
+                                <div class="col-md-8">
                                     <h3 class="mb-0">{{ __('Edit Category') }}</h3>
                                 </div>
-                                <div class="col-4 text-right">
+                                <div class="col-md-4 text-right">
                                     <a href="{{ url('/admin/category') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                         @endif
                                     </div>
                                     <input type="hidden" name="old_image" value="{{$category->media_url}}">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 p-0">
                                         <div class="picture-container">
                                             <div class="picture">
                                                 <img src="@if(!empty($category->media_url)){{$category->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">

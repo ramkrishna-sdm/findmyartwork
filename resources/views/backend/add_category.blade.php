@@ -10,11 +10,11 @@
                 <div class="col-xl-12 order-xl-1">
                     <div class="card bg-secondary shadow">
                         <div class="card-header bg-white border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
+                            <div class="row align-items-center flex-wrap">
+                                <div class="col-md-8">
                                     <h3 class="mb-0">{{ __('Add category') }}</h3>
                                 </div>
-                                <div class="col-4 text-right">
+                                <div class="col-md-4 text-right">
                                     <a href="{{ url('/admin/category') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 p-0">
                                         <div class="picture-container">
                                             <div class="picture">
                                                 <input class="form-control" type="file" id="wizard-picture" name="media_url">

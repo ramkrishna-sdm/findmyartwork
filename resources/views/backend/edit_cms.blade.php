@@ -62,7 +62,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 p-0">
                                         <div class="picture-container">
                                             <div class="picture">
                                                 <img src="@if(!empty($cms_info->first_img_url)){{$cms_info->first_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
@@ -90,7 +90,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 p-0">
                                         <div class="picture-container">
                                             <div class="picture">
                                                 <img src="@if(!empty($cms_info->second_img_url)){{$cms_info->second_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
@@ -136,7 +136,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 p-0">
                                         <div class="picture-container">
                                             <div class="picture">
                                                 <img src="@if(!empty($cms_info->first_img_url)){{$cms_info->first_img_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
