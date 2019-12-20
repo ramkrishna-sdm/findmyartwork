@@ -267,6 +267,8 @@ class ArtworkController extends Controller
         return redirect('artist/order_list');
     }
 
+   
+
 }
 
 
