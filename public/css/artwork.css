@@ -213,11 +213,11 @@ background: #bbb;
 .form-wizard-step.active{
     background:#2e3192;
 }
-.form-wizard-step .fa{color: #2e3192;}
+.form-wizard-step .fa{color: #2e3192; line-height: 38px;}
 .form-wizard-step.activated{
     background:#2e3192;
 }
-.form-wizard-step.activated .fa{color: #fff}
+.form-wizard-step.activated .fa{color: #fff; }
 .form-wizard-progress { 
     position: absolute; 
     top: 36px;
@@ -620,8 +620,9 @@ button.delCurrency {
     opacity: 0;
     cursor: pointer;
 }
-.form-wizard.profile-setting{
-    text-align: left
+.form-wizard.profile-setting {
+    text-align: left;
+    padding-top: 25px;
 }
 .form-wizard.profile-setting h2{
     font-size: 24px;

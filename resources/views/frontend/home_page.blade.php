@@ -141,41 +141,44 @@
     </div>
     <div class="container">
         <div class="row">
-            @if(count($topartists) > 0)
-            @foreach($topartists as $key => $topartist)
-            <div class="col-12 col-md-3">
-                <div class="artPost artPostNew">
-                    <div class="artist-frame">
-                        <div class="artist-detail">
-                            <div class="profile_img">
-                                <a href="{{url('profile_details')}}/{{$topartist->id}}">
-                                    <img src="{{$topartist->media_url}}" alt="">
-                                </a>
+            <div class="artistSLider owl-carousel artistCarousel">
+                @if(count($topartists) > 0)
+                @foreach($topartists as $key => $topartist)
+                <div class="col-12 col-md-12">
+                    <div class="artPost artPostNew">
+                        <div class="artist-frame">
+                            <div class="artist-detail">
+                                <div class="profile_img">
+                                    <a href="{{url('profile_details')}}/{{$topartist->id}}">
+                                        <img src="{{$topartist->media_url}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="profile-summary">
+                                    <!-- <div class="name">{{$topartist->first_name}} {{$topartist->last_name}}</div> -->
+                                    <h6>{{$topartist->first_name}} {{$topartist->last_name}}</h6>
+                                     <p class="account">@ {{$topartist->user_name}}</p>
+                                </div>
                             </div>
-                            <div class="profile-summary">
-                                <!-- <div class="name">{{$topartist->first_name}} {{$topartist->last_name}}</div> -->
-                                <h6>{{$topartist->first_name}} {{$topartist->last_name}}</h6>
-                                 <p class="account">@ {{$topartist->user_name}}</p>
+                            <div class="artist-follow">
+                                @if(Auth::user() && in_array(Auth::user()->id, $topartist->like_count))
+                                <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
+                                @elseif(in_array(Session::get('random_id'), $topartist->like_count))
+                                <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
+                                @else
+                                <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Follow</a>
+                                @endif
                             </div>
                         </div>
-                        <div class="artist-follow">
-                            @if(Auth::user() && in_array(Auth::user()->id, $topartist->like_count))
-                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
-                            @elseif(in_array(Session::get('random_id'), $topartist->like_count))
-                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Following</a>
-                            @else
-                            <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$topartist->id}}">Follow</a>
-                            @endif
-                        </div>
-                    </div>
 
-                    <div class="artistText">
-                        <p>{{$topartist->biography}}<a href="javascript:void(0);">{{$topartist->user_name}}</a>
+                        <div class="artistText">
+                            <p>{{$topartist->biography}}<a href="javascript:void(0);">{{$topartist->user_name}}</a>
+                        </div>
                     </div>
                 </div>
+                @endforeach
+                @endif
             </div>
-            @endforeach
-            @endif
+                
         </div>
     </div>
     <div class="container text-center mt-5">

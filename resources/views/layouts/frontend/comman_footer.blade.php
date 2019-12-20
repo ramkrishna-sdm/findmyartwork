@@ -70,7 +70,7 @@
 </footer>
 
 <!-- Chat Model -->
-<div class="modal fade getStartedModals chatModal" id="chatModal">
+<div class="chatModal" id="chatModal">
     
 </div>
 <!-- End Chat Model -->
@@ -1007,6 +1007,19 @@ $(document).on('click', '#change_shipping_status', function(){
   $('#summary_info').hide();
   $('#shipping_status').show();
 });
+
+$(document).on('click', '.close_modal', function(){
+  // $("#changeShippingStatus").removeClass("show"); 
+  // $("#changeShippingStatus").removeAttr("style"); 
+  // $("#changeShippingStatus").html(""); 
+  // $(".modal-backdrop").remove(); 
+  // $('body').removeClass("modal-open"); 
+  window.location.reload();
+});
+
+$(document).on('click', '#closeChatList', function(){
+  $('#chatModal').html('');
+})
 </script>
 
 </body>

@@ -47,7 +47,7 @@
          @csrf
          <input type="hidden" name="user_type" value="artist">
          <input type="hidden" name="id" value="{{$artist->id}}">
-         <div class="row">
+         <div class="row noRowMargin">
 
             <div class="col-12 col-sm-6 col-md-4 profile-pic">
                <div class="frame"><img src="{{$artist->media_url}}" alt="..."></div>
@@ -61,7 +61,7 @@
             <div class="col-12 col-sm-6 col-md-8 form-wizard profile-setting">
                <h2 class="text-center">Profile Management</h2>
                @if(!empty($artist))
-               <div class="row">
+               <div class="row noRowMargin">
                   <div class="col-12 categorySection">
                      <div class="d-flex justify-content-between cat-sub">
                         <div class="form-group">

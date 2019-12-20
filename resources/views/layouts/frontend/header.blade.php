@@ -70,7 +70,7 @@ HomeController::header_counter();
                 <li class="nav-item"><a class="nav-link" href="{{url('about_us')}}">About</a></li>
                 <li class="nav-item"><a href="{{url('contact_us')}}" class="nav-link">Contact</a></li>
                  @if (Auth::user())
-                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link" id="chatId" data-toggle="modal" data-target="#chatModal">Chat</a></li>
+                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link" id="chatId"  ><i class="fas fa-comments"></i> Chat</a></li>
                  @endif
               </ul>
             </div>

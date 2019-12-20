@@ -13,10 +13,10 @@
                     <div class="card shadow">
                         <div class="card-header border-0">
                             <div class="row align-items-center">
-                                <div class="col-8">
+                                <div class="col-md-8">
                                     <h3 class="mb-0">{{ __('Artwork') }}</h3>
                                 </div>
-                                <div class="col-4 text-right">
+                                <div class="col-md-4 text-right">
                                     <a href="{{ url('/admin/artist') }}" class="btn btn-sm btn-primary">{{ __('Back to Artist') }}</a>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Title</th>

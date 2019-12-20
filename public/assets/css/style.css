@@ -107,7 +107,7 @@ div#loader_gif  img{position: absolute; left:50%; top:50%; transform:translate(-
 .artPostNew .profile-summary{line-height: 10px;}
 .artPostNew  .profile-summary .account{margin-bottom: 0;}
 .artistText{padding:15px 15px 0 15px; border-top:1px solid #f2f2f2;}
-.artistText p{color: #0e0f11; font-size: 14px;}
+.artistText p{color: #0e0f11; font-size: 14px; line-height: 20px;}
 .artistText p a{color: #9e9e9e; display: block; margin-top: 6px;}
 
 .actionIcons a .far, .actionIcons a .fas{font-size: 20px; transition:all .3s; position: absolute; left:0; top:0;}
@@ -168,7 +168,7 @@ div#loader_gif  img{position: absolute; left:50%; top:50%; transform:translate(-
 .footerLower{margin-top:35px}
 .footerLower a{margin-left:20px;font-size:14px}
 .footerLower a:first-child,.social-links a:first-child{margin-left:0}
-.form-control{border:1px solid #cecece;border-radius:2px;height:calc(1.5em + .75rem + 9px);line-height:2.625rem;font-size:14px}
+.form-control, .dataTables_filter input, .dataTables_length select{border:1px solid #cecece;border-radius:2px;height:calc(1.5em + .75rem + 9px);line-height:2.625rem;font-size:14px}
 .form-control:focus{box-shadow:none}
 textarea.form-control{min-height:156px}
 label.form-label{margin-bottom:5px;display:block;width:100%;font-size:14px;font-weight:600}
@@ -295,6 +295,7 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
 .artworkSorting h4,.galleryFilters h4{font-size:20px;font-weight:600;padding-bottom:15px;color:#0e0f11}
 .filterBlock{border:1px solid #f5f5f5;margin-bottom:22px;}
 .filterBlock h5{padding:14px 12px;color:#0e0f11;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.filterBlock ul{padding-left: 0;}
 .filterBlock h5 .fas{color:#0e0f11}
 .artworkSorting ul li{font-size:14px;padding:9px 12px 10px}
 .artworkSorting ul li + li {border-top:1px solid #f5f5f5}
@@ -362,7 +363,7 @@ ul.multiselect-container li.active label.checkbox:after{content:'';position:abso
   padding: 4rem 0;
 }
 .productDetailCarousel .owl-item .item{height: 350px;}
-.productDetailCarousel .owl-item .item img{height: 100%; width:auto !important;}
+.productDetailCarousel .owl-item .item img{height: 100%; width:100% !important; object-fit: contain;}
 
 .productDetails .detail .head {
   display: flex;
@@ -550,7 +551,69 @@ transition: all .3s;
 .postBlock .postText p{font-size:15px; line-height:22px; margin: 15px 0 20px 0;}
 .postBlock .btn{padding: .4rem 1rem; font-size:14px;}
 
+.blogDetails p{line-height: 22px; font-size: 13px;}
+
+.basketContent.orderlist{display: block !important; }
+.dataTable tbody tr td{font-size: 14px; line-height: 24px;}
+.dataTable tbody tr td .tableIcons a .fa{font-size: 15px;color: #2e3192;}
+.paginate_button.current{background: #cecece !important;  border:0 !important; }
+
 .orderChange .image{order:2 !important;}
+.blogImageAdd label input{display: none;}
+
+.blogImageAdd  label {
+    background: #EBEDEF;
+    padding: 15px;
+    font-size: 14px;
+    border:1px solid #f2f2f2;
+    cursor: pointer;
+}
+.basketSaleGroup .btn-sm{font-size: 14px; padding: 5px 15px;}
+.chatUserlist{position: fixed; bottom: 20px; right:10px; width: 200px;
+-webkit-box-shadow: 1px -1px 25px 2px rgba(0,0,0,0.38);
+-moz-box-shadow: 1px -1px 25px 2px rgba(0,0,0,0.38);
+box-shadow: 1px -1px 25px 2px rgba(0,0,0,0.38);
+}
+
+#closeChatList{position: absolute;
+left:-10px;
+top:-10px;
+width: 17px;
+height: 17px;
+border-radius: 50%;
+background: #000;
+color: #fff;
+z-index: 9;
+    height: 20px;
+    width: 20px;
+    line-height: 17px;
+    text-align: center;
+    font-weight: 600;
+    border: 0;
+    cursor: pointer;
+
+}
+.slipUpper h6{font-weight: 600; margin-bottom: 1.5rem;}
+.slipUpper p{line-height: 8px;}
+.slip-table-container table tbody tr td:first-child, .table-subTotal table tbody tr td:first-child{font-weight: 600; text-transform: capitalize;}
+
+.borderless td, .borderless th {
+    border: none;
+    vertical-align: middle;
+}
+.borderless td:first-child {font-weight: 600;}
+.borderless td a{font-weight: 600; text-transform: capitalize; color: #000;}
+.direct-chat-text{background-color: #2e3192 !important; border-color: #2e3192 !important; color: #fff !important;}
+.direct-chat-primary .right>.direct-chat-text:after, .direct-chat-primary .right>.direct-chat-text:before{border-left-color: #2e3192 !important;}
+#msginput-4:focus{border-color: #2e3192 !important;}
+
+
+
+.box.box-primary {
+    border-top-color: #2e3192 !important;
+}
+
+
 /* Responsive Css */
 @media (max-width: 1100px) {
   .navbar .navbar-nav > li{margin:0 10px}
@@ -640,6 +703,15 @@ transition: all .3s;
  .postBlock{flex-direction: column;}
  .orderChange .image{order:1 !important;}
  .orderChange  .postText{order:2 !important;} 
+ .basketSaleGroupSale{flex-direction:column; align-items:flex-start !important;}
+ .basketSaleGroupSale .text-right{display: flex; justify-content:space-between; align-items:center; width: 100%;}
+.postImage:hover img{transform:none;}
+.postImage:hover{overflow:hidden;}
+.postBlock .image{min-height: auto;}
+.chat_box{right: 0 !important;
+width: 100% !important; z-index: 99;}
+
+
 }
 @media (max-width: 640px) {
   .footerLink .col-md-7.d-flex{display:block!important}
@@ -674,6 +746,7 @@ transition: all .3s;
   .contact-text h5+p{font-size:20px}
   .contact-form h3{padding-bottom:25px}
   .contact-form form{padding-top:25px}
+  .categoryItem{width: 48%;}
 }
 @media (max-width: 420px) {
   .btn-sm,.nameFollowers span.followersNum,.nameFollowers span.name{font-size:12px}

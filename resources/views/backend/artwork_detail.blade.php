@@ -11,13 +11,13 @@
                     <div class="card shadow">
                         <div class="card-header bg-white border-0">
                             <div class="row align-items-center">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <h3 class="mb-0">{{ __('Artwork Details') }}</h3>
                                 </div>
-                                <div class="col-3 text-right">
+                                <div class="col-md-3 text-right">
                                     <a href="{{url('admin/change_artwork_status')}}/{{$artworks->id}}/{{$artworks->is_publised}}/detail/0" class="btn btn-sm btn-primary change_artwork_status"> @if($artworks->is_publised == 'publish') {{ __('Un-Publish') }} @else {{ __('Publish')}} @endif</a>
                                 </div>
-                                <div class="col-3 text-right">
+                                <div class="col-md-3 text-right">
                                     <a href="{{ url('admin/artwork') }}/{{$artist_id}}" class="btn btn-sm btn-primary">{{ __('Back to Artwork') }}</a>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Variant Type</th>

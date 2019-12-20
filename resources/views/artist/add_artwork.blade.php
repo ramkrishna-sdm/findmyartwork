@@ -18,25 +18,25 @@
                   </div>
                   <!-- Step 1 -->
                   <div class="form-wizard-step active">
-                     <div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                     <div class="form-wizard-step-icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
                      <p>Images</p>
                   </div>
                   <!-- Step 1 -->
                   <!-- Step 2 -->
                   <div class="form-wizard-step">
-                     <div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
+                     <div class="form-wizard-step-icon"><i class="fa fa-info-circle" aria-hidden="true"></i></div>
                      <p>Title and description</p>
                   </div>
                   <!-- Step 2 -->
                   <!-- Step 3 -->
                   <div class="form-wizard-step">
-                     <div class="form-wizard-step-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                     <div class="form-wizard-step-icon"><i class="fa fa-list-alt" aria-hidden="true"></i></div>
                      <p>Categorization</p>
                   </div>
                   <!-- Step 3 -->
                   <!-- Step 4 -->
                   <div class="form-wizard-step">
-                     <div class="form-wizard-step-icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                     <div class="form-wizard-step-icon"><i class="fa fa-list-ol" aria-hidden="true"></i></div>
                      <p>Inventory and pricing</p>
                   </div>
                   <!-- Step 4 -->
@@ -327,7 +327,13 @@
                            </div>
                         </div>
                      </div>
+                    
                   </div>
+
+                   <div class="form-wizard-buttons">
+                        <button type="button" class="btn btn-previous">Previous</button>
+                        <button type="submit" class="btn btn-submit submit_artwork">Submit</button>
+                     </div>
                   <div class="modal fade getStartedModals LoginModal" id="addShipping">
                      <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -484,10 +490,10 @@
                         </div>
                      </div>
                   </div>
-                  <div class="form-wizard-buttons">
+                <!--   <div class="form-wizard-buttons">
                      <button type="button" class="btn btn-previous">Previous</button>
                      <button type="submit" class="btn btn-submit submit_artwork">Submit</button>
-                  </div>
+                  </div> -->
                </fieldset>
                <!-- Form Step 4 -->
             </form>
