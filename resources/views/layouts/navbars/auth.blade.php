@@ -164,6 +164,12 @@
                     <p>{{ __('payment history') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'site_setting' ? 'active' : '' }}">
+                <a href="{{ url('/admin/site_setting') }}">
+                    <i class="nc-icon nc-settings-gear-65"></i>
+                    <p>{{ __('Site Setting') }}</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
