@@ -229,7 +229,7 @@ class ArtworkController extends Controller
     }
 
     public function payment_history(){
-        $payment_history = $this->orderRepository->getData([],'get',[],0);
+        $payment_history = $this->orderRepository->getData([],'get',['users'],0);
         return view('backend/payment_history', compact('payment_history'));
     }
 }

@@ -34,12 +34,14 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('Artist') }}</th>
-                                        <th scope="col">{{ __('Buyer') }}</th>
-                                                    <th class="disabled-sorting text-right">Payment</th>
+                                                    <th scope="col">{{ __('Buyer') }}</th>
+                                                    <th class="disabled-sorting text-right">Amount</th>
+                                                    <th>Payment Id</th>
+                                                    <th>Shipping Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -47,12 +49,15 @@
                                                 @foreach($payment_history as $key => $payment)
                                                 <?php
                                                 $json_info = json_decode($payment->artwork_info);
-                                                //dd($json_info);
+                                                $order_info = json_decode($payment->paypal_response);
+                                                //dd($payment->users->first_name); exit;
                                                 ?>
                                                 <tr>
                                                     <td>{{$json_info->artist->first_name}} {{$json_info->artist->last_name}}</td>
-                                                    <td></td>
-                                                    <td>${{$json_info->variants[0]->price}}</td>
+                                                    <td>{{$payment->users->first_name}} {{$payment->users->last_name}}</td>
+                                                    <td>{{$order_info->transactions[0]->amount->total}}</td>
+                                                    <td>{{$payment->payment_id}}</td>
+                                                    <td>{{$payment->shipping_status}}</td>
                                                     
                                                 </tr>
                                                 @endforeach
