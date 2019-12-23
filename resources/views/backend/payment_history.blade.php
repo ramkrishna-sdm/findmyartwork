@@ -37,8 +37,9 @@
                                         <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">{{ __('Artist') }}</th>
+                                                    <th scope="col">{{ __('Artwork') }}</th>
                                                     <th scope="col">{{ __('Buyer') }}</th>
+                                                    <th scope="col">{{ __('Artist') }}</th>
                                                     <th class="disabled-sorting text-right">Amount</th>
                                                     <th>Payment Id</th>
                                                     <th>Shipping Status</th>
@@ -53,9 +54,10 @@
                                                 //dd($payment->users->first_name); exit;
                                                 ?>
                                                 <tr>
-                                                    <td>{{$json_info->artist->first_name}} {{$json_info->artist->last_name}}</td>
+                                                    <td><a href="{{url('artwork_details')}}/{{$json_info->id}}"><img src="{{$json_info->artwork_images[0]->media_url}}"></a></td>
                                                     <td>{{$payment->users->first_name}} {{$payment->users->last_name}}</td>
-                                                    <td>{{$order_info->transactions[0]->amount->total}}</td>
+                                                    <td>{{$json_info->artist->first_name}} {{$json_info->artist->last_name}}</td>
+                                                    <td>{{$json_info->variants[0]->price}}</td>
                                                     <td>{{$payment->payment_id}}</td>
                                                     <td>{{$payment->shipping_status}}</td>
                                                     
