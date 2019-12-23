@@ -1,10 +1,7 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'artworks'
+    'elementActive' => 'manage_artworks'
 ])
-<script type="text/javascript">
-
-</script>
 @section('content')
     <div class="content">
         <div class="container-fluid mt--7">
