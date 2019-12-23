@@ -5,6 +5,7 @@ const config = require('config');
 
 class Db {
 	constructor() {
+		console.log(config ,'connection');
 		this.connection = mysql.createPool({
 			connectionLimit: 100,
 			host: config.get('dbConfig.host'),
@@ -14,6 +15,7 @@ class Db {
 			debug: false
 		});
 	}
+
 	query(sql, args) {
 		return new Promise((resolve, reject) => {
 			this.connection.query(sql, args, (err, rows) => {

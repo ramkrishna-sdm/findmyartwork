@@ -13,10 +13,12 @@ class Socket{
 
     socketEvents(){
         this.io.on('connection', (socket) => {
+            // console.log('con start', socket.id);
             /**
             * get the user's Chat list
             */
             socket.on('chatList', async (userId) => {
+                // console.log('chatlist hit', userId ,"details");
                 const result = await helper.getChatList(userId);
                 this.io.to(socket.id).emit('chatListRes', {
                     userConnected: false,
@@ -33,6 +35,7 @@ class Socket{
             * get the get messages
             */
             socket.on('getMessages', async (data) => {
+                // console.log('get message hit', data);
                 const result = await helper.getMessages(data.fromUserId, data.toUserId);
 				if (result === null) {
                     this.io.to(socket.id).emit('getMessagesResponse', {result:[],toUserId:data.toUserId});
