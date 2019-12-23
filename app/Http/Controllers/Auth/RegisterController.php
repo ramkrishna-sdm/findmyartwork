@@ -91,6 +91,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'user_name' => $data['user_name'],
             'password' => Hash::make($data['password']),
+            'name' => $data['first_name'].' '.$data['last_name'],
         ]);
         $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
         if($toEmail){

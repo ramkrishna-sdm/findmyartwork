@@ -31,7 +31,7 @@
                     <div class="panel-body chatUserlist" style="padding:0px;">
                         <a id="closeChatList">x</a>
                         <ul class="list-group">
-                            <li class="list-group-item" v-for="chatList in chatLists" style="cursor: pointer;" @click="chat(chatList)">@{{ chatList.name }}  <i class="fa fa-circle pull-right" v-bind:class="{'online': (chatList.online=='Y')}"></i>  <span class="badge" v-if="chatList.msgCount !=0">@{{ chatList.msgCount }}</span></li>
+                            <li class="list-group-item" v-for="chatList in chatLists" style="cursor: pointer;" @click="chat(chatList)" v-bind:data-user-id="chatList.id" >@{{chatList.name}}<i class="fa fa-circle pull-right" v-bind:class="{'online': (chatList.online=='Y')}"></i>  <span class="badge" v-if="chatList.msgCount !=0">@{{ chatList.msgCount }}</span></li>
                             <li class="list-group-item" v-if="socketConnected.status == false">@{{ socketConnected.msg }}</li>
                         </ul>
                     </div>

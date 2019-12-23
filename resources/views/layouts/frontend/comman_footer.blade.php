@@ -1020,6 +1020,14 @@ $(document).on('click', '.close_modal', function(){
 $(document).on('click', '#closeChatList', function(){
   $('#chatModal').html('');
 })
+
+$(document).on('click', '#chat_with_user', function(){
+  document.getElementById("chatId").click();
+  var username = $(this).attr('data-user-id');
+  setTimeout(function () {
+    $('li.list-group-item[data-user-id = '+username+']').trigger('click');
+   }, 500);
+})
 </script>
 
 </body>
