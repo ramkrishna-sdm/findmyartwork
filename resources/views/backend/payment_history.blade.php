@@ -59,7 +59,7 @@
                                                 @endif
                                             </tbody>
                                         </table>
-                                    </div><!-- end content-->
+                                    </div><!-- end content----->
                                 </div><!--  end card  -->
                             </div> <!-- end col-md-12 -->
                         </div> <!-- end row -->
