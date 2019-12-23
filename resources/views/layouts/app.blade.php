@@ -90,6 +90,30 @@
             if(arr[2] == "buyer" || arr[2] == "gallery" || arr[2] == "artist" || arr[2] == "artwork" || arr[2] == "category" || arr[2] == "subject" || arr[2] == "style" || arr[2] == "subcategory" || arr[2] == "faq" || arr[2] == "payment_history"){
                 $('#datatable').DataTable();
             }
+            if(arr[2] == "payment_history"){
+                $('#paymeny_datatable').DataTable(
+                    {
+                        "paging": true,
+                        "autoWidth": true,
+                        "footerCallback": function ( row, data, start, end, display ) {
+                            var api = this.api();
+                            nb_cols = api.columns().nodes().length;
+                            var j = 3;
+                            while(j < nb_cols){
+                                var pageTotal = api
+                            .column( j, { page: 'current'} )
+                            .data()
+                            .reduce( function (a, b) {
+                                return Number(a) + Number(b);
+                            }, 0 );
+                      // Update footer
+                      $( api.column( j ).footer() ).html(pageTotal);
+                                j++;
+                            } 
+                        }
+                    }
+                );
+            }
             if(arr[2] == "manage_cms"){
                 var ckview = document.getElementById("des_first");
                     CKEDITOR.replace(des_first,{

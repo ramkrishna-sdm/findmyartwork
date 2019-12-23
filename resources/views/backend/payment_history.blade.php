@@ -34,24 +34,35 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <table id="datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
+                                        <table id="paymeny_datatable" class="table table-striped table-bordered table-responsive-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('Artwork') }}</th>
                                                     <th scope="col">{{ __('Buyer') }}</th>
                                                     <th scope="col">{{ __('Artist') }}</th>
-                                                    <th class="disabled-sorting text-right">Amount</th>
+                                                    <th class="disabled-sorting text-right">Amount (In $)</th>
                                                     <th>Payment Id</th>
                                                     <th>Shipping Status</th>
                                                 </tr>
                                             </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Totals</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
                                             <tbody>
                                                 @if(count($payment_history)>0)
+                                                <?php $total_amout = 0;?>
                                                 @foreach($payment_history as $key => $payment)
                                                 <?php
                                                 $json_info = json_decode($payment->artwork_info);
                                                 $order_info = json_decode($payment->paypal_response);
-                                                //dd($payment->users->first_name); exit;
+                                                $total_amout = $total_amout + $json_info->variants[0]->price;
                                                 ?>
                                                 <tr>
                                                     <td><a href="{{url('artwork_details')}}/{{$json_info->id}}"><img src="{{$json_info->artwork_images[0]->media_url}}"></a></td>
