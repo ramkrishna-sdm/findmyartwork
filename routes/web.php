@@ -208,6 +208,8 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'AdminCheck']], functio
    Route:: get('/site_setting', 'Admin\CmsController@site_setting');
    Route:: post('/update_site_setting', 'Admin\CmsController@update_site_setting');
 
+   Route:: get('/payment_history', 'Admin\ArtworkController@payment_history');
+
 
 
 });

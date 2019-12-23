@@ -8,6 +8,8 @@ use App\Repository\GalleryUserRepository;
 use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
+use App\Repository\OrderRepository;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
 use Session;
@@ -28,13 +30,14 @@ class ArtworkController extends Controller
     * Created By: Ram Krishna Murthy
     * Created At: 
     */
-    public function __construct(Request $request, GalleryUserRepository $galleryUserRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository)
+    public function __construct(Request $request, GalleryUserRepository $galleryUserRepository, ArtworkRepository $artworkRepository, ArtworkImageRepository $artworkImageRepository, VariantRepository $variantRepository,OrderRepository $orderRepository)
     {
         $this->request = $request;
         $this->galleryUserRepository = $galleryUserRepository;
         $this->artworkRepository = $artworkRepository;
         $this->artworkImageRepository = $artworkImageRepository;
         $this->variantRepository = $variantRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -225,4 +228,8 @@ class ArtworkController extends Controller
         }
     }
 
+    public function payment_history(){
+        $payment_history = $this->orderRepository->getData([],'get',[],0);
+        return view('backend/payment_history', compact('payment_history'));
+    }
 }
