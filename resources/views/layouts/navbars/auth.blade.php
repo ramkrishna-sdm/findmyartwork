@@ -161,7 +161,7 @@
             <li class="{{ $elementActive == 'payment_history' ? 'active' : '' }}">
                 <a href="{{ url('/admin/payment_history') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
-                    <p>{{ __('payment_history') }}</p>
+                    <p>{{ __('payment history') }}</p>
                 </a>
             </li>
         </ul>
