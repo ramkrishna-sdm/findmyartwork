@@ -515,7 +515,7 @@ class HomeController extends Controller
         }else{
             return redirect('/');
         }
-        return redirect('/items_cart');
+        return redirect('/cart');
     }
 
     public function exhibitions(){
@@ -528,5 +528,35 @@ class HomeController extends Controller
         $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
         $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
        return view('gallery.exhibition_details',compact('blog_detail','leatests'));
+    }
+
+    public function buy_now($id){
+        if(Auth::user()){
+            $saved_artwork = [];
+            $saved_artwork['user_id'] = Auth::user()->id;
+            $saved_artwork['artwork_id'] = $id;
+            $saved_artwork['status'] = 'cart';
+
+            $count_saved = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $id, 'status' => 'cart'],'count',[],0);    
+            if(empty($count_saved)){
+                $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+            }else{
+                
+            }
+            
+        }else{
+            $saved_artwork = [];
+            $saved_artwork['guest_id'] = Session::get('random_id');
+            $saved_artwork['artwork_id'] = $id;
+            $saved_artwork['status'] = 'cart';
+
+            $count_saved = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'artwork_id' => $id, 'status' => 'cart'],'count',[],0);    
+            if(empty($count_saved)){
+                $artwork = $this->savedArtworkRepository->createUpdateData(['id'=> $this->request->id],$saved_artwork);
+            }else{
+            
+            }
+        }
+        return redirect('/cart');
     }
 }

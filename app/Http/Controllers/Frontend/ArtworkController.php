@@ -277,6 +277,10 @@ class ArtworkController extends Controller
         if($user_info){
             Mail::to($user_info)->send(new ShippingNotification($product_details));
         }
+        if($this->request->previous_shipping_status == "Pending"){
+            return redirect('payout/'.$this->request->order_id);    
+        }
+        
         return redirect('artist/order_list');
     }
 

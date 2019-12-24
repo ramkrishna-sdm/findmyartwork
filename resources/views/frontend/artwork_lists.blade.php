@@ -27,11 +27,11 @@
 
 
                <div class="filterBlock">
-                <h5 class="price_selected">Price ($1)</h5>
+                <h5 class="price_selected">Price (£1)</h5>
                 <div class="form-group">
                    <input type="range" class="custom-range price_range" id="price-filter" min="0" max="9999" value="0">
                    <div class="price-fields clearfix">
-                      <input type="text" value="$1" class="float-left">  
+                      <input type="text" value="£1" class="float-left">  
                       <input type="text" value="$9999" class="float-right">
                    </div>
                 </div>
@@ -164,7 +164,7 @@
                                   <div class="leftBlock">
                                       <h5>{{$artworks->title}}</h5>
                                       @if($artworks->variants)
-                                      <h6>$ {{$artworks->variants[0]->price}}</h6>
+                                      <h6>£ {{$artworks->variants[0]->price}}</h6>
                                       @endif
                                   </div>
                                   <div class="rightBlock">

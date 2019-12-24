@@ -59,7 +59,7 @@
                         <div class="leftBlock">
                             <h5>{{$artworks->title}}</h5>
                             @if($artworks->variants)
-                            <h6>$ {{$artworks->variants[0]->price}}</h6>
+                            <h6>£ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>
                         <div class="rightBlock">
