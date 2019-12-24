@@ -65,9 +65,9 @@
             <span class="dimension">{{$featuredArtworks->variants[0]->height}} x {{$featuredArtworks->variants[0]->width}} in</span> 
             <!-- <span class="weight">Weight : 10Kg</span> -->
         </div>
-        <h2>Price: ${{$featuredArtworks->variants[0]->price}}</h2>
+        <h2>Price: £{{$featuredArtworks->variants[0]->price}}</h2>
         <div class="col-lg-5 pl-0">
-            <a href="#" class="btn btn-default btn-lg btn-block">BUY NOW</a>
+            <a href="{{url('buy_now')}}/{{$featuredArtworks->id}}" class="btn btn-default btn-lg btn-block">BUY NOW</a>
         </div>
         @endif
     </div>
@@ -100,7 +100,7 @@
                     <div class="postFooter">
                         <div class="leftBlock">
                             <h5>{{$artwork->title}}</h5>
-                            <h6>${{$artwork->variants[0]->price}}</h6>
+                            <h6>£{{$artwork->variants[0]->price}}</h6>
                         </div>
                         <div class="rightBlock">
                             <span class="likes">{{count($artwork->like_count)}} Likes</span> 

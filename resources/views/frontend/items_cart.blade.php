@@ -32,7 +32,7 @@
                     <div class="postFooter">
                         <div class="leftBlock">
                             <h5>{{$artwork->saved_artwork->title}}</h5>
-                            <h6>${{$artwork->saved_artwork->variants[0]->price}}</h6>
+                            <h6>£{{$artwork->saved_artwork->variants[0]->price}}</h6>
                         </div>
                         <div class="rightBlock">
                             <span class="likes">{{count($artwork->saved_artwork->artwork_like)}} Likes</span> 

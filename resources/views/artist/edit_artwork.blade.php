@@ -149,7 +149,7 @@
                                  <label for="">Price <span>*</span></label>
                                  <input class="form-control" type="text" value="{{$value->price}}" name="original_price">
                                  <select name="price" class="form-control" id="">
-                                    <option value="">USD</option>
+                                    <option value="">GBP</option>
                                  </select>
                               </div>
                               <div class="col-md-6 form-group">
@@ -191,7 +191,7 @@
                                  <label for="">Price <span>*</span></label>
                                  <input class="form-control" type="text" value="{{$value->price}}" name="limited_price[]">
                                  <select name="price" class="form-control" id="">
-                                    <option value="">USD</option>
+                                    <option value="">GBP</option>
                                  </select>
                               </div>
                              
@@ -241,7 +241,7 @@
                                  <label for="">Price <span>*</span></label>
                                  <input class="form-control" type="text" value="{{$value->price}}" name="art_price[]">
                                  <select name="price" class="form-control" id="">
-                                    <option value="">USD</option>
+                                    <option value="">GBP</option>
                                  </select>
                               </div>
                               <div class="col-md-6 form-group">
@@ -282,7 +282,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="original_price">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
@@ -321,7 +321,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="limited_price[]">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                           
@@ -368,7 +368,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="art_price[]">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
@@ -408,7 +408,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="original_price">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">
@@ -449,7 +449,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="limited_price[]">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                           
@@ -498,7 +498,7 @@
                               <label for="">Price <span>*</span></label>
                               <input class="form-control" type="text" value="" name="art_price[]">
                               <select name="price" class="form-control" id="">
-                                 <option value="">USD</option>
+                                 <option value="">GBP</option>
                               </select>
                            </div>
                            <div class="col-md-6 form-group">

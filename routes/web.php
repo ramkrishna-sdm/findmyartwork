@@ -84,7 +84,7 @@ Route::get('/callback/{provider}', 'CommonLoginController@callback');
 Route::get('pay_now', 'Frontend\PaymentController@index');
 Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
 Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
-Route::get('payout', 'Frontend\PaymentController@payout');
+Route::get('payout/{order_id}', 'Frontend\PaymentController@payout');
 
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('/about_us', 'Frontend\HomeController@about_us');
@@ -110,6 +110,7 @@ Route::get('/cart', 'Frontend\ArtworkController@items_cart');
 Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
 Route::get('/artworks/{id?}', 'Frontend\ArtworkController@artworks');
 Route::get('/remove_from_cart/{id}', 'Frontend\HomeController@remove_from_cart');
+Route::get('/buy_now/{id}', 'Frontend\HomeController@buy_now');
 
 
 Route::get('/exhibitions','Frontend\HomeController@exhibitions');

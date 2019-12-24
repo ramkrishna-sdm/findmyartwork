@@ -23,14 +23,14 @@ use Session;
 use URL;
 use Exception;
 use App\Repository\ArtworkRepository;
-use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use App\Repository\SiteSettingRepository;
+use App\Repository\OrderRepository;
 use Mail;
 use App\Mail\AdminSaleNotification;
 use App\Mail\SaleNotification;
 use App\Mail\SellerNotification;
-
+use PHPUnit\TextUI\ResultPrinter;
 
 class PaymentController extends Controller
 {
@@ -40,7 +40,7 @@ class PaymentController extends Controller
      *
      * @return void
      */
-    public function __construct(ArtworkRepository $artworkRepository, OrderRepository $orderRepository, SiteSettingRepository $siteSettingRepository, UserRepository $userRepository)
+    public function __construct(ArtworkRepository $artworkRepository, SiteSettingRepository $siteSettingRepository, UserRepository $userRepository, OrderRepository $orderRepository)
     {
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
@@ -81,13 +81,13 @@ class PaymentController extends Controller
         $payer->setPaymentMethod('paypal');
         $item_1 = new Item();
         $item_1->setName($artwork_name) /** item name **/
-            ->setCurrency('USD')
+            ->setCurrency('GBP')
             ->setQuantity(1)
             ->setPrice($price); /** unit price **/
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
         $amount = new Amount();
-        $amount->setCurrency('USD')
+        $amount->setCurrency('GBP')
             ->setTotal($price);
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -165,8 +165,18 @@ class PaymentController extends Controller
                         $artwork_name .= ', <a href="'.$url.'">'.$artwork_result->title.'</a>';
                     }
 
+                    $site_setting = $this->siteSettingRepository->getData([],'first',[],0);
+                    $artist_payment = $artwork_result->variants[0]->price;
+                    if(!empty($site_setting->commission_persentage)){
+                        $artist_payment = $artist_payment * ((100-$site_setting->commission_persentage) / 100);
+                    }
+
+                    $admin_commission = ($site_setting->commission_persentage / 100) * $artist_payment;
+
                     $order['artwork_info'] = json_encode($artwork_result);
                     $order['user_id'] = Auth::user()->id;
+                    $order['artist_payment'] = $artist_payment;
+                    $order['admin_commission'] = $admin_commission;
                     $order['artwork_id'] = $artwork;
                     $order['artist_id'] = $artwork_result->user_id;
                     $order['payment_id'] = $result->getId();
@@ -195,7 +205,7 @@ class PaymentController extends Controller
                 // Mail to admin
                 $toEmail = $this->siteSettingRepository->getData([],'first',[],0);
                 if($toEmail){
-                    Mail::to($toEmail)->send(new AdminSaleNotification($admin_mail));
+                    Mail::to($toEmail->mail_id)->send(new AdminSaleNotification($admin_mail));
                 }else{
                     $toEmail = $this->userRepository->getData(['role'=> 'admin'],'first',[],0);
                     if($toEmail){
@@ -215,39 +225,61 @@ class PaymentController extends Controller
 
             /* Save order in database */
             \Session::put('success', 'Payment success');
-            return Redirect::to('cart');
+            $url = Auth::user()->role.'/order_list';
+            return Redirect::to($url);
         }
         \Session::put('error', 'Payment failed');
         return Redirect::to('cart');
     }
 
-    public function payout(){
+    public function payout($id){
+        // dd(time());
+
+        $site_setting = $this->siteSettingRepository->getData([],'first',[],0);
+        $product_info = $this->orderRepository->getData(['id'=>$id],'first',['artist'],0);
+        $json_info = json_decode($product_info->artwork_info);
+        $newprice = $json_info->variants[0]->price;
+        $payer_email = $json_info->artist->email;
+        
+        if(!empty($site_setting->commission_persentage)){
+            $newprice = $newprice * ((100-$site_setting->commission_persentage) / 100);
+        }
+
         $payouts = new \PayPal\Api\Payout();
         $senderBatchHeader = new \PayPal\Api\PayoutSenderBatchHeader();
         $senderBatchHeader->setSenderBatchId(uniqid())
         ->setEmailSubject("You have a Payout!");
         $senderItem = new \PayPal\Api\PayoutItem();
+        // dd($senderItem);
         $senderItem->setRecipientType('Email')
-        ->setNote('Thanks for your patronage!')
-        ->setReceiver('sb-fc6ye618472@personal.example.com')
-        ->setSenderItemId("2014031400023")
+        ->setNote('Payment for Artwork '.$json_info->title.'!')
+        // ->setReceiver('sb-fc6ye618472@personal.example.com')
+        ->setReceiver($payer_email)
+        ->setSenderItemId(time())
         ->setAmount(new \PayPal\Api\Currency('{
-                            "value":"1.0",
-                            "currency":"USD"
+                            "value":"'.$newprice.'",
+                            "currency":"GBP"
                         }'));
         $payouts->setSenderBatchHeader($senderBatchHeader)
         ->addItem($senderItem);
         $request = clone $payouts;
-
+        // dd($request);
         try {
-            $output = $payouts->createSynchronous($apiContext);
+            $output = $payouts->createSynchronous($this->_api_context);
+            // dd($output);
         } catch (Exception $ex) {
-
-            ResultPrinter::printError("Created Single Synchronous Payout", "Payout", null, $request, $ex);
-            exit(1);
+            \Session::flash('error_message', 'Order Marked as Shipped! Something went wrong with amount transfer. Please contact administrator');
+            return redirect('artist/order_list');
+            // dd($ex);
+            // ResultPrinter::printError("Created Single Synchronous Payout", "Payout", null, $request, $ex);
+            // exit(1);
         }
-
-        ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
+        $order['artist_payment_status'] = "Transferred";
+        $order_info = $this->orderRepository->createUpdateData(['id'=> $id],$order);
+        // dd($output->getBatchHeader()->getPayoutBatchId());
+        // ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
+        \Session::flash('success_message', 'Order Marked as Shipped & amount transferred to your paypal account.'); 
+        return redirect('artist/order_list');
 
         return $output;
     }
