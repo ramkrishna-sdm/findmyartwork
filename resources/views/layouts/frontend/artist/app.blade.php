@@ -46,9 +46,9 @@
 </head>
 
 <body class="">
-<!-- <div id="loader_gif">
+<div id="loader_gif">
       <img src="{{asset('assets/images/loader.gif')}}">
-</div> -->
+</div>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrapper ">
@@ -188,7 +188,14 @@
     @stack('scripts')
 
     @include('layouts.navbars.fixed-plugin-js') -->
-
+<script>
+  $(function(){
+    setTimeout(function() {
+      $("#loader_gif").hide();
+    }, 600); 
+   
+  });
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
     var PATH = $(location).attr('pathname');

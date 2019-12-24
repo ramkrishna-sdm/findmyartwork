@@ -85,7 +85,7 @@
                     <div class="profileAbout">
                         <div class="aboutHeader d-flex justify-content-between align-items-center">
                             <h4>about amenda</h4>
-                            <a href="#" class="btn btn-default">edit profile</a>
+                            <a href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}" class="btn btn-default">edit profile</a>
                         </div>
                         <div class="row">
                             <div class="col-md-4">

@@ -2,7 +2,7 @@
 <!-- Page Header Title -->
 <div class="page-title">
 <div class="page-title-inner">
-   <span class="pagetitleText">trending artists</span> 
+   <span class="pagetitleText">artists</span> 
    <img src="{{asset('assets/images/artists-graphic.svg')}}" class="title-img" alt="">
 </div>
 </div>
@@ -94,13 +94,13 @@
 
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class="col-lg-12  py-4 border d-flex paginationContainer">
       <ul class="pagination mx-auto">
             {{ $artists->onEachSide(1)->links() }}
       </ul>
   </div>
-</div>
+</div> -->
 </section>
 <!--End Trending Artists Page  -->
 @include('layouts.frontend.comman_footer')

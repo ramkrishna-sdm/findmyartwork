@@ -9,7 +9,6 @@ use App\Repository\ArtworkRepository;
 use App\Repository\ArtworkImageRepository;
 use App\Repository\VariantRepository;
 use App\Repository\OrderRepository;
-use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
 use Session;
@@ -61,7 +60,7 @@ class ArtworkController extends Controller
     * @return 
     *
     * Created By: Ram Krishna Murthy
-    * Created At: 23-12-2019
+    * Created At: 
     */
     public function view_artwork($artwork_id)
     {
@@ -227,9 +226,9 @@ class ArtworkController extends Controller
             return redirect('/admin/view_artwork/'.$id);
         }
     }
-
     public function payment_history(){
-        $payment_history = $this->orderRepository->getData([],'get',['users'],0);
+        $payment_history = $this->orderRepository->getData([],'get',[],0);
         return view('backend/payment_history', compact('payment_history'));
     }
+
 }

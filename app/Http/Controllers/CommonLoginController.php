@@ -39,7 +39,7 @@ class CommonLoginController extends Controller
 
             if ($user_role == "admin")
             {
-                return redirect()->to('/home');
+                return redirect()->to('/admin/profile');
             }
             elseif ($user_role == "buyer")
             {
