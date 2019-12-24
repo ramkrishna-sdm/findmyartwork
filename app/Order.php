@@ -12,11 +12,16 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'artwork_id', 'artist_id', 'payment_id', 'delivery_address', 'status', 'paypal_response', 'artwork_info', 'shipping_status', 'tracking_number', 'carrier'
+        'user_id', 'artwork_id', 'artist_payment', 'artist_payment_status', 'admin_commission', 'artist_id', 'payment_id', 'delivery_address', 'status', 'paypal_response', 'artwork_info', 'shipping_status', 'tracking_number', 'carrier'
     ];
 
     public function users()
     {
         return $this->belongsTo('App\User','user_id','id');
+    }
+
+    public function artist()
+    {
+        return $this->belongsTo('App\User','artist_id','id');
     }
 }

@@ -26,7 +26,7 @@
                         </div>
                         <div class="price">
                             @if(count($artwork_result->variants) > 0)
-                            ${{$artwork_result->variants[0]->price}}
+                            £{{$artwork_result->variants[0]->price}}
                             @endif
                             
                         </div>
@@ -109,7 +109,7 @@
                         <div class="leftBlock">
                             <h5>{{$artworks->title}}</h5>
                             @if(count($artworks->variants) > 0)
-                            <h6>$ {{$artworks->variants[0]->price}}</h6>
+                            <h6>£ {{$artworks->variants[0]->price}}</h6>
                             @endif
                         </div>
                         <div class="rightBlock">

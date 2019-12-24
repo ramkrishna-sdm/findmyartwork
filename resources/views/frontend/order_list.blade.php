@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <span style="cursor: help;">${{$json_info->variants[0]->price}}</span>
+                                <span style="cursor: help;">£{{$json_info->variants[0]->price}}</span>
                                 @if($user_type == "artist")
                                     <button class="btn btn-default btn-md btn-sm d-block mt-2 shipping_status" data-order-id="{{$artwork->id}}" data-toggle="modal" data-target="#changeShippingStatus" >{{$artwork->shipping_status}}</button>
                                 @else
