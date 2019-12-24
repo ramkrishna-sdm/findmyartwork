@@ -1,22 +1,22 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        <a href="{{url('/home')}}" class="simple-text logo-mini">
+        <a href="{{url('/admin/profile')}}" class="simple-text logo-mini">
             <div class="logo-image-small">
                 <img src="{{ asset('paper') }}/img/logo-small.png">
             </div>
         </a>
-        <a href="{{url('/home')}}" class="simple-text logo-normal">
+        <a href="{{url('admin/profile')}}" class="simple-text logo-normal">
             {{ __('ArtViaYou') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
+           <!--  <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'dashboard') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
-            </li>
+            </li> -->
             <li class="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'artists' || $elementActive == 'artworks' || $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'artists' || $elementActive == 'user' || $elementActive == 'profile' ? 'true' : 'false' }}" href="#laravelExamples" class="{{ $elementActive == 'buyers' || $elementActive == 'gallery' || $elementActive == 'artists' || $elementActive == 'user' || $elementActive == 'profile' ? 'collapsed' : '' }}">
                     <i class="nc-icon nc-single-02"></i>
