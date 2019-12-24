@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['ve
 	Route::post('/deleteImage','ArtistUserController@deleteImage');
 	Route::get('/chat', 'ArtistUserController@getChat')->name('chat');
 	Route::get('/order_list', 'ArtistUserController@order_list');
+	Route::get('/like_users/{id}', 'ArtistUserController@like_users');
 
 });
 
@@ -113,6 +114,7 @@ Route::get('/remove_from_cart/{id}', 'Frontend\HomeController@remove_from_cart')
 
 Route::get('/exhibitions','Frontend\HomeController@exhibitions');
 Route::get('/exhibition_details/{id}','Frontend\HomeController@exhibition_details');
+Route::post('/like_users', 'Frontend\HomeController@like_users');
 
 // Route::get('/', function () {
 //     return view('welcome');

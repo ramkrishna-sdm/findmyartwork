@@ -97,7 +97,7 @@
                 <div class="artPost">
                     <div class="postHeader">
                         <div class="username">
-                            <div class="image"><img src="{{$artworks->artist->media_url}}" alt=""></div>
+                            <div class="image"><a href="{{url('profile_details')}}/{{$artwork_result->artist->id}}"><img src="{{$artworks->artist->media_url}}" alt=""></a></div>
                             <span class="name">{{$artworks->artist->first_name}}</span>
                         </div>
                         <span class="Posted">2 hours ago</span>

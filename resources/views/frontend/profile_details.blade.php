@@ -12,8 +12,28 @@
                     <img src="{{$profileDetails->media_url}}" class="img-fluid" alt="">
                 </div>
                 <div class="userStatsinfo">
-                    <span class="name">{{$profileDetails->first_name}} {{$profileDetails->last_name}}</span>  
-                    <div class="stats"><span>{{$all_likes}} Likes</span> <span>{{$all_follower_count}} Followers</span> <span class="following">{{$all_following_count}} Following</span> <a href="#" class="btn btn-border btn-sm">Follow</a>
+                    <span class="name">{{$profileDetails->first_name}} {{$profileDetails->last_name}}</span>
+                    <?php //dd($profileDetails->id);?>  
+                    <div class="stats">
+                        <a href="javascript:void()" data-btn-type="like" data-toggle="modal" data-target="#LikeModel"  data-dismiss="modal" aria-label="Close" class="like_users" data-user-id="{{$profileDetails->id}}">
+                            <span>{{$all_likes}} Likes</span>
+                        </a>
+                        <a href="javascript:void()"  data-btn-type="followers" data-toggle="modal" data-target="#FollowersModel"  data-dismiss="modal" aria-label="Close" class="like_users all_follower" data-user-id="{{$profileDetails->id}}"> 
+                            <span>{{$all_follower_count}} Followers</span>
+                        </a>
+                        <a href="javascript:void()" data-btn-type="follow" data-toggle="modal" data-target="#FollowModel"  data-dismiss="modal" aria-label="Close" class="like_users" data-user-id="{{$profileDetails->id}}">
+                            <span class="following">{{$all_following_count}} Following</span>
+                        </a> 
+
+                        @if(Auth::user() && in_array(Auth::user()->id, $profileDetails->like_count))
+                        <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$profileDetails->id}}">Following</a>
+                        @elseif(in_array(Session::get('random_id'), $profileDetails->like_count))
+                        <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$profileDetails->id}}">Following</a>
+                        @else
+                        <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$profileDetails->id}}">Follow</a>
+                        @endif
+                        
+                        <!-- <a href="javascript:void(0);" class="btn btn-default btn-sm like_artist" data-artist-id="{{$profileDetails->id}}">Follow</a> -->
 
                     <!-- <a id="chat_with_user" href="javascript:void(0);" data-user-id="{{$profileDetails->id}}" class="btn btn-border btn-sm">Chat</a> -->
                     </div>
@@ -27,7 +47,9 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#artWorks" role="tab" aria-controls="artWorks" aria-selected="true"><img src="{{asset('assets/images/artwork-icon.svg')}}" alt=""> Artworks</a>
+                    
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false"><img src="{{asset('assets/images/about-icon-light.svg')}}" alt=""> About</a>
+                    
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -70,8 +92,8 @@
                                 <div class="rightBlock">
                                     <span class="likes">{{count($artwork->artwork_like)}} Likes</span> 
                                     <div class="actionIcons">
-                                        <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
-                                        <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
+                                        <a  class="like_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="like_image" src="{{asset('assets/images/like.png')}}" title="Like Artwork"></a>
+                                        <a class="save_artwork" data-artwork-id="{{$artwork->id}}" href="javascript:void(0);"><img style="width: 20px; height: 21px;" class="save_image" src="{{asset('assets/images/saved.png')}}"  title="Save for later"></a>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +107,11 @@
                     <div class="profileAbout">
                         <div class="aboutHeader d-flex justify-content-between align-items-center">
                             <h4>about amenda</h4>
+                            @if(Auth::user())
+                            @if($profileDetails->id == Auth::user()->id)
                             <a href="/{{Auth::user()->role}}/profile/{{Auth::user()->id}}" class="btn btn-default">edit profile</a>
+                            @endif
+                            @endif
                         </div>
                         <div class="row">
                             <div class="col-md-4">
