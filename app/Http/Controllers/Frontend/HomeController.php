@@ -563,6 +563,7 @@ class HomeController extends Controller
             'html' => $html,
             'status' => 200,
         ), 200);
+    }
 
     public function buy_now($id){
         if(Auth::user()){
