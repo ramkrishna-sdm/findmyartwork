@@ -2,7 +2,7 @@
     <div class="logo">
         <a href="{{url('/admin/profile')}}" class="simple-text logo-mini">
             <div class="logo-image-small">
-                <img src="{{ asset('paper') }}/img/logo-small.png">
+               <img src="{{asset('assets/images/logo.png')}}"/>
             </div>
         </a>
         <a href="{{url('admin/profile')}}" class="simple-text logo-normal">

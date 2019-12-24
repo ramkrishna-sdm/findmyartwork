@@ -68,6 +68,62 @@
   </div>
   <!-- //Copyright -->
 </footer>
+<!-- Like  Model -->
+
+<div class="modal" tabindex="-1" role="dialog"  id="LikeModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Likes User List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="users_like_list">
+        <p>Modal body text goes here.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Followers  Model -->
+
+<div class="modal" tabindex="-1" role="dialog"  id="FollowersModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Followers User List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="FollowersModelBody">
+        <p>Modal body text goes here.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Follow  Model -->
+
+<div class="modal" tabindex="-1" role="dialog"  id="FollowModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Following User List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="FollowModelBody">
+        <p>Modal body text goes here.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 <!-- Chat Model -->
 <div class="chatModal" id="chatModal">
@@ -693,6 +749,7 @@ $(document).on('click', '.like_artist', function(){
         success: function(res){
             if(res.status=="200"){
                 $(this_like).parents('.artistHeaderLeft').find('.followersNum').html(res.all_count);
+                $(this_like).parents('.stats').find('.all_follower span').html(res.all_count);
                 $(this_like).html(res.like_count);
             }else{
                 
@@ -703,20 +760,33 @@ $(document).on('click', '.like_artist', function(){
         }
     });
 })
-$(document).on('click', '.save_artist', function(){
-    var artist_id = $(this).attr('data-artist-id');
-    var this_like = $(this);
+
+$(document).on('click', '.like_users', function(){
+    var user_id = $(this).attr('data-user-id');
+    var btn_type = $(this).attr('data-btn-type');
+    //var this_like = $(this);
     $.ajax({
-        url: "{{url('save_artist')}}",
+        url: "{{url('like_users')}}",
         type: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {artist_id:artist_id},
+        data: {user_id:user_id, btn_type:btn_type},
 
         success: function(res){
             if(res.status=="200"){
-                // $(document).find('.saved_count').html(res.saved_count);
+              if(btn_type == "like"){
+                console.log(res.html);
+                $('#users_like_list').html(res.html);
+              }
+              if(btn_type == "followers"){
+                console.log(res.html);
+                $('#FollowersModelBody').html(res.html);
+              }
+              if(btn_type == "follow"){
+                console.log(res.html);
+                $('#FollowModelBody').html(res.html);
+              }
             }else{
                 
             }
@@ -750,7 +820,7 @@ $(document).on('click', '.like_artwork', function(){
             console.log(errormessage);
         }
     });
-})
+});
 $(document).on('click', '.save_artwork', function(){
     var artwork_id = $(this).attr('data-artwork-id');
     var this_like = $(this);
@@ -1027,6 +1097,30 @@ $(document).on('click', '#chat_with_user', function(){
   setTimeout(function () {
     $('li.list-group-item[data-user-id = '+username+']').trigger('click');
    }, 500);
+});
+
+$(document).on('click', '.save_artist', function(){
+    var artist_id = $(this).attr('data-artist-id');
+    var this_like = $(this);
+    $.ajax({
+        url: "{{url('save_artist')}}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {artist_id:artist_id},
+
+        success: function(res){
+            if(res.status=="200"){
+                // $(document).find('.saved_count').html(res.saved_count);
+            }else{
+                
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage);
+        }
+    });
 })
 </script>
 

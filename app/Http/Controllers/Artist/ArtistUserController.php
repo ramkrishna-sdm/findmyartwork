@@ -75,9 +75,9 @@ class ArtistUserController extends Controller
     	return view('artist.artist_dashboard',compact('like_count','follow_count', 'artwork_count'));
     }
     public function add_artwork(){
-        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
+        $subjects = $this->subjectRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
+        $styles = $this->styleRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
         return view('artist.add_artwork', compact('categories','subjects','styles'));
     }
     public function profile($id){
@@ -147,9 +147,9 @@ class ArtistUserController extends Controller
     } 
     public function edit_artwork($id){
         $variant_types = [];
-        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $subjects = $this->subjectRepository->getData(['is_deleted'=>'no'],'get',[],0);
-        $styles = $this->styleRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
+        $subjects = $this->subjectRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
+        $styles = $this->styleRepository->getData(['is_deleted'=>'no','is_active'=>'no'],'get',[],0);
         $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
         $artwork = $this->artworkRepository->getData(['id'=> $id],'first',['artwork_images', 'variants', 'artist', 'artwork_like', 'category_detail', 'sub_category_detail','style_detail', 'subject_detail'],0);
         // echo "<pre>";
@@ -328,7 +328,7 @@ class ArtistUserController extends Controller
     public function getSubcategory(){
         $subcategories = [];
         if(!empty($this->request->category_id)){
-            $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id],'get',[],0);
+            $subcategories = $this->SubCategoryRepository->getData(['category_id'=>$this->request->category_id,'is_active'=>'no'],'get',[],0);
         }
         $options = "";
         $options .='<option value="">Select Type</option>';
@@ -369,5 +369,7 @@ class ArtistUserController extends Controller
         $user_type = "artist";
         $orders = $this->orderRepository->getData(['artist_id'=>Auth::user()->id],'get',[],0);        
         return view('frontend/order_list', compact('orders', 'user_type'));
-    }
+    } 
+
+
 }

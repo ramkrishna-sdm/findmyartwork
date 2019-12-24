@@ -17,7 +17,7 @@
                                     <h3 class="mb-0">{{ __('Buyers') }}</h3>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <!-- <a href="{{ url('/admin/add_buyer') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a> -->
+                                    <a href="{{ url('/admin/add_buyer') }}" class="btn btn-sm btn-primary">{{ __('Add Buyer') }}</a>
                                 </div>
                             </div>
                         </div>

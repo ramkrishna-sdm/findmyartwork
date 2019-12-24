@@ -209,7 +209,7 @@ class CmsController extends Controller
                 
             $upload_file = $this->SiteSettingRepository->createUpdateData(['id'=> $this->request->id],$this->request->all());
              \Session::flash('success_message', "Setiings Updated Successfully!");
-            return redirect('/admin');
+            return redirect('/admin/site_setting');
         }catch (\Exception $ex){
             \Session::flash('error_message', $ex->getMessage());
             return back()->withInput();
