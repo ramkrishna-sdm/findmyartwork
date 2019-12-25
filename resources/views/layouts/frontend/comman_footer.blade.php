@@ -13,7 +13,7 @@
         <div class="Links">
           <h3>Support</h3>
           <ul class="navLink">
-            <!-- <li><a href="#">Shipping & Returns</a></li> -->
+            <!-- <li><a href="#">Shipping & Returns</a></li> ----->
             <li><a href="{{url('faq')}}">Help/FAQ</a></li>
             <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
             <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
