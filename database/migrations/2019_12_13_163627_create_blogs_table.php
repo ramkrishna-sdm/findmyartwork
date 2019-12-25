@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->longtext('des_first')->nullable();
             $table->string('media_url')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('no');
+            $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamps();
         });
 

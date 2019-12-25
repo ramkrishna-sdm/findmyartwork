@@ -103,7 +103,7 @@ class HomeController extends Controller
                 }
             }
         }
-        $categories = $this->categoryRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $categories = $this->categoryRepository->getData(['is_deleted'=>'no','is_active'=>'yes'],'get',[],0);
         $homes = $this->CmsRepository->getData(['slug'=>'home_page','is_deleted'=>'no'],'first',[],0);
         return view('frontend/home_page',compact('categories','topartworks','featuredArtworks','homes','topartists'));
     }
@@ -129,7 +129,7 @@ class HomeController extends Controller
     }
     
     public function faq(){
-        $faq = $this->FaqRepository->getData(['is_deleted'=>'no'],'get',[],0);
+        $faq = $this->FaqRepository->getData(['is_active'=>'yes'],'get',[],0);
         return view('frontend.faq', compact('faq'));
     }
     
@@ -488,9 +488,9 @@ class HomeController extends Controller
                         }    
                     }
                 }
-                $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
-                $styles= $this->styleRepository->getData([], 'get', [], 0);
-                $subjects= $this->subjectRepository->getData([], 'get', [], 0);
+                $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['subcategories'],0);
+                $styles= $this->styleRepository->getData(['is_active'=>'yes'], 'get', [], 0);
+                $subjects= $this->subjectRepository->getData(['is_active'=>'yes'], 'get', [], 0);
 
                 return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects'));
             }else{

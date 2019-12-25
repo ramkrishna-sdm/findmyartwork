@@ -56,11 +56,10 @@ class GalleryUserController extends Controller
     }
 
     public function index(){
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
 
-        $styles= Style::get();
-    
-        $subjects= Subject::get();
+        $styles= Style::where('is_active','yes')->get();
+        $subjects= Subject::where('is_active','yes')->get();
     	return view('gallery.gallery_dashboard',compact('categories','styles','subjects'));
     }
 
@@ -150,11 +149,10 @@ class GalleryUserController extends Controller
     } 
 
     public function add_blog(){
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
 
-        $styles= Style::get();
-
-        $subjects= Subject::get();
+        $styles= Style::where('is_active','yes')->get();
+        $subjects= Subject::where('is_active','yes')->get();
         return view('gallery/add_blog',compact('categories','styles','subjects'));
     }
 
@@ -207,18 +205,18 @@ class GalleryUserController extends Controller
     }
 
     public function blog(){
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
-        $styles= Style::get();
-        $subjects= Subject::get();
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
+        $styles= Style::where('is_active','yes')->get();
+        $subjects= Subject::where('is_active','yes')->get();
         $blogs = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
         return view('gallery/blog',compact('categories','styles','subjects','blogs'));
     }
 
     public function edit_blog($id)
     {
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
-        $styles= Style::get();
-        $subjects= Subject::get();
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
+        $styles= Style::where('is_active','yes')->get();
+        $subjects= Subject::where('is_active','yes')->get();
         $blog = $this->BlogRepository->getData(['id'=>$id],'first',['user'],0);
         return view('gallery/edit_blog', compact('categories','styles','subjects','blog'));
     }

@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('media_url')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('no');
+            $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamps();
         });
     }

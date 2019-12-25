@@ -18,7 +18,7 @@ class CreateFaqsTable extends Migration
             $table->longtext('qus');
             $table->longtext('ans');
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('no');
+            $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamps();
         });
     }
