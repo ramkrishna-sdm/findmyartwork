@@ -11,8 +11,6 @@
 |
 */
 
-
-Route::get('/{slug}', 'Frontend\HomeController@user_profile');
 // Route::group(['middleware' => ['UserSlug']],function(){ 
 	Auth::routes(['verify' => true]);
 	/*************Common Login Controller Routes Start************************/
@@ -227,118 +225,6 @@ Route::get('/{slug}', 'Frontend\HomeController@user_profile');
 	});
 
 
-
-Auth::routes(['verify' => true]);
-/*************Common Login Controller Routes Start************************/
-Route::get('/user_login','CommonLoginController@login');
-Route::post('/submit_login','CommonLoginController@submitLogin');
-Route::post('/check_email', 'CommonLoginController@check_email_status');
-Route::post('/check_username', 'CommonLoginController@check_username_status');
-Route::get('/logout','CommonLoginController@logout');
-/*************Common Login Controller Routes End************************/
-
-
-Route::get('/checkphp','CommonLoginController@phpinfo');
-
-
-
-Route::group(['namespace' => 'Artist','prefix' => 'artist', 'middleware' => ['verified','ArtistCheck']],function(){ 
-
-	Route::get('/dashboard','ArtistUserController@index');
-	Route::get('/add_artwork','ArtistUserController@add_artwork');
-	Route::post('/upload_artwork','ArtistUserController@upload_artwork');
-	Route::post('/getSubcategory','ArtistUserController@getSubcategory');
-	Route::get('/profile/{id}','ArtistUserController@profile');
-	Route::post('/update_artist','ArtistUserController@update_artist');
-	Route::get('/artworks/{id?}','ArtistUserController@artworks');
-	Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'ArtistUserController@change_artwork_status');
-	Route::get('/delete_artwork/{id}', 'ArtistUserController@delete_artwork');
-	Route::get('/view_artwork/{id}', 'ArtistUserController@view_artwork');
-	Route::get('/edit_artwork/{id}', 'ArtistUserController@edit_artwork');
-	Route::put('profile/password','ArtistUserController@password');
-	Route::post('/deleteImage','ArtistUserController@deleteImage');
-	Route::get('/chat', 'ArtistUserController@getChat')->name('chat');
-	Route::get('/order_list', 'ArtistUserController@order_list');
-	Route::get('/like_users/{id}', 'ArtistUserController@like_users');
-
-});
-
-Route::post('/buyer/sub-categories','Buyer\BuyerFilterController@getSubCategories');
-
-Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
-
-	Route::get('/dashboard','BuyerUserController@index');
-	Route::get('/profile/{id}', 'BuyerUserController@profile');
-	Route::post('/update_buyer', 'BuyerUserController@update_buyer');
-	Route::put('profile/password','BuyerUserController@password');
-	Route::get('/chat', 'BuyerUserController@getChat')->name('chat');
-	Route::get('/order_list', 'BuyerUserController@order_list');
-
-
-});
-
-Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['verified','GalleryCheck']],function(){ 
-
-	Route::get('/dashboard','GalleryUserController@index');
-	Route::get('/profile/{id}', 'GalleryUserController@profile');
-	Route::post('/update_gallery', 'GalleryUserController@update_gallery');
-	Route::put('profile/password','GalleryUserController@password');
-	Route::get('/add_blog','GalleryUserController@add_blog');
-	Route::post('/update_blog','GalleryUserController@update_blog');
-	Route::get('/blog','GalleryUserController@blog');
-	Route::get('/edit_blog/{id}','GalleryUserController@edit_blog');
-	Route::get('/delete_blog/{id}','GalleryUserController@delete_blog');
-	Route::get('/change_blog_status/{id}/{status}','GalleryUserController@change_blog_status');
-	Route::get('/chat', 'GalleryUserController@getChat')->name('chat');
-	Route::get('/order_list', 'GalleryUserController@order_list');
-	
-
-});
-
-Route::get('/auth/redirect/{provider}', 'CommonLoginController@redirect');
-Route::get('/callback/{provider}', 'CommonLoginController@callback');
-
-
-Route::get('pay_now', 'Frontend\PaymentController@index');
-Route::post('paypal', 'Frontend\PaymentController@payWithpaypal');
-Route::get('status', 'Frontend\PaymentController@getPaymentStatus');
-Route::get('payout/{order_id}', 'Frontend\PaymentController@payout');
-
-Route::get('/', 'Frontend\HomeController@index');
-Route::get('/about_us', 'Frontend\HomeController@about_us');
-Route::get('/faq', 'Frontend\HomeController@faq');
-Route::get('/terms_conditions', 'Frontend\HomeController@terms_conditions');
-Route::get('/privacy_policy', 'Frontend\HomeController@privacy_policy');
-Route::get('/artist', 'Frontend\HomeController@artist');
-Route::get('/saved_artist', 'Frontend\HomeController@saved_artist');
-Route::get('/profile_details/{id?}', 'Frontend\HomeController@profile_details');
-Route::post('/like_artist', 'Frontend\HomeController@like_artist');
-Route::post('/save_artist', 'Frontend\HomeController@save_artist');
-Route::post('/like_artwork', 'Frontend\HomeController@like_artwork');
-Route::post('/save_artwork', 'Frontend\HomeController@save_artwork');
-Route::post('/add_to_cart', 'Frontend\HomeController@add_to_cart');
-Route::get('/contact_us', 'Frontend\HomeController@contact_us');
-Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
-Route::post('/get_shipping_status', 'Frontend\ArtworkController@get_shipping_status');
-Route::post('/update_shipping_status', 'Frontend\ArtworkController@update_shipping_status');
-
-Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
-Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
-Route::get('/cart', 'Frontend\ArtworkController@items_cart');
-Route::get('/artwork_details/{key}', 'Frontend\ArtworkController@artwork_details');
-Route::get('/artworks/{id?}', 'Frontend\ArtworkController@artworks');
-Route::get('/remove_from_cart/{id}', 'Frontend\HomeController@remove_from_cart');
-Route::get('/buy_now/{id}', 'Frontend\HomeController@buy_now');
-
-
-Route::get('/exhibitions','Frontend\HomeController@exhibitions');
-Route::get('/exhibition_details/{id}','Frontend\HomeController@exhibition_details');
-Route::post('/like_users', 'Frontend\HomeController@like_users');
-
-// Route::get('/', function () {
-//     return view('welcome');
-
 // });
 
-
-Route::get('/{slug}', 'Frontend\HomeController@user_profile');
+// Route::get('/{slug}', 'Frontend\HomeController@user_profile');

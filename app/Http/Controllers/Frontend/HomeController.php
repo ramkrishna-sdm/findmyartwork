@@ -169,11 +169,36 @@ class HomeController extends Controller
 
     public function user_profile($slug){
         // dd($slug);
+        // $professional = [];
+        // $profileDetails = $this->userRepository->getData(['user_name'=>$slug, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        // if(!empty($profileDetails)){
+        //     $all_follower_count = $this->savedArtistRepository->getData(['artist_id'=>$profileDetails['id']],'count',[],0);    
+        //     $all_following_count = $this->savedArtistRepository->getData(['user_id'=>$profileDetails['id']],'count',[],0);    
+        //     $all_likes = 0;
+        //     if(!empty($profileDetails)){
+        //         foreach ($profileDetails->artworks as $key => $value) {
+        //             $professional[] = $value['category_detail']['name'];
+        //             $all_likes = $all_likes + count($value->artwork_like);
+        //         }
+        //     }
+        //     // dd($all_likes);
+        //     $professional = array_unique($professional);
+        //     return view('frontend/profile_details',compact('profileDetails', 'professional', 'all_follower_count', 'all_following_count', 'all_likes'));
+        // }else{
+        //     return redirect('/');
+        // }
+
         $professional = [];
         $profileDetails = $this->userRepository->getData(['user_name'=>$slug, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
         if(!empty($profileDetails)){
-            $all_follower_count = $this->savedArtistRepository->getData(['artist_id'=>$profileDetails['id']],'count',[],0);    
-            $all_following_count = $this->savedArtistRepository->getData(['user_id'=>$profileDetails['id']],'count',[],0);    
+            if(Auth::user()){
+                $profileDetails['like_count'] = SavedArtist::where(['artist_id' => $profileDetails->id, 'status' => 'like'])->pluck('user_id')->toArray();
+            }else{
+                $profileDetails['like_count'] = SavedArtist::where(['artist_id' => $profileDetails->id, 'status' => 'like'])->pluck('guest_id')->toArray();
+            }
+
+            $all_follower_count = $this->savedArtistRepository->getData(['artist_id'=>$profileDetails->id],'count',[],0);    
+            $all_following_count = $this->savedArtistRepository->getData(['user_id'=>$profileDetails->id],'count',[],0);    
             $all_likes = 0;
             if(!empty($profileDetails)){
                 foreach ($profileDetails->artworks as $key => $value) {
@@ -187,6 +212,8 @@ class HomeController extends Controller
         }else{
             return redirect('/');
         }
+
+            
     }
 
     public function profile_details($id){

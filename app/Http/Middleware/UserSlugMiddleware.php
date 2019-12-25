@@ -20,9 +20,9 @@ class UserSlugMiddleware
         $is_exist = DB::table('users')->where([
             'user_name' => $request->route('page')
         ])->first();
-        dd($is_exist);
+        // dd($is_exist);
         if(!empty($is_exist)){
-            return redirect('/user_profile/'.$request->route('page'))
+            return redirect('/'.$request->route('page'));
         }else{
 
             return $next($request);
