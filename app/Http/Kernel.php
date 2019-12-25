@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'ArtistCheck' => \App\Http\Middleware\ArtistCheck::class,
         'BuyerCheck' => \App\Http\Middleware\BuyerCheck::class,
         'GalleryCheck' => \App\Http\Middleware\GalleryCheck::class,
+        'UserSlug' => \App\Http\Middleware\UserSlugMiddleware::class,
     ];
 
     /**
