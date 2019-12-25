@@ -221,7 +221,7 @@ class ArtistUserController extends Controller
         }
     }
     
-    function upload_artwork(Request $request)
+    public function upload_artwork(Request $request)
     {
         // echo "<pre>";
         // print_r($request->all()); die;
@@ -316,7 +316,9 @@ class ArtistUserController extends Controller
                 }
             }
             if(!empty($this->request->id)){
-                $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
+                if(count($variant_id) > 0){
+                    $delete_variant = $this->variantRepository->getData(['variant_id'=>$variant_id, 'artwork_id'=> $this->request->id],'delete',[],0);
+                }
             }
             \Session::flash('success_message', 'Artwork Details Updated Succssfully.'); 
             return redirect('/artist/artworks');

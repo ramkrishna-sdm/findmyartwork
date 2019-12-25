@@ -32,7 +32,7 @@
 		Route::get('/add_artwork','ArtistUserController@add_artwork');
 		Route::post('/upload_artwork','ArtistUserController@upload_artwork');
 		Route::post('/getSubcategory','ArtistUserController@getSubcategory');
-		Route::get('/profile/{id}','ArtistUserController@profile');
+		Route::get('/profile/{id}','ArtistUserController@profile')->where('id', '[0-9]+');;
 		Route::post('/update_artist','ArtistUserController@update_artist');
 		Route::get('/artworks/{id?}','ArtistUserController@artworks');
 		Route::get('/change_artwork_status/{id}/{stauts}/{page}/{user_id?}', 'ArtistUserController@change_artwork_status');
@@ -51,7 +51,7 @@
 	Route::group(['namespace' => 'Buyer','prefix' => 'buyer', 'middleware' => ['verified','BuyerCheck']],function(){ 
 
 		Route::get('/dashboard','BuyerUserController@index');
-		Route::get('/profile/{id}', 'BuyerUserController@profile');
+		Route::get('/profile/{id}', 'BuyerUserController@profile')->where('id', '[0-9]+');;
 		Route::post('/update_buyer', 'BuyerUserController@update_buyer');
 		Route::put('profile/password','BuyerUserController@password');
 		Route::get('/chat', 'BuyerUserController@getChat')->name('chat');
@@ -63,7 +63,7 @@
 	Route::group(['namespace' => 'Gallery','prefix' => 'gallery', 'middleware' => ['verified','GalleryCheck']],function(){ 
 
 		Route::get('/dashboard','GalleryUserController@index');
-		Route::get('/profile/{id}', 'GalleryUserController@profile');
+		Route::get('/profile/{id}', 'GalleryUserController@profile')->where('id', '[0-9]+');;
 		Route::post('/update_gallery', 'GalleryUserController@update_gallery');
 		Route::put('profile/password','GalleryUserController@password');
 		Route::get('/add_blog','GalleryUserController@add_blog');
@@ -227,4 +227,4 @@
 
 // });
 
-// Route::get('/{slug}', 'Frontend\HomeController@user_profile');
+Route::get('/profile/{slug}', 'Frontend\HomeController@user_profile');
