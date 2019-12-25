@@ -94,7 +94,7 @@ class HomeController extends Controller
         // echo "<pre>";
         // print_r($featuredArtworks); die;
         $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
-        
+
         if(count($topartists)>0){
             foreach ($topartists as $key => $artist) {
                 if(Auth::user()){
@@ -349,9 +349,25 @@ class HomeController extends Controller
             }
         }
         $artwork_liked = $this->savedArtworkRepository->getData(['artwork_id'=> $this->request->artwork_id, 'status' => 'like'],'count',[],0);    
+
+        $artwork_result = $this->artworkRepository->getData(['id'=> $this->request->artwork_id],'first',[],0);
+
+
+        $professional = [];
+        $profileDetails = $this->userRepository->getData(['id'=>$artwork_result->user_id, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        
+        $all_likes = 0;
+        if(!empty($profileDetails)){
+            foreach ($profileDetails->artworks as $key => $value) {
+                $all_likes = $all_likes + count($value->artwork_like);
+            }
+        }
+        
+
         return response()->json(array(
             'like_count' => $artwork_liked.' Likes',
             'img_source' => $img_source,
+            'all_likes' => $all_likes.' Likes',
             'status' => 200,
         ), 200);
     }

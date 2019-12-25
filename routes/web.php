@@ -104,6 +104,7 @@
 	Route::post('/save_contact_form', 'Frontend\HomeController@save_contact_form_details');
 	Route::post('/get_shipping_status', 'Frontend\ArtworkController@get_shipping_status');
 	Route::post('/update_shipping_status', 'Frontend\ArtworkController@update_shipping_status');
+	Route::post('/like_users', 'Frontend\HomeController@like_users');
 
 	Route::get('/filter_search/{key?}/{type?}', 'Frontend\HomeController@filter_search');
 	Route::get('/saved_artwork', 'Frontend\ArtworkController@saved_artwork');
