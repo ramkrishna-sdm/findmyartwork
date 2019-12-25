@@ -17,14 +17,6 @@
                 <a href="{{url('profile_details')}}/{{$blog_detail->user->id}}">{{$blog_detail->user->first_name}}</a>
               </div>
             </div>
-            <!-- <ul class="pagination justify-content-center mb-4">
-              <li class="page-item">
-                <a class="page-link" href="#">← Older</a>
-              </li>
-              <li class="page-item disabled">
-                <a class="page-link" href="#">Newer →</a>
-              </li>
-            </ul> -->
   
           </div>
           @endif
@@ -47,11 +39,7 @@
                    </div>
                    </a>
                   @endforeach
-
-                 
-               
                   </div>
-              
                 </div>
               </div>
             </div>
