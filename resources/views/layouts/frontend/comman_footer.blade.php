@@ -1,4 +1,4 @@
-<!-- Footer Section ------->
+<!-- Footer Section -->
 <footer class="siteFooter">
   <div class="container footerLink">
     <div class="row">
@@ -7,13 +7,13 @@
           <h3>About</h3>
           <ul class="navLink">
             <li><a href="{{url('about_us')}}">About Us</a></li>
-            <!-- <li><a href="#">Careers</a></li> -->
+            <li><a href="#">Careers</a></li> 
           </ul>
         </div>
         <div class="Links">
           <h3>Support</h3>
           <ul class="navLink">
-            <!-- <li><a href="#">Shipping & Returns</a></li> ----->
+            <!-- <li><a href="#">Shipping & Returns</a></li> -->
             <li><a href="{{url('faq')}}">Help/FAQ</a></li>
             <li><a href="{{url('terms_conditions')}}">Terms of use</a></li>
             <!-- <li><a href="javascript:void(0);">Project Management</a></li> -->
@@ -1123,7 +1123,6 @@ $(document).on('click', '.save_artist', function(){
         }
     });
 }); 
-
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
