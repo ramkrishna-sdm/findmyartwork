@@ -24,4 +24,9 @@ class Order extends Model
     {
         return $this->belongsTo('App\User','artist_id','id');
     }
+
+    public function shipping_address()
+    {
+        return $this->hasOne('App\ShippingAddress','order_id','id');
+    }
 }

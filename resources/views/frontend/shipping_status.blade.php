@@ -15,8 +15,16 @@
             Send Order Fulfilled Notification
             <div style="margin-top: 25px; font-size: 14px;">
                 <p>Send an email notification to customer that the order has been fulfilled</p>
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-md-4 col-sm-6">
+                        <div class="slipUpper">
+                            <h5>SHIPPED TO</h5>
+                            <h6>{{$order_info->shipping_address->first_name}} {{$order_info->shipping_address->last_name}}</h6>
+                            <p>{{$order_info->shipping_address->address}}</p>
+                            <p>{{$order_info->shipping_address->state}}, {{$order_info->shipping_address->country}}, {{$order_info->shipping_address->postal_code}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4 col-sm-6">
                         <div class="slipUpper">
                             <h5>SHIPPED TO</h5>
                             <h6>Perry Kankam</h6>
@@ -24,17 +32,8 @@
                             <p>The Art Studio</p>
                             <p>New York, USA, 34567</p>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="slipUpper">
-                            <h5>SHIPPED TO</h5>
-                            <h6>Perry Kankam</h6>
-                            <p>98746 Real Street, Lorem Ipsum</p>
-                            <p>The Art Studio</p>
-                            <p>New York, USA, 34567</p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
+                </div>
                 <hr>
                 <h4>Order Summary</h4>
                 <div class="slip-table-container">

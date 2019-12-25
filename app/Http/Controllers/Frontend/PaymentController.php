@@ -26,6 +26,8 @@ use App\Repository\ArtworkRepository;
 use App\Repository\UserRepository;
 use App\Repository\SiteSettingRepository;
 use App\Repository\OrderRepository;
+use App\Repository\ShippingAddressRepository;
+use App\Repository\SavedArtworkRepository;
 use Mail;
 use App\Mail\AdminSaleNotification;
 use App\Mail\SaleNotification;
@@ -40,7 +42,7 @@ class PaymentController extends Controller
      *
      * @return void
      */
-    public function __construct(ArtworkRepository $artworkRepository, SiteSettingRepository $siteSettingRepository, UserRepository $userRepository, OrderRepository $orderRepository)
+    public function __construct(ArtworkRepository $artworkRepository, SiteSettingRepository $siteSettingRepository, UserRepository $userRepository, OrderRepository $orderRepository, ShippingAddressRepository $shippingAddressRepository, SavedArtworkRepository $savedArtworkRepository)
     {
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
@@ -53,6 +55,8 @@ class PaymentController extends Controller
         $this->orderRepository = $orderRepository;
         $this->userRepository = $userRepository;
         $this->siteSettingRepository = $siteSettingRepository;
+        $this->shippingAddressRepository = $shippingAddressRepository;
+        $this->savedArtworkRepository = $savedArtworkRepository;
     }
     public function index()
     {
@@ -103,6 +107,16 @@ class PaymentController extends Controller
             ->setTransactions(array($transaction));
         /** dd($payment->create($this->_api_context));exit; **/
         try {
+
+            $address['first_name'] = $request->first_name;
+            $address['last_name'] = $request->last_name;
+            $address['address'] = $request->address;
+            $address['country'] = $request->country;
+            $address['state'] = $request->state;
+            $address['postal_code'] = $request->postal_code;
+            $shipping_address = $this->shippingAddressRepository->createUpdateData(['id'=> 0],$address);
+            Session::put('address_id', $shipping_address->id);
+
             $payment->create($this->_api_context);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (\Config::get('app.debug')) {
@@ -125,6 +139,8 @@ class PaymentController extends Controller
         Session::put('paypal_payment_id', $payment->getId());
         if (isset($redirect_url)) {
             /** redirect to paypal **/
+
+
             return Redirect::away($redirect_url);
         }
         \Session::put('error', 'Unknown error occurred');
@@ -186,7 +202,9 @@ class PaymentController extends Controller
                     $order['delivery_address'] = $user_info->address.', '.$user_info->city.', '.$user_info->state.', '.$user_info->country.', '.$user_info->postal_code;
                     $order_info = $this->orderRepository->createUpdateData(['id'=> 0],$order);
 
-
+                    $address['order_id'] = $order_info->id;
+                    $shipping_address = $this->shippingAddressRepository->createUpdateData(['id'=> Session::get('address_id')],$address);
+                    Session::forget('address_id');
                     $seller_mail = [];
                     $seller_mail['user_name'] = $buyer_info->first_name.' '.$buyer_info->last_name;
                     $seller_mail['patment_id'] = $result->getId();
@@ -197,7 +215,8 @@ class PaymentController extends Controller
                         Mail::to($seller_email)->send(new SellerNotification($seller_mail));
                     }
 
-                    // Remove Cart
+                    // Remove from Cart
+                    $remove_from_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'artwork_id' => $artwork, 'status' => 'cart'],'delete',[],0);
                 }
 
 

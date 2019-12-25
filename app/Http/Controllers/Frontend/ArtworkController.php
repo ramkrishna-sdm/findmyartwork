@@ -56,9 +56,11 @@ class ArtworkController extends Controller
     public function items_cart(){
         $items_cart = [];
         $item_id = [];
+        $user_info = [];
         $total_price = 0;
         $total_shipping = 0;
         if(Auth::user()){
+            $user_info = $this->userRepository->getData(['id'=> Auth::user()->id],'first',[],0);
             $items_cart = $this->savedArtworkRepository->getData(['user_id'=> Auth::user()->id, 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
         }else{
             $items_cart = $this->savedArtworkRepository->getData(['guest_id'=> Session::get('random_id'), 'status' => 'cart'],'get',['saved_artwork','saved_artwork.artist','saved_artwork.variants','saved_artwork.artwork_images','saved_artwork.artwork_like'],0);
@@ -71,8 +73,8 @@ class ArtworkController extends Controller
             }
         }
         // echo "<pre>";
-        // print_r($item_id); die;
-        return view('frontend/checkout', compact('items_cart' ,'total_price', 'total_shipping', 'item_id'));
+        // print_r($user_info); die;
+        return view('frontend/checkout', compact('items_cart' ,'total_price', 'total_shipping', 'item_id', 'user_info'));
     }
 
     public function saved_artwork(){
@@ -252,7 +254,9 @@ class ArtworkController extends Controller
     }
 
     public function get_shipping_status(){
-        $order_info = $this->orderRepository->getData(['id'=>$this->request->order_id],'first',[],0);
+        $order_info = $this->orderRepository->getData(['id'=>$this->request->order_id],'first',['shipping_address'],0);
+        // echo "<pre>";
+        // print_r($order_info); die;
         $user_info = $this->userRepository->getData(['id'=>$order_info->user_id],'first',[],0);
         $user_name = $user_info->first_name.' '.$user_info->last_name;
         $html = view('frontend/shipping_status', compact('order_info', 'user_name'))->render();
