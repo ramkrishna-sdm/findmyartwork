@@ -22,7 +22,7 @@ class CreateCmsTable extends Migration
             $table->longtext('des_second')->nullable();
             $table->string('second_img_url')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('no');
+            $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamps();
         });
     }

@@ -50,18 +50,18 @@ class BuyerUserController extends Controller
     }
 
     public function index(){
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
 
-        $styles= Style::get();
+        $styles= Style::where('is_active','yes')->get();
 
-        $subjects= Subject::get();
+        $subjects= Subject::where('is_active','yes')->get();
     
     	return view('buyer.buyer_dashboard',compact('categories','styles','subjects'));
     }
 
     public function getSubCategories(){
         
-        $categories = $this->categoryRepository->getData(['id'=>$this->request->id],'first',['artwork','subcategories','artwork.artist','artwork.variants'],0);
+        $categories = $this->categoryRepository->getData(['id'=>$this->request->id,'is_active'=>'yes'],'first',['artwork','subcategories','artwork.artist','artwork.variants'],0);
       
         if($this->request->price){
            
@@ -80,11 +80,11 @@ class BuyerUserController extends Controller
     }
 
     public function profile($id){
-        $categories = $this->categoryRepository->getData([],'get',['artwork'],0);
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['artwork'],0);
 
-        $styles= Style::get();
+        $styles= Style::where('is_active','yes')->get();
 
-        $subjects= Subject::get();
+        $subjects= Subject::where('is_active','yes')->get();
     
         $buyer = $this->userRepository->getData(['id'=>$id],'first',[],0);
         

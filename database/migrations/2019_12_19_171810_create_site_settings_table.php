@@ -18,7 +18,7 @@ class CreateSiteSettingsTable extends Migration
             $table->string('mail_id')->nullable();
             $table->string('commission_persentage')->nullable();
             $table->enum('is_deleted',['yes','no'])->default('no');
-            $table->enum('is_active',['yes','no'])->default('no');
+            $table->enum('is_active',['yes','no'])->default('yes');
             $table->timestamps();
             
         });

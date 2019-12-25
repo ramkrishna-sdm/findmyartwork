@@ -70,7 +70,7 @@
 </footer>
 <!-- Like  Model -->
 
-<div class="modal" tabindex="-1" role="dialog"  id="LikeModel">
+<div class="modal fade" tabindex="-1" role="dialog"  id="LikeModel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,7 +89,7 @@
 
 <!-- Followers  Model -->
 
-<div class="modal" tabindex="-1" role="dialog"  id="FollowersModel">
+<div class="modal fade" tabindex="-1" role="dialog"  id="FollowersModel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,7 +108,7 @@
 
 <!-- Follow  Model -->
 
-<div class="modal" tabindex="-1" role="dialog"  id="FollowModel">
+<div class="modal fade" tabindex="-1" role="dialog"  id="FollowModel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

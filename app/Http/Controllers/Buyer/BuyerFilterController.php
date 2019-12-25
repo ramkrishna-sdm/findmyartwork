@@ -40,10 +40,10 @@ class BuyerFilterController extends Controller
         $cat_id = "";
         if (!empty($request->id)) {
             $cat_id = $request->id;
-            $categories = $this->categoryRepository->getData(['id'=>$request->id],'first',['subcategories'],0);
+            $categories = $this->categoryRepository->getData(['id'=>$request->id,'is_active'=>'yes'],'first',['subcategories'],0);
             $filter_artwork->where('category', $request->id)->get();
         }else{
-            $categories = $this->categoryRepository->getData([],'first',['subcategories'],0);
+            $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'first',['subcategories'],0);
         }
 
         if (!empty($request->sub_category_id)) {
