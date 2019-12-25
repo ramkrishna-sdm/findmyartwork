@@ -45,6 +45,10 @@ class UserRepository implements RepositoryInterface
             $query->where('role', $conditions['role']);
         }
 
+        if (!empty($conditions['is_featured'])) {
+            $query->where('is_featured', $conditions['is_featured']);
+        }
+
         if (!empty($conditions['filter_key'])) {
             $query->where('first_name', 'like', '%'.$conditions['filter_key'].'%')
                   ->orWhere('last_name', 'like', '%'.$conditions['filter_key'].'%');

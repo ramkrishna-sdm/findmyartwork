@@ -36,7 +36,7 @@
                         <ul>
                             <li>Dimensions, @if(count($artwork_result->variants) > 0){{$artwork_result->variants[0]->height}} x {{$artwork_result->variants[0]->width}} @endif cm</li>
                             <li>{{$artwork_result->category_detail->name}}</li>
-                            <li>{{$artwork_result->sub_category_detail->name}}</li>
+                            @if(!empty($artwork_result->sub_category_detail))<li>{{$artwork_result->sub_category_detail->name}}</li>@endif
                             <li>{{$artwork_result->style_detail->name}}</li>
                             <li>{{$artwork_result->subject_detail->name}}</li>
                         </ul>
