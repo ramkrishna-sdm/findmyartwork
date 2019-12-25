@@ -300,10 +300,10 @@
                 <button type="button" onclick="setUserRole('gallery')" class="btn btn-border btn-lg role_btn" >Gallery</button>
               </div>
               <div class="custom-control custom-checkbox d-flex align-items-center mb-4">
-                <input type="checkbox" class="custom-control-input" name="agree_terms_and_conditions" value="1" id="customCheck1" required>
+                <input type="checkbox" class="custom-control-input clickcheckbox" name="agree_terms_and_conditions" value="1" id="customCheck1" required>
                 <label class="custom-control-label" for="customCheck1">By signing up you agree to our <a href="#">Terms & Conditions</a>.</label>
               </div>
-              <button type="submit" class="btn btn-default btn-block">{{ __('Sign Up') }}</button>
+              <button type="submit" class="btn btn-default btn-block showSignup" style="display: none;">{{ __('Sign Up') }}</button>
             </div>
           </div>
         </div>
@@ -1121,7 +1121,18 @@ $(document).on('click', '.save_artist', function(){
             console.log(errormessage);
         }
     });
-})
+}); 
+
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  $(".clickcheckbox").click(function(event) {
+    if ($(this).is(":checked"))
+      $(".showSignup").show();
+    else
+      $(".showSignup").hide();
+  });
+});
 </script>
 
 </body>
