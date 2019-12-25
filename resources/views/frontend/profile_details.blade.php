@@ -15,7 +15,7 @@
                     <span class="name">{{$profileDetails->first_name}} {{$profileDetails->last_name}}</span>
                     <?php //dd($profileDetails->id);?>  
                     <div class="stats">
-                        <a href="javascript:void()" data-btn-type="like" data-toggle="modal" data-target="#LikeModel"  data-dismiss="modal" aria-label="Close" class="like_users" data-user-id="{{$profileDetails->id}}">
+                        <a href="javascript:void()" data-btn-type="like" data-toggle="modal" data-target="#LikeModel"  data-dismiss="modal" aria-label="Close" class="like_users like_stats" data-user-id="{{$profileDetails->id}}">
                             <span>{{$all_likes}} Likes</span>
                         </a>
                         <a href="javascript:void()"  data-btn-type="followers" data-toggle="modal" data-target="#FollowersModel"  data-dismiss="modal" aria-label="Close" class="like_users all_follower" data-user-id="{{$profileDetails->id}}"> 

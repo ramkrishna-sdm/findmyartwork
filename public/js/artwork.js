@@ -60,11 +60,11 @@ jQuery(document).ready(function() {
             toastr.error('Please Select Category');
             return false;
         }
-        if ($.trim(sub_category) == '') {
-            toastr.options.timeOut = 2500; // 2s
-            toastr.error('Please Select Sub-Category');
-            return false;
-        }
+        // if ($.trim(sub_category) == '') {
+        //     toastr.options.timeOut = 2500; // 2s
+        //     toastr.error('Please Select Sub-Category');
+        //     return false;
+        // }
         if ($.trim(style_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Style');
@@ -294,7 +294,7 @@ jQuery(document).ready(function() {
     $('.third_step').on('click', function(e) {
         e.preventDefault();
         var category_id = $("#category_id").val();
-        var sub_category = $("#sub_category").val();
+        // var sub_category = $("#sub_category").val();
         var style_id = $("#style_id").val();
         var subject_id = $("#subject_id").val();
 
@@ -303,11 +303,11 @@ jQuery(document).ready(function() {
             toastr.error('Please Select Category');
             return false;
         }
-        if ($.trim(sub_category) == '') {
-            toastr.options.timeOut = 2500; // 2s
-            toastr.error('Please Select Sub-Category');
-            return false;
-        }
+        // if ($.trim(sub_category) == '') {
+        //     toastr.options.timeOut = 2500; // 2s
+        //     toastr.error('Please Select Sub-Category');
+        //     return false;
+        // }
         if ($.trim(style_id) == '') {
             toastr.options.timeOut = 2500; // 2s
             toastr.error('Please Select Style');

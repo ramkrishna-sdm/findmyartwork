@@ -94,6 +94,7 @@ class HomeController extends Controller
         // echo "<pre>";
         // print_r($featuredArtworks); die;
         $topartists  = $this->userRepository->getData(['is_featured'=>'yes','role'=>'artist', 'is_deleted'=>'no'],'get',[],0);
+        
         if(count($topartists)>0){
             foreach ($topartists as $key => $artist) {
                 if(Auth::user()){

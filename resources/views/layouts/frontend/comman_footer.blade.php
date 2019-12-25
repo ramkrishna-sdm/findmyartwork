@@ -597,35 +597,35 @@ document.getElementById("registerForm").submit();
           else{
             console.log('ajax else email');
             if($.trim(username)){
-        $.ajax({
-        url: "{{url('check_username')}}",
-        type: 'POST',
-        data:{'user_name':username},
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        
-        success: function(res){
-          if(res.status=="200"){
-            toastr.options.timeOut = 1500; // 2s
-            toastr.error(res.message);
-            e.preventDefault();
-            return false;
-          }
-          else{
-            console.log('ajax else username');
-            //$("#SignUpModal3").show();
-            $('#SignUpModal2').modal('hide');
-            $('#SignUpModal3').modal('show');
-          }
-        },
-        error: function (errormessage) {
-          toastr.options.timeOut = 1500; // 1.5s
-          toastr.error('You are Not Authorised Person.');
-          return false;
-        }
-        });
-      }
+              $.ajax({
+              url: "{{url('check_username')}}",
+              type: 'POST',
+              data:{'user_name':username},
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              
+              success: function(res){
+                if(res.status=="200"){
+                  toastr.options.timeOut = 1500; // 2s
+                  toastr.error(res.message);
+                  e.preventDefault();
+                  return false;
+                }
+                else{
+                  console.log('ajax else username');
+                  //$("#SignUpModal3").show();
+                  $('#SignUpModal2').modal('hide');
+                  $('#SignUpModal3').modal('show');
+                }
+              },
+              error: function (errormessage) {
+                toastr.options.timeOut = 1500; // 1.5s
+                toastr.error('You are Not Authorised Person.');
+                return false;
+              }
+              });
+            }
             
           }
         },
@@ -812,6 +812,7 @@ $(document).on('click', '.like_artwork', function(){
                 $(this_like).find('.like_image').attr('src', res.img_source);
                 $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
                 $(this_like).parents('.actionBlock').find('.likes').html(res.like_count);
+                // $(this_like).parents('.profilePage').find('.like_stats span').html(res.like_count);
             }else{
                 
             }
