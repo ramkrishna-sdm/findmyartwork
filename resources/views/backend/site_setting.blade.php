@@ -18,6 +18,14 @@
                             </div>
                         </div>
                         <div class="message-alert-top">
+                            @if(Session::has('success_message'))
+                            <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
+                            @endif
+                            @if(Session::has('error_message'))
+                            <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
+                            @endif
+                        </div>
+                        <!-- <div class="message-alert-top">
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -27,7 +35,7 @@
                                     </ul>
                                 </div>
                             @endif
-                        </div>
+                        </div> -->
                         <div class="card-body">
                             <form method="post" action="{{ url('/admin/update_site_setting') }}" autocomplete="off">
                                 @csrf

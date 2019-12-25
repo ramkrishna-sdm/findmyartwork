@@ -18,7 +18,7 @@ class SavedArtwork extends Model
     // Relations with Category Model
     public function users()
     {
-        return $this->hasMany('App\User','user_id','id');
+        return $this->belongsTo('App\User','user_id','id');
     }
     // Relations with Category Model
     public function saved_artwork()

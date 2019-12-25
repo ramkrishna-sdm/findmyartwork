@@ -1,5 +1,5 @@
 @include('layouts.frontend.header')
-<!-- Banner/Slider ------>
+<!-- Banner/Slider -->
 <div class="message-alert-top">
     @if(Session::has('success'))
     <div>
@@ -52,7 +52,6 @@
 <!-- End Category Section -->
 <!-- Featured Artwork -->
 @if(!empty($featuredArtworks))
-<?php //dd($featuredArtworks);?>
 <section class="featuredArt">
     <div class="featuredImage">
         <img src="{{$featuredArtworks->artwork_images[0]->media_url}}" alt="">
