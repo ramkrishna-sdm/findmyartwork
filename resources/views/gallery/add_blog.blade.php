@@ -22,7 +22,7 @@
                 <div class="col-sm-12">
                     <div class="form-group blogImageAdd">
                       <label  for="blogImage"><i class="far fa-image"></i> Upload Image
-                       <input type="file" id="blogImage" class=" form-control" value="" name="blogImage">
+                       <input type="file" id="blogImage" class=" form-control" value="" name="media_url">
                        </label>
                     </div>
                 </div>

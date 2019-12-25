@@ -21,9 +21,10 @@
                 </div>
                  <div class="col-sm-12">
                   <img src="@if(!empty($blog->media_url)){{$blog->media_url}}@endif" class="picture-src" id="wizardPicturePreview" title="">
-                    <div class="form-group">
-                      <label for="last_name">Upload Image</label>
-                       <input type="file" class=" form-control" value="" name="media_url">
+                    <div class="form-group blogImageAdd">
+                      <label  for="blogImage"><i class="far fa-image"></i> Upload Image
+                       <input type="file" id="blogImage" class=" form-control" value="" name="media_url">
+                       </label>
                     </div>
                 </div>
                 <div class="row">
