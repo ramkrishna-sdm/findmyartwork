@@ -21,7 +21,7 @@
 	Route::get('/logout','CommonLoginController@logout');
 	/*************Common Login Controller Routes End************************/
 
-	// Route::get('/user_profile/{slug}', 'Frontend\HomeController@user_profile')->where('slug', '^[-@./#&+\w\s]*$');
+	// Route::get('/profile/{slug}', 'Frontend\HomeController@user_profile')->where('slug', '^[-@./#&+\w\s]*$');
 	Route::get('/checkphp','CommonLoginController@phpinfo');
 
 
