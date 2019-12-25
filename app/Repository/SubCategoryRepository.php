@@ -36,6 +36,9 @@ class SubCategoryRepository implements RepositoryInterface
         if (!empty($conditions['is_deleted'])) {
             $query->where('is_deleted', $conditions['is_deleted']);
         }
+        if (!empty($conditions['is_active'])) {
+            $query->where('is_active', $conditions['is_active']);
+        }
 
         if (!empty($conditions['name'])) {
             $query->where('name', $conditions['name']);

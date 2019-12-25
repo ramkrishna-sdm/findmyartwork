@@ -114,9 +114,9 @@ class ArtworkController extends Controller
                 }    
             }
         }
-        $categories = $this->categoryRepository->getData([],'get',['subcategories'],0);
-        $styles= $this->styleRepository->getData([], 'get', [], 0);
-        $subjects= $this->subjectRepository->getData([], 'get', [], 0);
+        $categories = $this->categoryRepository->getData(['is_active'=>'yes'],'get',['subcategories'],0);
+        $styles= $this->styleRepository->getData(['is_active'=>'yes'], 'get', [], 0);
+        $subjects= $this->subjectRepository->getData(['is_active'=>'yes'], 'get', [], 0);
         return view('frontend/artwork_lists', compact('all_artwork', 'categories', 'styles', 'subjects', 'cat_id'));
     }
 
