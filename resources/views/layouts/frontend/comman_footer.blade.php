@@ -812,7 +812,7 @@ $(document).on('click', '.like_artwork', function(){
                 $(this_like).find('.like_image').attr('src', res.img_source);
                 $(this_like).parents('.rightBlock').find('.likes').html(res.like_count);
                 $(this_like).parents('.actionBlock').find('.likes').html(res.like_count);
-                // $(this_like).parents('.profilePage').find('.like_stats span').html(res.like_count);
+                $(this_like).parents('.profilePage').find('.like_stats span').html(res.all_likes);
             }else{
                 
             }

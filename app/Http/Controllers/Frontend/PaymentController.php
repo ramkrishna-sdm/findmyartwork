@@ -196,6 +196,8 @@ class PaymentController extends Controller
                     if($seller_email){
                         Mail::to($seller_email)->send(new SellerNotification($seller_mail));
                     }
+
+                    // Remove Cart
                 }
 
 
