@@ -613,7 +613,30 @@ z-index: 9;
     border-top-color: #2e3192 !important;
 }
 
+.user_list .modal-dialog span.image, .followers_users .modal-dialog .modal-body  li a span.image, .following_users .modal-dialog .modal-body  li a span.image{
+        width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid #FFF;
+-webkit-box-shadow: 2px -1px 21px -1px rgba(0,0,0,0.17);
+-moz-box-shadow: 2px -1px 21px -1px rgba(0,0,0,0.17);
+box-shadow: 2px -1px 21px -1px rgba(0,0,0,0.17);
+margin-right: 15px;
+}
+ul li, li{list-style: none;}
+.followers_users .modal-dialog .modal-body  li a span.image img, .following_users .modal-dialog .modal-body  li a span.image img{width: 100%;}
+.user_list .modal-dialog .modal-body ul {padding-left: 0;}
+.user_list .modal-dialog .modal-body ul li a span{font-weight: 600; text-transform: capitalize;}
+.user_list .modal-dialog .modal-body ul li a span.image img{width: 100%;}
+.user_list .modal-dialog .modal-body ul li a, .user_list .modal-dialog .modal-body ul li, .followers_users .modal-dialog .modal-body  li a, .following_users .modal-dialog .modal-body  li a{display: flex; align-items: center;}
+.user_list .modal-dialog .modal-body ul li, .following_users .modal-dialog .modal-body li, .followers_users .modal-dialog .modal-body  li  {padding: 10px 0; border-bottom: 1px solid #f2f2f2; font-weight: 600; text-transform: capitalize;}
+.user_list .modal-dialog .modal-body ul li a span:last-child span{pointer-events: none;}
+.user_list .modal-dialog .modal-body ul li a:nth-child(2){margin-left: 15px; color: #000; font-weight: 700;}
+.user_list .modal-dialog .modal-body ul li .liked{margin:0 10px;}
+.following_users .modal-dialog .modal-body  .heading{padding: 0 0 15px 0; margin-bottom: 15px; font-weight: 700; border-bottom:1px solid #f2f2f2; display: block;}
 
+{}
 /* Responsive Css */
 @media (max-width: 1100px) {
   .navbar .navbar-nav > li{margin:0 10px}

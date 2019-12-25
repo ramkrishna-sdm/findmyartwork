@@ -20,7 +20,7 @@
    </div> -->
 </div>
 </div>
-<!-- Trending Artists Page  -->
+<!-- Trending Artists Page  ----->
 <section class="TrendingArtists">
 <div class="container">
    @if(!empty($artists) > 0)
