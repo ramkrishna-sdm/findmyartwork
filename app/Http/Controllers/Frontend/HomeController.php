@@ -168,6 +168,7 @@ class HomeController extends Controller
     }
 
     public function user_profile($slug){
+        // dd($slug);
         $professional = [];
         $profileDetails = $this->userRepository->getData(['user_name'=>$slug, 'is_deleted'=>'no'],'first',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
         if(!empty($profileDetails)){
