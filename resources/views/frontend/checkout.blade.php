@@ -48,21 +48,21 @@
                 </div>
                 <hr>
                 @if(Auth::user())
-                <a class="btn btn-default checkout_btn" href="javascript:void(0);">Go to checkout</a>
+                <!-- <a class="btn btn-default checkout_btn" href="javascript:void(0);">Go to checkout</a> -->
+                <a class="btn btn-default" href="javascript:void(0);" data-toggle="modal" data-target="#userCheckoutModal">Go to checkout</a>
                 @else
                 <a class="btn btn-default" data-toggle="modal" data-target="#LoginModal" id="show-toaster" href="javascript:void(0);">Go to checkout</a>
                 @endif
-                <!-- <a class="btn btn-default" href="javascript:void(0);" data-toggle="modal" data-target="#userCheckoutModal">Go to checkout</a> -->
             </div>
         </div>
-        <form id="checkout_form" method="post" action="{{url('paypal')}}">
+        <!-- <form id="checkout_form" method="post" action="{{url('paypal')}}">
             @csrf
             @if(count($item_id) > 0)
             @foreach($item_id as $key => $id)
             <input type="hidden" name="artwork_arr[]" value="{{$id}}">
             @endforeach
             @endif
-        </form>
+        </form> -->
         @else
         <div class="text-center">
             <h4>No Item in Cart</h4>
@@ -87,7 +87,13 @@
                         @endif
                     </form> -->
                     <div class="row">
-                        <form class="needs-validation" novalidate="">
+                        <form class="needs-validation" novalidate="" id="checkout_form" method="post" action="{{url('paypal')}}">
+                            @csrf
+                            @if(count($item_id) > 0)
+                            @foreach($item_id as $key => $id)
+                            <input type="hidden" name="artwork_arr[]" value="{{$id}}">
+                            @endforeach
+                            @endif
                             <div class="col-md-10 offset-md-1 order-md-1">
                                 <div class="py-2 ">
                                     <h2>Checkout</h2>
@@ -95,50 +101,46 @@
                                 <h4 class="mb-3">Billing address</h4>
                                 <div class="row">
                                     <div class="col-md-8 mb-3">
-                                        <label for="firstName">Name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" name="first_name" class="form-control" id="firstName" placeholder="" value="@if(!empty($user_info)) {{$user_info->first_name}} @endif" required="">
                                         <div class="invalid-feedback">
                                             Valid first name is required.
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="lastName">Company (Optional)</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" name="last_name" class="form-control" id="lastName" placeholder="" value="@if(!empty($user_info)) {{$user_info->last_name}} @endif" required="">
                                         <div class="invalid-feedback">
                                             Valid last name is required.
                                         </div>
                                     </div>
                                     <div class=" col-md-12 mb-3">
                                         <label for="address">Address</label>
-                                        <textarea type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-                                        </textarea>
+                                        <textarea type="text" name="address" class="form-control" id="address" placeholder="1234 Main St" required="">@if(!empty($user_info)) {{$user_info->address}} @endif</textarea>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="country">Country</label>
-                                        <select class="form-control d-block w-100" id="country" required="">
-                                            <option value="">Choose...</option>
-                                            <option>United States</option>
-                                        </select>
+                                        <input type="text" name="country" class="form-control" id="country" placeholder="" value="@if(!empty($user_info)) {{$user_info->country}} @endif" required="">
+                                        <div class="invalid-feedback">
+                                            Valid last name is required.
+                                        </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="state">State</label>
-                                        <select class="form-control d-block w-100" id="state" required="">
-                                            <option value="">Choose...</option>
-                                            <option>California</option>
-                                        </select>
+                                        <input type="text" name="state" class="form-control" id="state" placeholder="" value="@if(!empty($user_info)) {{$user_info->state}} @endif" required="">
                                         <div class="invalid-feedback">
                                             Please provide a valid state.
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="zip">Zip</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                        <input type="text" name="postal_code" class="form-control" id="postal_code" placeholder="" value="@if(!empty($user_info)) {{$user_info->postal_code}} @endif" required="">
                                         <div class="invalid-feedback">
                                             Zip code required.
                                         </div>
                                     </div>
                                     <div class="col-md-8 offset-md-2 mb-3">
-                                        <button class="btn btn-default btn-block" type="submit">Continue to checkout</button>
+                                        <button class="btn btn-default btn-block checkout_btn" type="button">Continue to checkout</button>
                                     </div>
                                 </div>
                             </div>

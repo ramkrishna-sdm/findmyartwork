@@ -1044,9 +1044,49 @@ $(document).on('click', '.category_li', function(){
 })
 </script>
 <script type="text/javascript">
+// $(document).on('click', '.checkout_btn', function(){
+//   $("#checkout_form").submit();
+// })
+
 $(document).on('click', '.checkout_btn', function(){
-  $("#checkout_form").submit();
+
+  var firstName = $('#firstName').val();
+  var lastName = $('#lastName').val();
+  var address = $('#address').val();
+  var country = $('#country').val();
+  var state = $('#state').val();
+  var postal_code = $('#postal_code').val();
+
+  if($.trim(firstName) == ''){
+    toastr.options.timeOut = 1500; // 2s
+    toastr.error('Please Enter First Name');
+    return false;
+  }else if($.trim(lastName)==''){
+    toastr.options.timeOut = 1500; // 2s
+    toastr.error('Please Enter Last Name');
+    return false;
+  }else if ($.trim(address)==''){
+    toastr.options.timeOut = 1500; // 2s
+    toastr.error('Please Enter Address');
+    return false;
+  }else if($.trim(country)==''){
+    toastr.options.timeOut = 1500; // 1.5s
+    toastr.error('Please Enter Country.');
+    return false;
+  }else if($.trim(state)==''){
+    toastr.options.timeOut = 1500; // 2s
+    toastr.error('Please Enter State');
+    return false;
+  }else if($.trim(postal_code)==''){
+    toastr.options.timeOut = 1500; // 1.5s
+    toastr.error('Please Enter Postal Code.');
+    return false;
+  }else{
+    $('.checkout_btn').removeClass('checkout_btn');
+    $("#checkout_form").submit();
+  }
 })
+
 </script>
 <script type="text/javascript">
 $(document).on('click', '.shipping_status', function(){
