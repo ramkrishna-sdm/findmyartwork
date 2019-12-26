@@ -93,6 +93,18 @@
    @endif
 
 </div>
+<div class="container">
+  
+   <div class="col-lg-12  py-4 border d-flex paginationContainer">
+       <ul class="pagination mx-auto">
+        <?php //dd($artists);?>
+        <!-- {{ $artists->onEachSide(1)->links() }} -->
+        {{ $artists->links() }}
+         
+       </ul>
+   </div>
+    
+ </div>
 
 
 </section>

@@ -40,7 +40,7 @@
   
              <div class="col-lg-12  py-4 border d-flex paginationContainer">
                  <ul class="pagination mx-auto">
-                  {{ $blogs->onEachSide(1)->links() }}
+                  {{ $blogs->links() }}
                    
                  </ul>
              </div>
