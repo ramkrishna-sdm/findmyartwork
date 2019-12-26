@@ -41,11 +41,15 @@ class BlogRepository implements RepositoryInterface
             $query->where('user_type', $conditions['user_type']);
         }
 
+        if (!empty($conditions['except'])) {
+            $query->where('id','<>',$conditions['except']);
+        }
+
         if (!empty($withArr)) {
             $query->with($withArr);
         }
 
-        $resultSet = $query->orderBy('created_at', 'desc')->$method();
+        $resultSet = $query->orderBy('created_at', 'desc')->take(5)->$method();
 
         if (!empty($resultSet) && $toArray) {
             $resultSet = $resultSet->toArray();
