@@ -37,9 +37,11 @@ class FaqController extends Controller
     }
 
     public function update_faq(Request $request) {
+        // echo "<pre>";
+        // print_r($request->all()); die;
         $validator = $this->validate($request,[
             'qus' => 'required',
-            'ans' => 'required',
+            // 'ans' => 'required',
         ]);
         try{
             $faq = $this->FaqRepository->createUpdateData(['id'=> $request->id],$request->all());

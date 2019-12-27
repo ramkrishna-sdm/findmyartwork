@@ -10,42 +10,41 @@
     <div class="container">
         
             <div class="message-alert-top">
-                 @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                @if (session('password_status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('password_status') }}
-                    </div>
-                @endif
-                @if(Session::has('validation'))
-                    <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-ok"></span>
-                            <em> {!! session('success_message') !!}</em>
-                    </div>
-                @endif
-            </div>
-            <div class="message-alert-top">
-                @if(Session::has('success_message'))
-                    <div class="alert alert-success">
-                        <span class="glyphicon glyphicon-ok"></span>
-                            <em> {!! session('success_message') !!}</em>
-                    </div>
-                @endif
-            </div>
-            <div class="message-alert-top">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-            </div>
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('status') }}
+    </div>
+    @endif
+    @if (session('password_status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('password_status') }}
+    </div>
+    @endif
+    @if(Session::has('validation'))
+    <div class="alert alert-danger">
+      <span class="glyphicon glyphicon-ok"></span>
+      <em> {!! session('success_message') !!}</em>
+    </div>
+    @endif
+
+    @if(Session::has('success_message'))
+    <div class="alert alert-success">
+    <span class="glyphicon glyphicon-ok"></span>
+      <em> {!! session('success_message') !!}</em>
+    </div>
+    @endif
+
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+    </div>
+    @endif
+  </div>
         <form method="post"  action="{{ url('/gallery/update_gallery') }}" enctype="multipart/form-data" id="buyer-profile-form">
             @csrf
             <div class="row">
