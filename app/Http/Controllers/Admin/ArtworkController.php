@@ -132,7 +132,7 @@ class ArtworkController extends Controller
     public function manage_artworks()
     {
         $artworks = $this->artworkRepository->getData([],'get',['artist', 'category_detail', 'sub_category_detail'],0);
-        return view('backend/manage_artworks', compact('artworks', 'artist_id'));
+        return view('backend/manage_artworks', compact('artworks'));
     }
 
     /**
@@ -146,7 +146,7 @@ class ArtworkController extends Controller
     public function top_artwork()
     {
         $artworks = $this->artworkRepository->getData(['top'=>'yes'],'get',['artist', 'category_detail', 'sub_category_detail'],0);
-        return view('backend/top_artworks', compact('artworks', 'artist_id'));
+        return view('backend/top_artworks', compact('artworks'));
     }
 
     /**
@@ -160,7 +160,7 @@ class ArtworkController extends Controller
     public function trending_artwork()
     {
         $artworks = $this->artworkRepository->getData(['trending'=>'yes'],'get',['artist', 'category_detail', 'sub_category_detail'],0);
-        return view('backend/trending_artworks', compact('artworks', 'artist_id'));
+        return view('backend/trending_artworks', compact('artworks'));
     }
 
     /**

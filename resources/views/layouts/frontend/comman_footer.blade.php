@@ -550,7 +550,7 @@ document.getElementById("registerForm").submit();
       var username=$('#user_name').val();
       var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       if($.trim(first_name) == ''){
-        toastr.options.timeOut = 1500; // 2s
+        toastr.options.timeOut = 1115000000; // 2s
         toastr.error('Please Enter First Name');
         return false;
       }else if($.trim(last_name)==''){
