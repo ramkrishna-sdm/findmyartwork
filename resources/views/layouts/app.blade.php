@@ -545,7 +545,7 @@
             var artwork_id = $(this).attr('data-artwork-id');
             $.ajax({
                 type: "get",
-                url: '/get_gallery_images/'+artwork_id,
+                url: '/admin/get_gallery_images/'+artwork_id,
                 success: function (data) {
                     $('.modal-body').html(data);
                 },
