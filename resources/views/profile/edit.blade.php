@@ -5,18 +5,30 @@
 
 @section('content')
     <div class="content">
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-        @if (session('password_status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('password_status') }}
-            </div>
-        @endif
+        
+        <div class="message-alert-top">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if (session('password_status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('password_status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         <div class="row">
-            <!-- <div class="col-md-4">
+            <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
                         <img src="{{ asset('paper/img/damir-bosnjak.jpg') }}" alt="...">
@@ -34,8 +46,17 @@
                         </div>
                     </div>
                 </div>  
-            </div> -->
+            </div>
             <div class="col-md-8 text-center">
+
+                <div class="message-alert-top">
+                    @if(Session::has('success_message'))
+                    <div><div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('success_message') !!}</em></div></div>
+                    @endif
+                    @if(Session::has('error_message'))
+                    <div><div class="alert alert-danger"><em> {!! session('error_message') !!}</em></div></div>
+                    @endif
+                </div>
                 <form class="col-md-12" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -49,26 +70,16 @@
                                 <label class="col-md-3 col-form-label">{{ __('Name') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="text" name="first_name" class="form-control" placeholder="Name" value="{{ $user->first_name }}" required>
+                                        <input type="text" name="first_name" class="form-control" placeholder="Name" maxlength="50" value="{{ $user->first_name }}" required>
                                     </div>
-                                    @if ($errors->has('first_name'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('first_name') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Email') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $user->email }}" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Email" maxlength="50" value="{{ $user->email }}" required>
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -93,39 +104,24 @@
                                 <label class="col-md-3 col-form-label">{{ __('Old Password') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="password" name="old_password" class="form-control" placeholder="Old password" required>
+                                        <input type="password" name="old_password" class="form-control" maxlength="50" placeholder="Old password" required>
                                     </div>
-                                    @if ($errors->has('old_password'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('old_password') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('New Password') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                        <input type="password" name="password" class="form-control" maxlength="50" placeholder="Password" required>
                                     </div>
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Password Confirmation') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
+                                        <input type="password" name="password_confirmation" class="form-control" maxlength="50" placeholder="Password Confirmation" required>
                                     </div>
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                         </div>

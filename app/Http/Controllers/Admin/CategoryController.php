@@ -69,7 +69,7 @@ class CategoryController extends Controller
             'media_url' => 'required_without:old_image|mimes:jpg,png,jpeg,gif',
         ],
         [   
-            'media_url.required_without'    => 'Image preview is required for this sub category.',
+            'media_url.required_without'    => 'Image preview is required for this category.',
         ]);
     	try{
             $category_array = [];
