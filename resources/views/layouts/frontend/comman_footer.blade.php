@@ -146,12 +146,13 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="loginForm text-center">
+        <div class="loginForm text-center">
             <h3>Sign In to your account</h3>
             <div class="col-md-8 offset-md-2">
-              
+              <span class="loginerror" style="color:red"></span>
               <div class="form-group">
                 <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}"  autofocus id="email">
+              
                 
                 @if ($errors->has('email'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -160,6 +161,7 @@
                 @endif
                 
               </div>
+
               <div class="form-group">
                 <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" id="password">
                 
@@ -238,6 +240,7 @@
           <div class="loginForm text-center">
             <h3>Enter your details to sign up</h3>
             <div class="col-md-8 offset-md-2">
+              <span class="signuperror" style="color:red"></span>
               <div class="form-group">
                 <input name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ old('first_name') }}" required autofocus id="first_name">
                 @if ($errors->has('first_name'))
@@ -328,9 +331,26 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<!-- <script src="{{asset('js/jquery.validationEngine-en.js')}}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
 
 
 <script>
+
+  $('document').ready(function() {
+   if ($(".message-alert-top").children().length == 0 ) {
+       $(".message-alert-top").css('display','none');
+       $(".message-alert-top").removeClass('active_alert');
+   }
+   else{
+       $(".message-alert-top").css('display','block');
+       $(".message-alert-top").addClass('active_alert');
+    }
+  }); 
+
+  setTimeout(function() {
+    $('.message-alert-top').fadeOut('fast');
+  }, 3500); 
    var category_id = '';
    var sub_category_id = '';
    function subCategoryInfo(id) {
@@ -550,32 +570,39 @@ document.getElementById("registerForm").submit();
       var username=$('#user_name').val();
       var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       if($.trim(first_name) == ''){
-        toastr.options.timeOut = 1115000000; // 2s
-        toastr.error('Please Enter First Name');
+        // toastr.options.timeOut = 1500; // 2s
+        // toastr.error('Please Enter First Name');
+        $('.signuperror').text("Please Enter First Name");
         return false;
       }else if($.trim(last_name)==''){
-              toastr.options.timeOut = 1500; // 2s
-              toastr.error('Please Enter Last Name');
+              // toastr.options.timeOut = 1500; // 2s
+              // toastr.error('Please Enter Last Name');
+              $('.signuperror').text("Please Enter Last Name");
               return false;
       }else if ($.trim(email)==''){
-              toastr.options.timeOut = 1500; // 2s
-              toastr.error('Please Enter Email');
+              // toastr.options.timeOut = 1500; // 2s
+              // toastr.error('Please Enter Email');
+              $('.signuperror').text("Please Enter Email");
               return false;
       }else if(!email_filter.test(email)){
-              toastr.options.timeOut = 1500; // 1.5s
-              toastr.error('Please Enter Valid Email.');
+              // toastr.options.timeOut = 1500; // 1.5s
+              // toastr.error('Please Enter Valid Email.');
+              $('.signuperror').text("Please Enter Valid Email.");
               return false;
       }else if($.trim(password)==''){
-              toastr.options.timeOut = 1500; // 2s
-              toastr.error('Please Enter Password');
+              // toastr.options.timeOut = 1500; // 2s
+              // toastr.error('Please Enter Password');
+              $('.signuperror').text("Please Enter Password");
               return false;
-      }else if($.trim(password).length<6){
-              toastr.options.timeOut = 1500; // 1.5s
-              toastr.error('Please enter Password more than 6 characters.');
+      }else if($.trim(password).length<8){
+              // toastr.options.timeOut = 1500; // 1.5s
+              // toastr.error('Please enter Password more than 6 characters.');
+               $('.signuperror').text("Please enter Password more than 8 characters.");
               return false;
       }else if($.trim(username)==''){
-              toastr.options.timeOut = 1500; // 2s
-              toastr.error('Please Enter UserName');
+              // toastr.options.timeOut = 1500; // 2s
+              // toastr.error('Please Enter UserName');
+                $('.signuperror').text("Please Enter UserName");
               return false;
       }else if($.trim(email)){
         $.ajax({
@@ -607,8 +634,9 @@ document.getElementById("registerForm").submit();
               
               success: function(res){
                 if(res.status=="200"){
-                  toastr.options.timeOut = 1500; // 2s
-                  toastr.error(res.message);
+                  // toastr.options.timeOut = 1500; // 2s
+                  // toastr.error(res.message);
+                  $('.signuperror').text(res.message);
                   e.preventDefault();
                   return false;
                 }
@@ -620,8 +648,9 @@ document.getElementById("registerForm").submit();
                 }
               },
               error: function (errormessage) {
-                toastr.options.timeOut = 1500; // 1.5s
-                toastr.error('You are Not Authorised Person.');
+                // toastr.options.timeOut = 1500; // 1.5s
+                // toastr.error('You are Not Authorised Person.');
+                 $('.signuperror').text('You are Not Authorised Person.');
                 return false;
               }
               });
@@ -630,8 +659,9 @@ document.getElementById("registerForm").submit();
           }
         },
         error: function (errormessage) {
-          toastr.options.timeOut = 1500; // 1.5s
-          toastr.error('You are Not Authorised Person.');
+          // toastr.options.timeOut = 1500; // 1.5s
+          // toastr.error('You are Not Authorised Person.');
+          $('.signuperror').text('You are Not Authorised Person.');
           return false;
         }
         });
@@ -647,30 +677,36 @@ document.getElementById("registerForm").submit();
 <script type="text/javascript">
   $(document).ready(function() {
   $('#submit-form').click(function(e) {
+  $('.errormessage').css("display:none");
   e.preventDefault();
   var email = $('#email').val();
   var password = $('#password').val();
   var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if($.trim(email) == '')
     {
-      toastr.options.timeOut = 1500; // 1.5s
-      toastr.error('Please Enter Email.');
+      // toastr.options.timeOut = 1500; 
+      // toastr.error('Please Enter Email');
+      $('.loginerror').text("Please Enter Email");
+      
       return false;
     }
     else if(!email_filter.test(email))
     {
-      toastr.options.timeOut = 1500; // 1.5s
-      toastr.error('Please Enter Valid Email.');
+      // toastr.options.timeOut = 1500; // 1.5s
+      // toastr.error('Please Enter Valid Email.');
+      $('.loginerror').text("Please Enter Valid Email.");
       return false;
     }
       else if($.trim(password)==''){
-      toastr.options.timeOut = 1500; // 1.5s
-      toastr.error('Please Enter Password.');
+      // toastr.options.timeOut = 1500; // 1.5s
+      // toastr.error('Please Enter Password.');
+      $('.loginerror').text("Please Enter Password.");
       return false;
     }
       else if($.trim(password).length<6){
-      toastr.options.timeOut = 1500; // 1.5s
-      toastr.error('Please enter Password more than 6 characters.');
+      // toastr.options.timeOut = 1500; // 1.5s
+      // toastr.error('Please enter Password more than 8 characters.');
+       $('.loginerror').text("Please enter Password more than 6 characters.");
       return false;
     }else{
       makeUserLogin();
@@ -692,14 +728,16 @@ function makeUserLogin(){
     if(res.status=="200"){
       window.location.href = res.redirect_url;
     }else{
-      toastr.options.timeOut = 1500; // 1.5s
-      toastr.error(res.message);
+      $('.loginerror').text(res.message);
+      // toastr.options.timeOut = 1500; // 1.5s
+      // toastr.error(res.message);
       return false;
     }
   },
   error: function (errormessage) {
-    toastr.options.timeOut = 1500; // 1.5s
-    toastr.error('You are Not Authorised Person.');
+    // toastr.options.timeOut = 1500; // 1.5s
+    // toastr.error('You are Not Authorised Person.');
+     $('.loginerror').text('You are Not Authorised Person.');
     return false;
   }
 });

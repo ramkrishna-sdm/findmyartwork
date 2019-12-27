@@ -136,7 +136,7 @@ class HomeController extends Controller
     
 
     public function artist(){
-        $artists = $this->userRepository->getData(['role'=>'artist','is_deleted'=>'no'],'get',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
+        $artists = $this->userRepository->getData(['role'=>'artist','is_deleted'=>'no','page'=>10],'paginate',['artworks', 'artworks.artwork_images', 'artworks.category_detail', 'artworks.artwork_like', 'artworks.variants'],0);
         if(count($artists)>0){
             foreach ($artists as $key => $artist) {
                 if(count($artist->artworks) > 0){
@@ -573,14 +573,16 @@ class HomeController extends Controller
     }
 
     public function exhibitions(){
-       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no','limit'=>1, 'page'=>2],'paginate',['user'],0);
+       $blogs = $this->BlogRepository->getData(['is_deleted'=>'no','page'=>6],'paginate',['user'],0);
        //dd($blogs);
        return view('gallery.exhibitions',compact('blogs'));
     }
 
     public function exhibition_details($id){
         $blog_detail = $this->BlogRepository->getData(['id'=>$id,'is_deleted'=>'no'],'first',['user'],0);
-        $leatests = $this->BlogRepository->getData(['is_deleted'=>'no'],'get',['user'],0);
+        $leatests = $this->BlogRepository->getData(['except'=>$id, 'is_deleted'=>'no'],'get',['user'],0);
+        // echo "<pre>";
+        // print_r($leatests); die;
        return view('gallery.exhibition_details',compact('blog_detail','leatests'));
     }
 

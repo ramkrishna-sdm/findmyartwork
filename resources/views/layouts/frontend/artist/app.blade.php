@@ -189,6 +189,23 @@
 
     @include('layouts.navbars.fixed-plugin-js') -->
 <script>
+
+    $('document').ready(function() {
+        if ($(".message-alert-top").children().length == 0 ) {
+           $(".message-alert-top").css('display','none');
+           $(".message-alert-top").removeClass('active_alert');
+        }
+        else{
+           $(".message-alert-top").css('display','block');
+           $(".message-alert-top").addClass('active_alert');
+        }
+    }); 
+
+    setTimeout(function() {
+        $('.message-alert-top').fadeOut('fast');
+    }, 3500); 
+
+
   $(function(){
     setTimeout(function() {
       $("#loader_gif").hide();
